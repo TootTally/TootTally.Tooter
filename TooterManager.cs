@@ -1431,14 +1431,14 @@ namespace TootTally.Tooter
             {86,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Yeah, I heard about that." + (DialogueFlags.cheeredTrixie ? " You're really talented on the trombone." : ""),
+                    dialogueText = $"Soda: Yeah, I heard about that.{(DialogueFlags.cheeredTrixie ? " You're really talented on the trombone." : "")}",
                     option2DialogueID = 87,
                 }
             },
             {87,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Yeah, I heard about that. You're really talented on the trombone.",
+                    dialogueText = $"Trixiebell: {(DialogueFlags.cheeredTrixie ? "Thank you. But " : "")}I'm just so nervous about performing in front of a big audience.",
                     option2DialogueID = 88,
                 }
             },
