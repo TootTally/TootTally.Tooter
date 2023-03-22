@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "dgSpecHash": "BYKjsiFUTL1a0Ijm35TQrtEmz2VYXUnCPXwXbBi8MNTZlqF7mgxuzaNGwylTSTmVmmJQTzyP4/3cgGyvZDOjmg==",
+  "success": false,
+  "projectFilePath": "E:\\Visual Studio Projects\\Beat Saber Project\\TootTally.Tooter\\TootTally.Tooter\\TootTally.Tooter.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sabz\\.nuget\\packages\\unityengine.modules\\2019.3.11\\unityengine.modules.2019.3.11.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package BepInEx.Core. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "BepInEx.Core",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package BepInEx.Analyzers. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "BepInEx.Analyzers",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package BepInEx.PluginInfoProps. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "BepInEx.PluginInfoProps",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.1"
+      ]
+    }
+  ]
+}
