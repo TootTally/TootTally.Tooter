@@ -151,7 +151,7 @@ namespace TootTally.Tooter
         {
             var scaleX = character.transform.localScale.x;
             var scaleY = character.transform.localScale.y;
-            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(-scaleX, scaleY, 10f), 1.8f, new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f));
+            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(-scaleX, scaleY, 10f), 1.8f, new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(scaleX) * 1.6f, 1.6f); });
             if (fixPosition)
                 AnimationManager.AddNewTransformPositionAnimation(character, character.transform.position + new Vector3(Mathf.Sign(scaleX) * 1.1f, 0, 0), 1.8f, GetSecondDegreeAnimationFunction(speedMult));
 
@@ -255,12 +255,6 @@ namespace TootTally.Tooter
             {
                 __instance.addWaitForClick();
                 __instance.playSfx(3);
-                if (TootTally.Plugin.userInfo == null || TootTally.Plugin.userInfo.id == 0)
-                {
-                    PopUpNotifManager.DisplayNotif("Please login on TootTally to play online.", GameTheme.themeColors.notification.errorText);
-                    return;
-                }
-
                 //Yoinked from DNSpy KEKW
                 __instance.musobj.Stop();
                 __instance.quickFlash(2);
@@ -395,7 +389,7 @@ namespace TootTally.Tooter
             _txtBox.UpdateText("");
             __instance.dtxt(DialogueStates[_currentDialogueState].dialogueText);
             __instance.btns(DialogueStates[_currentDialogueState].option1Text, DialogueStates[_currentDialogueState].option2Text, DialogueStates[_currentDialogueState].option1DialogueID, DialogueStates[_currentDialogueState].option2DialogueID);
-            
+
             __instance.btn2obj.GetComponent<RectTransform>().anchoredPosition = DialogueStates[_currentDialogueState].option1Text != "" ? _btn2PositionCenter : _btn2PositionRight;
 
             Plugin.Instance.LogInfo("Event #" + _currentDialogueState);
@@ -473,7 +467,7 @@ namespace TootTally.Tooter
                     break;
                 case 35:
                     FlipSpriteAnimation(_soda, true);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 2.85f, new EasingHelper.SecondOrderDynamics(.25f, 1f, 0f), delegate { FadeOutScene(__instance, 36); });
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 2.65f, new EasingHelper.SecondOrderDynamics(.25f, 1f, 0f), delegate { FadeOutScene(__instance, 36); });
                     FlipSpriteAnimation(_trixiebell, true, .9f);
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outLeftCharPosition, 4f, new EasingHelper.SecondOrderDynamics(.25f, 1f, 0f));
                     FlipSpriteAnimation(_beezerly, true, .8f);
@@ -494,6 +488,9 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
                 case 39:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    DialogueFlags.offeredPracticeWithTrixie = true;
+                    break;
                 case 40:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
                     break;
@@ -510,6 +507,7 @@ namespace TootTally.Tooter
                     break;
                 case 46:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    DialogueFlags.talkedShitAboutJazz = true;
                     break;
                 case 48:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
@@ -517,6 +515,7 @@ namespace TootTally.Tooter
                     break;
                 case 49:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    DialogueFlags.offeredIdeaToBeezerly = true;
                     break;
                 case 54:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaSmiling, Color.white);
@@ -538,7 +537,7 @@ namespace TootTally.Tooter
                       });
                     break;
                 case 57:
-                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outLeftCharPosition, 0.6f, GetSecondDegreeAnimationFunction(250f)); //tp her to the left xd YEET
+                    _appaloosa.transform.position = _outLeftCharPosition; //tp her to the left xd YEET
                     DialogueFlags.pickedAppaloosa = true;
                     break;
                 case 58:
@@ -548,25 +547,39 @@ namespace TootTally.Tooter
                 case 59:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
                     break;
+                case 61:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNormalTalk, Color.white);
+                    DialogueFlags.askedAppaloosaForHelp = true;
+                    break;
                 case 66:
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
+                case 67:
+                    DialogueFlags.pickedKaizyle = true;
+                    break;
                 case 68:
-                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    FlipSpriteAnimation(_kaizyle, false, 10f);
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNormalTalk, Color.white);
                     break;
                 case 70:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaShock, Color.white);
+                    DialogueFlags.askedKaizyleForHelp = true;
                     break;
                 case 72:
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(1.2f,0,0), 1f, GetSecondDegreeAnimationFunction());
-                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCenterCharPosition + new Vector3(1,0,0), 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(1.2f, 0, 0), 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition + new Vector3(.4f, 0, 0), 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
                     break;
                 case 74:
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(2.4f, 0, 0), 1f, GetSecondDegreeAnimationFunction());
-                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCenterCharPosition + new Vector3(2, 0, 0), 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(2.6f, 0, 0), 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition + new Vector3(.8f, 0, 0), 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.annoyedTheFuckOutOfKaizyle = true;
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    break;
+                case 75:
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(4f, 0, 0), 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition + new Vector3(1.2f, 0, 0), 1f, GetSecondDegreeAnimationFunction());
                     break;
                 case 76:
                     FlipSpriteAnimation(_kaizyle, false, 2f);
@@ -584,6 +597,16 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     FlipSpriteAnimation(_soda, false);
                     break;
+                case 81:
+                    FadeOutScene(__instance, 82);
+                    break;
+                case 82:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNormalTalk, Color.white);
+                    break;
+
+
+
+
 
                 case 10:
                 case 21:
@@ -591,7 +614,6 @@ namespace TootTally.Tooter
                 case 44:
                 case 51:
                 case 60:
-                case 61:
                 case 63:
                 case 64:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNormalTalk, Color.white);
@@ -612,11 +634,6 @@ namespace TootTally.Tooter
                 case 71:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaSmiling, Color.white);
                     break;
-
-                case 81:
-                    FadeOutScene(__instance, 82);
-                    break;
-
             }
 
             return false;
@@ -625,7 +642,7 @@ namespace TootTally.Tooter
         public static void FadeOutScene(DemonDialogue __instance, int nextDialogueID)
         {
 
-            
+
 
             __instance.csc.fadeoutpanel.transform.localScale = new Vector3(2f, 0.001f, 1f);
             __instance.csc.fadeoutpanel.SetActive(true);
@@ -633,13 +650,18 @@ namespace TootTally.Tooter
             {
                 switch (nextDialogueID)
                 {
+                    //end chapter 1
                     case 36:
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ClassroomEvening.png");
                         _txtBox.UpdateText("");
                         LogChapter1States();
                         break;
+
+                    //end chapter 2
                     case 82:
-                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ClassroomEvening.png");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
+                        _soda.transform.position = _outRightCharPosition;
+                        _trixiebell.transform.position = _outLeftCharPosition;
                         DialogueStates = GetDialogueChapter3();
                         LogChapter2States();
                         break;
@@ -1163,7 +1185,7 @@ namespace TootTally.Tooter
             {57,
                 new DialogueData()
                 {
-                    dialogueText = $"[A beautiful and calming melody can be heard from a nearby room. Peak in the room?]",
+                    dialogueText = $"[A beautiful and calming melody can be heard from a nearby room. Peek in the room?]",
                     option1Text = "Yes",
                     option1DialogueID = 58,
                     option2Text = "No",
@@ -1173,7 +1195,7 @@ namespace TootTally.Tooter
             {58,
                 new DialogueData()
                 {
-                    dialogueText = $"[You peak in the other room and see {_appaloosaColoredName} practicing her improvisation]",
+                    dialogueText = $"[You peek in the other room and see {_appaloosaColoredName} practicing her improvisation]",
                     option2DialogueID = 59,
                 }
             },
@@ -1242,7 +1264,7 @@ namespace TootTally.Tooter
             {67,
                 new DialogueData()
                 {
-                    dialogueText = $"[A fast and complex melody can be heard from another room. Peak in the other room?]",
+                    dialogueText = $"[A fast and complex melody can be heard from another room. Peek in the other room?]",
                     option1Text = "Yes",
                     option1DialogueID = 68,
                     option2Text = "No",
@@ -1293,7 +1315,7 @@ namespace TootTally.Tooter
             {73,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: I told you I need to practie. I will be able to help you later so please let me practice now.",
+                    dialogueText = $"{_kaizyleColoredName}: I told you I need to practice. I will be able to help you later so please let me practice now.",
                     option1Text = "Keep begging",
                     option1DialogueID = 74,
                     option2Text = "Let her practice",
@@ -1368,9 +1390,8 @@ namespace TootTally.Tooter
             {82,
                 new DialogueData()
                 {
-                    dialogueText = $"[End of Chapter 2]",
-                    option2Text = "",
-                    option2DialogueID = 0,
+                    dialogueText = $"CHAPTER 3: DATING TIME",
+                    option2DialogueID = 83,
                 }
             },
         };
@@ -1385,11 +1406,15 @@ namespace TootTally.Tooter
 
         public static class DialogueFlags
         {
+            #region Chapter 1
             public static bool cheeredTrixie;
             public static bool isCompetitive;
             public static bool welcomedAppaloosa;
             public static bool presentedFriends;
             public static bool calmedKaizyleDown;
+            #endregion
+
+            #region Chapter 2
             public static bool offeredPracticeWithTrixie;
             public static bool talkedShitAboutJazz;
             public static bool offeredIdeaToBeezerly;
@@ -1398,6 +1423,7 @@ namespace TootTally.Tooter
             public static bool askedAppaloosaForHelp;
             public static bool askedKaizyleForHelp;
             public static bool annoyedTheFuckOutOfKaizyle;
+            #endregion
         }
 
         public class ScoreData
