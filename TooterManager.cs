@@ -108,11 +108,16 @@ namespace TootTally.Tooter
             __instance.csc.demonbg.GetComponent<RectTransform>().localScale = Vector2.one * 8f;
             GameObject.DestroyImmediate(__instance.csc.demonbg.transform.Find("Image (1)").gameObject);
 
-            Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Electrostats5V3.mp3", clip =>
+            Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter1-2Music.mp3", clip =>
             {
                 __instance.csc.bgmus2.clip = clip;
-                __instance.csc.bgmus2.volume = GlobalVariables.localsettings.maxvolume;
+                __instance.csc.bgmus2.volume = .25f;
                 __instance.csc.bgmus2.Play();
+            }));
+            Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter3Music.mp3", clip =>
+            {
+                __instance.csc.bgmus1.clip = clip;
+                __instance.csc.bgmus1.volume = 0f;
             }));
             _scoreData = new ScoreData();
         }
@@ -151,7 +156,7 @@ namespace TootTally.Tooter
         {
             var scaleX = character.transform.localScale.x;
             var scaleY = character.transform.localScale.y;
-            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(-scaleX, scaleY, 10f), 1.8f, new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(scaleX) * 1.6f, 1.6f); });
+            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(-scaleX, scaleY, 10f), 1.8f, new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(-scaleX) * 1.6f, 1.6f); });
             if (fixPosition)
                 AnimationManager.AddNewTransformPositionAnimation(character, character.transform.position + new Vector3(Mathf.Sign(scaleX) * 1.1f, 0, 0), 1.8f, GetSecondDegreeAnimationFunction(speedMult));
 
@@ -583,8 +588,7 @@ namespace TootTally.Tooter
                     break;
                 case 76:
                     FlipSpriteAnimation(_kaizyle, false, 2f);
-                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction(1.5f));
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction(1.5f), delegate { ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white); });
                     break;
                 case 77:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
@@ -646,6 +650,8 @@ namespace TootTally.Tooter
 
             __instance.csc.fadeoutpanel.transform.localScale = new Vector3(2f, 0.001f, 1f);
             __instance.csc.fadeoutpanel.SetActive(true);
+            __instance.csc.fadeMus(0, false);
+            __instance.csc.fadeMus(1, false);
             AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 2f, 1f), 2f, GetSecondDegreeAnimationFunction(), delegate
             {
                 switch (nextDialogueID)
@@ -654,12 +660,17 @@ namespace TootTally.Tooter
                     case 36:
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ClassroomEvening.png");
                         _txtBox.UpdateText("");
+                        __instance.csc.fadeMus(1, true);
                         LogChapter1States();
                         break;
 
                     //end chapter 2
                     case 82:
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
+                        _txtBox.UpdateText("");
+                        __instance.csc.bgmus1.time = 0;
+                        __instance.csc.fadeMus(0, true);
+                        __instance.csc.bgmus1.Play();
                         _soda.transform.position = _outRightCharPosition;
                         _trixiebell.transform.position = _outLeftCharPosition;
                         DialogueStates = GetDialogueChapter3();
@@ -1392,6 +1403,43 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"CHAPTER 3: DATING TIME",
                     option2DialogueID = 83,
+                }
+            },
+            {83,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Hey Trixiebell, how's it going?",
+                    option2DialogueID = 84,
+                }
+            },
+            {84,
+                new DialogueData()
+                {
+                    dialogueText = DialogueFlags.cheeredTrixie ?
+                    $"Trixiebell: Oh, hi Soda. I'm great! Just practicing for the big competition." :
+                    $"Trixiebell: Oh, hi Soda. I'm doing okay, I guess. Just practicing for the big competition.",
+                    option2DialogueID = DialogueFlags.cheeredTrixie ? 85 : 86,
+                }
+            },
+            {85,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Thanks for cheering me up earlier. It really helped me release some stress and I appreciate it.",
+                    option2DialogueID = 86,
+                }
+            },
+            {86,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Yeah, I heard about that." + (DialogueFlags.cheeredTrixie ? " You're really talented on the trombone." : ""),
+                    option2DialogueID = 87,
+                }
+            },
+            {87,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Yeah, I heard about that. You're really talented on the trombone.",
+                    option2DialogueID = 88,
                 }
             },
         };
