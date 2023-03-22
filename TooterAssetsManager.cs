@@ -28,6 +28,7 @@ namespace TootTally.Tooter
             "SodaStressLight.png",
             "SodaWheezeRW.png",
             "SodaAgree.png",
+            "SodaThinking.png",
 
             "TrixieShadow.png",
             "TrixieNeutral.png",
