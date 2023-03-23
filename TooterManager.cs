@@ -75,20 +75,15 @@ namespace TootTally.Tooter
         private static void OnDTxtPostFixSetCoroutine(DemonDialogue __instance, object[] __args)
         {
             var dtext = (string)__args[0];
-            int num = Mathf.FloorToInt(dtext.Length * 0.08f);
-            if (num < 1)
-            {
-                num = 1;
-            }
             string[] array = dtext.Split(new char[]
             {
             ' '
             });
-            float num2 = 0f;
+            float delay = 1f;
             foreach (string word in array)
             {
-                Plugin.Instance.StartCoroutine(addWord(word, num2));
-                num2+=0.3f;
+                Plugin.Instance.StartCoroutine(addWord(word, delay));
+                delay+=1.5f;
             }
         }
 
@@ -131,8 +126,9 @@ namespace TootTally.Tooter
             txtBoxRectTransform.anchoredPosition = new Vector2(0, -300);
             txtBoxRectTransform.sizeDelta = new Vector2(1500, 250);
             txtBoxRectTransform.localScale = Vector2.one / 2f;
-            _txtBox.Initialize(float.MaxValue, new Vector2(0, -150));
+            _txtBox.Initialize(float.MaxValue, new Vector2(0, -150), new Vector2(1000,250), new Vector2(300,0));
             _txtBox.SetTextSize(32); //SetTextSize has to be called after init
+            _txtBox.SetTextAlign(TextAnchor.MiddleLeft);
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(.6f, .6f, .6f);
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().preserveAspect = true;
