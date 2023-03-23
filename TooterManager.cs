@@ -1897,22 +1897,64 @@ namespace TootTally.Tooter
             {320009,
                 new DialogueData()
                 {
-                    dialogueText = $"Beezerly: Now this is what I call a good time! I love the energy here.",
+                    dialogueText = $"Soda: Yeah, it's definitely a unique experience. Have you been here before?",
                     option2DialogueID = 320010,
                 }
             },
             {320010,
                 new DialogueData()
                 {
-                    dialogueText = $"Beezerly: Now this is what I call a good time! I love the energy here.",
+                    dialogueText = $"Beezerly: A couple of times. I love their burgers and fries. And of course, the music is always on point.",
                     option2DialogueID = 320011,
                 }
             },
             {320011,
                 new DialogueData()
                 {
-                    dialogueText = $"Beezerly: Now this is what I call a good time! I love the energy here.",
+                    dialogueText = $"Soda: I'm glad you're enjoying yourself. I've never been to a place like this before.",
                     option2DialogueID = 320012,
+                }
+            },
+            {320012,
+                new DialogueData()
+                {
+                    dialogueText = $"Beezerly: Well, then we have to make the most of it. ",
+                    option2DialogueID = 320013,
+                }
+            },
+            {320013,
+                new DialogueData()
+                {
+                    dialogueText = $"[They order their food and drinks and settle at a table]",
+                    option2DialogueID = 320014,
+                }
+            },
+            {320014,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: So, I know you're not really into the music competition, but I've always wondered why. Is it because you don't think you can win?",
+                    option2DialogueID = 320015,
+                }
+            },
+            {320015,
+                new DialogueData()
+                {
+                    dialogueText = $"Beezerly: Nah, it's not really about winning or losing for me. I just don't like the idea of competing against other musicians.",
+                    option2DialogueID = 320016,
+                }
+            },
+            {320016,
+                new DialogueData()
+                {
+                    dialogueText = $"Beezerly: Music is supposed to bring people together, not tear them apart.",
+                    option2DialogueID = 320017,
+                }
+            },
+            {320017,
+                new DialogueData()
+                {
+                    dialogueText = $"Beezerly: Music is supposed to bring people together, not tear them apart.",
+                    option2DialogueID = 320018,
                 }
             },
 
