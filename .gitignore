@@ -1,4 +1,5 @@
 /build/
+*.csproj
 *.suo
 *.user
 _ReSharper.*/
