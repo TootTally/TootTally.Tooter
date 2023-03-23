@@ -1715,7 +1715,7 @@ namespace TootTally.Tooter
                     option1DialogueID = 118,
                     option2Text = "Yeah",
                     option2DialogueID = 119,
-                    
+
                 }
             },
             {118,
@@ -1959,7 +1959,208 @@ namespace TootTally.Tooter
             },
 
             #endregion
+
+            #region Appaloosa Date
+            {330000,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Hi Appaloosa, thanks for agreeing to give me some trombone lessons. I'm really excited to learn from you.",
+                    option2DialogueID = 330001,
+                }
+            },
+            {330001,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: It's my pleasure, Soda. I can tell you're passionate about music, and I love helping others develop their skills. So, how about we start with a few warm-up exercises?",
+                    option2DialogueID = 330002,
+                }
+            },
+            {330002,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Sounds good to me.",
+                    option2DialogueID = 330003
+                }
+            },
+            {330003,
+                new DialogueData()
+                {
+                    dialogueText = $"[They begin practicing, and Appaloosa gives Soda pointers on his technique]",
+                    option2DialogueID = 330004
+                }
+            },
+            {330004,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: You're a quick learner, Soda. You've got a lot of potential. Have you ever played at a jazz bar before?",
+                    option2DialogueID = 330005
+                }
+            },
+            {330005,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: No, I haven't. But I'd love to check one out!",
+                    option2DialogueID = 330006
+                }
+            },
+            {330006,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: Well, you're in luck. I actually work at a jazz bar not too far from here.",
+                    option2DialogueID = 330007
+                }
+            },
+            {330007,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: Would you like to come with me tonight? We can grab a drink and listen to some live music.",
+                    option1Text = $"Why not",
+                    option1DialogueID = 331002,
+                    option2Text = $"Yes",
+                    option2DialogueID = 331000,
+                    option2Score = new ScoreData
+                    {
+                        appaloosaScore = 1f
+                    }
+                }
+            },
+            {331000, // Choice 1; yes
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: That sounds amazing! I'd love to.", // Excited
+                    option2DialogueID = 331001,
+                }
+            },
+            {331001,
+                new DialogueData()
+                {
+                    dialogueText = $"[That night, they arrive at the jazz bar, where the music is already in full swing]",
+                    option2DialogueID = 331002
+                }
+            },
+            {331002,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: What do you think, Soda? This is the real deal, right?", //Yelling over music
+                    option1DialogueID = 331200,
+                    option1Text = $"Not really",
+                    option2DialogueID = 331100,
+                    option2Text = $"Absolutely",
+                    option2Score = new ScoreData
+                    {
+                        appaloosaScore = 1f
+                    }
+                }
+            },
+            {331100, //Choice 1; yes
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Definitely. I can feel the energy in this place.",
+                    option2DialogueID = 331101
+                }
+            },
+            {331101,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: That's the power of jazz. It brings people together and creates a sense of community.",
+                    option2DialogueID = 331102
+                }
+            },
+            {331102,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: I never really thought about it that way before!",
+                    option2DialogueID = 331103
+                }
+            },
+            {331103,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: That's what I'm here for. To share my love of jazz with others.",
+                    option2DialogueID = 331104
+                }
+            },
+            {331104,
+                new DialogueData()
+                {
+                    dialogueText = $"[They order their drinks and settle in at a table near the stage]",
+                    option2DialogueID = 331105
+                }
+            },
+            {331105,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: This is really great, Appaloosa. I can't thank you enough for bringing me here.", // Drinking
+                    option2DialogueID = 331106
+                }
+            },
+            {331106,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: It's my pleasure, Soda. You remind me of myself when I was your age. So full of potential and passion.",
+                    option1Text = $"Thank",
+                    option1DialogueID = 331120,
+                    option2Text = $"Flirt",
+                    option2DialogueID = 331110,
+                    option2Score = new ScoreData
+                    {
+                        appaloosaScore = 3f
+                    }
+                }
+            },
+            {331120,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Oh, thanks I guess..",
+                    option2DialogueID = 331113
+                }
+            },
+            {33110,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Thanks, Appaloosa. That means a lot coming from someone as talented as you.", // Blushing
+                    option2DialogueID = 331111
+
+                }
+            },
+            {331111, // Choice 1; flirt
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: Oh, stop it. But seriously, if you ever want to perform here, just let me know. I'd be happy to help you get started.", // Laugh
+                    option2DialogueID = 331112
+                }
+            },
+            {331112,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: That would be amazing. I'll definitely take you up on that offer.", // Excited
+                    option2DialogueID = 331113
+                }
+            },
+            {331113,
+                new DialogueData()
+                {
+                    dialogueText = $"[As the night wears on, they enjoy the music and conversation, and Soda feels grateful for the opportunity to learn from such a talented musician.]",
+                    option2DialogueID = 331114
+                }
+            },
+            {331114,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: This has been such an incredible night, Appaloosa. Thank you again for everything.",
+                    option2DialogueID = 331115
+                }
+            },
+            {331115,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: Anytime, Soda",
+                    option2DialogueID = 340000
+                }
+            }
+            #endregion
         };
+
 
         public class DialogueData
         {
