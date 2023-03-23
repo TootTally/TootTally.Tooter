@@ -29,6 +29,9 @@ namespace TootTally.Tooter
             "SodaWheezeRW.png",
             "SodaAgree.png",
             "SodaThinking.png",
+            "SodaPlead.png",
+            "SodaBeg.png",
+            "SodaBleh.png",
 
             "TrixieShadow.png",
             "TrixieNeutral.png",
@@ -40,14 +43,22 @@ namespace TootTally.Tooter
             "TrixiePanic.png",
             "TrixiePleased.png",
 
-            "AppaloosaNeutral.png",
             "AppaloosaShadow.png",
+            "AppaloosaNeutral.png",
+            "AppaloosaNeutralTalk.png",
 
-            "KaizyleNeutral.png",
             "KaizyleShadow.png",
+            "KaizyleNeutral.png",
+            "KaizyleNeutralTalk.png",
+            "KaizyleDispleased.png",
+            "KaizyleWTF.png",
+            "KaizyleConcern.png",
 
-            "BeezerlyNeutral.png",
             "BeezerlyShadow.png",
+            "BeezerlyNeutral.png",
+            "BeezerlyNeutralTalk.png",
+            "BeezerlyAggro.png",
+            "BeezerlyMock.png",
 
             "AppaloosaRoom.png",
             "Backstage.png",
