@@ -19,11 +19,11 @@ namespace TootTally.Tooter
             "TooterText.png",
 
             "SodaShadow.png",
-            "SodaSmiling.png",
+            "SodaNeutral.png",
             "SodaDeepSmug.png",
             "SodaEh.png",
             "SodaEmbarrassedLight.png",
-            "SodaNormalTalk.png",
+            "SodaNeutralTalk.png",
             "SodaShock.png",
             "SodaStressLight.png",
             "SodaWheezeRW.png",
@@ -32,6 +32,13 @@ namespace TootTally.Tooter
 
             "TrixieShadow.png",
             "TrixieNeutral.png",
+            "TrixieNeutralTalk.png",
+            "TrixieAnxious.png",
+            "TrixieCompliment1.png",
+            "TrixieCompliment2.png",
+            "TrixieCompliment3.png",
+            "TrixiePanic.png",
+            "TrixiePleased.png",
 
             "AppaloosaNeutral.png",
             "AppaloosaShadow.png",
@@ -135,8 +142,17 @@ namespace TootTally.Tooter
         public static Texture2D GetTexture(string assetKey) => textureDictionary[assetKey];
         public static Sprite GetSprite(string assetKey)
         {
-            Texture2D texture = textureDictionary[assetKey];
-            return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2f, 300f);
+            try
+            {
+                Texture2D texture = textureDictionary[assetKey];
+                return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2f, 300f);
+            }
+            catch (Exception ex)
+            {
+                Plugin.Instance.LogError("TextureName: " + assetKey);
+                Plugin.Instance.LogInfo("Error: " + ex.Message);
+            }
+            return null;
         }
     }
 }
