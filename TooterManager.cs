@@ -83,7 +83,7 @@ namespace TootTally.Tooter
             foreach (string word in array)
             {
                 Plugin.Instance.StartCoroutine(addWord(word, delay));
-                delay+=1.5f;
+                delay += 1.5f;
             }
         }
 
@@ -126,7 +126,7 @@ namespace TootTally.Tooter
             txtBoxRectTransform.anchoredPosition = new Vector2(0, -300);
             txtBoxRectTransform.sizeDelta = new Vector2(1500, 250);
             txtBoxRectTransform.localScale = Vector2.one / 2f;
-            _txtBox.Initialize(float.MaxValue, new Vector2(0, -150), new Vector2(1000,250), new Vector2(300,0));
+            _txtBox.Initialize(float.MaxValue, new Vector2(0, -150), new Vector2(1000, 250), new Vector2(300, 0));
             _txtBox.SetTextSize(32); //SetTextSize has to be called after init
             _txtBox.SetTextAlign(TextAnchor.MiddleLeft);
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
@@ -1669,15 +1669,15 @@ namespace TootTally.Tooter
                     dialogueText = $"Soda: Yeah, they're pretty cute. And check out these penguin-shaped cookies!",
                     option1Text = "Share",
                     option1DialogueID = 102,
-                    option2Text = "Eat it",
-                    option2DialogueID = 104, //TODO
+                    option2Text = "Eat one",
+                    option2DialogueID = 133,
                 }
             },
             {102,
                 new DialogueData()
                 {
                     dialogueText = $"Soda: Want to split one with me?",
-                    option2DialogueID = _scoreData.trixieScore >= 5 ? 103 : 200, //TODO
+                    option2DialogueID = _scoreData.trixieScore >= 3 ? 103 : 134,
                 }
             },
             {103,
@@ -1706,7 +1706,7 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"Trixiebell: Really? What did you do?",
                     option1Text = "Truth",
-                    option1DialogueID = 200, //TODO
+                    option1DialogueID = 139,
                     option2Text = "Lie",
                     option2DialogueID = 107,
                 }
@@ -1793,7 +1793,7 @@ namespace TootTally.Tooter
                     option1DialogueID = 118,
                     option2Text = "Yeah",
                     option2DialogueID = 119,
-                    
+
                 }
             },
             {118,
@@ -1860,10 +1860,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"Trixiebell: Uh Thanks? I don't think I changed anything.",
-                    option1Text = "Smells good",
-                    option1DialogueID = 127,
-                    option2Text = "Smells interesting",
-                    option2DialogueID = 200, //TODO
+                    option2DialogueID = 127,
                 }
             },
             {127,
@@ -1876,7 +1873,9 @@ namespace TootTally.Tooter
             {128,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: That's so sweet Soda, you're making me blush",
+                    dialogueText = DialogueFlags.awkwardMomentWithTrixie ?
+                    $"Trixiebell: You are funny Soda.": // cringe
+                    $"Trixiebell: That's so sweet Soda, you're making me blush", //fine
                     option2DialogueID = 129,
                 }
             },
@@ -1887,7 +1886,7 @@ namespace TootTally.Tooter
                     option1Text = "Lets meet again",
                     option1DialogueID =  130,
                     option2Text = "Walk her home",
-                    option2DialogueID = 200, //TODO
+                    option2DialogueID = 150,
                 }
             },
             {130,
@@ -1911,13 +1910,364 @@ namespace TootTally.Tooter
                     option2DialogueID = 133,
                 }
             },
+            {133,
+                new DialogueData()
+                {
+                    dialogueText = $"[Soda grabs a cookie and starts eating it]",
+                    option2DialogueID = 104,
+                }
+            },
+            {134,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: No thanks I'm not hungry right now, if you want you can have mine.",
+                    option1Text = "Not hungry anymore",
+                    option1DialogueID = 135,
+                    option2Text = "Eat her cookie",
+                    option2DialogueID = 137,
+                }
+            },
+            {135,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: No thanks. I don't even think I can finish mine.",
+                    option2DialogueID = 136,
+                }
+            },
+            {136,
+                new DialogueData()
+                {
+                    dialogueText = $"[Soda eat half of his cookie and throw the other half in the garbage]",
+                    option2DialogueID = 104,
+                }
+            },
+            {137,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Absolutely! I was starving so I was gonna ask you if to have your cookie anyway.",
+                    option2DialogueID = 138,
+                }
+            },
+            {138,
+                new DialogueData()
+                {
+                    dialogueText = $"[Soda eat both cookies in one bite]",
+                    option2DialogueID = 104,
+                }
+            },
+            {139,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: So, the night of the competition, i was at a party, and got dared to wear a clown suit that they had...",
+                    option2DialogueID = 140,
+                }
+            },
+            {140,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: The party was in the morning right?",
+                    option2DialogueID = 141,
+                }
+            },
+            {141,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: ...",
+                    option2DialogueID = 142,
+                }
+            },
+            {142,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: The party was in the morning... right?",
+                    option2DialogueID = 143,
+                }
+            },
+            {143,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: It may or may not of been 1 hour before the call time...",
+                    option2DialogueID = 144,
+                }
+            },
+            {144,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: You at least gave yourself time to get your suit and tie on right?",
+                    option2DialogueID = 145,
+                }
+            },
+            {145,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: About that...",
+                    option2DialogueID = 146,
+                }
+            },
+            {146,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: ...",
+                    option2DialogueID = 147,
+                }
+            },
+            {147,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: ...",
+                    option2DialogueID = DialogueFlags.trixieAteACookie ? 148 : 129,
+                }
+            },
+            {148,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Soo... Were the cookies good?",
+                    option2DialogueID = 149,
+                }
+            },
+            {149,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Yes",
+                    option2DialogueID = 129,
+                }
+            },
+            {150,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: It's pretty dark outside so I will walk you home.",
+                    option2DialogueID = (DialogueFlags.awkwardMomentWithTrixie && DialogueFlags.toldTrixieAboutTheSmell) ? 151:162,
+                }
+            },
+            {151,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Thanks for the offer, but my house isn't that far from here so I will be fine.",
+                    option1Text = "Insist",
+                    option1DialogueID =  152,
+                    option2Text = "Let her go",
+                    option2DialogueID = 161,
+                }
+            },
+            {152,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: I insist. I'm worried that someone will kidnap you.",
+                    option2DialogueID = 153,
+                }
+            },
+            {153,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Seriously Soda, it's fine. You don't need to walk me home.",
+                    option1Text = "Insist more",
+                    option1DialogueID =  154,
+                    option2Text = "Let her go",
+                    option2DialogueID = 161,
+                }
+            },
+            {154,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE",
+                    option2DialogueID = 155,
+                }
+            },
+            {155, //Transition to night street image
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Fine.",
+                    option2Text = "",
+                    option2DialogueID = 0,
+                }
+            },
+            {156,
+                new DialogueData()
+                {
+                    dialogueText = $"[After a short and silence walk, near Trixie's house]",
+                    option2DialogueID = 157,
+                }
+            },
+            {157,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: That was a nice walk.",
+                    option2DialogueID = 158,
+                }
+            },
+            {158,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Yeah...",
+                    option2DialogueID = 159,
+                }
+            },
+            {159,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Well, I'll see you tomorrow Trixie!",
+                    option2DialogueID = 160,
+                }
+            },
+            {160,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: See you tomorrow.",
+                    option2Text ="",
+                    option2DialogueID = 0,
+                }
+            },
+            {161,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Alright but please be careful. See you tomorrow for school!",
+                    option2DialogueID = 160,
+                }
+            },
+            {162,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Sure, I could use the company. The walk back home from here is a little boring.",
+                    option2DialogueID = 163,
+                }
+            },
+            {163, //Transition to night street image
+                new DialogueData()
+                {
+                    dialogueText = $"[The two start walking to Trixie's house.]",
+                    option2Text ="",
+                    option2DialogueID = 0,
+                }
+            },
+            {164, //Transition to night street image
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Today was fun. I enjoyed my time with you Trixie!",
+                    option2DialogueID = 165,
+                }
+            },
+            {165,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: It really was. Maybe next time we can go to the aquarium.",
+                    option1Text = "Sure",
+                    option1DialogueID =  166,
+                    option2Text = "Love",
+                    option2DialogueID = 169,
+                }
+            },
+            {166,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: I would love to go to the aquarium! Maybe you could play your trombone for the penguins there.",
+                    option2DialogueID = 167,
+                }
+            },
+            {167,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Haha, Maybe, I don't know if the aquarium staff would appreciate that though.",
+                    option2DialogueID = 168,
+                }
+            },
+            {168,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Maybe, maybe not.",
+                    option2DialogueID = 171,
+                }
+            },
+            {169,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: I would love to, but I'm more of an amusement park guy myself.",
+                    option2DialogueID = 170,
+                }
+            },
+            {170,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: O-Oh, That's alright.",
+                    option2DialogueID = 171,
+                }
+            },
+            {171,
+                new DialogueData()
+                {
+                    dialogueText = $"[The two arrive at Trixie's house]",
+                    option2DialogueID = 172,
+                }
+            },
+            {172,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Today was a fun day! We should do this more often.",
+                    option2DialogueID = 173,
+                }
+            },
+            {173,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Absolutely, I had a fun time as well.",
+                    option1Text = "Kiss",
+                    option1DialogueID =  177,
+                    option2Text = "Part ways",
+                    option2DialogueID = 174,
+                }
+            },
+            {174,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Well, it's getting late, I should head home myself.",
+                    option2DialogueID = 175,
+                }
+            },
+            {175,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Have a good night Trixie!",
+                    option2DialogueID = 176,
+                }
+            },
+            {176, //Sweet ending
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Goodnight Soda. See you tomorrow!",
+                    option2Text = "",
+                    option2DialogueID = 0,
+                }
+            },
+            {177,
+                new DialogueData()
+                {
+                    dialogueText = $"[Soda approaches Trixie slowly and kisses her cheek]",
+                    option2DialogueID = 178,
+                }
+            },
+            {178, //blushes and looks excited
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: ... Thanks for lovely night Soda, I'll see you tomorrow!",
+                    option2DialogueID = 179,
+                }
+            },
+            {179, // Happy ending
+                new DialogueData()
+                {
+                    dialogueText = $"[Soda starts heading back to his place]",
+                    option2Text = "",
+                    option2DialogueID = 0,
+                }
+            },
+
+
             #endregion
 
             #region Beezerly Date
             {320001,
                 new DialogueData()
                 {
-                    dialogueText = $"[It's the end of class and everyone leaves to go home. Soda goes to Beezerly to chat with her]",
+                    dialogueText = $"[The next day, at end of class and everyone leaves to go home. Soda goes to Beezerly to chat with her]",
                     option2DialogueID = 320002,
                 }
             },
@@ -2104,7 +2454,7 @@ namespace TootTally.Tooter
                     dialogueText = $"Beezerly: Me too, Soda. You're pretty cool for a competition junkie.",
                     option2DialogueID = 320028,
                 }
-            }, 
+            },
             {320028,
                 new DialogueData()
                 {
@@ -2153,7 +2503,14 @@ namespace TootTally.Tooter
             public static bool calledTrixieAFriend;
             public static bool awkwardMomentWithTrixie;
             public static bool toldTrixieAboutTheSmell;
+            public static bool gtfoOfTheDateEarly;
             public static bool wannaMeetWithTrixieAgain;
+            public static bool walkedTrixieBackHome;
+            public static bool sodaAteACookie;
+            public static bool trixieAteACookie;
+            public static bool threwCookieInGarbage;
+            public static bool kissedTrixie;
+            public static bool wantsToGoToAquarium;
             #endregion
         }
 
