@@ -1531,7 +1531,7 @@ namespace TootTally.Tooter
             {83,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Hey Trixiebell, how's it going?",
+                    dialogueText = $"{_sodaColoredName}: Hey {_trixieColoredName}, how's it going?",
                     option2DialogueID = 84,
                 }
             },
@@ -1539,36 +1539,36 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = DialogueFlags.cheeredTrixie ?
-                    $"Trixiebell: Oh, hi Soda. I'm great! Just practicing for the big competition." :
-                    $"Trixiebell: Oh, hi Soda. I'm doing okay, I guess. Just practicing for the big competition.",
+                    $"{_trixieColoredName}: Oh, hi {_sodaColoredName}. I'm great! Just practicing for the big competition." :
+                    $"{_trixieColoredName}: Oh, hi {_sodaColoredName}. I'm doing okay, I guess. Just practicing for the big competition.",
                     option2DialogueID = DialogueFlags.cheeredTrixie ? 85 : 86,
                 }
             },
             {85,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Thanks for cheering me up earlier. It really helped me release some stress and I appreciate it.",
+                    dialogueText = $"{_trixieColoredName}: Thanks for cheering me up earlier. It really helped me release some stress and I appreciate it.",
                     option2DialogueID = 86,
                 }
             },
             {86,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Yeah, I heard about that.{(DialogueFlags.cheeredTrixie ? " You're really talented on the trombone." : "")}",
+                    dialogueText = $"{_sodaColoredName}: Yeah, I heard about that.{(DialogueFlags.cheeredTrixie ? " You're really talented on the trombone." : "")}",
                     option2DialogueID = 87,
                 }
             },
             {87,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: {(DialogueFlags.cheeredTrixie ? "Thank you. But " : "")}I'm just so nervous about performing in front of a big audience.",
+                    dialogueText = $"{_trixieColoredName}: {(DialogueFlags.cheeredTrixie ? "Thank you. But " : "")}I'm just so nervous about performing in front of a big audience.",
                     option2DialogueID = 88,
                 }
             },
             {88,
                 new DialogueData()
                 {
-                    dialogueText = $"[Soda thinking about how to be supportive of her and make her feel better]",
+                    dialogueText = $"[{_sodaColoredName} thinking about how to be supportive of her and make her feel better]",
                     option1Text = "Penguin pin",
                     option1DialogueID = DialogueFlags.cheeredTrixie ? 89 : 117,
                     option2Text = "I have to go",
@@ -1578,21 +1578,21 @@ namespace TootTally.Tooter
             {89,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: That’s an interesting pin you have on your bag, but seems kinda random doesn’t it?",
+                    dialogueText = $"{_sodaColoredName}: That’s an interesting pin you have on your bag, but seems kinda random doesn’t it?",
                     option2DialogueID = 90,
                 }
             },
             {90,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Oh, it's a pin from the aquarium. Ever since I was kid I’ve been in love with penguins due to how soft and cuddly they look.",
+                    dialogueText = $"{_trixieColoredName}: Oh, it's a pin from the aquarium. Ever since I was kid I’ve been in love with penguins due to how soft and cuddly they look.",
                     option2DialogueID = 91,
                 }
             },
             {91,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: That’s why when my family organized a trip to the aquarium I was so excited! This pin was a souvenir from their gift shop.",
+                    dialogueText = $"{_trixieColoredName}: That’s why when my family organized a trip to the aquarium I was so excited! This pin was a souvenir from their gift shop.",
                     option1Text = "Invite her out",
                     option1DialogueID = 92,
                     option2Text = "Compliment her",
@@ -1602,49 +1602,49 @@ namespace TootTally.Tooter
             {92,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Oh I see. Actually I have an idea that might help you relax and have some fun at the same time.",
+                    dialogueText = $"{_sodaColoredName}: Oh I see. Actually I have an idea that might help you relax and have some fun at the same time.",
                     option2DialogueID = 93,
                 }
             },
             {93,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I know how much you love penguins, so I thought we could go to a penguin cafe. They have all kinds of penguin-themed treats and decorations.",
+                    dialogueText = $"{_sodaColoredName}: I know how much you love penguins, so I thought we could go to a penguin cafe. They have all kinds of penguin-themed treats and decorations.",
                     option2DialogueID = 94,
                 }
             },
             {94,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Really? That sounds amazing!",
+                    dialogueText = $"{_trixieColoredName}: Really? That sounds amazing!",
                     option2DialogueID = 95,
                 }
             },
             {95,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Yeah, and it's not too far from here. We could go after school today if you want.",
+                    dialogueText = $"{_sodaColoredName}: Yeah, and it's not too far from here. We could go after school today if you want.",
                     option2DialogueID = 96,
                 }
             },
             {96,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Absolutely! That would be so awesome!",
+                    dialogueText = $"{_trixieColoredName}: Absolutely! That would be so awesome!",
                     option2DialogueID = 97,
                 }
             },
             {97,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Great! I'll meet you outside after class. And don't worry about the competition for now. Just focus on having a good time with the penguins.",
+                    dialogueText = $"{_sodaColoredName}: Great! I'll meet you outside after class. And don't worry about the competition for now. Just focus on having a good time with the penguins.",
                     option2DialogueID = 98,
                 }
             },
             {98, // Transition to cafe
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Thank you so much, Soda. You're the best.",
+                    dialogueText = $"{_trixieColoredName}: Thank you so much, {_sodaColoredName}. You're the best.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -1659,14 +1659,14 @@ namespace TootTally.Tooter
             {100,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Wow, look at all the penguins! They're so adorable!",
+                    dialogueText = $"{_trixieColoredName}: Wow, look at all the penguins! They're so adorable!",
                     option2DialogueID = 101,
                 }
             },
             {101,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Yeah, they're pretty cute. And check out these penguin-shaped cookies!",
+                    dialogueText = $"{_sodaColoredName}: Yeah, they're pretty cute. And check out these penguin-shaped cookies!",
                     option1Text = "Share",
                     option1DialogueID = 102,
                     option2Text = "Eat one",
@@ -1676,35 +1676,35 @@ namespace TootTally.Tooter
             {102,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Want to split one with me?",
+                    dialogueText = $"{_sodaColoredName}: Want to split one with me?",
                     option2DialogueID = _scoreData.trixieScore >= 3 ? 103 : 134,
                 }
             },
             {103,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Yesss! They look delicious.",
+                    dialogueText = $"{_trixieColoredName}: Yesss! They look delicious.",
                     option2DialogueID = 104,
                 }
             },
             {104,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: You know, Trixiebell, you don't have to be nervous about the competition.",
+                    dialogueText = $"{_sodaColoredName}: You know, {_trixieColoredName}, you don't have to be nervous about the competition.",
                     option2DialogueID = 105,
                 }
             },
             {105,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I used to have the same problem when I first started performing in front of people.",
+                    dialogueText = $"{_sodaColoredName}: I used to have the same problem when I first started performing in front of people.",
                     option2DialogueID = 106,
                 }
             },
             {106,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Really? What did you do?",
+                    dialogueText = $"{_trixieColoredName}: Really? What did you do?",
                     option1Text = "Truth",
                     option1DialogueID = 139,
                     option2Text = "Lie",
@@ -1714,14 +1714,14 @@ namespace TootTally.Tooter
             {107,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I learned some breathing techniques that helped me calm down and focus. Would you like me to show you?",
+                    dialogueText = $"{_sodaColoredName}: I learned some breathing techniques that helped me calm down and focus. Would you like me to show you?",
                     option2DialogueID = 108,
                 }
             },
             {108, //Breathing practice transition
                 new DialogueData()
                 {
-                    dialogueText = $"[Soda and Trixiebell practices breathing technique for the next 2 hours]",
+                    dialogueText = $"[{_sodaColoredName} and {_trixieColoredName} practices breathing technique for the next 2 hours]",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -1729,21 +1729,21 @@ namespace TootTally.Tooter
             {109,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Remember, whenever you feel nervous, just take a deep breath and visualize yourself succeeding.",
+                    dialogueText = $"{_sodaColoredName}: Remember, whenever you feel nervous, just take a deep breath and visualize yourself succeeding.",
                     option2DialogueID = 110,
                 }
             },
             {110,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: You're already amazing on the trombone. Just be yourself and have fun up there.",
+                    dialogueText = $"{_sodaColoredName}: You're already amazing on the trombone. Just be yourself and have fun up there.",
                     option2DialogueID = 111,
                 }
             },
             {111,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Thanks, Soda. You always know just what to say to make me feel better.",
+                    dialogueText = $"{_trixieColoredName}: Thanks, {_sodaColoredName}. You always know just what to say to make me feel better.",
                     option1Text = "Friends",
                     option1DialogueID = 112,
                     option2Text = "Penguin Joke",
@@ -1753,42 +1753,42 @@ namespace TootTally.Tooter
             {112,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: That's what friends are for.",
+                    dialogueText = $"{_sodaColoredName}: That's what friends are for.",
                     option2DialogueID = 115,
                 }
             },
             {113,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Who knows, maybe one day you'll even get to perform for the penguins themselves!",
+                    dialogueText = $"{_sodaColoredName}: Who knows, maybe one day you'll even get to perform for the penguins themselves!",
                     option2DialogueID = 114,
                 }
             },
             {114,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: I'm glad we are friends Soda", //FRIEND ZONNNNEDDDDDDDDDDDDDDDDDDD EXDEE
+                    dialogueText = $"{_trixieColoredName}: I'm glad we are friends {_sodaColoredName}", //FRIEND ZONNNNEDDDDDDDDDDDDDDDDDDD EXDEE
                     option2DialogueID = 115,
                 }
             },
             {115,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Yeah, that would be a dream come true.",
+                    dialogueText = $"{_trixieColoredName}: Yeah, that would be a dream come true.",
                     option2DialogueID = 116,
                 }
             },
             {116, //Cafe date ending
                 new DialogueData()
                 {
-                    dialogueText = $"[Soda and Trixiebell had a great time together]",
+                    dialogueText = $"[{_sodaColoredName} and {_trixieColoredName} had a great time together]",
                     option2DialogueID = 0,
                 }
             },
             {117,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Oh, it's just a pin I got from the aquarium. I thought it was cute so I bought it.",
+                    dialogueText = $"{_trixieColoredName}: Oh, it's just a pin I got from the aquarium. I thought it was cute so I bought it.",
                     option1Text = "Ask more about it",
                     option1DialogueID = 118,
                     option2Text = "Yeah",
@@ -1799,35 +1799,35 @@ namespace TootTally.Tooter
             {118,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Ever since I was kid I’ve been in love with penguins due to how soft and cuddly they look.",
+                    dialogueText = $"{_trixieColoredName}: Ever since I was kid I’ve been in love with penguins due to how soft and cuddly they look.",
                     option2DialogueID = 91,
                 }
             },
             {119,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Yeah I also think it's cute.",
+                    dialogueText = $"{_sodaColoredName}: Yeah I also think it's cute.",
                     option2DialogueID = 120,
                 }
             },
             {120,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Yeah...",
+                    dialogueText = $"{_trixieColoredName}: Yeah...",
                     option2DialogueID = 121,
                 }
             },
             {121,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: ...",
+                    dialogueText = $"{_sodaColoredName}: ...",
                     option2DialogueID = 122,
                 }
             },
             {122,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: ...",
+                    dialogueText = $"{_trixieColoredName}: ...",
                     option1Text = "Compliment her",
                     option1DialogueID = 125,
                     option2Text = "Leave",
@@ -1837,14 +1837,14 @@ namespace TootTally.Tooter
             {123,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I think I left my oven on at home so I will have to go!",
+                    dialogueText = $"{_sodaColoredName}: I think I left my oven on at home so I will have to go!",
                     option2DialogueID = 124,
                 }
             },
             {124, //GTFO ending
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Alright you have a good one Soda!",
+                    dialogueText = $"{_trixieColoredName}: Alright you have a good one {_sodaColoredName}!",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -1852,21 +1852,21 @@ namespace TootTally.Tooter
             {125,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: You smell different today, is that a new shampoo?",
+                    dialogueText = $"{_sodaColoredName}: You smell different today, is that a new shampoo?",
                     option2DialogueID = 126,
                 }
             },
             {126,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Uh Thanks? I don't think I changed anything.",
+                    dialogueText = $"{_trixieColoredName}: Uh Thanks? I don't think I changed anything.",
                     option2DialogueID = 127,
                 }
             },
             {127,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: It smells like sweets, just like your personality",
+                    dialogueText = $"{_sodaColoredName}: It smells like sweets, just like your personality",
                     option2DialogueID = 128,
                 }
             },
@@ -1874,15 +1874,15 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = DialogueFlags.awkwardMomentWithTrixie ?
-                    $"Trixiebell: You are funny Soda.": // cringe
-                    $"Trixiebell: That's so sweet Soda, you're making me blush", //fine
+                    $"{_trixieColoredName}: You are funny {_sodaColoredName}.": // cringe
+                    $"{_trixieColoredName}: That's so sweet {_sodaColoredName}, you're making me blush", //fine
                     option2DialogueID = 129,
                 }
             },
             {129,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Its getting pretty late, I should start heading home.",
+                    dialogueText = $"{_sodaColoredName}: Its getting pretty late, I should start heading home.",
                     option1Text = "Lets meet again",
                     option1DialogueID =  130,
                     option2Text = "Walk her home",
@@ -1892,35 +1892,35 @@ namespace TootTally.Tooter
             {130,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I had a great time with you! I think we should hang out again some time",
+                    dialogueText = $"{_sodaColoredName}: I had a great time with you! I think we should hang out again some time",
                     option2DialogueID = (DialogueFlags.awkwardMomentWithTrixie && DialogueFlags.toldTrixieAboutTheSmell) ? 131 : 132,
                 }
             },
             {131,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Maybe, I'll see if I got time with all the practice for the concert.",
+                    dialogueText = $"{_trixieColoredName}: Maybe, I'll see if I got time with all the practice for the concert.",
                     option2DialogueID = 133,
                 }
             },
             {132,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: I had a great time too! I would love to come back here sometimes.",
+                    dialogueText = $"{_trixieColoredName}: I had a great time too! I would love to come back here sometimes.",
                     option2DialogueID = 133,
                 }
             },
             {133,
                 new DialogueData()
                 {
-                    dialogueText = $"[Soda grabs a cookie and starts eating it]",
+                    dialogueText = $"[{_sodaColoredName} grabs a cookie and starts eating it]",
                     option2DialogueID = 104,
                 }
             },
             {134,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: No thanks I'm not hungry right now, if you want you can have mine.",
+                    dialogueText = $"{_trixieColoredName}: No thanks I'm not hungry right now, if you want you can have mine.",
                     option1Text = "Not hungry anymore",
                     option1DialogueID = 135,
                     option2Text = "Eat her cookie",
@@ -1930,119 +1930,119 @@ namespace TootTally.Tooter
             {135,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: No thanks. I don't even think I can finish mine.",
+                    dialogueText = $"{_sodaColoredName}: No thanks. I don't even think I can finish mine.",
                     option2DialogueID = 136,
                 }
             },
             {136,
                 new DialogueData()
                 {
-                    dialogueText = $"[Soda eat half of his cookie and throw the other half in the garbage]",
+                    dialogueText = $"[{_sodaColoredName} eat half of his cookie and throw the other half in the garbage]",
                     option2DialogueID = 104,
                 }
             },
             {137,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Absolutely! I was starving so I was gonna ask you if to have your cookie anyway.",
+                    dialogueText = $"{_sodaColoredName}: Absolutely! I was starving so I was gonna ask you if to have your cookie anyway.",
                     option2DialogueID = 138,
                 }
             },
             {138,
                 new DialogueData()
                 {
-                    dialogueText = $"[Soda eat both cookies in one bite]",
+                    dialogueText = $"[{_sodaColoredName} eat both cookies in one bite]",
                     option2DialogueID = 104,
                 }
             },
             {139,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: So, the night of the competition, i was at a party, and got dared to wear a clown suit that they had...",
+                    dialogueText = $"{_sodaColoredName}: So, the night of the competition, i was at a party, and got dared to wear a clown suit that they had...",
                     option2DialogueID = 140,
                 }
             },
             {140,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: The party was in the morning right?",
+                    dialogueText = $"{_trixieColoredName}: The party was in the morning right?",
                     option2DialogueID = 141,
                 }
             },
             {141,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: ...",
+                    dialogueText = $"{_sodaColoredName}: ...",
                     option2DialogueID = 142,
                 }
             },
             {142,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: The party was in the morning... right?",
+                    dialogueText = $"{_trixieColoredName}: The party was in the morning... right?",
                     option2DialogueID = 143,
                 }
             },
             {143,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: It may or may not of been 1 hour before the call time...",
+                    dialogueText = $"{_sodaColoredName}: It may or may not of been 1 hour before the call time...",
                     option2DialogueID = 144,
                 }
             },
             {144,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: You at least gave yourself time to get your suit and tie on right?",
+                    dialogueText = $"{_trixieColoredName}: You at least gave yourself time to get your suit and tie on right?",
                     option2DialogueID = 145,
                 }
             },
             {145,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: About that...",
+                    dialogueText = $"{_sodaColoredName}: About that...",
                     option2DialogueID = 146,
                 }
             },
             {146,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: ...",
+                    dialogueText = $"{_sodaColoredName}: ...",
                     option2DialogueID = 147,
                 }
             },
             {147,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: ...",
+                    dialogueText = $"{_trixieColoredName}: ...",
                     option2DialogueID = DialogueFlags.trixieAteACookie ? 148 : 129,
                 }
             },
             {148,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Soo... Were the cookies good?",
+                    dialogueText = $"{_sodaColoredName}: Soo... Were the cookies good?",
                     option2DialogueID = 149,
                 }
             },
             {149,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Yes",
+                    dialogueText = $"{_trixieColoredName}: Yes",
                     option2DialogueID = 129,
                 }
             },
             {150,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: It's pretty dark outside so I will walk you home.",
+                    dialogueText = $"{_sodaColoredName}: It's pretty dark outside so I will walk you home.",
                     option2DialogueID = (DialogueFlags.awkwardMomentWithTrixie && DialogueFlags.toldTrixieAboutTheSmell) ? 151:162,
                 }
             },
             {151,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Thanks for the offer, but my house isn't that far from here so I will be fine.",
+                    dialogueText = $"{_trixieColoredName}: Thanks for the offer, but my house isn't that far from here so I will be fine.",
                     option1Text = "Insist",
                     option1DialogueID =  152,
                     option2Text = "Let her go",
@@ -2052,14 +2052,14 @@ namespace TootTally.Tooter
             {152,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I insist. I'm worried that someone will kidnap you.",
+                    dialogueText = $"{_sodaColoredName}: I insist. I'm worried that someone will kidnap you.",
                     option2DialogueID = 153,
                 }
             },
             {153,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Seriously Soda, it's fine. You don't need to walk me home.",
+                    dialogueText = $"{_trixieColoredName}: Seriously {_sodaColoredName}, it's fine. You don't need to walk me home.",
                     option1Text = "Insist more",
                     option1DialogueID =  154,
                     option2Text = "Let her go",
@@ -2069,14 +2069,14 @@ namespace TootTally.Tooter
             {154,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE",
+                    dialogueText = $"{_sodaColoredName}: PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE",
                     option2DialogueID = 155,
                 }
             },
             {155, //Transition to night street image
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Fine.",
+                    dialogueText = $"{_trixieColoredName}: Fine.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -2091,28 +2091,28 @@ namespace TootTally.Tooter
             {157,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: That was a nice walk.",
+                    dialogueText = $"{_sodaColoredName}: That was a nice walk.",
                     option2DialogueID = 158,
                 }
             },
             {158,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Yeah...",
+                    dialogueText = $"{_trixieColoredName}: Yeah...",
                     option2DialogueID = 159,
                 }
             },
             {159,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Well, I'll see you tomorrow Trixie!",
+                    dialogueText = $"{_sodaColoredName}: Well, I'll see you tomorrow Trixie!",
                     option2DialogueID = 160,
                 }
             },
             {160,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: See you tomorrow.",
+                    dialogueText = $"{_trixieColoredName}: See you tomorrow.",
                     option2Text ="",
                     option2DialogueID = 0,
                 }
@@ -2120,14 +2120,14 @@ namespace TootTally.Tooter
             {161,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Alright but please be careful. See you tomorrow for school!",
+                    dialogueText = $"{_sodaColoredName}: Alright but please be careful. See you tomorrow for school!",
                     option2DialogueID = 160,
                 }
             },
             {162,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Sure, I could use the company. The walk back home from here is a little boring.",
+                    dialogueText = $"{_trixieColoredName}: Sure, I could use the company. The walk back home from here is a little boring.",
                     option2DialogueID = 163,
                 }
             },
@@ -2142,14 +2142,14 @@ namespace TootTally.Tooter
             {164, //Transition to night street image
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Today was fun. I enjoyed my time with you Trixie!",
+                    dialogueText = $"{_sodaColoredName}: Today was fun. I enjoyed my time with you Trixie!",
                     option2DialogueID = 165,
                 }
             },
             {165,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: It really was. Maybe next time we can go to the aquarium.",
+                    dialogueText = $"{_trixieColoredName}: It really was. Maybe next time we can go to the aquarium.",
                     option1Text = "Sure",
                     option1DialogueID =  166,
                     option2Text = "Love",
@@ -2159,35 +2159,35 @@ namespace TootTally.Tooter
             {166,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I would love to go to the aquarium! Maybe you could play your trombone for the penguins there.",
+                    dialogueText = $"{_sodaColoredName}: I would love to go to the aquarium! Maybe you could play your trombone for the penguins there.",
                     option2DialogueID = 167,
                 }
             },
             {167,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Haha, Maybe, I don't know if the aquarium staff would appreciate that though.",
+                    dialogueText = $"{_trixieColoredName}: Haha, Maybe, I don't know if the aquarium staff would appreciate that though.",
                     option2DialogueID = 168,
                 }
             },
             {168,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Maybe, maybe not.",
+                    dialogueText = $"{_sodaColoredName}: Maybe, maybe not.",
                     option2DialogueID = 171,
                 }
             },
             {169,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I would love to, but I'm more of an amusement park guy myself.",
+                    dialogueText = $"{_sodaColoredName}: I would love to, but I'm more of an amusement park guy myself.",
                     option2DialogueID = 170,
                 }
             },
             {170,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: O-Oh, That's alright.",
+                    dialogueText = $"{_trixieColoredName}: O-Oh, That's alright.",
                     option2DialogueID = 171,
                 }
             },
@@ -2201,14 +2201,14 @@ namespace TootTally.Tooter
             {172,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Today was a fun day! We should do this more often.",
+                    dialogueText = $"{_sodaColoredName}: Today was a fun day! We should do this more often.",
                     option2DialogueID = 173,
                 }
             },
             {173,
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Absolutely, I had a fun time as well.",
+                    dialogueText = $"{_trixieColoredName}: Absolutely, I had a fun time as well.",
                     option1Text = "Kiss",
                     option1DialogueID =  177,
                     option2Text = "Part ways",
@@ -2218,21 +2218,21 @@ namespace TootTally.Tooter
             {174,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Well, it's getting late, I should head home myself.",
+                    dialogueText = $"{_sodaColoredName}: Well, it's getting late, I should head home myself.",
                     option2DialogueID = 175,
                 }
             },
             {175,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Have a good night Trixie!",
+                    dialogueText = $"{_sodaColoredName}: Have a good night Trixie!",
                     option2DialogueID = 176,
                 }
             },
             {176, //Sweet ending
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: Goodnight Soda. See you tomorrow!",
+                    dialogueText = $"{_trixieColoredName}: Goodnight {_sodaColoredName}. See you tomorrow!",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -2240,21 +2240,21 @@ namespace TootTally.Tooter
             {177,
                 new DialogueData()
                 {
-                    dialogueText = $"[Soda approaches Trixie slowly and kisses her cheek]",
+                    dialogueText = $"[{_sodaColoredName} approaches Trixie slowly and kisses her cheek]",
                     option2DialogueID = 178,
                 }
             },
             {178, //blushes and looks excited
                 new DialogueData()
                 {
-                    dialogueText = $"Trixiebell: ... Thanks for lovely night Soda, I'll see you tomorrow!",
+                    dialogueText = $"{_trixieColoredName}: ... Thanks for lovely night {_sodaColoredName}, I'll see you tomorrow!",
                     option2DialogueID = 179,
                 }
             },
             {179, // Happy ending
                 new DialogueData()
                 {
-                    dialogueText = $"[Soda starts heading back to his place]",
+                    dialogueText = $"[{_sodaColoredName} starts heading back to his place]",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
