@@ -2084,7 +2084,7 @@ namespace TootTally.Tooter
             {156,
                 new DialogueData()
                 {
-                    dialogueText = $"[After a short and silence walk, near Trixie's house]",
+                    dialogueText = $"[After a short and silence walk, near {_trixieColoredName}'s house]",
                     option2DialogueID = 157,
                 }
             },
@@ -2105,7 +2105,7 @@ namespace TootTally.Tooter
             {159,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Well, I'll see you tomorrow Trixie!",
+                    dialogueText = $"{_sodaColoredName}: Well, I'll see you tomorrow {_trixieColoredName}!",
                     option2DialogueID = 160,
                 }
             },
@@ -2134,7 +2134,7 @@ namespace TootTally.Tooter
             {163, //Transition to night street image
                 new DialogueData()
                 {
-                    dialogueText = $"[The two start walking to Trixie's house.]",
+                    dialogueText = $"[The two start walking to {_trixieColoredName}'s house.]",
                     option2Text ="",
                     option2DialogueID = 0,
                 }
@@ -2142,7 +2142,7 @@ namespace TootTally.Tooter
             {164, //Transition to night street image
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Today was fun. I enjoyed my time with you Trixie!",
+                    dialogueText = $"{_sodaColoredName}: Today was fun. I enjoyed my time with you {_trixieColoredName}!",
                     option2DialogueID = 165,
                 }
             },
@@ -2194,7 +2194,7 @@ namespace TootTally.Tooter
             {171,
                 new DialogueData()
                 {
-                    dialogueText = $"[The two arrive at Trixie's house]",
+                    dialogueText = $"[The two arrive at {_trixieColoredName}'s house]",
                     option2DialogueID = 172,
                 }
             },
@@ -2225,7 +2225,7 @@ namespace TootTally.Tooter
             {175,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Have a good night Trixie!",
+                    dialogueText = $"{_sodaColoredName}: Have a good night {_trixieColoredName}!",
                     option2DialogueID = 176,
                 }
             },
@@ -2240,7 +2240,7 @@ namespace TootTally.Tooter
             {177,
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} approaches Trixie slowly and kisses her cheek]",
+                    dialogueText = $"[{_sodaColoredName} approaches {_trixieColoredName} slowly and kisses her cheek]",
                     option2DialogueID = 178,
                 }
             },
