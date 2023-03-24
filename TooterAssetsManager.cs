@@ -42,6 +42,7 @@ namespace TootTally.Tooter
             "TrixieCompliment3.png",
             "TrixiePanic.png",
             "TrixiePleased.png",
+            "TrixieSadge.png",
 
             "AppaloosaShadow.png",
             "AppaloosaNeutral.png",
@@ -78,6 +79,8 @@ namespace TootTally.Tooter
             "OutsideCompetitionVenue.png",
             "PenguinCafe.png",
             "TrixiebellRoom.png",
+            "StreetNight.png",
+            "TrixieHouseNight.png",
         };
 
         public static Dictionary<string, Texture2D> textureDictionary;
