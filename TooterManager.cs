@@ -1491,6 +1491,13 @@ namespace TootTally.Tooter
             {0,
                 new DialogueData()
                 {
+                    dialogueText = $"CHAPTER 1: The beginning.",
+                    option2DialogueID = 110000
+                }
+            },
+            {110000,
+                new DialogueData()
+                {
                     dialogueText = $"???: I can't wait for the music competition this year.",
                     option2DialogueID = 110001
                 }
@@ -1775,7 +1782,7 @@ namespace TootTally.Tooter
             {111003,
                 new DialogueData()
                 {
-                    dialogueText = $"                   [END OF CHAPTER 1]",
+                    dialogueText = $"[END OF CHAPTER 1]",
                     option2Text = "",
                     option2DialogueID = 0
                 }
@@ -1786,7 +1793,7 @@ namespace TootTally.Tooter
             {210000,
                 new DialogueData()
                 {
-                    dialogueText = $"                   CHAPTER 2: GETTING TO KNOW THE GIRLS",
+                    dialogueText = $"CHAPTER 2: Talking Tromboning",
                     option2DialogueID = 37
                 }
             },
@@ -2159,7 +2166,7 @@ namespace TootTally.Tooter
             {82,
                 new DialogueData()
                 {
-                    dialogueText = $"CHAPTER 3: DATING TIME",
+                    dialogueText = $"CHAPTER 3: A little one on one",
                     option2DialogueID = 83,
                 }
             },
@@ -3601,6 +3608,134 @@ namespace TootTally.Tooter
             #endregion
         };
 
+        public static Dictionary<int, DialogueData> GetDialogueChapter4() => new Dictionary<int, DialogueData>()
+        {
+            {410000,
+                new DialogueData()
+                {
+                    dialogueText = $"CHAPTER 4: Concerto Conundrum",
+                    option2DialogueID = 410001,
+                }
+            },
+            {410001,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Wow, I can't believe the competition is finally here",
+                    option2DialogueID = 410002,
+                }
+            },
+            {410002,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: I know, I'm so scared. What if I mess up?",
+                    option2DialogueID = 410003,
+                }
+            },
+            {410003,
+                new DialogueData()
+                {
+                    dialogueText = $"Beezerly : Don't worry about it, guys. Just play from the heart and have fun.",
+                    option2DialogueID = 410004,
+                }
+            },
+            {410004,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: That's right. It's not about winning or losing, it's about expressing yourself through music.",
+                    option2DialogueID = 410005,
+                }
+            },
+            {410005,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: I have no doubt that we'll win if we stick to the plan. Let's show them what real musicians can do.",
+                    option2DialogueID = 410006,
+                }
+            },
+            {410006,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: I have to choose which girl to perform with...but who should it be?",
+                    option2DialogueID = 410007,
+                }
+            },
+            {410007,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixiebell: Soda, will you perform with me?",
+                    option1Text = "Perform With Trixie",
+                    option1DialogueID = 410100,
+                    option2Text = "Deny Offer",
+                    option2DialogueID = 410008,
+                }
+            },
+            {410100, //transition to loading the song for trixiebell
+                new DialogueData()
+                {
+                    dialogueText = $"[Soda and Trixiebell are getting ready to perform together]",
+                    option2DialogueID = 0,
+                }
+            },
+            {410008,
+                new DialogueData()
+                {
+                    dialogueText = $"Beezerly : How about me??",
+                    option1Text = "Perform With Beezerly",
+                    option1DialogueID = 410200,
+                    option2Text = "Deny Offer",
+                    option2DialogueID = 410009,
+                }
+            },
+            {410200, //transition to loading the song for Beezerly
+                new DialogueData()
+                {
+                    dialogueText = $"[Soda and Beezerly are getting ready to perform together]",
+                    option2DialogueID = 0,
+                }
+            },
+            {410009,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: I'd love to perform with you, Soda. What about you?",
+                    option1Text = "Perform With Appaloosa",
+                    option1DialogueID = 410300,
+                    option2Text = "Deny Offer",
+                    option2DialogueID = 410010,
+                }
+            },
+            {410300, //transition to loading the song for Appaloosa
+                new DialogueData()
+                {
+                    dialogueText = $"[Soda and Appaloosa are getting ready to perform together]",
+                    option2DialogueID = 0,
+                }
+            },
+            {410010,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Hurry up and choose already, Soda. We don't have all day.",
+                    option1Text = "Perform With Kaizyle",
+                    option1DialogueID = 410400,
+                    option2Text = "Deny Offer",
+                    option2DialogueID = 410011,
+                }
+            },
+            {410400, //transition to loading the song for Kaizyle
+                new DialogueData()
+                {
+                    dialogueText = $"[Soda and Kaizyle are getting ready to perform together]",
+                    option2DialogueID = 0,
+                }
+            },
+            {410011,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: I couldn't choose who to perform with... So I will be perfoming solo!",
+                    option2DialogueID = 410012,
+                }
+            },
+        };
+
         public class DialogueData
         {
             public string option1Text = "", option2Text = "...", dialogueText;
@@ -3708,6 +3843,7 @@ namespace TootTally.Tooter
                     _dialogueStates = GetDialogueChapter3();
                     break;
                 case 4:
+                    _dialogueStates = GetDialogueChapter4();
                     break;
                 case 5:
                     break;
