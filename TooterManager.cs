@@ -845,7 +845,7 @@ namespace TootTally.Tooter
                     FlipSpriteAnimation(_trixiebell, false, 10f);
                     ChangeCharSprite(_beezerlySprite, CharExpressions.TrixieBag, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCenterCharPosition - new Vector3(1,0), 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCenterCharPosition - new Vector3(1, 0), 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
@@ -1114,7 +1114,7 @@ namespace TootTally.Tooter
                     {
                         ChangeCharSprite(_sodaSprite, CharExpressions.SodaMunch, Color.white);
                     });
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieSurprise, Color.white); 
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieSurprise, Color.white);
                     break;
                 case 139:
                     FlipSpriteAnimation(_soda, true);
@@ -3066,7 +3066,24 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"[Their food arrives and they dig in, enjoying the delicious burgers and fries]",
-                    option2DialogueID = 320023,
+                    option1Text = "Discuss Burger",
+                    option1DialogueID = 320100,
+                    option2Text = "Compliment Burger",
+                    option2DialogueID = 320023
+                }
+            },
+            {320100,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: These burgers are alright, but I’ve had better.",
+                    option2DialogueID = 320101
+                }
+            },
+            {320101,
+                new DialogueData()
+                {
+                    dialogueText = $"Beezerly: Oh? And where would these better burgers be found?",
+                    option2DialogueID = 320102
                 }
             },
             {320023,
@@ -3112,6 +3129,278 @@ namespace TootTally.Tooter
                 }
             },
 
+            #endregion
+
+            #region Kaizyle Date
+            {340000,
+                new DialogueData()
+                {
+                    dialogueText = $"[It's the end of class and everyone leaves to go home. Soda goes to Kaizyle to chat with her]",
+                    option2DialogueID = 340001,
+                }
+            },
+            {340001,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Hey Kaizyle, how's it going?",
+                    option2DialogueID = 340002,
+                }
+            },
+            {340002,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: It's going fine, why do you ask?",
+                    option2DialogueID = 340003,
+                }
+            },
+            {340003,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Well, I was thinking about going out for a walk in the park and maybe grabbing some ice cream. Would you like to come with me?",
+                    option2DialogueID = 340004,
+                }
+            },
+            {340004,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Why would I want to go out with you?",
+                    option2DialogueID = 340005,
+                }
+            },
+            {340005,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Well, I thought it would be nice to spend some time together and get to know each other better.",
+                    option2DialogueID = 340006,
+                }
+            },
+            {340006,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: We're in the same music program, and I feel like we haven't had a chance to talk much.",
+                    option2DialogueID = 340007,
+                }
+            },
+            {340007,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Hmph, I suppose it wouldn't hurt to get to know my fellow band members better.",
+                    option2DialogueID = 340008,
+                }
+            },
+            {340008,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Great! Since tomorrow is a weekend, I'll meet you downtown tomorrow?",
+                    option2DialogueID = 340009,
+                }
+            },
+            {340009,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Sure, whatever.",
+                    option2DialogueID = 340010,
+                }
+            },
+            {340010,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Hey Kaizyle, it's good to see you again. How have you been?",
+                    option2DialogueID = 340011,
+                }
+            },
+            {340011,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: I've been fine.",
+                    option2DialogueID = 340012,
+                }
+            },
+            {340012,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: ...",
+                    option2DialogueID = 340013,
+                }
+            },
+            {340013,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Thanks for inviting me out today.",
+                    option2DialogueID = 340014,
+                }
+            },
+            {340014,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: No problem, I thought it would be nice to get some fresh air and enjoy the sunshine. So, what do you want to do?",
+                    option2DialogueID = 340015,
+                }
+            },
+            {340015,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: I don't know, it's up to you.",
+                    option2DialogueID = 340016,
+                }
+            },
+            {340016,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: How about we go grab some ice cream? There's a really good place down the street.",
+                    option2DialogueID = 340017,
+                }
+            },
+            {340017,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Fine, but only because I'm craving something sweet.",
+                    option2DialogueID = 340018,
+                }
+            },
+            {340018,
+                new DialogueData()
+                {
+                    dialogueText = $"[They walk to the ice cream shop and order their treats]",
+                    option2DialogueID = 340019,
+                }
+            },
+            {340019,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: So, how's your music going? I heard you had a big performance last week.",
+                    option2DialogueID = 340020,
+                }
+            },
+            {340020,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: It went well. I played the solo in the third movement of the Mozart Requiem. It was a challenge, but I think I nailed it.",
+                    option2DialogueID = 340021,
+                }
+            },
+            {340021,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: That's awesome! I wish I could have been there to see it.",
+                    option2DialogueID = 340022,
+                }
+            },
+            {340022,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Maybe I can show you a video sometime.",
+                    option2DialogueID = 340023,
+                }
+            },
+            {340023,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: I'd like that. You know, I've always admired your talent and dedication to your craft. It's inspiring.",
+                    option2DialogueID = 340024,
+                }
+            },
+            {340024,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Thanks, I appreciate that.",
+                    option2DialogueID = 340025,
+                }
+            },
+            {340025,
+                new DialogueData()
+                {
+                    dialogueText = $"[They finish their ice cream and start walking back to the park]",
+                    option2DialogueID = 340026,
+                }
+            },
+            {340026,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: So, what kind of music do you like to listen to in your free time?",
+                    option2DialogueID = 340027,
+                }
+            },
+            {340027,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Mostly classical, but I also enjoy jazz and some pop. What about you?",
+                    option2DialogueID = 340028,
+                }
+            },
+            {340028,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: I'm pretty open-minded when it comes to music. I like anything that makes me feel something {(DialogueFlags.talkedShitAboutRock ? "as long as it's not rock music." : ", whether it's rock, hip hop, or electronic.")}",
+                    option2DialogueID = 340029,
+                }
+            },
+            {340029,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: I wouldn't have guessed that from your taste in clothes.",
+                    option2DialogueID = 340030,
+                }
+            },
+            {340030,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Hey, I like to keep people guessing.",
+                    option2DialogueID = 340031,
+                }
+            },
+            {340031,
+                new DialogueData()
+                {
+                    dialogueText = $"[They arrive back at the park and sit down on a bench]",
+                    option2DialogueID = 340032,
+                }
+            },
+            {340032,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: It's been really nice spending time with you today, Kaizyle. I feel like I've gotten to know you better.",
+                    option2DialogueID = 340033,
+                }
+            },
+            {340033,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: Yeah, it's been...pleasant.",
+                    option2DialogueID = 340034,
+                }
+            },
+            {340034,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: You know, I've been wanting to ask you something.",
+                    option2DialogueID = 340035,
+                }
+            },
+            {340035,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: You know, I've been wanting to ask you something.",
+                    option1Text = "???",
+                    option1DialogueID = 340100,
+                    option2Text = "Ask her out",
+                    option2DialogueID = 340036,
+                }
+            },
+            {340036,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: Would you like to go out with me again sometime? Maybe we could catch a concert or something.",
+                    option2DialogueID = 340037,
+                }
+            },
+            {340037,
+                new DialogueData()
+                {
+                    dialogueText = $"Kaizyle: You're pretty bold, Soda. I guess I could consider it.",
+                    option2DialogueID = 340038,
+                }
+            },
             #endregion
         };
 
