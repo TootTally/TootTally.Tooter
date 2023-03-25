@@ -533,7 +533,7 @@ namespace TootTally.Tooter
                 case 110400:
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
-                    DialogueFlags.isCompetitive = _currentDialogueState == 13;
+                    DialogueFlags.isCompetitive = _currentDialogueState == 110300;
                     UpdateDialogueStates(1);
                     break;
                 case 110402:
@@ -560,10 +560,13 @@ namespace TootTally.Tooter
                 case 110800:
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
-                    DialogueFlags.presentedFriends = _currentDialogueState == 20;
+                    DialogueFlags.presentedFriends = _currentDialogueState == 110700;
                     UpdateDialogueStates(1);
                     break;
                 case 110701:
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    break;
                 case 110801:
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaShock, Color.white);
@@ -595,7 +598,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
-                    DialogueFlags.calmedKaizyleDown = _currentDialogueState == 30;
+                    DialogueFlags.calmedKaizyleDown = _currentDialogueState == 110900;
                     UpdateDialogueStates(1);
                     break;
                 case 110901:
@@ -733,10 +736,11 @@ namespace TootTally.Tooter
                     break;
                 case 57:
                     _appaloosa.transform.position = _outLeftCharPosition; //tp her to the left xd YEET
-                    DialogueFlags.pickedAppaloosa = true;
+                    DialogueFlags.pickedAppaloosa = DialogueFlags.didntPeekAppaloosaRoom = true;
                     UpdateDialogueStates(2);
                     break;
                 case 58:
+                    DialogueFlags.didntPeekAppaloosaRoom = false;
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     FlipSpriteAnimation(_soda, true);
@@ -776,13 +780,15 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
                 case 67:
-                    DialogueFlags.pickedKaizyle = true;
+                    DialogueFlags.pickedKaizyle = DialogueFlags.didntPeekKaizyleRoom = true;
                     UpdateDialogueStates(2);
                     break;
                 case 68:
+                    DialogueFlags.didntPeekKaizyleRoom = false;
                     FlipSpriteAnimation(_kaizyle, false, 10f);
                     AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    DialogueFlags.botheredKaizyle = true;
                     break;
                 case 69:
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
@@ -1539,7 +1545,7 @@ namespace TootTally.Tooter
                     option1DialogueID = 110100,
                     option1Score = new ScoreData()
                     {
-                        trixieScore = 3f
+                        trixieScore = 2f
                     },
                     option2Text = "Ignore",
                     option2DialogueID = 110200,
@@ -1588,15 +1594,15 @@ namespace TootTally.Tooter
                     option1DialogueID = 110300,
                     option1Score = new ScoreData()
                     {
-                        trixieScore = -1,
-                        beezerlyScore = 1,
+                        trixieScore = 2,
+                        beezerlyScore = -1,
                     },
                     option2Text = "I'm casual",
                     option2DialogueID = 110400,
                     option2Score = new ScoreData()
                     {
-                        trixieScore = 3,
-                        beezerlyScore = 1,
+                        trixieScore = -1,
+                        beezerlyScore = 2,
                     }
                 }
             },
@@ -1630,9 +1636,10 @@ namespace TootTally.Tooter
                     option1Score = new ScoreData()
                     {
                         appaloosaScore = 1,
+                        trixieScore = -1,
                     },
                     option2Text = "Guess so...",
-                    option2DialogueID = 110600
+                    option2DialogueID = 110600,
                 }
             },
             {110500,
@@ -1653,15 +1660,14 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_appaloosaColoredName}: I heard there were some talented players in this room, and I wanted to see for myself. I'm {_appaloosaColoredName}, by the way.",
-                    option1Text = "Present friends",
+                    option1Text = "Introduce friends",
                     option1DialogueID = 110700,
                     option1Score = new ScoreData()
                     {
                         trixieScore = 1,
                         beezerlyScore = 1,
-                        appaloosaScore = 2,
                     },
-                    option2Text = "Im Soda",
+                    option2Text = "Introduce myself",
                     option2DialogueID = 110800,
                     option2Score = new ScoreData()
                     {
@@ -1672,7 +1678,7 @@ namespace TootTally.Tooter
             {110700,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Nice to meet you, {_appaloosaColoredName}. I'm {_sodaColoredName}, and these are my bandmates {_trixieColoredName} and {_beezerlyColoredName}.",
+                    dialogueText = $"{_sodaColoredName}: Nice to meet you, {_appaloosaColoredName}. These are my bandmates {_trixieColoredName} and {_beezerlyColoredName}.",
                     option2DialogueID = 110701
                 }
             },
@@ -1686,7 +1692,7 @@ namespace TootTally.Tooter
             {110701,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Cool names. I like your style, {_sodaColoredName}. Want to jam sometime?",
+                    dialogueText = $"{_appaloosaColoredName}: Cool names. You guys want to jam sometime?",
                     option2DialogueID = 110802
                 }
             },
@@ -1812,8 +1818,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: Oh, I'm so nervous. I've been practicing so hard, but I'm still afraid I'll mess up on stage.",
                     option1Text = "Practice together",
                     option1DialogueID = 39,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = 2,
+                    },
                     option2Text = "Stop stressing out",
-                    option2DialogueID = 40
+                    option2DialogueID = 40,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = -1,
+                    },
                 }
             },
             {39,
@@ -1867,8 +1881,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_beezerlyColoredName}: I like to mix it up, you know? Sometimes I'll play something that rocks or rolls, and other times I'll play some pop songs. I don't like to be boxed in.",
                     option1DialogueID = 46,
                     option1Text = "I hate rock",
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore = -5,
+                    },
                     option2DialogueID = 48,
-                    option2Text = "I love rock"
+                    option2Text = "I love rock",
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore = 2,
+                    },
                 }
             },
             {46,
@@ -1889,8 +1911,12 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Rock is really cool! I listen to Rock music all the time.",
-                    option1Text = "Offer Idea",
+                    option1Text = "Come up with an idea",
                     option1DialogueID = 49,
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore = 1,
+                    },
                     option2Text = "Let Her Practice",
                     option2DialogueID = 51,
                 }
@@ -1940,11 +1966,11 @@ namespace TootTally.Tooter
             {55,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} to himself: What should I do now?",
-                    option1Text = "Talk to Appaloosa",
+                    dialogueText = DialogueFlags.didntPeekKaizyleRoom && DialogueFlags.didntPeekAppaloosaRoom ? $"{_sodaColoredName} was too indecisive..." : $"{_sodaColoredName} to himself: What should I do now?",
+                    option1Text = DialogueFlags.didntPeekAppaloosaRoom ? "" : "Talk to Appaloosa",
                     option1DialogueID = 57,
-                    option2Text = "Talk to Kaizyle",
-                    option2DialogueID = 67,
+                    option2Text = DialogueFlags.didntPeekKaizyleRoom ? DialogueFlags.didntPeekAppaloosaRoom ? "..." : "" : "Talk to Kaizyle",
+                    option2DialogueID = DialogueFlags.didntPeekKaizyleRoom && DialogueFlags.didntPeekAppaloosaRoom ? 81 : 67,
                 }
             },
             {56,
@@ -1963,6 +1989,10 @@ namespace TootTally.Tooter
                     dialogueText = $"[A beautiful and calming melody can be heard from a nearby room. Peek in the room?]",
                     option1Text = "Yes",
                     option1DialogueID = 58,
+                    option1Score = new ScoreData()
+                    {
+                        appaloosaScore = 1,
+                    },
                     option2Text = "No",
                     option2DialogueID = 55,
                 }
@@ -1987,8 +2017,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_appaloosaColoredName}: It's all about feeling the music, you know? You gotta let go of your inhibitions and just let the music flow through you.",
                     option1Text = "Teach me!",
                     option1DialogueID = 61,
+                    option1Score = new ScoreData()
+                    {
+                        appaloosaScore = 2,
+                    },
                     option2Text = "Let her practice",
                     option2DialogueID = 64,
+                    option2Score = new ScoreData()
+                    {
+                        appaloosaScore = 1,
+                    },
                 }
             },
             {61,
@@ -2042,8 +2080,16 @@ namespace TootTally.Tooter
                     dialogueText = $"[A fast and complex melody can be heard from another room. Peek in the other room?]",
                     option1Text = "Yes",
                     option1DialogueID = 68,
+                    option1Score = new ScoreData()
+                    {
+                        kaizyleScore = -1,
+                    },
                     option2Text = "No",
                     option2DialogueID = 55,
+                    option2Score = new ScoreData()
+                    {
+                        kaizyleScore = 3,
+                    }
                 }
             },
             {68,
@@ -2061,6 +2107,10 @@ namespace TootTally.Tooter
                     option1DialogueID = 70,
                     option2Text = "Let her practice",
                     option2DialogueID = 77,
+                    option2Score = new ScoreData()
+                    {
+                        kaizyleScore = 1,
+                    }
                 }
             },
             {70,
@@ -2076,8 +2126,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_kaizyleColoredName}: I would like to help but I really need to finish my practice. We can talk later.",
                     option1Text = "Beg for help",
                     option1DialogueID = 72,
+                    option1Score = new ScoreData()
+                    {
+                        kaizyleScore = -2,
+                    },
                     option2Text = "Let her practice",
                     option2DialogueID = 77,
+                    option2Score = new ScoreData()
+                    {
+                        kaizyleScore = 1,
+                    },
                 }
             },
             {72,
@@ -2093,8 +2151,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_kaizyleColoredName}: I told you I need to practice. I will be able to help you later so please let me practice now.",
                     option1Text = "Keep begging",
                     option1DialogueID = 74,
+                    option1Score = new ScoreData()
+                    {
+                        kaizyleScore = -2,
+                    },
                     option2Text = "Let her practice",
                     option2DialogueID = 78,
+                    option2Score = new ScoreData()
+                    {
+                        kaizyleScore = 1,
+                    },
                 }
             },
             {74,
@@ -2237,8 +2303,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: That’s why when my family organized a trip to the aquarium I was so excited! This pin was a souvenir from their gift shop.",
                     option1Text = "Invite her out",
                     option1DialogueID = 92,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = 2,
+                    },
                     option2Text = "Compliment her",
                     option2DialogueID = 125,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = 5,
+                    },
                 }
             },
             {92,
@@ -2311,15 +2385,23 @@ namespace TootTally.Tooter
                     dialogueText = $"{_sodaColoredName}: Yeah, they're pretty cute. And check out these penguin-shaped cookies!",
                     option1Text = "Share",
                     option1DialogueID = 102,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = 2,
+                    },
                     option2Text = "Eat one",
                     option2DialogueID = 133,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = -1,
+                    },
                 }
             },
             {102,
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Want to split one with me?",
-                    option2DialogueID = _scoreData.trixieScore >= 3 ? 103 : 134,
+                    option2DialogueID = _scoreData.trixieScore >= 5 ? 103 : 134,
                 }
             },
             {103,
@@ -2349,8 +2431,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: Really? What did you do?",
                     option1Text = "Truth",
                     option1DialogueID = 139,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = -1,
+                    },
                     option2Text = "Lie",
                     option2DialogueID = 107,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = 2,
+                    },
                 }
             },
             {107,
@@ -2395,8 +2485,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: Thanks, {_sodaColoredName}. You always know just what to say to make me feel better.",
                     option1Text = "Friends",
                     option1DialogueID = 112,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = -10,
+                    },
                     option2Text = "Penguin Joke",
                     option2DialogueID = 113,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = 2,
+                    },
                 }
             },
             {112,
@@ -2440,8 +2538,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: Oh, it's just a pin I got from the aquarium. I thought it was cute so I bought it.",
                     option1Text = "Ask more about it",
                     option1DialogueID = 1180,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = 1,
+                    },
                     option2Text = "Yeah",
                     option2DialogueID = 119,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = -2,
+                    },
                 }
             },
             {1180,
@@ -2486,8 +2592,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: ...",
                     option1Text = "Compliment her",
                     option1DialogueID = 125,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = -2,
+                    },
                     option2Text = "Leave",
                     option2DialogueID = 123,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = -1,
+                    },
                 }
             },
             {123,
@@ -2541,8 +2655,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_sodaColoredName}: Its getting pretty late, I should start heading home.",
                     option1Text = "Lets meet again",
                     option1DialogueID =  130,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = 1,
+                    },
                     option2Text = "Walk her home",
                     option2DialogueID = 150,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = 2,
+                    },
                 }
             },
             {130,
@@ -2579,8 +2701,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: No thanks I'm not hungry right now, if you want you can have mine.",
                     option1Text = "Not hungry anymore",
                     option1DialogueID = 135,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = -1,
+                    },
                     option2Text = "Eat her cookie",
                     option2DialogueID = 137,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = -2,
+                    },
                 }
             },
             {135,
@@ -2701,8 +2831,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: Thanks for the offer, but my house isn't that far from here so I will be fine.",
                     option1Text = "Insist",
                     option1DialogueID =  152,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = 1,
+                    },
                     option2Text = "Let her go",
                     option2DialogueID = 161,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = -1,
+                    },
                 }
             },
             {152,
@@ -2718,8 +2856,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: Seriously {_sodaColoredName}, it's fine. You don't need to walk me home.",
                     option1Text = "Insist more",
                     option1DialogueID =  154,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = -3,
+                    },
                     option2Text = "Let her go",
                     option2DialogueID = 161,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = 1,
+                    },
                 }
             },
             {154,
@@ -2808,8 +2954,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: It really was. Maybe next time we can go to the aquarium?",
                     option1Text = "Sure",
                     option1DialogueID =  166,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = 2,
+                    },
                     option2Text = "Would love but...",
                     option2DialogueID = 169,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = -1,
+                    },
                 }
             },
             {166,
@@ -2868,6 +3022,13 @@ namespace TootTally.Tooter
                     dialogueText = $"{_trixieColoredName}: Absolutely, I had a fun time as well.",
                     option1Text = "Kiss",
                     option1DialogueID =  177,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = 10,
+                        appaloosaScore = -5,
+                        beezerlyScore = -5,
+                        kaizyleScore = -5,
+                    },
                     option2Text = "Part ways",
                     option2DialogueID = 174,
                 }
@@ -3760,6 +3921,9 @@ namespace TootTally.Tooter
             public static bool offeredIdeaToBeezerly;
             public static bool pickedAppaloosa;
             public static bool pickedKaizyle;
+            public static bool botheredKaizyle;
+            public static bool didntPeekKaizyleRoom;
+            public static bool didntPeekAppaloosaRoom;
             public static bool askedAppaloosaForHelp;
             public static bool askedKaizyleForHelp;
             public static bool annoyedTheFuckOutOfKaizyle;
