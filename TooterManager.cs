@@ -3782,6 +3782,21 @@ namespace TootTally.Tooter
             public static bool kissedTrixie;
             public static bool wantsToGoToAquarium;
             #endregion
+
+            #region Chapter 3 part 2
+
+            #endregion
+
+            #region Chapter 3 part 3
+
+            #endregion
+
+            #region Chapter 3 part 4
+
+            #endregion
+
+            #region Chapter 4
+            #endregion
         }
 
         public class ScoreData
@@ -3844,10 +3859,6 @@ namespace TootTally.Tooter
                     break;
                 case 4:
                     _dialogueStates = GetDialogueChapter4();
-                    break;
-                case 5:
-                    break;
-                case 6:
                     break;
             }
             Plugin.Instance.LogInfo("Dialogue States Update for Chapter " + chapterID);
