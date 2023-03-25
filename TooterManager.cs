@@ -2681,7 +2681,6 @@ namespace TootTally.Tooter
                     option2DialogueID = 129,
                 }
             },
-            #endregion
             {150,
                 new DialogueData()
                 {
@@ -2909,8 +2908,6 @@ namespace TootTally.Tooter
                     option2DialogueID = 0,
                 }
             },
-
-
             #endregion
 
             #region Beezerly Date
