@@ -710,7 +710,7 @@ namespace TootTally.Tooter
                     break;
                 case 56:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyBump, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCenterCharPosition + new Vector3(.8f, 0, 0), 1f, GetSecondDegreeAnimationFunction(.8f), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCenterCharPosition + new Vector3(.8f, 0, 0), 0.7f, GetSecondDegreeAnimationFunction(.8f), delegate
                       {
                           ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
                           ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyMock, Color.white);
@@ -1325,6 +1325,7 @@ namespace TootTally.Tooter
                         ResetCharacterPositions();
                         _soda.transform.position = _outRightCharPosition;
                         _trixiebell.transform.position = _outLeftCharPosition;
+                        _beezerly.transform.position = _outLeftCharPosition;
                         DialogueStates = GetDialogueChapter3();
                         LogChapter2States();
                         LogScores();
