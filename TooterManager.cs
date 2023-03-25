@@ -993,9 +993,6 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment3, Color.white);
                     break;
-                case 116:
-                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 150, 2.65f));
-                    break;
                 case 117:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieAnxious, Color.white);
