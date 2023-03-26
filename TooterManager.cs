@@ -1342,6 +1342,9 @@ namespace TootTally.Tooter
                 case 71:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
+                case 331200:
+                    DialogueFlags.didntLikeJazzBar = true;
+                    break;
             }
 
             return false;
@@ -3559,12 +3562,45 @@ namespace TootTally.Tooter
                     dialogueText = $"Appaloosa: What do you think, Soda? This is the real deal, right?", //Yelling over music
                     option1DialogueID = 331200,
                     option1Text = $"Not really",
+                    option1Score = new ScoreData
+                    {
+                        appaloosaScore = -2f
+                    },
                     option2DialogueID = 331100,
                     option2Text = $"Absolutely",
                     option2Score = new ScoreData
                     {
                         appaloosaScore = 1f
                     }
+                }
+            },
+            {331200,
+                new DialogueData
+                {
+                    dialogueText = "Soda: I'm not sure. This is different from what I imagined.",
+                    option2DialogueID = 331201,
+                    
+                }
+            },
+            {331201,
+                new DialogueData() {
+                    dialogueText = "Appaloosa: I see.",
+                    option1Text = "Practice",
+                    option1DialogueID = 331210,
+                    option1Score = new ScoreData
+                    {
+                        appaloosaScore = -10f,
+                    },
+                    option2Text = "Stay",
+                    option2DialogueID = 331104,
+
+                }
+            },
+            {331210,
+                new DialogueData()
+                {
+                    dialogueText = $"I'd best be getting back to practice now. Later, Apppaloosa.",
+                    option2DialogueID = 340000
                 }
             },
             {331100, //Choice 1; yes
@@ -3592,6 +3628,27 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"Appaloosa: That's what I'm here for. To share my love of jazz with others.",
+                    option1Text = "Flirt",
+                    option1DialogueID = 3311031,
+                    option1Score = new ScoreData
+                    {
+                        appaloosaScore = 2f
+                    },
+                    option2Text = "Drinks",
+                    option2DialogueID = 331104
+                }
+            },
+            {3311031,
+                new DialogueData()
+                {
+                    dialogueText = $"Soda: I thought you were here for me?",
+                    option2DialogueID = 3311032
+                }
+            },
+            {3311032,
+                new DialogueData()
+                {
+                    dialogueText = $"Appaloosa: Oh, stop it!",
                     option2DialogueID = 331104
                 }
             },
@@ -3599,9 +3656,10 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"[They order their drinks and settle in at a table near the stage]",
-                    option2DialogueID = 331105
+                    option2DialogueID = DialogueFlags.didntLikeJazzBar ? 331220 : 331105
                 }
             },
+
             {331105,
                 new DialogueData()
                 {
@@ -3669,9 +3727,10 @@ namespace TootTally.Tooter
             {331115,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: Anytime, Soda",
-                    option2Text = "",
-                    option2DialogueID = 0
+                    dialogueText = _scoreData.appaloosaScore > 7f ?  $"Appaloosa: I think so too, Soda. Maybe we can have another date sometime?" : $"Appaloosa: Anytime, Soda",
+                    option2DialogueID = 340000,
+                    option2Text = _scoreData.appaloosaScore > 10f ? "Definitely" : "Leave",
+                    option1Text = _scoreData.appaloosaScore > 10f ? "Maybe" : ""
                 }
             },
             #endregion
@@ -4143,7 +4202,8 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 3 part 3
-
+            public static bool didntLikeJazzBar;
+            public static bool leaveEarly;
             #endregion
 
             #region Chapter 3 part 4
@@ -4151,6 +4211,7 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 4
+
             #endregion
         }
 
