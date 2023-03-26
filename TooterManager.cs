@@ -62,19 +62,24 @@ namespace TootTally.Tooter
             //_txtBox.UpdateText(_txtBox.GetText + __args[0] + " "); //base game does it like that xd...
         }
 
-        private static IEnumerator addWord(string word, float delayTime)
+        private static IEnumerator addWord(DemonDialogue __instance, string word, float delayTime)
         {
             float seconds = delayTime * 0.035f;
             yield return new WaitForSeconds(seconds);
             _txtBox.UpdateText(_txtBox.GetText + word + " ");
             _textCoroutines.RemoveAt(0);
+            if (_textCoroutines.Count <= 0)
+            {
+                AnimationManager.AddNewScaleAnimation(__instance.btn1obj, new Vector3(1,1,0), .45f, new EasingHelper.SecondOrderDynamics(4.25f, .8f, 1.2f));
+                AnimationManager.AddNewScaleAnimation(__instance.btn2obj, new Vector3(1,1,0), .45f, new EasingHelper.SecondOrderDynamics(4.25f, .8f, 1.2f), delegate { __instance.readytoclick = true; });
+            }    
             yield break;
         }
 
         //Pulled from DNSpy Token: 0x060001BA RID: 442 RVA: 0x0001C55C File Offset: 0x0001A75C
         [HarmonyPatch(typeof(DemonDialogue), nameof(DemonDialogue.dtxt))]
-        [HarmonyPostfix]
-        private static void OnDTxtPostFixSetCoroutine(DemonDialogue __instance, object[] __args)
+        [HarmonyPrefix]
+        private static bool OnDTxtPostFixSetCoroutine(DemonDialogue __instance, object[] __args)
         {
             _textCoroutines.ForEach(c => Plugin.Instance.StopCoroutine(c));
             _textCoroutines.Clear();
@@ -83,12 +88,13 @@ namespace TootTally.Tooter
             {
             ' '
             });
-            float delay = 1f;
+            float delay = 0f;
             foreach (string word in array)
             {
-                _textCoroutines.Add(Plugin.Instance.StartCoroutine(addWord(word, delay)));
+                _textCoroutines.Add(Plugin.Instance.StartCoroutine(addWord(__instance, word, delay)));
                 delay += 1.5f;
             }
+            return false;
         }
 
         [HarmonyPatch(typeof(BabbleController), nameof(BabbleController.doBabbles))]
@@ -161,8 +167,6 @@ namespace TootTally.Tooter
             if (__instance.readytoclick)
             {
                 __instance.readytoclick = false;
-                __instance.resetClickTimer();
-                //__instance.csc.sfx_buttons[1].Play();
                 _scoreData.AddScore(_dialogueStates[_currentDialogueState].option1Score);
                 __instance.doDialogue(__instance.btnyeschoice);
             }
@@ -176,8 +180,6 @@ namespace TootTally.Tooter
             if (__instance.readytoclick)
             {
                 __instance.readytoclick = false;
-                __instance.resetClickTimer();
-                //__instance.csc.sfx_buttons[1].Play();
                 _scoreData.AddScore(_dialogueStates[_currentDialogueState].option2Score);
                 __instance.doDialogue(__instance.btnnochoice);
             }
@@ -3403,23 +3405,23 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"[Their food arrives and they dig in, enjoying the delicious burgers and fries]",
                     option1Text = "Discuss Burger",
-                    option1DialogueID = 320100,
+                    option1DialogueID = 321000,
                     option2Text = "Compliment Burger",
                     option2DialogueID = 320023
                 }
             },
-            {320100,
+            {321000,
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: These burgers are alright, but I’ve had better.",
-                    option2DialogueID = 320101
+                    option2DialogueID = 321001
                 }
             },
-            {320101,
+            {321001,
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: Oh? And where would these better burgers be found?",
-                    option2DialogueID = 320102 // TODO
+                    option2DialogueID = 321002 // TODO
                 }
             },
             {320023,
