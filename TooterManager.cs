@@ -3138,7 +3138,11 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Yeah, it's definitely a unique experience. Have you been here before?",
+                    option1Text = "Order food",
+                    option1DialogueID = 320100,
+                    option2Text = "First time here",
                     option2DialogueID = 320010,
+
                 }
             },
             {320010,
@@ -3158,15 +3162,77 @@ namespace TootTally.Tooter
             {320012,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Well, then we have to make the most of it. ",
+                    dialogueText = $"{_beezerlyColoredName}: Well, then we have to make the most of it.",
+                    option1Text = "Order food",
+                    option1DialogueID = 320100,
+                    option2Text = "Do something else",
+                    option2DialogueID = 320200, // TODO
+                }
+            },
+            {320100,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I'm getting hungry, do you want to order food?",
+                    option2DialogueID = 320101,
+
+                }
+            },
+            {320101,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: Hell yeah! What do you want to order?",
+                    option1Text = "Burger",
+                    option1DialogueID = 320102,
+                    option2Text = "Pineapple pizza",
+                    option2DialogueID = 320300,
+
+                }
+            },
+            {320102,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Let's try those burgers and fries you mentioned earlier!",
                     option2DialogueID = 320013,
+
+                }
+            },
+            {320300,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I have never tried pineapple pizza before so lets try that.",
+                    option2DialogueID = 320013,
+
                 }
             },
             {320013,
                 new DialogueData()
                 {
-                    dialogueText = $"[They order their food and drinks and settle at a table]",
-                    option2DialogueID = 320014,
+                    dialogueText = $"[They order {(DialogueFlags.orderedBurger ? "burgers" : "pineapple pizza")} and drinks and settle at a table]",
+                    option1Text = "Ask more about her",
+                    option1DialogueID = 320014,
+                    option2Text = "Ask about the food",
+                    option2DialogueID = 320400,
+                }
+            },
+            {320400,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: How do you like the {(DialogueFlags.orderedBurger ? "burgers" : "pineapple pizza")}?",
+                    option2DialogueID = DialogueFlags.orderedBurger ? 320401 : 320500,
+                }
+            },
+            {320401,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: The burgers are really amazing. Thanks for ordering for us {_sodaColoredName}.",
+                    option2DialogueID = 320014
+                }
+            },
+            {320500,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: I haven't tried it yet but it looks ok.",
+                    option2DialogueID = 320014
                 }
             },
             {320014,
@@ -3187,13 +3253,51 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: Music is supposed to bring people together, not tear them apart.",
-                    option2DialogueID = 320017,
+                    option1Text = "Disagree",
+                    option1DialogueID = DialogueFlags.isCompetitive ? 320700 : 320800,
+                    option2Text = "Agree",
+                    option2DialogueID = DialogueFlags.isCompetitive ? 320017 : 320600,
+                }
+            },
+            {320700,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: There is no point in playing music if you're not trying to be the best.",
+                    option2DialogueID = 320701 // TODO
+                }
+            },
+            {320800,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Musicians can be compete without hating eachother.",
+                    option2DialogueID = 320801
+                }
+            },
+            {320801,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: A friendly rivalery can help people push their limit without tearing them apart.",
+                    option2DialogueID = 320802
+                }
+            },
+            {320802,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: You are right {_sodaColoredName}. I never thought about it that way.",
+                    option2DialogueID = 320803 // TODO
                 }
             },
             {320017,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I see what you mean. But for me, the competition is more about pushing myself to be the best I can be. I'm not trying to beat anyone else, just my own limitations.",
+                    dialogueText = $"{_sodaColoredName}: I see what you mean. For me, the competition is more about pushing myself to be the best I can be. I don't mind losing but winning is also fun.",
+                    option2DialogueID = 320018,
+                }
+            },
+            {320600,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I see what you mean. For me, the competition is more about pushing myself to be the best I can be. I'm not trying to beat anyone else, just my own limitations.",
                     option2DialogueID = 320018,
                 }
             },
@@ -3246,7 +3350,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: Oh? And where would these better burgers be found?",
-                    option2DialogueID = 320102
+                    option2DialogueID = 320102 // TODO
                 }
             },
             {320023,
@@ -3289,6 +3393,13 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_sodaColoredName}: And you're pretty cool for a rebellious trombone player.",
                     option2DialogueID = 320029,
+                }
+            },
+            {320030,
+                new DialogueData()
+                {
+                    dialogueText = $"[They finish their food and drinks and prepare to leave]", // TODO maybe different endings?
+                    option2DialogueID = 320030,
                 }
             },
             #endregion
@@ -3945,7 +4056,7 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 3 part 2
-
+            public static bool orderedBurger;
             #endregion
 
             #region Chapter 3 part 3
