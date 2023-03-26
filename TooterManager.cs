@@ -1332,7 +1332,7 @@ namespace TootTally.Tooter
                 case 331115:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340000, 2.65f)); //To Chap 3 part 4 transition
                     break;
-                case 340037:
+                case 350000:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
                     break;
 
@@ -3944,6 +3944,14 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_kaizyleColoredName}: You're pretty bold, {_sodaColoredName}. I guess I could consider it.",
                     option2DialogueID = 340038,
+                }
+            },
+            {350000,
+                new DialogueData()
+                {
+                    dialogueText = $"[END OF CHAPTER 3]",
+                    option2Text = "",
+                    option2DialogueID = 0,
                 }
             },
             #endregion
