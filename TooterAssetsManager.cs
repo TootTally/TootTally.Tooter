@@ -29,7 +29,15 @@ namespace TootTally.Tooter
             "SodaWheezeRW.png",
             "SodaAgree.png",
             "SodaThinking.png",
+            "SodaPlead.png",
+            "SodaBeg.png",
+            "SodaBleh.png",
+            "SodaEat.png",
+            "SodaHoldCookie.png",
+            "SodaMunch.png",
+            "SodaWow.png",
 
+            "TrixieBag.png",
             "TrixieShadow.png",
             "TrixieNeutral.png",
             "TrixieNeutralTalk.png",
@@ -39,15 +47,35 @@ namespace TootTally.Tooter
             "TrixieCompliment3.png",
             "TrixiePanic.png",
             "TrixiePleased.png",
+            "TrixieSadge.png",
+            "TrixieAgree.png",
+            "TrixieAmaze.png",
+            "TrixieEat.png",
+            "TrixieHoldCookie.png",
+            "TrixieSurprise.png",
 
-            "AppaloosaNeutral.png",
             "AppaloosaShadow.png",
+            "AppaloosaNeutral.png",
+            "AppaloosaNeutralTalk.png",
 
-            "KaizyleNeutral.png",
             "KaizyleShadow.png",
+            "KaizyleNeutral.png",
+            "KaizyleNeutralTalk.png",
+            "KaizyleDispleased.png",
+            "KaizyleWTF.png",
+            "KaizyleConcern.png",
+            "KaizyleBrag.png",
+            "KaizylePissed.png",
+            "KaizyleUm.png",
 
-            "BeezerlyNeutral.png",
             "BeezerlyShadow.png",
+            "BeezerlyNeutral.png",
+            "BeezerlyNeutralTalk.png",
+            "BeezerlyAggro.png",
+            "BeezerlyMock.png",
+            "BeezerlyBump.png",
+            "BeezerlyImpressed.png",
+            "BeezerlyThinking.png",
 
             "AppaloosaRoom.png",
             "Backstage.png",
@@ -67,6 +95,13 @@ namespace TootTally.Tooter
             "OutsideCompetitionVenue.png",
             "PenguinCafe.png",
             "TrixiebellRoom.png",
+            "StreetNight.png",
+            "TrixieHouseNight.png",
+
+
+
+
+
         };
 
         public static Dictionary<string, Texture2D> textureDictionary;

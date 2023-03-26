@@ -22,7 +22,6 @@ namespace TootTally.Tooter
             if (Instance != null) return;
             Instance = this;
 
-
             ModuleConfigEnabled = TootTally.Plugin.Instance.Config.Bind("Modules", "Tooter", true, "Enable TootTally's Dating Module");
             OptionalTrombSettings.Add(TootTally.Plugin.Instance.moduleSettings, ModuleConfigEnabled);
             TootTally.Plugin.AddModule(this);
