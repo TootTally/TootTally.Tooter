@@ -1314,8 +1314,25 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment2, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320001, 2.65f));
                     break;
-
-
+                case 320001:
+                    ChangeCharSprite(_beezerlySprite, DialogueFlags.talkedShitAboutRock ? CharExpressions.BeezerlyAggro : CharExpressions.BeezerlyNeutral, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 320002:
+                    break;
+                case 320003:
+                    break;
+                case 320004:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 330000, 2.65f)); //to Chap 3 part 3 transition
+                    break;
+                case 331115:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340000, 2.65f)); //To Chap 3 part 4 transition
+                    break;
+                case 340037:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
+                    break;
 
 
                 case 110401:
@@ -1407,8 +1424,37 @@ namespace TootTally.Tooter
 
                     //Beezerly's date
                     case 320001:
+                        ResetCharacterPositions();
                         _txtBox.UpdateText("");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
                         LogChapter3Part1States();
+                        LogScores();
+                        break;
+
+                    //Appaloosa's Date
+                    case 330000:
+                        ResetCharacterPositions();
+                        _txtBox.UpdateText("");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
+                        LogChapter3Part2States();
+                        LogScores();
+                        break;
+
+                    //Kaizyle Date
+                    case 340000:
+                        ResetCharacterPositions();
+                        _txtBox.UpdateText("");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
+                        LogChapter3Part3States();
+                        LogScores();
+                        break;
+
+                    //end Chapter 3 part 4
+                    case 410000:
+                        ResetCharacterPositions();
+                        _txtBox.UpdateText("");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("Backstage.png");
+                        LogChapter3Part4States();
                         LogScores();
                         break;
                 }
@@ -1459,6 +1505,29 @@ namespace TootTally.Tooter
             Plugin.Instance.LogInfo("   threwCookieInGarbage: " + DialogueFlags.threwCookieInGarbage);
             Plugin.Instance.LogInfo("   kissedTrixie: " + DialogueFlags.kissedTrixie);
             Plugin.Instance.LogInfo("   wantsToGoToAquarium: " + DialogueFlags.wantsToGoToAquarium);
+            Plugin.Instance.LogInfo("-----------------------------");
+        }
+        public static void LogChapter3Part2States()
+        {
+            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("   wentToRockCafe: " + DialogueFlags.wentToRockCafe);
+            Plugin.Instance.LogInfo("   orderedBurger: " + DialogueFlags.orderedBurger);
+            Plugin.Instance.LogInfo("   agreedWithBeezerly: " + DialogueFlags.agreedWithBeezerly);
+            Plugin.Instance.LogInfo("   likedTheBurger: " + DialogueFlags.likedTheBurger);
+            Plugin.Instance.LogInfo("-----------------------------");
+        }
+
+        public static void LogChapter3Part3States()
+        {
+            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("   wentToRockCafe: " + DialogueFlags.wentToRockCafe);
+            Plugin.Instance.LogInfo("-----------------------------");
+        }
+
+        public static void LogChapter3Part4States()
+        {
+            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("   wentToRockCafe: " + DialogueFlags.wentToRockCafe);
             Plugin.Instance.LogInfo("-----------------------------");
         }
 
@@ -3137,7 +3206,7 @@ namespace TootTally.Tooter
             {320009,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Yeah, it's definitely a unique experience. Have you been here before?",
+                    dialogueText = $"{_sodaColoredName}: Yeah, it's definitely a unique experience.",
                     option1Text = "Order food",
                     option1DialogueID = 320100,
                     option2Text = "First time here",
@@ -3148,24 +3217,24 @@ namespace TootTally.Tooter
             {320010,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: A couple of times. I love their burgers and fries. And of course, the music is always on point.",
+                    dialogueText = $"{_sodaColoredName}: I've never been to a place like this before. Have you?",
                     option2DialogueID = 320011,
                 }
             },
             {320011,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I'm glad you're enjoying yourself. I've never been to a place like this before.",
+                    dialogueText = $"{_beezerlyColoredName}: A couple of times. I love their burgers and fries. And of course, the music is always on point.",
                     option2DialogueID = 320012,
                 }
             },
             {320012,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Well, then we have to make the most of it.",
+                    dialogueText = $"{_beezerlyColoredName}: Since its your first time, then we have to make the most of it!",
                     option1Text = "Order food",
                     option1DialogueID = 320100,
-                    option2Text = "Do something else",
+                    option2Text = "Listen To The Band",
                     option2DialogueID = 320200, // TODO
                 }
             },
@@ -3599,7 +3668,8 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"Appaloosa: Anytime, Soda",
-                    option2DialogueID = 340000
+                    option2Text = "",
+                    option2DialogueID = 0
                 }
             },
             #endregion
@@ -4056,7 +4126,10 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 3 part 2
+            public static bool wentToRockCafe;
             public static bool orderedBurger;
+            public static bool agreedWithBeezerly;
+            public static bool likedTheBurger;
             #endregion
 
             #region Chapter 3 part 3
