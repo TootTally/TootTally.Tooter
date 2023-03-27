@@ -1656,16 +1656,6 @@ namespace TootTally.Tooter
 
             __instance.csc.fadeoutpanel.transform.localScale = new Vector3(2f, 0.001f, 1f);
             __instance.csc.fadeoutpanel.SetActive(true);
-            if (nextDialogueID == 330000)
-            {
-                Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter3p3Music", clip =>
-                {
-                    __instance.csc.bgmus2.clip = clip;
-                    __instance.csc.bgmus2.volume = .25f;
-                    __instance.csc.bgmus2.Play();
-                }));
-            }
-
             __instance.csc.fadeMus(0, false);
             __instance.csc.fadeMus(1, false);
             AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 2f, 1f), 2f, GetSecondDegreeAnimationFunction(), delegate
@@ -1760,7 +1750,12 @@ namespace TootTally.Tooter
                     case 330000:
                         ResetCharacterPositions();
                         _txtBox.UpdateText("");
-                       
+                        Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter3p3Music.mp3", clip =>
+                        {
+                            __instance.csc.bgmus2.clip = clip;
+                            __instance.csc.bgmus2.volume = 0f;
+                            __instance.csc.bgmus2.Play();
+                        }));
                         __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
                         LogChapter3Part2States();
@@ -3616,7 +3611,8 @@ namespace TootTally.Tooter
                     option1Text = "Order food",
                     option1DialogueID = 320100,
                     option2Text = "Listen To The Band",
-                    option2DialogueID = 320200, // TODO
+                    option2DialogueID = 320200, // TODO: Maybe listen to the band, then they take special request, give 2 choices of song requests, one of them is beez's favorite song...
+                    //if you pick beez's song you can invite her to dance and have a chance at kissing her :)
                 }
             },
             {320100,
@@ -4026,7 +4022,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"[They order their drinks and settle in at a table near the stage]",
-                    option2DialogueID = DialogueFlags.didntLikeJazzBar ? 331220 : 331105
+                    option2DialogueID = DialogueFlags.unimpressedAppaloosa ? 331220 : 331105
                 }
             },
 
@@ -4653,7 +4649,10 @@ namespace TootTally.Tooter
             public static bool orderedBurger;
             public static bool agreedWithBeezerly;
             public static bool likedTheBurger;
-
+            public static bool listenedToTheBand;
+            public static bool pickedBeezerlyFavoriteSong;
+            public static bool dancedWithBeezerly;
+            public static bool kissedBeezerly;
             #endregion
 
             #region Chapter 3 part 3
