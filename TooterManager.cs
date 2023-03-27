@@ -119,6 +119,7 @@ namespace TootTally.Tooter
             if (_currentDialogueState != 0) return;
             _currentDialogueState = -1;
             _currentDemonDialogueInstance = __instance;
+            _isSceneActive = true;
             GlobalVariables.chosen_character = 7;
             GlobalVariables.chosen_trombone = 0;
             GlobalVariables.chosen_soundset = 0;
@@ -480,7 +481,7 @@ namespace TootTally.Tooter
         {
             if (_currentDialogueState == -1)
             {
-                _currentDialogueState = 350000;
+                _currentDialogueState = 179;
                 _dialogueStates = GetDialogueChapter3();
             }
             else
@@ -1520,6 +1521,8 @@ namespace TootTally.Tooter
                 case 320030:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+
+
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 330000, 2.65f)); //To Chap 3 part 3 transition
                     break;
                 case 331115:
@@ -1589,6 +1592,16 @@ namespace TootTally.Tooter
 
             __instance.csc.fadeoutpanel.transform.localScale = new Vector3(2f, 0.001f, 1f);
             __instance.csc.fadeoutpanel.SetActive(true);
+            if (nextDialogueID == 330000)
+            {
+                Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter3p3Music", clip =>
+                {
+                    __instance.csc.bgmus2.clip = clip;
+                    __instance.csc.bgmus2.volume = .25f;
+                    __instance.csc.bgmus2.Play();
+                }));
+            }
+
             __instance.csc.fadeMus(0, false);
             __instance.csc.fadeMus(1, false);
             AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 2f, 1f), 2f, GetSecondDegreeAnimationFunction(), delegate
@@ -1683,6 +1696,8 @@ namespace TootTally.Tooter
                     case 330000:
                         ResetCharacterPositions();
                         _txtBox.UpdateText("");
+                       
+                        __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
                         LogChapter3Part2States();
                         LogScores();
@@ -1692,6 +1707,7 @@ namespace TootTally.Tooter
                     case 340000:
                         ResetCharacterPositions();
                         _txtBox.UpdateText("");
+                        __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
                         LogChapter3Part3States();
                         LogScores();
