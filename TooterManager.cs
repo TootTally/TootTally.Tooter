@@ -480,10 +480,7 @@ namespace TootTally.Tooter
         public static bool OnDemonDialogueDoDialoguePostFix(object[] __args, DemonDialogue __instance)
         {
             if (_currentDialogueState == -1)
-            {
-                _currentDialogueState = 179;
-                _dialogueStates = GetDialogueChapter3();
-            }
+                _currentDialogueState = 0;
             else
                 _currentDialogueState = (int)__args[0];
 
