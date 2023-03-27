@@ -333,7 +333,7 @@ namespace TootTally.Tooter
             #region TooterButton
             GameObject tooterButton = GameObject.Instantiate(__instance.btncontainers[(int)HomeScreenButtonIndexes.Collect], mainMenu.transform);
             GameObject tooterHitbox = GameObject.Instantiate(mainMenu.transform.Find("Button2").gameObject, mainMenu.transform);
-            GameObject tooterText = GameObject.Instantiate(__instance.paneltxts[(int)HomeScreenButtonIndexes.Collect], mainMenu.transform);
+            GameObject tooterText = GameObject.Instantiate(__instance.paneltxts[(int)HomeScreenButtonIndexes.Collect], mainMenu.transform.Find("AllPanelText"));
             tooterButton.name = "TOOTERContainer";
             tooterHitbox.name = "TOOTERButton";
             tooterText.name = "TOOTERText";
@@ -341,7 +341,7 @@ namespace TootTally.Tooter
             OverwriteGameObjectSpriteAndColor(tooterText, "TooterText.png", Color.white);
             tooterButton.transform.SetSiblingIndex(0);
             RectTransform tooterTextRectTransform = tooterText.GetComponent<RectTransform>();
-            tooterTextRectTransform.anchoredPosition = new Vector2(100, 100);
+            tooterTextRectTransform.anchoredPosition = new Vector2(-800, -400);
             tooterTextRectTransform.sizeDelta = new Vector2(456, 89);
 
             _tooterButtonOutlineRectTransform = tooterButton.transform.Find("outline").GetComponent<RectTransform>();
