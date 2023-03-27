@@ -3474,75 +3474,89 @@ namespace TootTally.Tooter
                 }
             },
             #endregion
-
+ 
             #region Appaloosa Date
             {330000,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Hi Appaloosa, thanks for agreeing to give me some trombone lessons. I'm really excited to learn from you.",
+                    dialogueText = $"{_sodaColoredName}: Hi {_appaloosaColoredName}, thanks for agreeing to give me some trombone lessons. I'm really excited to learn from you.",
                     option2DialogueID = 330001,
                 }
             },
             {330001,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: It's my pleasure, Soda. I can tell you're passionate about music, and I love helping others develop their skills. So, how about we start with a few warm-up exercises?",
-                    option2DialogueID = 330002,
+                    dialogueText = $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. I can tell you're passionate about music, and I love helping others develop their skills.",
+                    option2DialogueID = 3300011, 
+                }
+            },
+            {3300011,
+                new DialogueData()
+                {
+                    dialogueText = $"{_appaloosaColoredName}: How about we start with a few warm-up exercises?",
+                    option2DialogueID = 330002,  
                 }
             },
             {330002,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Sounds good to me.",
+                    dialogueText = $"{_sodaColoredName}: Sounds good to me.",
                     option2DialogueID = 330003
                 }
             },
             {330003,
                 new DialogueData()
                 {
-                    dialogueText = $"[They begin practicing, and Appaloosa gives Soda pointers on his technique]",
+                    dialogueText = $"[They begin practicing, and {_appaloosaColoredName} gives {_sodaColoredName} pointers on his technique]",
                     option2DialogueID = 330004
                 }
             },
             {330004,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: You're a quick learner, Soda. You've got a lot of potential. Have you ever played at a jazz bar before?",
+                    dialogueText = $"{_appaloosaColoredName}: You're a quick learner, {_sodaColoredName}. You've got a lot of potential. Have you ever played at a jazz bar before?",
                     option2DialogueID = 330005
                 }
             },
             {330005,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: No, I haven't. But I'd love to check one out!",
+                    dialogueText = $"{_sodaColoredName}: I haven't!",
                     option2DialogueID = 330006
                 }
             },
             {330006,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: Well, you're in luck. I actually work at a jazz bar not too far from here.",
+                    dialogueText = $"{_appaloosaColoredName}: Well, you're in luck. I actually work at a jazz bar not too far from here.",
                     option2DialogueID = 330007
                 }
             },
             {330007,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: Would you like to come with me tonight? We can grab a drink and listen to some live music.",
+                    dialogueText = $"{_appaloosaColoredName}: Would you like to come with me tonight? We can grab a drink and listen to some live music.",
                     option1Text = $"Why not",
-                    option1DialogueID = 331002,
+                    option1DialogueID = 3310001,
                     option2Text = $"Yes",
                     option2DialogueID = 331000,
                     option2Score = new ScoreData
                     {
-                        appaloosaScore = 1f
+                        appaloosaScore = 3f
                     }
+                }
+            },
+            {3310001, // Choice 2; sure
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I don't see why not.",
+                    option2DialogueID = 331001,
                 }
             },
             {331000, // Choice 1; yes
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: That sounds amazing! I'd love to.", // Excited
+                    dialogueText = $"{_sodaColoredName}: That sounds amazing! I'd love to.", // SodaAgree
                     option2DialogueID = 331001,
                 }
             },
@@ -3556,42 +3570,53 @@ namespace TootTally.Tooter
             {331002,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: What do you think, Soda? This is the real deal, right?", //Yelling over music
+                    dialogueText = $"{_appaloosaColoredName}: What do you think, {_sodaColoredName}? This is the real deal, right?", // Yelling over music
                     option1DialogueID = 331200,
                     option1Text = $"Not really",
+                    option1Score = new ScoreData
+                    {
+                        appaloosaScore = -2f
+                    },
                     option2DialogueID = 331100,
                     option2Text = $"Absolutely",
                     option2Score = new ScoreData
                     {
-                        appaloosaScore = 1f
+                        appaloosaScore = 3f
                     }
+                }
+            },
+            {331200, // Choice 2; unimpressed
+                new DialogueData // FLAG unimpressedAppaloosa
+                {
+                    dialogueText = $"{_sodaColoredName}: It's alright I guess.",
+                    option2DialogueID = 331104
                 }
             },
             {331100, //Choice 1; yes
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Definitely. I can feel the energy in this place.",
+                    dialogueText = $"{_sodaColoredName}: Definitely. I can feel the energy in this place.",
                     option2DialogueID = 331101
                 }
             },
             {331101,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: That's the power of jazz. It brings people together and creates a sense of community.",
+                    dialogueText = $"{_appaloosaColoredName}: That's the power of jazz. It brings people together and creates a sense of community.",
                     option2DialogueID = 331102
                 }
             },
             {331102,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I never really thought about it that way before!",
+                    dialogueText = $"{_sodaColoredName}: I never really thought about it that way before!",
                     option2DialogueID = 331103
                 }
             },
             {331103,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: That's what I'm here for. To share my love of jazz with others.",
+                    dialogueText = $"{_appaloosaColoredName}: That's what I'm here for. To share my love of jazz with others.",
                     option2DialogueID = 331104
                 }
             },
@@ -3605,14 +3630,14 @@ namespace TootTally.Tooter
             {331105,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: This is really great, Appaloosa. I can't thank you enough for bringing me here.", // Drinking
+                    dialogueText = $"{_sodaColoredName}: This is really great, {_appaloosaColoredName}. I can't thank you enough for bringing me here.", // SodaEat
                     option2DialogueID = 331106
                 }
             },
             {331106,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: It's my pleasure, Soda. You remind me of myself when I was your age. So full of potential and passion.",
+                    dialogueText = $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. You remind me of myself when I was your age. So full of potential and passion.",
                     option1Text = $"Thank",
                     option1DialogueID = 331120,
                     option2Text = $"Flirt",
@@ -3623,59 +3648,88 @@ namespace TootTally.Tooter
                     }
                 }
             },
-            {331120,
+            {331120, // Choice 2; thank
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Oh, thanks I guess..",
+                    dialogueText = $"{_sodaColoredName}: Oh, thanks I guess..",
                     option2DialogueID = 331113
                 }
             },
-            {33110,
+            {33110, // Choice 1; flirt
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: Thanks, Appaloosa. That means a lot coming from someone as talented as you.", // Blushing
+                    dialogueText = $"{_sodaColoredName}: Thanks, {_appaloosaColoredName}. That means a lot coming from someone as talented as you.", // SodaEmbarrassedLight
                     option2DialogueID = 331111
 
                 }
             },
-            {331111, // Choice 1; flirt
+            {331111, 
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: Oh, stop it. But seriously, if you ever want to perform here, just let me know. I'd be happy to help you get started.", // Laugh
+                    dialogueText = $"{_appaloosaColoredName}: Oh, stop it. But seriously, if you ever want to perform here, just let me know. I'd be happy to help you get started.", // Laugh
                     option2DialogueID = 331112
                 }
             },
             {331112,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: That would be amazing. I'll definitely take you up on that offer.", // Excited
+                    dialogueText = $"{_sodaColoredName}: That would be amazing. I'll definitely take you up on that offer.", // SodaWOW
                     option2DialogueID = 331113
                 }
             },
             {331113,
                 new DialogueData()
                 {
-                    dialogueText = $"[As the night wears on, they enjoy the music and conversation, and Soda feels grateful for the opportunity to learn from such a talented musician.]",
+                    dialogueText = $"[As the night wears on, they {(DialogueFlags.unimpressedAppaloosa ? "listen to" : "enjoy")} the music and conversation, and {_sodaColoredName} {(DialogueFlags.unimpressedAppaloosa ? "just wants to go home." : "feels grateful for the opportunity to learn from such a talented musician.")}]",
                     option2DialogueID = 331114
                 }
             },
             {331114,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: This has been such an incredible night, Appaloosa. Thank you again for everything.",
+                    dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "an interesting" : (DialogueFlags.flirtAppaloosa ? "such an incredible" : "a good"))} night, {_appaloosaColoredName}. {(!(DialogueFlags.unimpressedAppaloosa) ? "Thank you again for everything." : "")}",
+                    option1Text  = "Kiss",
+                    option1DialogueID = DialogueFlags.flirtAppaloosa ? 3311141 : 331142,
+                    option1Score = new ScoreData
+                    {
+                        appaloosaScore = DialogueFlags.flirtAppaloosa ? 5f : -5f
+                    },
+                    option2Text = "Part Ways",
+                    option2DialogueID = 331115
+                }
+            },
+            {3311141,
+                new DialogueData()
+                {
+                    dialogueText = $"{_appaloosaColoredName}: ...",
+                    option2DialogueID = 3311142
+                }
+
+            },
+            {33111411,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_sodaColoredName} leans in and kisses {_appaloosaColoredName} on the cheek]", // FLAG kissedAppaloosa
+                    option2DialogueID = 331115
+                }
+            },
+            {331142,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_appaloosaColoredName} leans away as {_sodaColoredName} leans in]", // FLAG awkwardAppaloosa
                     option2DialogueID = 331115
                 }
             },
             {331115,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: Anytime, Soda",
+                    dialogueText = $"{_appaloosaColoredName}: {(!DialogueFlags.awkwardAppaloosa ? "" : "Uhmm..")} Anytime, {_sodaColoredName}", // If kissed Appaloosa: SodaEmbarrasedLight ; If awkwardAppaloosa: SodaPlead
                     option2Text = "",
                     option2DialogueID = 0
                 }
             },
             #endregion
-
+ 
             #region Kaizyle Date
             {340000,
                 new DialogueData()
@@ -4140,10 +4194,14 @@ namespace TootTally.Tooter
             public static bool orderedBurger;
             public static bool agreedWithBeezerly;
             public static bool likedTheBurger;
+
             #endregion
 
             #region Chapter 3 part 3
-
+            public static bool unimpressedAppaloosa;
+            public static bool kissedAppaloosa;
+            public static bool awkwardAppaloosa;
+            public static bool flirtAppaloosa;
             #endregion
 
             #region Chapter 3 part 4
