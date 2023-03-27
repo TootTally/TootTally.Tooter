@@ -1,3 +1,4 @@
+using BaboonAPI.Hooks.Tracks;
 using HarmonyLib;
 using System;
 using System.Collections;
@@ -11,6 +12,7 @@ using TootTally.Utils.Helpers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace TootTally.Tooter
@@ -47,6 +49,12 @@ namespace TootTally.Tooter
         private static readonly string _beezerlyColoredName = "<color='#f0f0c2'>Beezerly</color>";
         private static readonly string _kaizyleColoredName = "<color='#A020F0'>Kaizyle</color>";
         private static List<Coroutine> _textCoroutines = new List<Coroutine>();
+        private static readonly string _loveHasNoEndTrackref = "0.8506432151619188";
+        private static readonly string _loveFlipTrackref = "0.46110644885682883";
+        private static readonly string _letBeYourselfTrackref = "0.1329585353620475";
+        private static readonly string _lateNightJazTrackref = "0.03104072181033679";
+        private static readonly string _memoriesOfYouTrackref = "0.9615501183653947";
+        private static readonly string _pathOfDiscoveriesTrackref = "0.9448386137778275";
 
         public static void OnModuleLoad()
         {
@@ -70,9 +78,9 @@ namespace TootTally.Tooter
             _textCoroutines.RemoveAt(0);
             if (_textCoroutines.Count <= 0)
             {
-                AnimationManager.AddNewScaleAnimation(__instance.btn1obj, new Vector3(1,1,0), .45f, new EasingHelper.SecondOrderDynamics(4.25f, .8f, 1.2f));
-                AnimationManager.AddNewScaleAnimation(__instance.btn2obj, new Vector3(1,1,0), .45f, new EasingHelper.SecondOrderDynamics(4.25f, .8f, 1.2f), delegate { __instance.readytoclick = true; });
-            }    
+                AnimationManager.AddNewScaleAnimation(__instance.btn1obj, new Vector3(1, 1, 0), .45f, new EasingHelper.SecondOrderDynamics(4.25f, .8f, 1.2f));
+                AnimationManager.AddNewScaleAnimation(__instance.btn2obj, new Vector3(1, 1, 0), .45f, new EasingHelper.SecondOrderDynamics(4.25f, .8f, 1.2f), delegate { __instance.readytoclick = true; });
+            }
             yield break;
         }
 
@@ -111,6 +119,12 @@ namespace TootTally.Tooter
             if (_currentDialogueState != 0) return;
             _currentDialogueState = -1;
             _currentDemonDialogueInstance = __instance;
+            GlobalVariables.chosen_character = 7;
+            GlobalVariables.chosen_trombone = 0;
+            GlobalVariables.chosen_soundset = 0;
+            GlobalVariables.show_toot_rainbow = false;
+            GlobalVariables.gamescrollspeed = 1f;
+            GlobalVariables.levelselect_index = 0;
             __instance.btn1obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(-65, -190);
             __instance.btn2obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(65, -180);
             __instance.txtbox.gameObject.SetActive(false);
@@ -465,9 +479,13 @@ namespace TootTally.Tooter
         public static bool OnDemonDialogueDoDialoguePostFix(object[] __args, DemonDialogue __instance)
         {
             if (_currentDialogueState == -1)
-                _currentDialogueState = 0;
+            {
+                _currentDialogueState = 350000;
+                _dialogueStates = GetDialogueChapter3();
+            }
             else
                 _currentDialogueState = (int)__args[0];
+
             __instance.dstate = 0;
             __instance.hideBtns();
             _txtBox.UpdateText("");
@@ -1233,6 +1251,7 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outLeftCharPosition, 2.75f, GetSecondDegreeAnimationFunction(0.2f));
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 164, 2.65f));
                     DialogueFlags.walkedTrixieBackHome = true;
+                    UpdateDialogueStates(3);
                     break;
                 case 164:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -1348,6 +1367,7 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320007, 2.65f));
                     break;
                 case 320007:
+                    FlipSpriteRightAnimation(_soda, false, 10f);
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
@@ -1389,7 +1409,7 @@ namespace TootTally.Tooter
                     break;
                 case 320013:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 320400:
                     ChangeCharSprite(_beezerlySprite, DialogueFlags.orderedBurger ? CharExpressions.BeezerlyNeutral : CharExpressions.BeezerlyAggro, Color.white);
@@ -1416,7 +1436,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     break;
                 case 320700:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyImpressed, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyImpressed, Color.white); //beezerlyExcuseMeWhat
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
                     break;
                 case 320701:
@@ -1509,6 +1529,44 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
                     break;
 
+                //perform with Trixie
+                case 410100:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410101, 2.65f));
+                    DialogueFlags.performedWithTrixie = true;
+                    UpdateDialogueStates(4);
+                    break;
+
+                //perform with Beezerly
+                case 410200:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410201, 2.65f));
+                    DialogueFlags.performedWithBeezerly = true;
+                    UpdateDialogueStates(4);
+                    break;
+
+                //perform with Appaloosa
+                case 410300:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410301, 2.65f));
+                    DialogueFlags.performedWithAppaloosa = true;
+                    UpdateDialogueStates(4);
+                    break;
+
+                //perform with Kaizyle
+                case 410400:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410401, 2.65f));
+                    DialogueFlags.performedWithKaizyle = true;
+                    UpdateDialogueStates(4);
+                    break;
+
+                case 410012:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410013, 2.65f));
+                    DialogueFlags.performedSolo = true;
+                    UpdateDialogueStates(4);
+                    break;
+                case 410506:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410507, 2.65f));
+                    DialogueFlags.performedGroup = true;
+                    UpdateDialogueStates(4);
+                    break;
 
                 case 110401:
                 case 110803:
@@ -1517,6 +1575,7 @@ namespace TootTally.Tooter
                     break;
                 case 331200:
                     DialogueFlags.didntLikeJazzBar = true;
+                    UpdateDialogueStates(3);
                     break;
             }
 
@@ -1641,11 +1700,64 @@ namespace TootTally.Tooter
                     //end Chapter 3 part 4
                     case 410000:
                         ResetCharacterPositions();
+                        UpdateDialogueStates(4);
                         _txtBox.UpdateText("");
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("Backstage.png");
                         LogChapter3Part4States();
                         LogScores();
                         break;
+
+                    //perform with Trixie
+                    case 410101:
+                        SingleTrackData loveHasNoEndTrack = TrackLookup.toTrackData(TrackLookup.lookup(_loveHasNoEndTrackref));
+                        GlobalVariables.alltrackslist_custom.Add(loveHasNoEndTrack);
+                        GlobalVariables.chosen_track = _loveHasNoEndTrackref;
+                        GlobalVariables.chosen_track_data = loveHasNoEndTrack;
+                        SceneManager.LoadScene("loader");
+                        return;
+
+                    //perform with Beezerly
+                    case 410201:
+                        SingleTrackData letBeYourselfTrack = TrackLookup.toTrackData(TrackLookup.lookup(_letBeYourselfTrackref));
+                        GlobalVariables.alltrackslist_custom.Add(letBeYourselfTrack);
+                        GlobalVariables.chosen_track = _letBeYourselfTrackref;
+                        GlobalVariables.chosen_track_data = letBeYourselfTrack;
+                        SceneManager.LoadScene("loader");
+                        return;
+
+                    //perform with Appaloosa
+                    case 410301:
+                        SingleTrackData lateNightJazTrack = TrackLookup.toTrackData(TrackLookup.lookup(_lateNightJazTrackref));
+                        GlobalVariables.alltrackslist_custom.Add(lateNightJazTrack);
+                        GlobalVariables.chosen_track = _lateNightJazTrackref;
+                        GlobalVariables.chosen_track_data = lateNightJazTrack;
+                        SceneManager.LoadScene("loader");
+                        return;
+
+                    //perform with Kaizyle
+                    case 410401:
+                        SingleTrackData pathOfDiscoveries = TrackLookup.toTrackData(TrackLookup.lookup(_pathOfDiscoveriesTrackref));
+                        GlobalVariables.alltrackslist_custom.Add(pathOfDiscoveries);
+                        GlobalVariables.chosen_track = _pathOfDiscoveriesTrackref;
+                        GlobalVariables.chosen_track_data = pathOfDiscoveries;
+                        SceneManager.LoadScene("loader");
+                        return;
+                    //Solo performance KEKW
+                    case 410013:
+                        SingleTrackData memoriesOfYou = TrackLookup.toTrackData(TrackLookup.lookup(_memoriesOfYouTrackref));
+                        GlobalVariables.alltrackslist_custom.Add(memoriesOfYou);
+                        GlobalVariables.chosen_track = _memoriesOfYouTrackref;
+                        GlobalVariables.chosen_track_data = memoriesOfYou;
+                        SceneManager.LoadScene("loader");
+                        return;
+                    //HAREM FOR JOE WOOOO
+                    case 410506:
+                        SingleTrackData loveFlipTrack = TrackLookup.toTrackData(TrackLookup.lookup(_loveFlipTrackref));
+                        GlobalVariables.alltrackslist_custom.Add(loveFlipTrack);
+                        GlobalVariables.chosen_track = _loveFlipTrackref;
+                        GlobalVariables.chosen_track_data = loveFlipTrack;
+                        SceneManager.LoadScene("loader");
+                        return;
                 }
                 FadeInScene(__instance, nextDialogueID);
             });
@@ -3763,7 +3875,7 @@ namespace TootTally.Tooter
                 {
                     dialogueText = "Soda: I'm not sure. This is different from what I imagined.",
                     option2DialogueID = 331201,
-                    
+
                 }
             },
             {331201,
@@ -4264,7 +4376,8 @@ namespace TootTally.Tooter
             {410100, //transition to loading the song for trixiebell
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} and Trixiebell are getting ready to perform together]",
+                    dialogueText = $"[{_sodaColoredName} and {_trixieColoredName} are getting ready to perform together]",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
@@ -4281,7 +4394,8 @@ namespace TootTally.Tooter
             {410200, //transition to loading the song for Beezerly
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} and Beezerly are getting ready to perform together]",
+                    dialogueText = $"[{_sodaColoredName} and {_beezerlyColoredName} are getting ready to perform together]",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
@@ -4298,7 +4412,8 @@ namespace TootTally.Tooter
             {410300, //transition to loading the song for Appaloosa
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} and Appaloosa are getting ready to perform together]",
+                    dialogueText = $"[{_sodaColoredName} and {_appaloosaColoredName} are getting ready to perform together]",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
@@ -4315,7 +4430,8 @@ namespace TootTally.Tooter
             {410400, //transition to loading the song for Kaizyle
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} and Kaizyle are getting ready to perform together]",
+                    dialogueText = $"[{_sodaColoredName} and {_kaizyleColoredName} are getting ready to perform together]",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
@@ -4324,6 +4440,57 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_sodaColoredName}: I couldn't choose who to perform with... So I will be perfoming solo!",
                     option2DialogueID = 410012,
+                }
+            },
+            {410012, // SOLO ENDING
+                new DialogueData()
+                {
+                    dialogueText = $"[{_sodaColoredName} is getting ready for his solo performance]",
+                    option2Text = "",
+                    option2DialogueID = 0,
+                }
+            },
+            {410501,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I couldn't choose who to perform with... So why don't we all perform together?",
+                    option2DialogueID = 410502,
+                }
+            },
+            {410502,
+                new DialogueData()
+                {
+                    dialogueText = $"{_trixieColoredName}: {_sodaColoredName} I love that idea!",
+                    option2DialogueID = 410503,
+                }
+            },
+            {410503,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName} : That's the spirit {_sodaColoredName}, I've always like the way you think.",
+                    option2DialogueID = 410504,
+                }
+            },
+            {410504,
+                new DialogueData()
+                {
+                    dialogueText = $"{_appaloosaColoredName}: Playing all together would be great! Let's do it!",
+                    option2DialogueID = 410505,
+                }
+            },
+            {410505,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: Together, there is no way we will lose this competition. Let's win it all!",
+                    option2DialogueID = 410506,
+                }
+            },
+            {410506, //HAREM ENDING
+                new DialogueData()
+                {
+                    dialogueText = $"[everyone is getting ready to perform together]",
+                    option2Text = "",
+                    option2DialogueID = 0,
                 }
             },
         };
@@ -4395,7 +4562,12 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 4
-
+            public static bool performedWithTrixie;
+            public static bool performedWithBeezerly;
+            public static bool performedWithAppaloosa;
+            public static bool performedWithKaizyle;
+            public static bool performedSolo;
+            public static bool performedGroup;
             #endregion
         }
 
