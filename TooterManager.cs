@@ -3656,10 +3656,16 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"[They order their drinks and settle in at a table near the stage]",
-                    option2DialogueID = DialogueFlags.didntLikeJazzBar ? 331220 : 331105
+                    option2DialogueID = DialogueFlags.unimpressedAppaloosa ? 331220 : 331105
                 }
             },
-
+            {331220, // Unimpressed Path
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: So, do you come here often..?",
+                    option2DialogueID = 331113
+                }
+            },
             {331105,
                 new DialogueData()
                 {
@@ -3674,7 +3680,7 @@ namespace TootTally.Tooter
                     option1Text = $"Thank",
                     option1DialogueID = 331120,
                     option2Text = $"Flirt",
-                    option2DialogueID = 331110,
+                    option2DialogueID = 33110,
                     option2Score = new ScoreData
                     {
                         appaloosaScore = 3f
@@ -3720,7 +3726,36 @@ namespace TootTally.Tooter
             {331114,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: This has been such an incredible night, Appaloosa. Thank you again for everything.",
+                    dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "an interesting" : (DialogueFlags.flirtAppaloosa ? "such an incredible" : "a good"))} night, {_appaloosaColoredName}. {(!(DialogueFlags.unimpressedAppaloosa) ? "Thank you again for everything." : "")}",
+                    option1Text  = "Kiss",
+                    option1DialogueID = DialogueFlags.flirtAppaloosa ? 3311141 : 331142,
+                    option1Score = new ScoreData
+                    {
+                        appaloosaScore = DialogueFlags.flirtAppaloosa ? 5f : -5f
+                    },
+                    option2Text = "Part Ways",
+                    option2DialogueID = 331115
+                }
+            },
+            {3311141,
+                new DialogueData()
+                {
+                    dialogueText = $"{_appaloosaColoredName}: ...",
+                    option2DialogueID = 3311142
+                }
+
+            },
+            {3311142,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_sodaColoredName} leans in and kisses {_appaloosaColoredName} on the cheek]", // FLAG kissedAppaloosa
+                    option2DialogueID = 331115
+                }
+            },
+            {331142,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_appaloosaColoredName} leans away as {_sodaColoredName} leans in]", // FLAG awkwardAppaloosa
                     option2DialogueID = 331115
                 }
             },
