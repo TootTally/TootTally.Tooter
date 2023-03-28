@@ -2012,14 +2012,28 @@ namespace TootTally.Tooter
             {110001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I've been practicing so hard, and I really want to win.",
+                    dialogueText = $"{_sodaColoredName}: I've been practicing day and night, but that doesn't bother me.",
+                    option2DialogueID = 110002
+                }
+            },
+            {110006,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Tooting is the only thing I've ever loved.",
+                    option2DialogueID = 110007
+                }
+            },
+            {110007,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: But... is that really all I w-",
                     option2DialogueID = 110002
                 }
             },
             {110002,
                 new DialogueData()
                 {
-                    dialogueText = $"[Someone else enters the room]",
+                    dialogueText = $"The door creaks open.",
                     option2DialogueID = 110003,
 
                 }
@@ -2027,21 +2041,21 @@ namespace TootTally.Tooter
             {110003,
                 new DialogueData()
                 {
-                    dialogueText = $"???: Oh, sorry. I didn't mean to interrupt. I was just looking for my music sheet.",
+                    dialogueText = $"???: Oh!... Hi, Soda. Have you seen my sheet music?",
                     option2DialogueID = 110004
                 }
             },
             {110004,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Oh, hey {_trixieColoredName}. It's okay, you're not interrupting anything.",
+                    dialogueText = $"{_sodaColoredName}: Hey, {_trixieColoredName}. I think I saw a binder on the piano.",
                     option2DialogueID = 110005
                 }
             },
             {110005,
                 new DialogueData()
                 {
-                    dialogueText =  $"{_trixieColoredName}: Thanks. I'm really nervous about the competition this year. I don't know if I can do it.",
+                    dialogueText =  $"{_trixieColoredName}: Thanks. I've been so nervous about this year's competition; I nearly left my trombone at home!",
                     option1Text = "Cheer",
                     option1DialogueID = 110100,
                     option1Score = new ScoreData()
@@ -2049,41 +2063,55 @@ namespace TootTally.Tooter
                         trixieScore = 2f
                     },
                     option2Text = "Ignore",
-                    option2DialogueID = 110200,
+                    option2DialogueID = 110205,
                 }
             },
             {110100,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Don't worry, {_trixieColoredName}. You're a great player. I'm sure you'll do great.",
+                    dialogueText = $"{_sodaColoredName}: Don't worry! We're tromboners through and through. I'm sure you'll do great.",
+                    option2DialogueID = 110200
+                }
+            },
+            {110205,
+                new DialogueData()
+                {
+                    dialogueText = $"Trixie has always been one to worry over everything, but I can't say I blame her this week.",
                     option2DialogueID = 110200
                 }
             },
             {110200,
                 new DialogueData()
                 {
-                    dialogueText = $"[As they continue to chat, the door opens again and another girl walks in]",
+                    dialogueText = $"The door squeals as it flies open, revealing a confident grin and a large trombone.",
                     option2DialogueID = 110201
                 }
             },
             {110201,
                 new DialogueData()
                 {
-                    dialogueText = $"???: Hey there, music nerds. What's going on?",
+                    dialogueText = $"???: 'Sup, music nerds. What's going on?",
                     option2DialogueID = 110202
                 }
             },
             {110202,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hey {_beezerlyColoredName}. Just getting ready for the competition.",
+                    dialogueText = $"{_sodaColoredName}: Hey, {_beezerlyColoredName}. Just prepping before the competition.",
                     option2DialogueID = 110203
                 }
             },
             {110203,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Yeah, yeah, the competition. Whatever. I'm just here to jam and have some fun.",
+                    dialogueText = $"{_beezerlyColoredName}: Yeah-yeah, the competition. Whatever. I'm just here to jam and have some fun.",
+                    option2DialogueID = 110206
+                }
+            },
+            {110206,
+                new DialogueData()
+                {
+                    dialogueText = $"{_trixiebellColoredName} walks up behind me.",
                     option2DialogueID = 110204
                 }
             },
@@ -2110,57 +2138,64 @@ namespace TootTally.Tooter
             {110300,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Well, everyone has their own way of enjoying music. Maybe we can show her the fun in the competition too.",
+                    dialogueText = $"{_sodaColoredName}: Well, everyone has their own way of enjoying music. Maybe we can show her the fun in competition too.",
                     option2DialogueID = 110401
                 }
             },
             {110400,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Well, everyone has their own way of enjoying music. Having fun should be the top most reason to play music.",
+                    dialogueText = $"{_sodaColoredName}: Hey, everyone has their own way of enjoying music. That's what makes it special.",
                     option2DialogueID = 110401
                 }
             },
             {110401,
                 new DialogueData()
                 {
-                    dialogueText = $"[As they continue to chat, the door opens again as another girl enters the room, carrying a sleek, professional-looking trombone]",
+                    dialogueText = $"The door cries out in pain as a sleek, professional-looking trombone swings into view.",
                     option2DialogueID = 110402
                 }
             },
             {110402,
                 new DialogueData()
                 {
-                    dialogueText = $"???: Hey, everyone. Is this where the cool trombone players hang out?",
-                    option1Text = "Welcome in!",
+                    dialogueText = $"???: So. Is this where the cool tromboners hang out?",
+                    option1Text = "That's us!",
                     option1DialogueID = 110500,
                     option1Score = new ScoreData()
                     {
                         appaloosaScore = 1,
                         trixieScore = -1,
                     },
-                    option2Text = "Guess so...",
+                    option2Text = "Cool...?",
                     option2DialogueID = 110600,
                 }
             },
             {110500,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Absolutely! What have you been up to?",
-                    option2DialogueID = 110601
+                    dialogueText = $"{_sodaColoredName}: Darn tootin'! Are you gonna join us?",
+                    option2DialogueID = 110602
                 }
             },
             {110600,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I guess so. What brings you here?",
+                    dialogueText = $"{_sodaColoredName}: I guess so... What brings you here?",
+                    option2DialogueID = 110602
+                }
+            },
+            {110602,
+                new DialogueData()
+                {
+                    dialogueText = $"The girl laughs.",
                     option2DialogueID = 110601
                 }
             },
             {110601,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: I heard there were some talented players in this room, and I wanted to see for myself. I'm {_appaloosaColoredName}, by the way.",
+                    dialogueText = $"{_appaloosaColoredName}: Well, I heard there were some talented players in here, so I thought I'd scope out the competition. The name's {_appaloosaColoredName}.",
                     option1Text = "Introduce friends",
                     option1DialogueID = 110700,
                     option1Score = new ScoreData()
@@ -2179,114 +2214,102 @@ namespace TootTally.Tooter
             {110700,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Nice to meet you, {_appaloosaColoredName}. These are my bandmates {_trixieColoredName} and {_beezerlyColoredName}.",
+                    dialogueText = $"{_sodaColoredName}: Nice to meet you, {_appaloosaColoredName}. This is {_trixieColoredName} and {_beezerlyColoredName}, and I'm {_sodaColoredName}!",
                     option2DialogueID = 110701
                 }
             },
             {110800,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Nice to meet you, {_appaloosaColoredName}. I'm {_sodaColoredName}!",
+                    dialogueText = $"{_sodaColoredName}: Nice to meet you, competition. The name's {_sodaColoredName}.",
                     option2DialogueID = 110801
                 }
             },
             {110701,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Cool names. You guys want to jam sometime?",
+                    dialogueText = $"{_appaloosaColoredName}: Cool names. You guys wanna jam?",
                     option2DialogueID = 110802
                 }
             },
             {110801,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: I like your style, {_sodaColoredName}. Want to jam sometime?",
+                    dialogueText = $"{_appaloosaColoredName}: {_sodaColoredName}, huh? I like your style. Wanna jam?",
                     option2DialogueID = 110802
                 }
             },
             {110802,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Definitely. That would be awesome.",
+                    dialogueText = $"Trixiebell opens her mouth to speak, but all we hear is the baboon-like shriek of the doorhinge.",
                     option2DialogueID = 110803
                 }
             },
             {110803,
                 new DialogueData()
                 {
-                    dialogueText = $"[The door opens again and another girl enters the room, carrying a fancy, gold-plated trombone]",
+                    dialogueText = $"A silver trombone enters the room, followed swiftly by another silver-haired tromboner.",
                     option2DialogueID = 110804
                 }
             },
             {110804,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Good afternoon, everyone. I'm {_kaizyleColoredName}, and I'm here to rehearse for the competition.",
+                    dialogueText = $"{_kaizyleColoredName}: Good afternoon. I'm {_kaizyleColoredName}, and I'm here to rehearse for the competition.",
                     option2DialogueID = 110805
                 }
             },
             {110805,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Oh great, another snobby classical player.",
+                    dialogueText = $"{_beezerlyColoredName}: Awesome, another classical snob.",
                     option2DialogueID = 110806
                 }
             },
             {110806,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Excuse me? I beg your pardon, but I come from a long line of respected musicians. I take my craft very seriously.",
-                    option1Text = "Calm down",
-                    option1DialogueID = 110900,
-                    option1Score = new ScoreData()
-                    {
-                        kaizyleScore = 1,
-                    },
-                    option2Text = "Welcome",
-                    option2DialogueID = 111000,
-                    option2Score = new ScoreData()
-                    {
-                        kaizyleScore = -1,
-                        beezerlyScore = 1,
-                    },
+                    dialogueText = $"{_kaizyleColoredName}: I beg your pardon? I just so happen to come from a long line of respected tromboners, and I take my craft very seriously.",
+                    option2DialogueID = 110900
                 }
             },
             {110900,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: It's nice to meet you, {_kaizyleColoredName}. We're all here for the same reason, right? To make beautiful music?",
+                    dialogueText = $"Beezerly is as aggressive as ever, but this newcomer isn't backing down either. This could get ugly fast.",
                     option2DialogueID = 110901
-                }
-            },
-            {111000,
-                new DialogueData()
-                {
-                    dialogueText = $"{_sodaColoredName}: It's nice to meet you, {_kaizyleColoredName}. Lets play some music!",
-                    option2DialogueID = 111001
                 }
             },
             {110901,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Yes, I suppose you're right. Let's get started then.",
-                    option2DialogueID = 111002
+                    dialogueText = $"{_sodaColoredName}: Whoa there, Beezerly. Nice to meet you, Kaizyle.",
+                    option2DialogueID = 110902
                 }
             },
-            {111001,
+            {110902,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Yes, Let's get started!",
-                    option2DialogueID = 111002
+                    dialogueText = $"{_sodaColoredName}: Let's turn it down a notch. We're all here for the same reason, right? To make beautiful, succulent music?",
+                    option2DialogueID = 110903
                 }
             },
-            {111002,
+            {110903,
                 new DialogueData()
                 {
-                    dialogueText = $"[The characters take their seats and start to practice their instruments]",
-                    option2DialogueID = 111003
+                    dialogueText = $"{_kaizyleColoredName} purses her lips.",
+                    option2DialogueID = 110904
                 }
             },
-            {111003,
+            {110904,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName} Yes, I suppose you're right. Let's get started, shall we?",
+                    option2DialogueID = 110905
+                }
+            },
+            {110905,
                 new DialogueData()
                 {
                     dialogueText = $"[END OF CHAPTER 1]",
