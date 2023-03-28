@@ -4357,7 +4357,13 @@ namespace TootTally.Tooter
                     option2DialogueID = DialogueFlags.unimpressedAppaloosa ? 331220 : 331105
                 }
             },
-
+            {331220, // Unimpressed Path
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: So, do you come here often..?",
+                    option2DialogueID = 331113
+                }
+            },
             {331105,
                 new DialogueData()
                 {
@@ -4372,7 +4378,7 @@ namespace TootTally.Tooter
                     option1Text = $"Thank",
                     option1DialogueID = 331120,
                     option2Text = $"Flirt",
-                    option2DialogueID = 331110,
+                    option2DialogueID = 33110,
                     option2Score = new ScoreData
                     {
                         appaloosaScore = 3f
@@ -4437,10 +4443,10 @@ namespace TootTally.Tooter
                 }
 
             },
-            {33111411,
+            {3311142,
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} leans in and kisses {_appaloosaColoredName} on the cheek]", // FLAG kissedAppaloosa
+                    dialogueText = $"[{_sodaColoredName} leans in and kisses {_appaloosaColoredName} gently]", // FLAG kissedAppaloosa
                     option2DialogueID = 331115
                 }
             },

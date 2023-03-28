@@ -86,6 +86,7 @@ namespace TootTally.Tooter
             "Downtown.png",
             "HardRockCafe.png",
             "HardRockCafeOutside.png",
+            "HardRockCafeTableAndStage.png",
             "IceCreamCafe.png",
             "JazzClub.png",
             "KaizyleRoomEvening.png",
