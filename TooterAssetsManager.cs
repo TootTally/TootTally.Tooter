@@ -97,10 +97,7 @@ namespace TootTally.Tooter
             "TrixiebellRoom.png",
             "StreetNight.png",
             "TrixieHouseNight.png",
-
-
-
-
+            "SpecialMomentTrixie.png",
 
         };
 
