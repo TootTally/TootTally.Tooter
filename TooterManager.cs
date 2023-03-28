@@ -4151,11 +4151,25 @@ namespace TootTally.Tooter
                     option2DialogueID = 320030,
                 }
             },
-            {320030,
+            {320030, // transition to outside scene 320031
                 new DialogueData()
                 {
                     dialogueText = $"[They finish their food and drinks and prepare to leave]", // TODO maybe different endings?
-                    option2DialogueID = 320030,
+                    option2DialogueID = 0,
+                }
+            },
+            {320031,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I would love to come here another time, I had a great time.",
+                    option2DialogueID = 320032,
+                }
+            },
+            {320032,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: do something",
+                    option2DialogueID = 320033,
                 }
             },
             #endregion
@@ -4966,11 +4980,14 @@ namespace TootTally.Tooter
             public static bool wentToRockCafe;
             public static bool orderedBurger;
             public static bool agreedWithBeezerly;
+            public static bool askedAboutTheFood;
             public static bool likedTheBurger;
             public static bool listenedToTheBand;
+            public static bool requestedALastSong;
             public static bool pickedBeezerlyFavoriteSong;
             public static bool dancedWithBeezerly;
             public static bool kissedBeezerly;
+            public static bool complimentedBeezerlyDancing;
             #endregion
 
             #region Chapter 3 part 3
