@@ -48,6 +48,7 @@ namespace TootTally.Tooter
         private static readonly string _appaloosaColoredName = "<color='#FF0000'>Appaloosa</color>";
         private static readonly string _beezerlyColoredName = "<color='#f0f0c2'>Beezerly</color>";
         private static readonly string _kaizyleColoredName = "<color='#A020F0'>Kaizyle</color>";
+        private static readonly string _tromBurgerChampName = "<color='#D62300'>TromBurger </color>" + "<color='#FF8732'>Champ</color>";
         private static List<Coroutine> _textCoroutines = new List<Coroutine>();
         private static readonly string _loveHasNoEndTrackref = "0.8506432151619188";
         private static readonly string _loveFlipTrackref = "0.46110644885682883";
@@ -4108,7 +4109,7 @@ namespace TootTally.Tooter
             {3205059, // Transition to 3204060
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} points his finger towards the exit to tell {_beezerlyColoredName} to go outside and take some fresh air]", //reword this for the love of god
+                    dialogueText = $"[{_sodaColoredName} gestures towards the exit {_beezerlyColoredName}, hinting at getting some air]", //reword this for the love of god    // I gotchu bro [Thumbsup]
                     option2DialogueID = 0,
                 }
             },
@@ -4122,7 +4123,7 @@ namespace TootTally.Tooter
             {3204061,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Tonight was a blast, we should definitely come here again sometimes.", 
+                    dialogueText = $"{_beezerlyColoredName}: Tonight was a blast, we should definitely come here again sometime.",
                     option2DialogueID = 3204062,
                 }
             },
@@ -4245,14 +4246,21 @@ namespace TootTally.Tooter
                 }
             },
             {320700,
-                new DialogueData()
+                new DialogueData() //Competitive disagree
                 {
                     dialogueText = $"{_sodaColoredName}: There is no point in playing music if you're not trying to be the best.",
-                    option2DialogueID = 320701 // TODO
+                    option2DialogueID = 320701 
+                }
+            },
+            {320701,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: I didn't expect you to be that serious about music, {_sodaColoredName}.",
+                    option2DialogueID = 320022
                 }
             },
             {320800,
-                new DialogueData()
+                new DialogueData() // Casual disagree
                 {
                     dialogueText = $"{_sodaColoredName}: Musicians can be compete without hating eachother.",
                     option2DialogueID = 320801
@@ -4261,7 +4269,7 @@ namespace TootTally.Tooter
             {320801,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: A friendly rivalery can help people push their limit without tearing them apart.",
+                    dialogueText = $"{_sodaColoredName}: A friendly rivalry can help people push their limit without tearing them apart.",
                     option2DialogueID = 320802
                 }
             },
@@ -4331,12 +4339,72 @@ namespace TootTally.Tooter
                     option2DialogueID = 321001
                 }
             },
-            {321001,
+            {321001, // No like burger
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: Oh? And where would these better burgers be found?",
-                    option2DialogueID = 321002 // TODO
+                    option2DialogueID = 321002
                 }
+            },
+            {321002,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Hmm.. I was thinking {_tromBurgerChampName}",
+                    option2DialogueID = 321003
+                }
+            },
+            {321003,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: ...", // displeased
+                    option2DialogueID = 321004
+                }
+            },
+            {321004,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: Seriously? That place?",
+                    option1Text = "Kidding!",
+                    option1DialogueID = 3210011,
+                    option2Text = "Seriously.",
+                    option2DialogueID = 321005
+                }
+            },
+            {321005,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Yeah, they're honestly delicious!",
+                    option2DialogueID = 321006
+                }
+            },
+            {321006,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I really like their Wah-Wah-Whopper!",
+                    option2DialogueID = 321007
+                }
+            },
+            {321007,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: I see, I'd have to try them to know!",
+                    option2DialogueID = 320025
+                }
+            },
+            {3210011,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I'm kidding, I like this place!",
+                    option2DialogueID = 3210012
+                }
+            },
+            {3210012,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: You're a funny guy, {_sodaColoredName}.",
+                    option2DialogueID = 3200255
+                }
+
             },
             {320023,
                 new DialogueData()
@@ -4390,7 +4458,7 @@ namespace TootTally.Tooter
             {320031,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I would love to come here another time, I had a great time.",
+                    dialogueText = $"{_sodaColoredName}: I would love to come here again, I had a great time.",
                     option2DialogueID = 320032,
                 }
             },
@@ -5234,6 +5302,7 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 3 part 4
+
 
             #endregion
 
