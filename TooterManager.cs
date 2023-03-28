@@ -734,7 +734,7 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outRightCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
                 case 55:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.didntPeekAppaloosaRoom && DialogueFlags.didntPeekKaizyleRoom ? CharExpressions.SodaNeutral : CharExpressions.SodaThinking, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     DialogueFlags.pickedAppaloosa = DialogueFlags.pickedKaizyle = false;
                     UpdateDialogueStates(2);
@@ -1245,6 +1245,8 @@ namespace TootTally.Tooter
                     break;
                 case 163:
                     FlipSpriteAnimation(_soda, false);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 2.75f, GetSecondDegreeAnimationFunction(0.2f));
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outLeftCharPosition, 2.75f, GetSecondDegreeAnimationFunction(0.2f));
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 164, 2.65f));
@@ -1319,14 +1321,14 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePleased, Color.white);
                     break;
                 case 177:
-                    DialogueFlags.wantsToGoToAquarium = true;
+                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 178, 0f, 0.3f));
+                    DialogueFlags.kissedTrixie = true;
                     UpdateDialogueStates(3);
                     break;
                 case 178:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment3, Color.white);
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 179, 8.5f));
                     break;
-                case 179:
+                case 180:
                     FlipSpriteAnimation(_soda, false, .8f);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outRightCharPosition, 2.75f, GetSecondDegreeAnimationFunction(0.2f));
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -1516,17 +1518,19 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaShock, Color.white);
                     break;
                 case 320030:
-
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-
-
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 330000, 2.65f)); //To Chap 3 part 3 transition
                     break;
 
                 case 330000:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 330001:
+                    break;
+                case 3310002:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 330001, 2.65f)); //To the jazz bar!
                     break;
                 case 3300011:
                     break;
@@ -1646,6 +1650,30 @@ namespace TootTally.Tooter
             return false;
         }
 
+
+        public static IEnumerator SpecialFadeOutScene(DemonDialogue __instance, int nextDialogueID, float delay, float speedMultiplier = 1f)
+        {
+            yield return new WaitForSeconds(delay);
+
+            __instance.csc.fadeoutpanel.GetComponent<Image>().color = new Color(.6f,.6f,.6f);
+            __instance.csc.fadeoutpanel.transform.localScale = new Vector3(2f, 0.001f, 1f);
+            __instance.csc.fadeoutpanel.SetActive(true);
+
+            AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 2f, 1f), 1.5f / speedMultiplier, GetSecondDegreeAnimationFunction(speedMultiplier), delegate
+            {
+                switch (nextDialogueID)
+                {
+                    case 178:
+                        _soda.transform.position = _outLeftCharPosition;
+                        _trixiebell.transform.position = _outLeftCharPosition;
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentTrixie.png");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
+                        break;
+                }
+                SpecialFadeInScene(__instance, nextDialogueID, speedMultiplier);
+            });
+        }
+
         public static IEnumerator FadeOutScene(DemonDialogue __instance, int nextDialogueID, float delay = 0)
         {
 
@@ -1655,6 +1683,7 @@ namespace TootTally.Tooter
             __instance.csc.fadeoutpanel.SetActive(true);
             __instance.csc.fadeMus(0, false);
             __instance.csc.fadeMus(1, false);
+            __instance.csc.fadeoutpanel.GetComponent<Image>().color = Color.black;
             AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 2f, 1f), 2f, GetSecondDegreeAnimationFunction(), delegate
             {
                 switch (nextDialogueID)
@@ -1722,7 +1751,17 @@ namespace TootTally.Tooter
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("TrixieHouseNight.png");
                         _txtBox.UpdateText("");
                         break;
-
+                    //Trixie Back from kissing
+                    case 179:
+                        __instance.csc.fadeMus(0, true);
+                        _soda.transform.position = _centerCharPosition - new Vector3(1,0,0);
+                        _trixiebell.transform.position = _leftCenterCharPosition;
+                        ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                        ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment3, Color.white);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("TrixieHouseNight.png");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(.6f, .6f, .6f);
+                        _txtBox.UpdateText("");
+                        break;
                     //Beezerly's date
                     case 320001:
                         ResetCharacterPositions();
@@ -1757,6 +1796,18 @@ namespace TootTally.Tooter
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
                         LogChapter3Part2States();
                         LogScores();
+                        break;
+                    case 330001:
+                        ResetCharacterPositions();
+                        _txtBox.UpdateText("");
+                        Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter3p3Music.mp3", clip =>
+                        {
+                            __instance.csc.bgmus1.clip = clip;
+                            __instance.csc.bgmus1.volume = 0f;
+                            __instance.csc.bgmus1.Play();
+                        }));
+                        __instance.csc.fadeMus(0, true);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("JazzClub.png");
                         break;
 
                     //Kaizyle Date
@@ -1924,6 +1975,17 @@ namespace TootTally.Tooter
             });
 
         }
+
+        public static void SpecialFadeInScene(DemonDialogue __instance, int nextDialogueID, float speedMultiplier = 1f)
+        {
+            __instance.csc.fadeoutpanel.transform.localScale = new Vector3(2f, 2f, 1f);
+            AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 0.001f, 1f), 1.2f / speedMultiplier, GetSecondDegreeAnimationFunction(speedMultiplier), delegate
+            {
+                __instance.csc.fadeoutpanel.SetActive(false);
+                OnDemonDialogueDoDialoguePostFix(new object[] { nextDialogueID }, __instance);
+            });
+
+        }
         public static Dictionary<int, DialogueData> _dialogueStates = new Dictionary<int, DialogueData>();
 
 
@@ -1936,7 +1998,7 @@ namespace TootTally.Tooter
             {0,
                 new DialogueData()
                 {
-                    dialogueText = $"CHAPTER 1: The beginning.",
+                    dialogueText = $"CHAPTER 1: raise of the conductor's baton",
                     option2DialogueID = 110000
                 }
             },
@@ -3463,10 +3525,10 @@ namespace TootTally.Tooter
                     option1DialogueID =  177,
                     option1Score = new ScoreData()
                     {
-                        trixieScore = 10,
-                        appaloosaScore = -5,
-                        beezerlyScore = -5,
-                        kaizyleScore = -5,
+                        trixieScore = 25,
+                        appaloosaScore = -50,
+                        beezerlyScore = -50,
+                        kaizyleScore = -50,
                     },
                     option2Text = "Part ways",
                     option2DialogueID = 174,
@@ -3496,18 +3558,27 @@ namespace TootTally.Tooter
             {177,
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} approaches {_trixieColoredName} slowly and kisses her cheek]",
-                    option2DialogueID = 178,
+                    dialogueText = $"",
+                    option2Text = "",
+                    option2DialogueID = 0,
                 }
             },
-            {178, //blushes and looks excited
+            {178,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_sodaColoredName} approaches {_trixieColoredName} slowly and kisses her]",
+                    option2Text = "",
+                    option2DialogueID = 0,
+                }
+            },
+            {179, //blushes and looks excited
                 new DialogueData()
                 {
                     dialogueText = $"{_trixieColoredName}: ... Thanks for lovely night {_sodaColoredName}, I'll see you tomorrow!",
-                    option2DialogueID = 179,
+                    option2DialogueID = 180,
                 }
             },
-            {179, // Happy ending
+            {180, // Happy ending
                 new DialogueData()
                 {
                     dialogueText = $"[{_sodaColoredName} starts heading back to his place]",
@@ -3608,8 +3679,250 @@ namespace TootTally.Tooter
                     option1Text = "Order food",
                     option1DialogueID = 320100,
                     option2Text = "Listen To The Band",
-                    option2DialogueID = 320200, // TODO: Maybe listen to the band, then they take special request, give 2 choices of song requests, one of them is beez's favorite song...
-                    //if you pick beez's song you can invite her to dance and have a chance at kissing her :)
+                    option2DialogueID = 320200,
+                }
+            },
+            {320200,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: The band seems very good! Let's go closer and listen to the band.",
+                    option2DialogueID = 320201,
+
+                }
+            },
+            {320201,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: Sure! I'll follow you.",
+                    option2DialogueID = 320202,
+
+                }
+            },
+            {320202, //Transition to another scene?
+                new DialogueData()
+                {
+                    dialogueText = $"[{_beezerlyColoredName} follows {_sodaColoredName} to get closer to the stage]",
+                    option2DialogueID = 320203,
+
+                }
+            },
+            {320203,
+                new DialogueData()
+                {
+                    dialogueText = $"Band: And for our final song, we will take requests from our audience!",
+                    option1Text = "Wait",
+                    option1DialogueID = 3202040,
+                    option2Text = "Request a song",
+                    option2DialogueID = 3202050,
+
+                }
+            },
+            {3202040,
+                new DialogueData()
+                {
+                    dialogueText = $"Band: No request? Then we will pick for you. The last song will be Rock'n'bone!",
+                    option2DialogueID = 3202041,
+
+                }
+            },
+            {3202041,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: This is my favorite song! I'm so excited for this.", //BeezerlyOverlminglyHappy
+                    option2DialogueID = 3202042,
+
+                }
+            },
+            {3202042,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_sodaColoredName} and {_beezerlyColoredName} jam to the music and head back to the bar area]", //BeezerlyJam and SodaJam
+                    option2DialogueID = 320100, // back to the food thingy
+
+                }
+            },
+            {3202050,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName} Screams: ROCK'N'BONE!!!!!", //SodaScreamOutLoud
+                    option2DialogueID = 3202051,
+
+                }
+            },
+            {3202051,
+                new DialogueData()
+                {
+                    dialogueText = $"Band: Sure little one. Let's play Rock'n'Bone for our man.",
+                    option2DialogueID = 3202052,
+
+                }
+            },
+            {3202052,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: Oh my god! This is my favorite song!!", //BeezerlyOverlminglyHappy
+                    option2DialogueID = 3202053,
+
+                }
+            },
+            {3202053,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Oh really? This is my favorite song too!",
+                    option2DialogueID = 3202054,
+
+                }
+            },
+            {3202054,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: Let's go on the dance floor together {_sodaColoredName}",
+                    option1Text = "Follow her",
+                    option1DialogueID = 3202055,
+                    option2Text = "Don't know how to dance",
+                    option2DialogueID = 3203055,
+
+                }
+            },
+            {3202055,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_sodaColoredName} follow {_beezerlyColoredName} to the dance floor and they start dancing together]",
+                    option2DialogueID = 3202056,
+
+                }
+            },
+            {3202056,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: You're a very good dancer {_sodaColoredName}, look at you move!",
+                    option1Text = "Compliment her",
+                    option1DialogueID = 3202057,
+                    option2Text = "Approach her",
+                    option2DialogueID = 3204057,
+
+                }
+            },
+            {3202057,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: You too beezerly, I like your moves!",
+                    option2DialogueID = 3205059,
+
+                }
+            },
+            {3203055,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I don't know how to dance, you can go ahead and I'll be waiting here.",
+                    option2DialogueID = 3203056,
+
+                }
+            },
+            {3203056,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: Alright I'll see you in a bit.",
+                    option2DialogueID = 3203057,
+
+                }
+            },
+            {3203057, // transition to 3203058
+                new DialogueData()
+                {
+                    dialogueText = $"[{_beezerlyColoredName} go on the dancing floor and dance to her favorite song]",
+                    option2DialogueID = 0,
+
+                }
+            },
+            {3203058,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: That was exhausting! I need some fresh air, let's go outside.",
+                    option2DialogueID = 3203059,
+
+                }
+            },
+            {3203059, // transition to 3204060
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Sure! Some fresh air would be nice.",
+                    option2DialogueID = 0,
+
+                }
+            },
+            {3204057,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_sodaColoredName} approaches beezerly slowly]",
+                    option2DialogueID = 3204058,
+
+                }
+            },
+            {3204058,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_sodaColoredName} looks at beezerly in the eyes]",
+                    option1Text = DialogueFlags.kissedTrixie ? "" : "Kiss",
+                    option1DialogueID = 3204059,
+                    option2Text = "Get some fresh air",
+                    option2DialogueID = 3205059,
+                }
+            },
+            {3204059,
+                new DialogueData()
+                {
+                    option2Text = "",
+                    option2DialogueID = 0,
+                }
+            },
+            {3205059, // Transition to 3204060
+                new DialogueData()
+                {
+                    option2Text = $"[{_sodaColoredName} points his finger towards the exit to tell {_beezerlyColoredName} to go outside and take some fresh air]", //reword this for the love of god
+                    option2DialogueID = 0,
+                }
+            },
+            {3204060,
+                new DialogueData()
+                {
+                    option2Text = "[After a lot of dancing, later during that same night]",
+                    option2DialogueID = 3204061,
+                }
+            },
+            {3204061,
+                new DialogueData()
+                {
+                    option2Text = $"{_beezerlyColoredName}: Tonight was a blast, we should definitely come here again sometimes.", 
+                    option2DialogueID = 3204062,
+                }
+            },
+            {3204062,
+                new DialogueData()
+                {
+                    option2Text = $"{_sodaColoredName}: Absolutely! I would love to come here another time and try the food.",
+                    option2DialogueID = 3204063,
+                }
+            },
+            {3204063,
+                new DialogueData()
+                {
+                    option2Text = $"{_beezerlyColoredName}: Sure thing! I have to go now but I'll see you tomorrow {_sodaColoredName}.",
+                    option2DialogueID = 3204064,
+                }
+            },
+            {3204064,
+                new DialogueData()
+                {
+                    option2Text = $"{_sodaColoredName}: See you tomorrow {_beezerlyColoredName}.",
+                    option2DialogueID = 3204065,
+                }
+            },
+            {3204065, //transition to next chapter
+                new DialogueData()
+                {
+                    option2Text = $"[{_sodaColoredName} and {_beezerlyColoredName} head back home after a long night of dancing]",
+                    option2DialogueID = 0,
                 }
             },
             {320100,
@@ -3727,7 +4040,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: You are right {_sodaColoredName}. I never thought about it that way.",
-                    option2DialogueID = 320803 // TODO
+                    option2DialogueID = 320019
                 }
             },
             {320017,
@@ -3922,14 +4235,22 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: I don't see why not.",
-                    option2DialogueID = 331001,
+                    option2DialogueID = 3310002,
                 }
             },
             {331000, // Choice 1; yes
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: That sounds amazing! I'd love to.", // SodaAgree
-                    option2DialogueID = 331001,
+                    option2DialogueID = 3310002,
+                }
+            },
+            {3310002,
+                new DialogueData()
+                {
+                    dialogueText = $"[{_sodaColoredName} and {_appaloosaColoredName} starts heading to the jazz bar]",
+                    option2Text = "",
+                    option2DialogueID = 0
                 }
             },
             {331001,
@@ -4003,14 +4324,14 @@ namespace TootTally.Tooter
             {3311031,
                 new DialogueData()
                 {
-                    dialogueText = $"Soda: I thought you were here for me?",
+                    dialogueText = $"{_sodaColoredName}: I thought you were here for me?",
                     option2DialogueID = 3311032
                 }
             },
             {3311032,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa: Oh, stop it!",
+                    dialogueText = $"{_appaloosaColoredName}: Oh, stop it!",
 
                     option2DialogueID = 331104
                 }
