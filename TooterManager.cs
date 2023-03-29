@@ -658,7 +658,7 @@ namespace TootTally.Tooter
                 case 210001:
                     FlipSpriteRightAnimation(_soda, false, 10f);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
                 case 210002:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
@@ -703,13 +703,18 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
                     break;
                 case 210103:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieSurprise, Color.white);
+                    FlipSpriteLeftAnimation(_beezerly, false, 10f);
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _farRightCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
                 case 210104:
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieSurprise, Color.white);
                     FlipSpriteRightAnimation(_trixiebell, false);
-                    AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outRightCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outRightCharPosition, 0.8f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        FlipSpriteRightAnimation(_beezerly, true);
+                    });
                     break;
                 case 210200:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaDeepSmug, Color.white);
@@ -740,12 +745,16 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
                     break;
                 case 2200001:
+                    FlipSpriteLeftAnimation(_beezerly, true);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     break;
                 case 220001:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction(0.6f));
+                    break;
+                case 220002:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyBump, Color.white);
                     break;
                 case 220003:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
@@ -766,10 +775,11 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyChallenge, Color.white);
                     break;
                 case 220200:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     break;
                 case 220008:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyMock, Color.white);
                     break;
                 case 220009:
@@ -785,13 +795,17 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyThinking, Color.white);
                     break;
                 case 220300:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_beezerlySprite, DialogueFlags.talkedShitAboutRock ? CharExpressions.BeezerlyAggro : CharExpressions.BeezerlyNeutral, Color.white);
                     FlipSpriteAnimation(_beezerly, false);
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outRightCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
+                case 54:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
+                    break;
                 case 55:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.didntPeekAppaloosaRoom && DialogueFlags.didntPeekKaizyleRoom ? CharExpressions.SodaNeutral : CharExpressions.SodaThinking, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     DialogueFlags.pickedAppaloosa = DialogueFlags.pickedKaizyle = false;
                     UpdateDialogueStates(2);
                     break;
@@ -1941,6 +1955,7 @@ namespace TootTally.Tooter
                     case 210000:
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ClassroomEvening.png");
                         _txtBox.UpdateText("");
+                        _trixiebell.transform.position = _outRightCharPosition;
                         __instance.csc.fadeMus(1, true);
                         UpdateDialogueStates(2);
                         LogChapter1States();
@@ -2476,7 +2491,7 @@ namespace TootTally.Tooter
             {110602,
                 new DialogueData()
                 {
-                    dialogueText = $"The girl laughs.",
+                    dialogueText = $"The girls laugh.",
                     option2DialogueID = 110601
                 }
             },
@@ -2877,13 +2892,20 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"The door rattles as she slams it behind her, leaving me alone with its caterwauling hinges.",
-                    option2DialogueID = 55
+                    option2DialogueID = 54
+                }
+            },
+            {54,
+                new DialogueData()
+                {
+                    dialogueText = $"I leave the room. The hinges' dismay is quickly drowned out by two wildly different pieces of music.",
+                    option2DialogueID = 55,
                 }
             },
             {55,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.didntPeekKaizyleRoom && DialogueFlags.didntPeekAppaloosaRoom ? $"Nah, I don't wanna bother anyone... I should just head home." : $"I leave the room. The hinges' dismay is quickly drowned out by two wildly different pieces of music: a jazzy melody in my left ear, and a solemn classical piece in my right.",
+                    dialogueText = DialogueFlags.didntPeekKaizyleRoom && DialogueFlags.didntPeekAppaloosaRoom ? $"Nah, I don't wanna bother anyone... I should just head home." : $"A jazzy melody in my left ear, and a solemn classical piece in my right.",
                     option1Text = DialogueFlags.didntPeekAppaloosaRoom ? "" : "Go left",
                     option1DialogueID = 57,
                     option2Text = DialogueFlags.didntPeekKaizyleRoom ? DialogueFlags.didntPeekAppaloosaRoom ? "..." : "" : "Go right",
