@@ -40,13 +40,14 @@ namespace TootTally.Tooter
                 LogInfo("CustomSongs folder found. Attempting to move songs from\n     " + sourceMapsPath + " to\n     " + targetMapsPath);
                 songFolderNames.ForEach(path =>
                 {
-                    if (!Directory.Exists(Path.Combine(targetMapsPath, path)))
+                    if (Directory.Exists(Path.Combine(targetMapsPath, path)))
                     {
-                        Directory.Move(Path.Combine(sourceMapsPath, path), Path.Combine(targetMapsPath, path));
-                        LogInfo($"Song {path} moved to custom songs folder");
+                        Directory.Delete(Path.Combine(targetMapsPath, path));
+                        LogInfo($"Old Song version {path} deleted from custom songs folder");
                     }
-                    else
-                        LogInfo($"Song {path} already exists");
+
+                    Directory.Move(Path.Combine(sourceMapsPath, path), Path.Combine(targetMapsPath, path));
+                    LogInfo($"Song {path} moved to custom songs folder");
                 });
                 Directory.Delete(sourceMapsPath, true);
             }
