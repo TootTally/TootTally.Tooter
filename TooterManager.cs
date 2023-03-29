@@ -5094,7 +5094,10 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: I have to choose which girl to perform with...but who should it be?",
-                    option2DialogueID = 410007,
+                    option2DialogueID = _scoreData.trixieScore >= 10 ? 410007 :
+                                        _scoreData.beezerlyScore >= 10 ? 410008 :
+                                        _scoreData.appaloosaScore >= 10 ? 410009 :
+                                        _scoreData.kaizyleScore >= 10 ? 410010 : 4100111,
                 }
             },
             {410007,
@@ -5158,7 +5161,10 @@ namespace TootTally.Tooter
                     option1Text = "Perform With Kaizyle",
                     option1DialogueID = 410400,
                     option2Text = "Deny Offer",
-                    option2DialogueID = 410011,
+                    option2DialogueID = _scoreData.trixieScore >= 10 &&
+                                        _scoreData.beezerlyScore >= 10 &&
+                                        _scoreData.appaloosaScore >= 10 &&
+                                        _scoreData.kaizyleScore >= 10 ? 410011 : 410501,
                 }
             },
             {410400, //transition to loading the song for Kaizyle
@@ -5173,6 +5179,13 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: I couldn't choose who to perform with... So I will be perfoming solo!",
+                    option2DialogueID = 410012,
+                }
+            },
+            {4100111,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Looks like nobody wanted to perform with me... So I will be perfoming solo!",
                     option2DialogueID = 410012,
                 }
             },
