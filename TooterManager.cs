@@ -1437,9 +1437,9 @@ namespace TootTally.Tooter
                     FlipSpriteRightAnimation(_soda, false, 10f);
                     FlipSpriteRightAnimation(_appaloosa, false, 10f);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.HornLordTalk, Color.white); //BAND DUDE LOL
-                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _leftCharPosition, 1f, GetSecondDegreeAnimationFunction()); //Don't forget to change appaloosa's sprite to the band dude
-                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction()); //Don't forget to change appaloosa's sprite to the band dude
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
                 case 3202040:
                     __instance.csc.fadeMus(0, false);
@@ -1705,8 +1705,12 @@ namespace TootTally.Tooter
                     break;
 
                 case 330000:
+                    FlipSpriteLeftAnimation(_appaloosa, false, 10f);
+                    FlipSpriteLeftAnimation(_soda, false, 10f);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
                 case 330001:
                     break;
@@ -2017,7 +2021,7 @@ namespace TootTally.Tooter
                     case 331001:
                         ResetCharacterPositions();
                         _txtBox.UpdateText("");
-                        __instance.csc.fadeMus(0, true);
+                        __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("JazzClub.png");
                         break;
 
@@ -2271,6 +2275,10 @@ namespace TootTally.Tooter
                     },
                     option2Text = "Ignore",
                     option2DialogueID = 110200,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = -2f
+                    }
                 }
             },
             {110100,
@@ -2548,7 +2556,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 40,
                     option2Score = new ScoreData()
                     {
-                        trixieScore = -1,
+                        trixieScore = -3,
                     },
                 }
             },
@@ -3001,8 +3009,16 @@ namespace TootTally.Tooter
                     dialogueText = $"[{_sodaColoredName} thinking about how to be supportive of her and make her feel better]",
                     option1Text = "Penguin pin",
                     option1DialogueID = DialogueFlags.cheeredTrixie ? 89 : 117,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = 1f
+                    },
                     option2Text = "I have to go",
                     option2DialogueID = 123,
+                    option2Score = new ScoreData()
+                    {
+                        trixieScore = -5f
+                    }
                 }
             },
             {89,
@@ -3268,7 +3284,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 119,
                     option2Score = new ScoreData()
                     {
-                        trixieScore = -2,
+                        trixieScore = -3,
                     },
                 }
             },
@@ -3316,7 +3332,7 @@ namespace TootTally.Tooter
                     option1DialogueID = 125,
                     option1Score = new ScoreData()
                     {
-                        trixieScore = -2,
+                        trixieScore = -5,
                     },
                     option2Text = "Leave",
                     option2DialogueID = 123,
@@ -5032,7 +5048,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: You're pretty bold, {_sodaColoredName}. I guess I could consider it.",
-                    option2DialogueID = 340038,
+                    option2DialogueID = 350000,
                 }
             },
             {350000,

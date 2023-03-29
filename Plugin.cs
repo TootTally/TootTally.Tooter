@@ -42,7 +42,7 @@ namespace TootTally.Tooter
                 {
                     if (Directory.Exists(Path.Combine(targetMapsPath, path)))
                     {
-                        Directory.Delete(Path.Combine(targetMapsPath, path));
+                        Directory.Delete(Path.Combine(targetMapsPath, path), true);
                         LogInfo($"Old Song version {path} deleted from custom songs folder");
                     }
 
