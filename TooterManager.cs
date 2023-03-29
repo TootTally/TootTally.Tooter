@@ -2829,7 +2829,7 @@ namespace TootTally.Tooter
                     option1Text = DialogueFlags.didntPeekAppaloosaRoom ? "" : "Go left",
                     option1DialogueID = 57,
                     option2Text = DialogueFlags.didntPeekKaizyleRoom ? DialogueFlags.didntPeekAppaloosaRoom ? "..." : "" : "Go right",
-                    option2DialogueID = DialogueFlags.didntPeekKaizyleRoom && DialogueFlags.didntPeekAppaloosaRoom ? 81 : 67,
+                    option2DialogueID = DialogueFlags.didntPeekKaizyleRoom && DialogueFlags.didntPeekAppaloosaRoom ? 81 : 999999,
                 }
             },
             #endregion
@@ -2933,7 +2933,7 @@ namespace TootTally.Tooter
             #endregion
 
             #region Kaizyle Interaction
-            {67,
+            {999999,
                 new DialogueData()
                 {
                     dialogueText = $"An impeccable rendition of a classical tune plays behind the door. Dare I peek in?",
