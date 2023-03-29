@@ -2717,10 +2717,10 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: What's her deal?",
-                    option2DialogueID = 220001
+                    option2DialogueID = 2200001
                 }
             },
-            {220000,
+            {2200001,
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: I don't know... was it something I said?",
