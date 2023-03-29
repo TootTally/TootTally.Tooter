@@ -2341,7 +2341,7 @@ namespace TootTally.Tooter
             {110206,
                 new DialogueData()
                 {
-                    dialogueText = $"{_trixiebellColoredName} walks up behind me.",
+                    dialogueText = $"{_trixieColoredName} walks up behind me.",
                     option2DialogueID = 110204
                 }
             },
@@ -2604,7 +2604,7 @@ namespace TootTally.Tooter
             {210007,
                 new DialogueData()
                 {
-                    dialogueText = $"{sodaColoredName} Haha, I feel the same way. Still, it's hard not to be excited. The competition is just a week away!",
+                    dialogueText = $"{_sodaColoredName} Haha, I feel the same way. Still, it's hard not to be excited. The competition is just a week away!",
                     option2DialogueID = 210008
                 }
             },
@@ -3039,7 +3039,7 @@ namespace TootTally.Tooter
             {76,
                 new DialogueData()
                 {
-                    dialogueText = $"Without a word, {kaizyleColoredName} packs up and leaves.",
+                    dialogueText = $"Without a word, {_kaizyleColoredName} packs up and leaves.",
                     option2DialogueID = 81,
                 }
             },
