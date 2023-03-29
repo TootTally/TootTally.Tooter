@@ -585,7 +585,6 @@ namespace TootTally.Tooter
                     break;
                 case 110602:
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePleased, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 110700:
@@ -1148,7 +1147,7 @@ namespace TootTally.Tooter
                     FlipSpriteAnimation(_soda, false);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction(0.6f));
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieAnxious, Color.white);
-                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320001, 2.65f));
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320001, 5.5f));
                     DialogueFlags.gtfoOfTheDateEarly = true;
                     UpdateDialogueStates(3);
                     break;
@@ -2521,7 +2520,7 @@ namespace TootTally.Tooter
             {110602,
                 new DialogueData()
                 {
-                    dialogueText = $"The girls laugh.",
+                    dialogueText = $"Appaloosa laughs.",
                     option2DialogueID = 110601
                 }
             },
