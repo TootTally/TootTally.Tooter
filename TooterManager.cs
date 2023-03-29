@@ -2557,32 +2557,32 @@ namespace TootTally.Tooter
                     option2DialogueID = 220008
                 }
             },
-            {220000,
+            {220008,
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: I told you. I'm just here to have a good time. I might play something punk, or I might pull an étude out of my butt.",
-                    option2DialogueID = 220001
+                    option2DialogueID = 220009
                 }
             },
-            {220000,
+            {220009,
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: I don't like being boxed in.",
-                    option2DialogueID = 220001
+                    option2DialogueID = 220010
                 }
             },
-            {220000,
+            {220010,
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: That's pretty impressive. I wish I could come up with something like that on the fly.",
-                    option2DialogueID = 220001
+                    option2DialogueID = 220011
                 }
             },
-            {220000,
+            {220011,
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: Maybe we can come up with something together! I gotta skedaddle. See you around, Soda!",
-                    option2DialogueID = 220001
+                    option2DialogueID = 220300
                 }
             },
             {220300,
