@@ -497,6 +497,7 @@ namespace TootTally.Tooter
             //Add dialogue specific events here
             switch (_currentDialogueState)
             {
+                #region Chapter 1
                 case 110001:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
@@ -655,6 +656,16 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _outRightCharPosition, 4f, new EasingHelper.SecondOrderDynamics(.25f, 1f, 0f));
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 210000, 2.65f));
                     break;
+
+                case 110401:
+                case 110803:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    break;
+                #endregion
+
+                #region Chapter 2
+
+                #region Trixie
                 case 210001:
                     FlipSpriteRightAnimation(_soda, false, 10f);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -740,6 +751,9 @@ namespace TootTally.Tooter
                         AnimationManager.AddNewTransformPositionAnimation(_beezerly, _farRightCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     });
                     break;
+                #endregion
+
+                #region Beezerly
                 case 220000:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
@@ -800,6 +814,9 @@ namespace TootTally.Tooter
                     FlipSpriteAnimation(_beezerly, false);
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outRightCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
+                #endregion
+
+                #region Appaloosa
                 case 54:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
@@ -869,6 +886,9 @@ namespace TootTally.Tooter
                     FlipSpriteLeftAnimation(_trixiebell, false);
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
+                #endregion
+
+                #region Kaizyle
                 case 999999:
                     DialogueFlags.pickedKaizyle = DialogueFlags.didntPeekKaizyleRoom = true;
                     UpdateDialogueStates(2);
@@ -935,8 +955,13 @@ namespace TootTally.Tooter
                 case 81:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 82, 2.65f));
                     break;
+                #endregion
 
+                #endregion
+
+                #region Chapter 3
                 //START CHAPTER 3 
+                #region TrixieDate
                 case 82:
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     FlipSpriteRightAnimation(_soda, false, 10f);
@@ -1409,7 +1434,9 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment2, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320001, 2.65f));
                     break;
+                #endregion
 
+                #region Beezerly Date
                 //Chapter 3 part 2
                 case 320001:
                     FlipSpriteAnimation(_beezerly, false, 10f);
@@ -1776,7 +1803,9 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 330000, 2.65f)); //To Chap 3 part 3 transition
                     break;
+                #endregion
 
+                #region Appaloosa Date
                 case 330000:
                     FlipSpriteLeftAnimation(_appaloosa, false, 10f);
                     FlipSpriteLeftAnimation(_soda, false, 10f);
@@ -1853,12 +1882,18 @@ namespace TootTally.Tooter
                 case 331115:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340000, 2.65f)); //To Chap 3 part 4 transition
                     break;
+                #endregion
 
+                #region Kaizyle Date
+
+                #endregion
 
                 case 350000:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
                     break;
+                #endregion
 
+                #region Chapter 4
                 //perform with Trixie
                 case 410100:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410101, 2.65f));
@@ -1897,11 +1932,7 @@ namespace TootTally.Tooter
                     DialogueFlags.performedGroup = true;
                     UpdateDialogueStates(4);
                     break;
-
-                case 110401:
-                case 110803:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    break;
+                    #endregion
             }
 
             return false;
@@ -2108,6 +2139,7 @@ namespace TootTally.Tooter
                         LogScores();
                         break;
 
+                    #region Chapter 4 transitions
                     //end Chapter 3 part 4
                     case 410000:
                         ResetCharacterPositions();
@@ -2169,6 +2201,7 @@ namespace TootTally.Tooter
                         GlobalVariables.chosen_track_data = loveFlipTrack;
                         SceneManager.LoadScene("loader");
                         return;
+                        #endregion
                 }
                 FadeInScene(__instance, nextDialogueID);
             });
@@ -5273,6 +5306,7 @@ namespace TootTally.Tooter
 
         public static Dictionary<int, DialogueData> GetDialogueChapter4() => new Dictionary<int, DialogueData>()
         {
+            #region Chapter 4
             {410000,
                 new DialogueData()
                 {
@@ -5465,6 +5499,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 0,
                 }
             },
+            #endregion
         };
 
         public class DialogueData
