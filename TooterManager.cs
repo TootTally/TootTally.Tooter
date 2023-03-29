@@ -2249,7 +2249,7 @@ namespace TootTally.Tooter
             {110803,
                 new DialogueData()
                 {
-                    dialogueText = $"A silver trombone enters the room, followed swiftly by another silver-haired tromboner.",
+                    dialogueText = $"A silver trombone enters the room, followed swiftly by a brown-haired tromboner.",
                     option2DialogueID = 110804
                 }
             },
@@ -2323,185 +2323,283 @@ namespace TootTally.Tooter
             {210000,
                 new DialogueData()
                 {
-                    dialogueText = $"CHAPTER 2: Talking Tromboning",
-                    option2DialogueID = 37
+                    dialogueText = $"CHAPTER 2: Tromboner Talk",
+                    option2DialogueID = 210001
+                }
+            },
+            {210001,
+                new DialogueData()
+                {
+                    dialogueText = $"Satisfied with my day, I set about packing my trombone back in its case.",
+                    option2DialogueID = 210002
+                }
+            },
+            {210002,
+                new DialogueData()
+                {
+                    dialogueText = $"I wonder how everyone else is doing.",
+                    option2DialogueID = 210003
                 }
             },
 
             #region Trixie Interaction
-            {37,
+            {210003,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hey {_trixieColoredName}, how are you feeling about the competition?",
-                    option2DialogueID = 38
+                    dialogueText = $"Back in the music room, I pull up a chair as the door sings the song of its people for the umpteenth time.",
+                    option2DialogueID = 210004
                 }
             },
-            {38,
+            {210004,
                 new DialogueData()
                 {
-                    dialogueText = $"{_trixieColoredName}: Oh, I'm so nervous. I've been practicing so hard, but I'm still afraid I'll mess up on stage.",
-                    option1Text = "Practice together",
-                    option1DialogueID = 39,
+                    dialogueText = $"{_trixieColoredName}: Whew, that was some good tromboning!",
+                    option2DialogueID = 210005
+                }
+            },
+            {210005,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Hey! Are you done for the day, too?",
+                    option2DialogueID = 210006
+                }
+            },
+            {210006,
+                new DialogueData()
+                {
+                    dialogueText = $"{_trixieColoredName}: Yep. Any more practice and my arm is gonna fall off.",
+                    option2DialogueID = 210007
+                }
+            },
+            {210007,
+                new DialogueData()
+                {
+                    dialogueText = $"{sodaColoredName} Haha, I feel the same way. Still, it's hard not to be excited. The competition is just a week away!",
+                    option2DialogueID = 210008
+                }
+            },
+            {210008,
+                new DialogueData()
+                {
+                    dialogueText = $"{_trixieColoredName} ...",
+                    option2DialogueID = 210009
+                }
+            },
+            {210009,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName} ... how are you feeling about it?",
+                    option2DialogueID = 210010
+                }
+            },
+            {210010,
+                new DialogueData()
+                {
+                    dialogueText = $"{_trixieColoredName}: Oh, I dunno... I've been practicing so much, but I'm still terrified that I'll beef it on stage.",
+                    option1Text = "Suggest break",
+                    option1DialogueID = 210100,
                     option1Score = new ScoreData()
                     {
                         trixieScore = 2,
                     },
-                    option2Text = "Stop stressing out",
-                    option2DialogueID = 40,
+                    option2Text = "Ignore hint",
+                    option2DialogueID = 210200,
                     option2Score = new ScoreData()
                     {
                         trixieScore = -1,
                     },
                 }
             },
-            {39,
+            {210100,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I know how you feel. Maybe we can practice together and help each other out?",
-                    option2DialogueID = 41
+                    dialogueText = $"{_sodaColoredName}: I know how you feel. Maybe we should take a break sometime soon.",
+                    option2DialogueID = 210101
                 }
             },
-            {40,
+            {210101,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Everything will be fine, there is no reason to be stressed.",
-                    option2DialogueID = 42
+                    dialogueText = $"{_trixieColoredName}: That sounds lovely.",
+                    option2DialogueID = 210102
                 }
             },
-            {41,
+            {210102,
                 new DialogueData()
                 {
-                    dialogueText = $"{_trixieColoredName}: That would be amazing! Thank you, Soda. I'll see you later!",
-                    option2DialogueID = 43
+                    dialogueText = $"Is she... blushing? Wait, did I just ask her ou-",
+                    option2DialogueID = 210103
                 }
             },
-            {42,
+            {210103,
                 new DialogueData()
                 {
-                    dialogueText = $"{_trixieColoredName}: Thanks I guess... I have to go back to practice. Bye!",
-                    option2DialogueID = 43
+                    dialogueText = $"The door hollers in protest as {_beezerlyColoredName} strolls in",
+                    option2DialogueID = 210104
                 }
             },
-            {43,
+            {210104,
                 new DialogueData()
                 {
-                    dialogueText = $"[{_trixieColoredName} goes back to practicing, {_beezerlyColoredName} walks into the room]",
-                    option2DialogueID = 44
+                    dialogueText = $"{_trixieColoredName} shoots up out of her chair, grabs her case, and rushes out of the room, slamming the door as it howls in pain.",
+                    option2DialogueID = 220000
+                }
+            },
+            {210200,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName} Everything will be fine; no need to freak out!",
+                    option2DialogueID = 210201
+                }
+            },
+            {210201,
+                new DialogueData()
+                {
+                    dialogueText = $"{_trixieColoredName} Um, thanks?",
+                    option2DialogueID = 210202
+                }
+            },
+            {210202,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Sure!",
+                    option2DialogueID = 210203
+                }
+            },
+            {210203,
+                new DialogueData()
+                {
+                    dialogueText = $"{_trixieColoredName}: ...I should get back to practicing.",
+                    option2DialogueID = 210204
+                }
+            },
+            {210204,
+                new DialogueData()
+                {
+                    dialogueText = $"{_trixieColoredName} gets up quickly and leaves, almost slamming into Beezerly as the door howls its rusty displeasure.",
+                    option2DialogueID = 220000
                 }
             },
             #endregion
 
             #region Beezerly Interaction
-            {44,
+            {220000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hey {_beezerlyColoredName}! What kind of music do you like to play on the trombone?",
-                    option2DialogueID = 45
+                    dialogueText = $"{_beezerlyColoredName}: What's her deal?",
+                    option2DialogueID = 220001
                 }
             },
-            {45,
+            {220000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: I like to mix it up, you know? Sometimes I'll play something that rocks or rolls, and other times I'll play some pop songs. I don't like to be boxed in.",
-                    option1DialogueID = 46,
-                    option1Text = "I hate rock",
+                    dialogueText = $"{_sodaColoredName}: I don't know... was it something I said?",
+                    option2DialogueID = 220001
+                }
+            },
+            {220001,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName} swings a chair in front of her and plops down into it.",
+                    option2DialogueID = 220002
+                }
+            },
+            {220002,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: Anyway. Ready for your big performance?",
+                    option2DialogueID = 220003
+                }
+            },
+            {220003,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: More or less. What are you gonna play?",
+                    option2DialogueID = 220004
+                }
+            },
+            {220004,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: Eh, haven't decided yet. Maybe something rock'n'roll.",
+                    option1Text = "Ew, rock?",
                     option1Score = new ScoreData()
                     {
                         beezerlyScore = -5,
                     },
-                    option2DialogueID = 48,
-                    option2Text = "I love rock",
+                    option1DialogueID = 220100,
+                    option2Text = "Haven't decided???",
                     option2Score = new ScoreData()
                     {
-                        beezerlyScore = 2,
+                        beezerlyScore = 2
                     },
+                    option2DialogueID = 220200
                 }
             },
-            {46,
+            {220100,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Ewww Rock? I prefer listening to real music like Jazz or Classical Music",
-                    option2DialogueID = 47,
+                    dialogueText = $"{_sodaColoredName}: Wait, seriously? I get that it succeeded jazz, and even led to funk, but when you combine those two, you get... junk.",
+                    option2DialogueID = 220101
                 }
             },
-            {47,
+            {220101,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Really? There is no such thing as \"real music\". Anyway, I have to go practice. Bye!",
-                    option2DialogueID = 54,
+                    dialogueText = $"{_beezerlyColoredName}: ... go to hell, Soda.",
+                    option2DialogueID = 220300
                 }
             },
-            {48,
+            {220200,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Rock is really cool! I listen to Rock music all the time.",
-                    option1Text = "Come up with an idea",
-                    option1DialogueID = 49,
-                    option1Score = new ScoreData()
-                    {
-                        beezerlyScore = 1,
-                    },
-                    option2Text = "Let Her Practice",
-                    option2DialogueID = 51,
+                    dialogueText = $"{_sodaColoredName}: Seriously? What have you been doing all this time?",
+                    option2DialogueID = 220008
                 }
             },
-            {49,
+            {220000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Maybe we can come up with something tootally unique for the competition?",
-                    option2DialogueID = 50,
+                    dialogueText = $"{_beezerlyColoredName}: I told you. I'm just here to have a good time. I might play something punk, or I might pull an étude out of my butt.",
+                    option2DialogueID = 220001
                 }
             },
-            {50,
+            {220000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName} : Sure! I like the way you think, {_sodaColoredName}.",
-                    option2DialogueID = 53,
+                    dialogueText = $"{_beezerlyColoredName}: I don't like being boxed in.",
+                    option2DialogueID = 220001
                 }
             },
-            {51,
+            {220000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I will let you go practice, it was nice talking with you!",
-                    option2DialogueID = 52,
+                    dialogueText = $"{_sodaColoredName}: That's pretty impressive. I wish I could come up with something like that on the fly.",
+                    option2DialogueID = 220001
                 }
             },
-            {52,
+            {220000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Thanks {_sodaColoredName}! I'll catch you later.",
-                    option2DialogueID = 54,
+                    dialogueText = $"{_beezerlyColoredName}: Maybe we can come up with something together! I gotta skedaddle. See you around, Soda!",
+                    option2DialogueID = 220001
                 }
             },
-            {53,
+            {220300,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Anyway, I have to go back to practice. I'll catch you later {_sodaColoredName}!",
-                    option2DialogueID = 56,
-                }
-            },
-            {54,
-                new DialogueData()
-                {
-                    dialogueText = $"[{_beezerlyColoredName} leaves the room]",
-                    option2DialogueID = 55,
+                    dialogueText = $"The door rattles as she slams it behind her, leaving me alone with its caterwauling hinges.",
+                    option2DialogueID = 55
                 }
             },
             {55,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.didntPeekKaizyleRoom && DialogueFlags.didntPeekAppaloosaRoom ? $"{_sodaColoredName} was too indecisive..." : $"{_sodaColoredName} to himself: What should I do now?",
-                    option1Text = DialogueFlags.didntPeekAppaloosaRoom ? "" : "Talk to Appaloosa",
+                    dialogueText = DialogueFlags.didntPeekKaizyleRoom && DialogueFlags.didntPeekAppaloosaRoom ? $"Nah, I don't wanna bother anyone... I should just head home." : $"I leave the room. The hinges' dismay is quickly drowned out by two wildly different pieces of music: a jazzy melody in my left ear, and a solemn classical piece in my right.",
+                    option1Text = DialogueFlags.didntPeekAppaloosaRoom ? "" : "Go left",
                     option1DialogueID = 57,
-                    option2Text = DialogueFlags.didntPeekKaizyleRoom ? DialogueFlags.didntPeekAppaloosaRoom ? "..." : "" : "Talk to Kaizyle",
+                    option2Text = DialogueFlags.didntPeekKaizyleRoom ? DialogueFlags.didntPeekAppaloosaRoom ? "..." : "" : "Go right",
                     option2DialogueID = DialogueFlags.didntPeekKaizyleRoom && DialogueFlags.didntPeekAppaloosaRoom ? 81 : 67,
-                }
-            },
-            {56,
-                new DialogueData()
-                {
-                    dialogueText = $"[{_beezerlyColoredName} lightly fist bump {_sodaColoredName}'s shoulder and then leaves the room with a smirky smile on her face]",
-                    option2DialogueID = 55,
                 }
             },
             #endregion
@@ -2510,7 +2608,7 @@ namespace TootTally.Tooter
             {57,
                 new DialogueData()
                 {
-                    dialogueText = $"[A beautiful and calming melody can be heard from a nearby room. Peek in the room?]",
+                    dialogueText = $"I hear a jaunty tune coming from inside. Dare I peek in?",
                     option1Text = "Yes",
                     option1DialogueID = 58,
                     option1Score = new ScoreData()
@@ -2524,7 +2622,7 @@ namespace TootTally.Tooter
             {58,
                 new DialogueData()
                 {
-                    dialogueText = $"[You peek in the other room and see {_appaloosaColoredName} practicing her improvisation]",
+                    dialogueText = $"{_appaloosaColoredName} sits by a closed piano, jubilantly tromboning her heart out. I open the door and poke my head inside. The music stops.",
                     option2DialogueID = 59,
                 }
             },
@@ -2538,7 +2636,7 @@ namespace TootTally.Tooter
             {60,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: It's all about feeling the music, you know? You gotta let go of your inhibitions and just let the music flow through you.",
+                    dialogueText = $"{_appaloosaColoredName}: Oh, hey there! It's all about feeling the music, you know? You gotta let go of your inhibitions and just let the music flow through you.",
                     option1Text = "Teach me!",
                     option1DialogueID = 61,
                     option1Score = new ScoreData()
@@ -2556,42 +2654,49 @@ namespace TootTally.Tooter
             {61,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: That sounds amazing. Can you teach me how to improvise like you do?",
+                    dialogueText = $"{_sodaColoredName}: That sounds amazing. Can you show me how to improvise like you do?",
                     option2DialogueID = 62,
                 }
             },
             {62,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Sure thing, {_sodaColoredName}. Let's jam after school!",
+                    dialogueText = $"{_appaloosaColoredName}: Sure thing, {_sodaColoredName}. Let's jam!",
                     option2DialogueID = 63,
                 }
             },
             {63,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Awesome! I will see you after school.",
+                    dialogueText = $"The next hour is spent in a wild trombone duet. The two of us have a blast, and I almost don't want to leave.",
                     option2DialogueID = 66,
                 }
             },
             {64,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I will let you go practice, it was nice talking with you!",
-                    option2DialogueID = 65,
+                    dialogueText = $"{_sodaColoredName}: Well, I'll leave you to it. Good luck!",
+                    option2DialogueID = 65
                 }
             },
             {65,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Thanks {_sodaColoredName}!",
-                    option2DialogueID = 66,
+                    dialogueText = $"{_appaloosaColoredName}: Thanks, {_sodaColoredName}. I'll see you around, okay?",
+                    option2DialogueID = 67,
                 }
             },
             {66,
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} leaves the room]",
+                    dialogueText = $"Sadly, homework beckons for the both of us.",
+                    option2DialogueID = 81,
+                }
+            },
+            {67,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: See you around.",
                     option2DialogueID = 81,
                 }
             },
@@ -2601,7 +2706,7 @@ namespace TootTally.Tooter
             {67,
                 new DialogueData()
                 {
-                    dialogueText = $"[A fast and complex melody can be heard from another room. Peek in the other room?]",
+                    dialogueText = $"An impeccable rendition of a classical tune plays behind the door. Dare I peek in?",
                     option1Text = "Yes",
                     option1DialogueID = 68,
                     option1Score = new ScoreData()
@@ -2619,14 +2724,14 @@ namespace TootTally.Tooter
             {68,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: {_kaizyleColoredName}, I'm really impressed by your technical skill on the trombone.",
+                    dialogueText = $"{_kaizyleColoredName} sits by a closed piano, tooting estudiously. I open the door and poke my head inside. The music stops.",
                     option2DialogueID = 69,
                 }
             },
             {69,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Thank you, {_sodaColoredName}. I come from a long line of musicians, so I take my training very seriously.",
+                    dialogueText = $"{_kaizyleColoredName}: I take my training very seriously. What do you want, {_sodaColoredName}?",
                     option1Text = "Teach me!",
                     option1DialogueID = 70,
                     option2Text = "Let her practice",
@@ -2647,7 +2752,7 @@ namespace TootTally.Tooter
             {71,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: I would like to help but I really need to finish my practice. We can talk later.",
+                    dialogueText = $"{_kaizyleColoredName}: I really need to finish my practice. We can talk later.",
                     option1Text = "Beg for help",
                     option1DialogueID = 72,
                     option1Score = new ScoreData()
@@ -2665,14 +2770,14 @@ namespace TootTally.Tooter
             {72,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: PLEASE {_kaizyleColoredName} I really need to improve my technique and I'd love to become as good as you in the future.",
+                    dialogueText = $"{_sodaColoredName}: PLEASE, {_kaizyleColoredName}! I really need to improve my technique and I'd love to become as good as you in the future.",
                     option2DialogueID = 73,
                 }
             },
             {73,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: I told you I need to practice. I will be able to help you later so please let me practice now.",
+                    dialogueText = $"{_kaizyleColoredName}: I told you. Not now. I need to practice.",
                     option1Text = "Keep begging",
                     option1DialogueID = 74,
                     option1Score = new ScoreData()
@@ -2704,35 +2809,35 @@ namespace TootTally.Tooter
             {76,
                 new DialogueData()
                 {
-                    dialogueText = $"[{_kaizyleColoredName} left the room]",
+                    dialogueText = $"Without a word, {kaizyleColoredName} packs up and leaves.",
                     option2DialogueID = 81,
                 }
             },
             {77,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} I will let you practice now. I'll see you later!",
+                    dialogueText = $"{_sodaColoredName} Fine, I'll leave you to it. I'll see you later, though!",
                     option2DialogueID = 79,
                 }
             },
             {78,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Pardon me. I will let you practice now. Bye!",
+                    dialogueText = $"{_sodaColoredName}: Pardon me.",
                     option2DialogueID = 80,
                 }
             },
             {79,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName} to herself: How dare he disturb my practice time... that was annoying.",
+                    dialogueText = $"{_kaizyleColoredName}: ... that was annoying.",
                     option2DialogueID = 81,
                 }
             },
             {80,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName} to herself: Well, what an annoying little brat.",
+                    dialogueText = $"{_kaizyleColoredName} ...you little brat.",
                     option2DialogueID = 81,
                 }
             },
