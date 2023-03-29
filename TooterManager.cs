@@ -451,10 +451,6 @@ namespace TootTally.Tooter
 
         }
 
-        [HarmonyPatch(typeof(HomeController), nameof(HomeController.doFastScreenShake))]
-        [HarmonyPrefix]
-        public static bool GetRidOfThatScreenShakePls(HomeController __instance) => false; //THANKS GOD
-
         [HarmonyPatch(typeof(HomeController), nameof(HomeController.Update))]
         [HarmonyPostfix]
         public static void AnimateTooterButton(HomeController __instance)
