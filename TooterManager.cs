@@ -49,7 +49,7 @@ namespace TootTally.Tooter
         private static readonly string _appaloosaColoredName = "<color='#FF0000'>Appaloosa</color>";
         private static readonly string _beezerlyColoredName = "<color='#f0f0c2'>Beezerly</color>";
         private static readonly string _kaizyleColoredName = "<color='#A020F0'>Kaizyle</color>";
-        private static readonly string _tromBurgerChampName = "<color='#D62300'>TromBurger </color>" + "<color='#FF8732'>Champ</color>";
+        private static readonly string _tromBurgerChampName = "<color='#D62300'>TromBurger</color> " + "<color='#FF8732'>Champ</color>";
         private static List<Coroutine> _textCoroutines = new List<Coroutine>();
         private static readonly string _loveHasNoEndTrackref = "0.8506432151619188";
         private static readonly string _loveFlipTrackref = "0.46110644885682883";
