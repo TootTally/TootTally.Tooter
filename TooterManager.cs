@@ -1916,11 +1916,89 @@ namespace TootTally.Tooter
 
                 #region Chapter 4
                 case 410001:
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     break;
                 case 410002:
-
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePanic, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 410003:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyBump, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 410004:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 410005:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 410006:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 410007:
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment3, Color.white);
+                    break;
+                case 410008:
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyPassion, Color.white);
+                    break;
+                case 410009:
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
+                    break;
+                case 410010:
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    break;
+                case 410011:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePanic, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLeanAway, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                    break;
+                case 4100111:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 410501:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    break;
+                case 410502:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieInLove, Color.white);
+                    break;
+                case 410503:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyInLove, Color.white);
+                    break;
+                case 410504:
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
+                    break;
+                case 410505:
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
                     break;
 
                 //perform with Trixie
@@ -2174,6 +2252,7 @@ namespace TootTally.Tooter
                     case 410000:
                         ResetCharacterPositions();
                         UpdateDialogueStates(4);
+                        _trixiebell.transform.position = _outRightCharPosition;
                         _txtBox.UpdateText("");
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("Backstage.png");
                         LogChapter3Part4States();
@@ -6108,10 +6187,10 @@ namespace TootTally.Tooter
                     option1Text = "Perform With Kaizyle",
                     option1DialogueID = 410400,
                     option2Text = "Deny Offer",
-                    option2DialogueID = _scoreData.trixieScore >= 10 &&
-                                        _scoreData.beezerlyScore >= 10 &&
-                                        _scoreData.appaloosaScore >= 10 &&
-                                        _scoreData.kaizyleScore >= 10 ? 410011 : 410501,
+                    option2DialogueID = CanPerformWithTrixie() &&
+                                        CanPerformWithBeezerly() &&
+                                        CanPerformWithAppaloosa() &&
+                                        CanPerformWithKaizyle() ? 410501 : 410011,
                 }
             },
             {410400, //transition to loading the song for Kaizyle
@@ -6125,7 +6204,7 @@ namespace TootTally.Tooter
             {410011,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I couldn't choose who to perform with... So I will be perfoming solo!",
+                    dialogueText = $"{_sodaColoredName}: I'm not sure who to perform with... So I will be perfoming solo!",
                     option2DialogueID = 410012,
                 }
             },
