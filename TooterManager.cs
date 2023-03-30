@@ -64,14 +64,6 @@ namespace TootTally.Tooter
             _dialogueStates = GetDialogueChapter1And2();
         }
 
-
-        [HarmonyPatch(typeof(DemonDialogue), nameof(DemonDialogue.addWord))]
-        [HarmonyPostfix]
-        public static void OnDemonDialogueAddWordPostFix(object[] __args)
-        {
-            //_txtBox.UpdateText(_txtBox.GetText + __args[0] + " "); //base game does it like that xd...
-        }
-
         private static IEnumerator addWord(DemonDialogue __instance, string word, float delayTime)
         {
             float seconds = delayTime * 0.035f;
