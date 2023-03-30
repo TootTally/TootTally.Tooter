@@ -5279,10 +5279,10 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"I'm almost late; she's gonna leave!",
-                    option2DialogueID = 340009,
+                    option2DialogueID = 3400091,
                 }
             },
-            {340009,
+            {3400091,
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Hey... I had to run... a little... it's good to see you again. How have you been?",
