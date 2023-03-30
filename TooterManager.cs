@@ -118,6 +118,8 @@ namespace TootTally.Tooter
         [HarmonyPostfix]
         public static void OnDemonDiablogueStart(DemonDialogue __instance)
         {
+
+
             if (_currentDialogueState != 0) return;
             _currentDialogueState = -1;
             _currentDemonDialogueInstance = __instance;
@@ -175,6 +177,13 @@ namespace TootTally.Tooter
                 __instance.csc.bgmus1.volume = 0f;
             }));
             _scoreData = new ScoreData();
+
+            var testDialogues = GetDialogueChapter1And2();
+            Plugin.Instance.LogInfo("Dialogues 1 and 2 tested");
+            testDialogues = GetDialogueChapter3();
+            Plugin.Instance.LogInfo("Dialogues 3 tested");
+            testDialogues = GetDialogueChapter4();
+            Plugin.Instance.LogInfo("Dialogues 4 tested");
         }
 
         [HarmonyPatch(typeof(DemonDialogue), nameof(DemonDialogue.clickbtn1))]
