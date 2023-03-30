@@ -105,11 +105,11 @@ namespace TootTally.Tooter
         {
             if (_isSceneActive)
             {
-                if (Input.GetKeyDown(KeyCode.Space) && _dialogueStates[_currentDialogueState].option1Text == "")
+                if (Input.GetKeyDown(KeyCode.Space) && _dialogueStates[_currentDialogueState].option1Text == "" && _currentDemonDialogueInstance.readytoclick)
                     OverwriteClickBtn2(_currentDemonDialogueInstance);
-                else if (Input.GetKeyDown(KeyCode.Keypad1) && _dialogueStates[_currentDialogueState].option1Text != "")
+                else if (Input.GetKeyDown(KeyCode.Keypad1) && _dialogueStates[_currentDialogueState].option1Text != "" && _currentDemonDialogueInstance.readytoclick)
                     OverwriteClickBtn1(_currentDemonDialogueInstance);
-                else if (Input.GetKeyDown(KeyCode.Keypad2) && _dialogueStates[_currentDialogueState].option2Text != "")
+                else if (Input.GetKeyDown(KeyCode.Keypad2) && _dialogueStates[_currentDialogueState].option2Text != "" && _currentDemonDialogueInstance.readytoclick)
                     OverwriteClickBtn2(_currentDemonDialogueInstance);
             }
         }
@@ -5357,8 +5357,7 @@ namespace TootTally.Tooter
             {34000810, 
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: ... I'll get out of your hair.{_kaizyleColoredName}: ...",
-                    option2Text = "",
+                    dialogueText = $"{_sodaColoredName}: ... I'll get out of your hair.",
                     option2DialogueID = 34010811,
                 }
             },
@@ -5366,7 +5365,6 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: ...",
-                    option2Text = "",
                     option2DialogueID = 3401081,
                 }
             },
@@ -5374,7 +5372,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: ... thanks.",
-                    option2Text = "...",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
