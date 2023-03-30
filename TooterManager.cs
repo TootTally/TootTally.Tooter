@@ -2530,7 +2530,7 @@ namespace TootTally.Tooter
             {110601,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Well, I heard there were some talented players in here, so I thought I'd scope out the competition. I'm Appaloosa by the way.",
+                    dialogueText = $"???: Well, I heard there were some talented players in here, so I thought I'd scope out the competition. The name's {_appaloosaColoredName}.",
                     option1Text = "Introduce friends",
                     option1DialogueID = 110700,
                     option1Score = new ScoreData()
