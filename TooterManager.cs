@@ -5909,7 +5909,7 @@ namespace TootTally.Tooter
             {410001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Wow, I can't believe the competition is finally here",
+                    dialogueText = $"{_sodaColoredName}: Wow, I can't believe the competition is finally here.",
                     option2DialogueID = 410002,
                 }
             },
@@ -5944,7 +5944,7 @@ namespace TootTally.Tooter
             {410006,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I have to choose which girl to perform with...but who should it be?",
+                    dialogueText = $"I have to choose which girl to perform with... wait, when was this cliché established???",
                     option2DialogueID = _scoreData.trixieScore >= 10 ? 410007 :
                                         _scoreData.beezerlyScore >= 10 ? 410008 :
                                         _scoreData.appaloosaScore >= 10 ? 410009 :
@@ -5964,7 +5964,7 @@ namespace TootTally.Tooter
             {410100, //transition to loading the song for trixiebell
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} and {_trixieColoredName} are getting ready to perform together]",
+                    dialogueText = $"And so we took the stage.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -5982,7 +5982,7 @@ namespace TootTally.Tooter
             {410200, //transition to loading the song for Beezerly
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} and {_beezerlyColoredName} are getting ready to perform together]",
+                    dialogueText = $"And so we took the stage.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -6000,7 +6000,7 @@ namespace TootTally.Tooter
             {410300, //transition to loading the song for Appaloosa
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} and {_appaloosaColoredName} are getting ready to perform together]",
+                    dialogueText = $"And so we took the stage.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -6021,7 +6021,7 @@ namespace TootTally.Tooter
             {410400, //transition to loading the song for Kaizyle
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} and {_kaizyleColoredName} are getting ready to perform together]",
+                    dialogueText = $"And so we took the stage.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -6029,21 +6029,21 @@ namespace TootTally.Tooter
             {410011,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I couldn't choose who to perform with... So I will be perfoming solo!",
+                    dialogueText = $"{_sodaColoredName}: I can't decide... I'll just perform solo!",
                     option2DialogueID = 410012,
                 }
             },
             {4100111,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Looks like nobody wanted to perform with me... So I will be perfoming solo!",
+                    dialogueText = $"Oh... it looks like nobody wanted to perform with me. I guess it didn't matter.",
                     option2DialogueID = 410012,
                 }
             },
             {410012, // SOLO ENDING
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} is getting ready for his solo performance]",
+                    dialogueText = $"I took the stage alone.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -6065,7 +6065,7 @@ namespace TootTally.Tooter
             {410503,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName} : That's the spirit {_sodaColoredName}, I've always like the way you think.",
+                    dialogueText = $"{_beezerlyColoredName} : That's the spirit, {_sodaColoredName}! I've always like the way you think.",
                     option2DialogueID = 410504,
                 }
             },
@@ -6079,14 +6079,14 @@ namespace TootTally.Tooter
             {410505,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Together, there is no way we will lose this competition. Let's win it all!",
+                    dialogueText = $"{_kaizyleColoredName}: Together, there's no way we will lose this competition. Let's win it all!",
                     option2DialogueID = 410506,
                 }
             },
             {410506, //HAREM ENDING
                 new DialogueData()
                 {
-                    dialogueText = $"[everyone is getting ready to perform together]",
+                    dialogueText = $"IN=nstruments in hand, we took the stage as a single unit of trombonery.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
