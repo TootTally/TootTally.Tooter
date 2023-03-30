@@ -842,6 +842,7 @@ namespace TootTally.Tooter
                     break;
                 case 58:
                     DialogueFlags.didntPeekAppaloosaRoom = false;
+                    UpdateDialogueStates(2);
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     FlipSpriteAnimation(_soda, true);
@@ -895,6 +896,7 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     DialogueFlags.botheredKaizyle = true;
+                    UpdateDialogueStates(2);
                     break;
                 case 69:
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
@@ -2521,14 +2523,14 @@ namespace TootTally.Tooter
             {110602,
                 new DialogueData()
                 {
-                    dialogueText = $"Appaloosa laughs.",
+                    dialogueText = $"The girl laughs.",
                     option2DialogueID = 110601
                 }
             },
             {110601,
                 new DialogueData()
                 {
-                    dialogueText = $"???: Well, I heard there were some talented players in here, so I thought I'd scope out the competition. The name's {_appaloosaColoredName}.",
+                    dialogueText = $"{_appaloosaColoredName}: Well, I heard there were some talented players in here, so I thought I'd scope out the competition. I'm Appaloosa by the way.",
                     option1Text = "Introduce friends",
                     option1DialogueID = 110700,
                     option1Score = new ScoreData()
@@ -4221,14 +4223,6 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName} No way! It's mine too!", //widepeepoBeezerly
-                    option2DialogueID = 3202042,
-
-                }
-            },
-            {3202042,
-                new DialogueData()
-                {
-                    dialogueText = $"{_beezerlyColoredName}: You're kidding!", //widepeepoBeezerly
                     option2DialogueID = 3202043,
 
                 }
@@ -4236,12 +4230,20 @@ namespace TootTally.Tooter
             {3202043,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Isn't it everyone's?", //widepeepoBeezerly
+                    dialogueText = $"{_beezerlyColoredName}: You're kidding!", //widepeepoBeezerly
                     option2DialogueID = 3202044,
 
                 }
             },
             {3202044,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Isn't it everyone's?", //widepeepoBeezerly
+                    option2DialogueID = 3202045,
+
+                }
+            },
+            {3202045,
                 new DialogueData()
                 {
                     dialogueText = $"The rest of the song is spent happily discussing the music and our various tastes. We barely notice as the song ends.", //BeezerlyJam and SodaJam
@@ -4752,7 +4754,7 @@ namespace TootTally.Tooter
             {320030, // transition to outside scene 320031
                 new DialogueData()
                 {
-                    dialogueText = $"We step outside, enjoying the cool air.", // TODO maybe different endings?
+                    dialogueText = $"We step outside, enjoying the cool air.", 
                     option2DialogueID = 320031,
                 }
             },
