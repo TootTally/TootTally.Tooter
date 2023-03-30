@@ -5126,7 +5126,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 3400035,
                 }
             },
-            {340035,
+            {3400035,
                 new DialogueData()
                 {
                     dialogueText = $"She cuts me off. Thank Babi.",
@@ -5280,52 +5280,52 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Hey... I had to run... a little... it's good to see you again. How have you been?",
-                    option2DialogueID = 340010,
+                    option2DialogueID = 3400101,
                 }
             },
-            {340010,
+            {3400101,
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: I've been fine.",
-                    option2DialogueID = 340011,
+                    option2DialogueID = 34000111,
                 }
             },
-            {340011,
+            {34000111,
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: ...",
-                    option2DialogueID = 3400111,
+                    option2DialogueID = 3400011,
                 }
             },
-            {3400111,
+            {3400011,
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: ...",
-                    option2DialogueID = 340012,
+                    option2DialogueID = 3400012,
                 }
             },
-            {340012,
+            {3400012,
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: So, what are we doing?",
-                    option2DialogueID = 340013,
+                    option2DialogueID = 3400013,
                 }
             },
-            {340013,
+            {3400013,
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: I dunno! I just thought it would be nice to get out and enjoy some sunshine. What do you want to do?",
-                    option2DialogueID = 340014,
+                    option2DialogueID = 3400014,
                 }
             },
-            {340014,
+            {3400014,
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: It's up to you.",
                     option1Text = "Glissandogs",
                     option1DialogueID = 340200, //TODO
                     option2Text = "Tromb-Cone",
-                    option2DialogueID = 340015,
+                    option2DialogueID = 3400015,
                 }
             },
             {340200,
