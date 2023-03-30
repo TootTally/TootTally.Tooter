@@ -4220,7 +4220,7 @@ namespace TootTally.Tooter
             {3202042,
                 new DialogueData()
                 {
-                    dialogueText = $"{sodaColoredName} No way! It's mine too!", //widepeepoBeezerly
+                    dialogueText = $"{_sodaColoredName} No way! It's mine too!", //widepeepoBeezerly
                     option2DialogueID = 3202042,
 
                 }
@@ -4766,7 +4766,7 @@ namespace TootTally.Tooter
             {320032,
                 new DialogueData()
                 {
-                    dialogueText = $"{beezerlyColoredName}: So did I.",
+                    dialogueText = $"{_beezerlyColoredName}: So did I.",
                     option2DialogueID = 320033,
                 }
             },
