@@ -1417,7 +1417,7 @@ namespace TootTally.Tooter
                     break;
                 case 177:
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 178, 0f, 0.3f));
-                    DialogueFlags.kissedTrixie = true;
+                    DialogueFlags.kissedTrixie = DialogueFlags.kissedSomeone = true;
                     UpdateDialogueStates(3);
                     break;
                 case 178:
@@ -1633,7 +1633,7 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3204060, 2.65f)); // transition to outside
                     break;
                 case 3204059:
-                    DialogueFlags.kissedBeezerly = true;
+                    DialogueFlags.kissedBeezerly = DialogueFlags.kissedSomeone = true;
                     UpdateDialogueStates(3);
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3204159, 0f, 0.3f)); // transition to kissing scene
                     break;
@@ -3996,7 +3996,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_trixieColoredName}: Absolutely, I had a fun time as well.",
-                    option1Text = "Kiss",
+                    option1Text = DialogueFlags.kissedSomeone ? "":"Kiss",
                     option1DialogueID =  177,
                     option1Score = new ScoreData()
                     {
@@ -4339,8 +4339,15 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"[{_sodaColoredName} looks at beezerly in the eyes]",
-                    option1Text = DialogueFlags.kissedTrixie ? "" : "Kiss",
+                    option1Text = DialogueFlags.kissedSomeone ? "" : "Kiss",
                     option1DialogueID = 3204059,
+                    option1Score = new ScoreData()
+                    {
+                        trixieScore = -50,
+                        appaloosaScore = 25,
+                        beezerlyScore = -50,
+                        kaizyleScore = -50,
+                    },
                     option2Text = "Get some fresh air",
                     option2DialogueID = 3205059,
                 }
@@ -4976,7 +4983,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "an interesting" : (DialogueFlags.flirtAppaloosa ? "such an incredible" : "a good"))} night, {_appaloosaColoredName}. {(!(DialogueFlags.unimpressedAppaloosa) ? "Thank you again for everything." : "")}",
-                    option1Text  = "Kiss",
+                    option1Text  = DialogueFlags.kissedSomeone ? "":"Kiss",
                     option1DialogueID = DialogueFlags.flirtAppaloosa ? 3311141 : 331142,
                     option1Score = new ScoreData
                     {
@@ -5065,7 +5072,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 340101,
                 }
             },
-            {340101, 
+            {340101,
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: With you?? No...",
@@ -5572,11 +5579,11 @@ namespace TootTally.Tooter
                     option2DialogueID = 340137,
                 }
             },
-            {340137, 
+            {340137,
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: Hmm, where?",
-                    option1Text = "Show using your lips",
+                    option1Text = DialogueFlags.kissedSomeone ? "":"Show using your lips",
                     option1DialogueID = 340138,
                     option2Text = "Show using your finger",
                     option2DialogueID = 340238,
@@ -5901,6 +5908,10 @@ namespace TootTally.Tooter
 
         public static class DialogueFlags
         {
+            #region Global
+            public static bool kissedSomeone;
+            #endregion
+
             #region Chapter 1
             public static bool cheeredTrixie;
             public static bool isCompetitive;
@@ -5964,6 +5975,13 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 3 part 4
+            public static bool wannaKnowAboutKaizyle;
+            public static bool saidYippies;
+            public static bool choosedGlissandogs;
+            public static bool arguedAboutGlissandogs;
+            public static bool overReactedAboutKaizyleHotdogs;
+            public static bool complimentedKaizyle;
+            public static bool threwIceCreamAway;
             public static bool gotIceCream;
             public static bool kissedKaizyle;
             #endregion
