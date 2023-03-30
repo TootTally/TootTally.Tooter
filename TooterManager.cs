@@ -105,11 +105,11 @@ namespace TootTally.Tooter
         {
             if (_isSceneActive)
             {
-                if (Input.GetKey(KeyCode.Space) && _dialogueStates[_currentDialogueState].option1Text == "")
+                if (Input.GetKeyDown(KeyCode.Space) && _dialogueStates[_currentDialogueState].option1Text == "")
                     OverwriteClickBtn2(_currentDemonDialogueInstance);
-                else if (Input.GetKey(KeyCode.Keypad1) && _dialogueStates[_currentDialogueState].option1Text != "")
+                else if (Input.GetKeyDown(KeyCode.Keypad1) && _dialogueStates[_currentDialogueState].option1Text != "")
                     OverwriteClickBtn1(_currentDemonDialogueInstance);
-                else if (Input.GetKey(KeyCode.Keypad2) && _dialogueStates[_currentDialogueState].option2Text != "")
+                else if (Input.GetKeyDown(KeyCode.Keypad2) && _dialogueStates[_currentDialogueState].option2Text != "")
                     OverwriteClickBtn2(_currentDemonDialogueInstance);
             }
         }
