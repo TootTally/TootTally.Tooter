@@ -366,6 +366,12 @@ namespace TootTally.Tooter
             _tooterButtonClicked = false;
             tooterHitbox.GetComponent<Button>().onClick.AddListener(() =>
             {
+                if (_isSceneActive)
+                {
+                    PopUpNotifManager.DisplayNotif("Please restart game to play again, sorry!", GameTheme.themeColors.notification.defaultText);
+                    return;
+                }
+                    
                 __instance.addWaitForClick();
                 __instance.playSfx(3);
                 //Yoinked from DNSpy KEKW
