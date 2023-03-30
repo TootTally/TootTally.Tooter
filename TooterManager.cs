@@ -4194,7 +4194,7 @@ namespace TootTally.Tooter
             {320002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hey {_sodaColoredName}, I was thinking about checking out the new hard rock cafe that just opened up. Would you like to go with me?",
+                    dialogueText = $"{_sodaColoredName}: Hey {_beezerlyColoredName}, I was thinking about checking out the new hard rock cafe that just opened up. Would you like to go with me?",
                     option2DialogueID = DialogueFlags.talkedShitAboutRock ? 320003 : 320005,
                 }
             },
@@ -4216,14 +4216,14 @@ namespace TootTally.Tooter
             {320005,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hmm, a hard rock cafe? Sure, I'll go. Sounds like a good time!",
+                    dialogueText = $"{_beezerlyColoredName}: Hmm, a hard rock cafe? Sure, I'll go. Sounds like a good time!",
                     option2DialogueID = 320006,
                 }
             },
             {320006, //Transition to hard rock cafe
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Awesome! I'm really looking forward to it.",
+                    dialogueText = $"{_sodaColoredName}: Awesome! I'm really looking forward to it.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -4397,7 +4397,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"Without warning, Beezerly pushes back her chair and shoots up.", //widepeepoBeezerly
-                    option2DialogueID = 3202042,
+                    option2DialogueID = 3202054,
 
                 }
             },
