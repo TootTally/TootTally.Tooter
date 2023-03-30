@@ -36,7 +36,7 @@ namespace TootTally.Tooter
         private static readonly Vector2 _btn2PositionCenter = new Vector2(65, -190);
 
         private static readonly Vector3 _leftCharPosition = new Vector3(-8f, -6.5f, 10);
-        private static readonly Vector3 _leftCenterCharPosition = new Vector3(-5f, -6.5f, 10);
+        private static readonly Vector3 _leftCenterCharPosition = new Vector3(-4.75f, -6.5f, 10);
         private static readonly Vector3 _centerCharPosition = new Vector3(-1.5f, -6.5f, 10);
         private static readonly Vector3 _rightCenterCharPosition = new Vector3(1f, -6.5f, 10);
         private static readonly Vector3 _rightCharPosition = new Vector3(4f, -6.5f, 10);
@@ -2182,7 +2182,16 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340017, 2.65f)); //To Ice Cream yeehaw yum yum
                     break;
                 case 340017: //Ice cream
-
+                    _soda.transform.position = _leftCenterCharPosition;
+                    FlipSpriteRightAnimation(_soda, false, 10f);
+                    _kaizyle.transform.position = _rightCenterCharPosition;
+                    FlipSpriteLeftAnimation(_kaizyle, false, 10f);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340300:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     break;
                 case 350000:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
@@ -2198,12 +2207,16 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePanic, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.trixiePresent = true;
+                    UpdateDialogueStates(4);
                     break;
                 case 410003:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyBump, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.beezerlyPresent = true;
+                    UpdateDialogueStates(4);
                     break;
                 case 410004:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -2211,6 +2224,8 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.appaloosaPresent = true;
+                    UpdateDialogueStates(4);
                     break;
                 case 410005:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -2219,6 +2234,8 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.kaizylePresent = true;
+                    UpdateDialogueStates(4);
                     break;
                 case 410006:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
@@ -6728,13 +6745,14 @@ namespace TootTally.Tooter
             Plugin.Instance.LogInfo("Dialogue States Update for Chapter " + chapterID);
         }
 
-        public static void ChangeCharSprite(SpriteRenderer renderer, CharExpressions expression, Color? color)
+        public static void ChangeCharSprite(SpriteRenderer renderer, CharExpressions expression, Color? color = null)
         {
             if (expression != CharExpressions.None)
                 renderer.sprite = TooterAssetsManager.GetSprite(ExpressionToSpritePath(expression));
             if (color != null)
                 renderer.color = (Color)color;
         }
+
         public static string ExpressionToSpritePath(CharExpressions expression) => expression.ToString() + ".png";
 
         public enum CharExpressions
