@@ -1421,7 +1421,7 @@ namespace TootTally.Tooter
                     UpdateDialogueStates(3);
                     break;
                 case 178:
-                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 179, 8.5f));
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 179, 6f));
                     break;
                 case 180:
                     FlipSpriteAnimation(_soda, false, .8f);
@@ -1562,7 +1562,7 @@ namespace TootTally.Tooter
                     break;
                 case 3202050:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyImpressed, Color.white);
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white); //SODA SCREAMMMM
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaCall, Color.white); //SODA SCREAMMMM
                     DialogueFlags.pickedBeezerlyFavoriteSong = true;
                     UpdateDialogueStates(3);
                     break;
@@ -1581,16 +1581,16 @@ namespace TootTally.Tooter
                     break;
                 case 3202052:
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.HornLordNeutral, Color.white);
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyImpressed, Color.white); //BeezerlyOVEREXCITED
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyHype, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     break;
                 case 3202053:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyMock, Color.white);
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaShock, Color.white); //excited like OH SHEIT RLYY??
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
                     break;
                 case 3202054:
                     FlipSpriteAnimation(_beezerly, true);
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyBump, Color.white); //beezLetsgo!
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyPoint, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
                     break;
                 case 3202055:
@@ -1638,7 +1638,7 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3204159, 0f, 0.3f)); // transition to kissing scene
                     break;
                 case 3204159:
-                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3204060, 5.5f));
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3204060, 6f));
                     break;
                 case 3205059:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
@@ -1703,11 +1703,11 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 320016:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyImpressed, Color.white); // BeezerlyPassionate
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyPassion, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     break;
                 case 320700:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyImpressed, Color.white); //beezerlyExcuseMeWhat
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyWhat, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
                     break;
                 case 320701:
@@ -1757,11 +1757,11 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 321000:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white); //BeezerlyUh
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyUh, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaBleh, Color.white);
                     break;
                 case 321001:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white); //BeezerlyChallenge
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyChallenge, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 321002:
@@ -2083,7 +2083,7 @@ namespace TootTally.Tooter
                         _soda.transform.position = _outRightCharPosition + new Vector3(1, 0, 0);
                         _beezerly.transform.position = _outRightCharPosition;
                         __instance.csc.fadeMus(0, true);
-                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("HardRockCafe.png"); // change this to stage rock cafe image
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("HardRockCafeTableAndStage.png"); // change this to stage rock cafe image
                         break;
 
                     //Timetravel forward
@@ -3217,7 +3217,7 @@ namespace TootTally.Tooter
                     dialogueText = DialogueFlags.cheeredTrixie ?
                     $"{_trixieColoredName}: Oh, hi {_sodaColoredName}. I'm great! Just practicing." :
                     $"{_trixieColoredName}: Oh, hi {_sodaColoredName}. I'm doing okay, I guess. Practicing... y'know?",
-                    option2DialogueID = DialogueFlags.cheeredTrixie ? 85 : 86,
+                    option2DialogueID = DialogueFlags.cheeredTrixie ? 85 : 87,
                 }
             },
             {85,
@@ -4439,7 +4439,7 @@ namespace TootTally.Tooter
             {320300,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I have never tried pineapple pizza before so lets try that.",
+                    dialogueText = $"{_sodaColoredName}: I have never tried pineapple pizza before so let's try that.",
                     option2DialogueID = 320013,
 
                 }
@@ -5023,28 +5023,28 @@ namespace TootTally.Tooter
             {340000,
                 new DialogueData()
                 {
-                    dialogueText = $"[It's the end of class and everyone leaves to go home. {_sodaColoredName} goes to Kaizyle to chat with her]",
+                    dialogueText = $"Only Kaizyle is here, I should go talk to her.",
                     option2DialogueID = 340001,
                 }
             },
             {340001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hey {_kaizyleColoredName}, how's it going?",
+                    dialogueText = $"{_sodaColoredName}: Hey Kaizyle, how's it going?",
                     option2DialogueID = 340002,
                 }
             },
             {340002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: It's going fine, why do you ask?",
+                    dialogueText = $"{_kaizyleColoredName}: I'm okay",
                     option2DialogueID = 340003,
                 }
             },
             {340003,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Well, I was thinking about going out for a walk in the park and maybe grabbing some ice cream. Would you like to come with me?",
+                    dialogueText = $"{_sodaColoredName}: I was thinking about going out for a walk in the park. Would you like to come with me?",
                     option2DialogueID = 340004,
                 }
             },
@@ -5052,7 +5052,31 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: Why would I want to go out with you?",
+                    option1Text = "It's a date",
+                    option1DialogueID = 340100,
+                    option2Text = "Get to know eachother",
                     option2DialogueID = 340005,
+                }
+            },
+            {340100,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: So we can go on a date together.",
+                    option2DialogueID = 340101,
+                }
+            },
+            {340101, 
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: With you?? No...",
+                    option2DialogueID = 340102,
+                }
+            },
+            {340102, //GTFO ending
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Oh... alright then, I'll see you for the competition tomorrow then!",
+                    option2DialogueID = 340103, //TODO
                 }
             },
             {340005,
@@ -5065,105 +5089,159 @@ namespace TootTally.Tooter
             {340006,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: We're in the same music program, and I feel like we haven't had a chance to talk much.",
+                    dialogueText = $"{_kaizyleColoredName}: Hmph, I don't see why not. I guess we should get to know eachother.",
                     option2DialogueID = 340007,
                 }
             },
             {340007,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Hmph, I suppose it wouldn't hurt to get to know my fellow band members better.",
+                    dialogueText = $"{_sodaColoredName}: I wanted to go walk downtown later today. We can meet eachother there.",
                     option2DialogueID = 340008,
                 }
             },
             {340008,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Great! Since tomorrow is a weekend, I'll meet you downtown tomorrow?",
+                    dialogueText = $"{_kaizyleColoredName}: Sure, whatever.",
+                    option1Text = "Yippies!",
+                    option1DialogueID = 3401081,
+                    option2Text = "Cya later",
+                    option2DialogueID = 3400081,
+                }
+            },
+            {3401081, // TRANSITION TO DOWNTOWN
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: YEPPIES! I'll see you tomorrow kay kay!",
+                    option2Text = "",
+                    option2DialogueID = 0,
+                }
+            },
+            {3400081,// TRANSITION TO DOWNTOWN
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Alright I'll see you later then.",
+                    option2Text = "",
+                    option2DialogueID = 0,
+                }
+            },
+            {3400090,
+                new DialogueData()
+                {
+                    dialogueText = $"I'm almost late, I'd better hurry up and run!",
                     option2DialogueID = 340009,
                 }
             },
             {340009,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Sure, whatever.",
+                    dialogueText = $"{_sodaColoredName}: Hey... I had to run a little... it's good to see you again. How have you been?",
                     option2DialogueID = 340010,
                 }
             },
             {340010,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hey {_kaizyleColoredName}, it's good to see you again. How have you been?",
+                    dialogueText = $"{_kaizyleColoredName}: I've been fine.",
                     option2DialogueID = 340011,
                 }
             },
             {340011,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: I've been fine.",
+                    dialogueText = $"{_kaizyleColoredName}: ...",
                     option2DialogueID = 340012,
                 }
             },
             {340012,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: ...",
+                    dialogueText = $"{_kaizyleColoredName}: Thanks for inviting me out today.",
                     option2DialogueID = 340013,
                 }
             },
             {340013,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Thanks for inviting me out today.",
+                    dialogueText = $"{_sodaColoredName}: No problem, I thought it would be nice to get some fresh air and enjoy the sunshine. So, what do you want to do?",
                     option2DialogueID = 340014,
                 }
             },
             {340014,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: No problem, I thought it would be nice to get some fresh air and enjoy the sunshine. So, what do you want to do?",
+                    dialogueText = $"{_kaizyleColoredName}: I don't know, it's up to you.",
+                    option1Text = "Glissandogs",
+                    option1DialogueID = 340200, //TODO
+                    option2Text = "Cone-A-Bone",
                     option2DialogueID = 340015,
                 }
             },
             {340015,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: I don't know, it's up to you.",
+                    dialogueText = $"{_sodaColoredName}: How about we go grab some ice cream? There's a really good place down the street.",
                     option2DialogueID = 340016,
                 }
             },
-            {340016,
+            {340016, //TRANSITION TO THE ICECREAM PLACE
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: How about we go grab some ice cream? There's a really good place down the street.",
-                    option2DialogueID = 340017,
+                    dialogueText = $"{_kaizyleColoredName}: Fine, but only because I'm craving something sweet.",
+                    option2Text = "",
+                    option2DialogueID = 0,
                 }
             },
             {340017,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: Fine, but only because I'm craving something sweet.",
+                    dialogueText = $"Hmm I'm not sure what I should get...",
+                    option1Text = "Ice Cream",
+                    option1DialogueID = 340300,
+                    option2Text = "Sundae",
+                    option2DialogueID = 340400,
+                }
+            },
+            {340300,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I'll get an ice cream, what about you?",
+                    option2DialogueID = 3400171,
+                }
+            },
+            {340400,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I'll get a sundae, what about you?",
+                    option2DialogueID = 3400171,
+                }
+            },
+            {3400171,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: I'll just get an ice cream{(DialogueFlags.gotIceCream ? " as well.":".")}",
                     option2DialogueID = 340018,
                 }
             },
             {340018,
                 new DialogueData()
                 {
-                    dialogueText = $"[They walk to the ice cream shop and order their treats]",
-                    option2DialogueID = 340019,
-                }
-            },
-            {340019,
-                new DialogueData()
-                {
                     dialogueText = $"{_sodaColoredName}: So, how's your music going? I heard you had a big performance last week.",
                     option2DialogueID = 340020,
                 }
             },
-            {340020,
+            {340020, //Happy or satisfied
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: It went well. I played the solo in the third movement of the Mozart Requiem. It was a challenge, but I think I nailed it.",
+                    dialogueText = $"{_kaizyleColoredName}: It went well. I played the solo in the third movement of the Mozart Requiem.",
+                    option2DialogueID = 3400201,
+                }
+            },
+            {3400201, //Proud
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: It was a challenge, but I think I nailed it.",
                     option2DialogueID = 340021,
                 }
             },
@@ -5178,13 +5256,23 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: Maybe I can show you a video sometime.",
+                    option1Text = "Sure",
+                    option1DialogueID = 3400221,
+                    option2Text = "Compliment",
                     option2DialogueID = 340023,
+                }
+            },
+            {3400221,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Sure, I'd like that.",
+                    option2DialogueID = 340025,
                 }
             },
             {340023,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I'd like that. You know, I've always admired your talent and dedication to your craft. It's inspiring.",
+                    dialogueText = $"{_sodaColoredName}: I've always admired your talent and dedication to your craft. It's inspiring.",
                     option2DialogueID = 340024,
                 }
             },
@@ -5198,18 +5286,42 @@ namespace TootTally.Tooter
             {340025,
                 new DialogueData()
                 {
-                    dialogueText = $"[They finish their ice cream and start walking back to the park]",
+                    dialogueText = $"HolyWow, Kaizyle already finished? I'm only half done!",
+                    option1Text = "Throw away",
+                    option1DialogueID = 3400261,
+                    option2Text = "Keep it",
+                    option2DialogueID = 3400262,
+                }
+            },
+            {3400261,
+                new DialogueData()
+                {
+                    dialogueText = $"I think I'm done with the rest. I'll just throw it away.",
+                    option2DialogueID = 3400263,
+                }
+            },
+            {3400262,
+                new DialogueData()
+                {
+                    dialogueText = $"I'll bring it with me just in case...",
+                    option2DialogueID = 3400263,
+                }
+            },
+            {3400263,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Should we go for a walk?",
                     option2DialogueID = 340026,
                 }
             },
-            {340026,
+            {340026, // TRANSITION TO 340027 OTHER DOWNTOWN
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: So, what kind of music do you like to listen to in your free time?",
-                    option2DialogueID = 340027,
+                    dialogueText = $"{_kaizyleColoredName}: {(DialogueFlags.gotIceCream ? "Sure.":"Whatever you want Soda.")}",
+                    option2DialogueID = 0,
                 }
             },
-            {340027,
+            {340027, //TODO this is where we're at B)
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: Mostly classical, but I also enjoy jazz and some pop. What about you?",
@@ -5571,8 +5683,7 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 3 part 4
-
-
+            public static bool gotIceCream;
             #endregion
 
             #region Chapter 4
@@ -5680,6 +5791,8 @@ namespace TootTally.Tooter
             SodaMunch,
             SodaWow,
             SodaInLove,
+            SodaCall,
+            SodaHype,
 
             TrixieNeutral,
             TrixieNeutralTalk,
@@ -5714,6 +5827,13 @@ namespace TootTally.Tooter
             BeezerlyUh,
             BeezerlyChallenge,
             BeezerlyInLove,
+            BeezerlyHype,
+            BeezerlyPassion,
+            BeezerlyWhat,
+            BeezerlyPoint,
+            BeezJam1,
+            BeezJam2,
+            BeezJam3,
 
             KaizyleNeutral,
             KaizyleNeutralTalk,
@@ -5727,8 +5847,6 @@ namespace TootTally.Tooter
             HornLordNeutral,
             HornLordTalk,
             HornLordYeah,
-
-
 
         }
     }

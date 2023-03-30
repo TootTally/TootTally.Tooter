@@ -37,6 +37,8 @@ namespace TootTally.Tooter
             "SodaMunch.png",
             "SodaWow.png",
             "SodaInLove.png",
+            "SodaCall.png",
+            "SodaHype.png",
 
             "TrixieBag.png",
             "TrixieShadow.png",
@@ -84,6 +86,13 @@ namespace TootTally.Tooter
             "BeezerlyUh.png",
             "BeezerlyChallenge.png",
             "BeezerlyInLove.png",
+            "BeezerlyHype.png",
+            "BeezerlyPassion.png",
+            "BeezerlyWhat.png",
+            "BeezerlyPoint.png",
+            "BeezJam1.png",
+            "BeezJam2.png",
+            "BeezJam3.png",
 
             "HornLordNeutral.png",
             "HornLordTalk.png",
@@ -110,6 +119,7 @@ namespace TootTally.Tooter
             "StreetNight.png",
             "TrixieHouseNight.png",
             "SpecialMomentTrixie.png",
+            "SpecialMomentBeezerly.png",
 
         };
 
