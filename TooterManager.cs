@@ -5178,6 +5178,180 @@ namespace TootTally.Tooter
                     option2DialogueID = 340015,
                 }
             },
+            {340200,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Let's go to Glissandogs!",
+                    option2DialogueID = 340201,
+                }
+            },
+            {340201, // KayBrag
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: Uh, no. I only eat high quality hotdogs.",
+                    option2DialogueID = 340202,
+                }
+            },
+            {340202,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Why only high quality hotdogs specifically?",
+                    option2DialogueID = 340203,
+                }
+            },
+            {340203,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: To be the best tromboner you can only eat the best hotdogs.",
+                    option2DialogueID = 340204,
+                }
+            },
+            {340204,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: That's how my family have stayed on top of the musician line for decades.", //idk how to word this sheit pliz send help
+                    option1Text = "Ask more about her hotdogs",
+                    option1DialogueID = 340205,
+                    option2Text = "Praise Glissandogs",
+                    option2DialogueID = 340305,
+                }
+            },
+            {340305,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: But Glissandogs are my favourite hotdogs!",
+                    option2DialogueID = 340306,
+                }
+            },
+            {340306,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: But Glissandogs are my favourite hotdogs!",
+                    option2DialogueID = 340307,
+                }
+            },
+            {340307,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: But Glissandogs are my favourite hotdogs!",
+                    option2DialogueID = 340308,
+                }
+            },
+            {340308,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: But Glissandogs are my favourite hotdogs!",
+                    option2DialogueID = 340309,
+                }
+            },
+            {340309,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: But Glissandogs are my favourite hotdogs!",
+                    option2DialogueID = 340310,
+                }
+            },
+            {340310,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: But Glissandogs are my favourite hotdogs!",
+                    option2DialogueID = 340311,
+                }
+            },
+            {340311,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: But Glissandogs are my favourite hotdogs!",
+                    option2DialogueID = 340312,
+                }
+            },
+            {340312,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: But Glissandogs are my favourite hotdogs!",
+                    option2DialogueID = 340313, // more???
+                }
+            },
+            {340205,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Where do you get your hotdogs?",
+                    option2DialogueID = 340206,
+                }
+            },
+            {340206,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: We make ours homemade. It's a family recipe.",
+                    option1Text = "Interesting",
+                    option1DialogueID = 340207,
+                    option2Text = "OMG NO WAY!",
+                    option2DialogueID = 340407,
+                }
+            },
+            {340407,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: That's mega awesome cool!!",
+                    option2DialogueID = 0, //Auto Dialogue
+                }
+            },
+            {340408,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: What's in them??",
+                    option2DialogueID = 0, //Auto Dialogue
+                }
+            },
+            {340409,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Do you sell them somewhere??",
+                    option2DialogueID = 0, //Auto Dialogue
+                }
+            },
+            {340410,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: What do you like to put in your hotdogs??",
+                    option2DialogueID = 0, //Auto Dialogue
+                }
+            },
+            {340411,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Do you know how to grill hotdogs??",
+                    option2DialogueID = 0, //Auto Dialogue
+                }
+            },
+            {340412,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Can we try different hotdogs from around the world??",
+                    option2DialogueID = 0, //Auto Dialogue
+                }
+            },
+            {340413,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: Soda stop.",
+                    option2DialogueID = 340208,
+                }
+            },
+            {340207,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Hmm, that's interesting. I'd be curious to try them sometimes.",
+                    option2DialogueID = 340208,
+                }
+            },
+            {340208,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Anyway, I think we should go to Cone-A-Bone Ice Cream Parlor then!",
+                    option2DialogueID = 340016,
+                }
+            },
             {340015,
                 new DialogueData()
                 {
