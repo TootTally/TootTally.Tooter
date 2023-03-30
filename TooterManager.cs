@@ -2052,6 +2052,7 @@ namespace TootTally.Tooter
                     case 164:
                         _soda.transform.position = _outLeftCharPosition + new Vector3(1, 0, 0);
                         _trixiebell.transform.position = _outLeftCharPosition;
+                        _appaloosa.transform.position = _outLeftCharPosition;
                         FlipSpriteLeftAnimation(_soda, false, 10f);
                         FlipSpriteRightAnimation(_trixiebell, false, 10f);
                         __instance.csc.fadeMus(0, true);
