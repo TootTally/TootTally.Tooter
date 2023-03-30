@@ -2081,7 +2081,7 @@ namespace TootTally.Tooter
                 case 340312:
                 case 340314:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white); //SodaFightMeAngry?
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white); //KaizyleFightMeAngry?
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFightMe, Color.white); //KaizyleFightMeAngry?
                     if (_currentDialogueState == 340314)
                         AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction(1.2f));
                     break;
@@ -2171,6 +2171,15 @@ namespace TootTally.Tooter
                 case 340208:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340015:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340016:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340017, 2.65f)); //To Ice Cream yeehaw yum yum
                     break;
                 case 350000:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
@@ -6739,6 +6748,7 @@ namespace TootTally.Tooter
             SodaInLove,
             SodaCall,
             SodaHype,
+            SodaFightMe,
 
             TrixieNeutral,
             TrixieNeutralTalk,
@@ -6789,6 +6799,7 @@ namespace TootTally.Tooter
             KaizyleBrag,
             KaizylePissed,
             KaizyleUm,
+            KaizyleFightMe,
 
             HornLordNeutral,
             HornLordTalk,

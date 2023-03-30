@@ -39,6 +39,7 @@ namespace TootTally.Tooter
             "SodaInLove.png",
             "SodaCall.png",
             "SodaHype.png",
+            "SodaFightMe.png",
 
             "TrixieBag.png",
             "TrixieShadow.png",
@@ -74,6 +75,7 @@ namespace TootTally.Tooter
             "KaizyleBrag.png",
             "KaizylePissed.png",
             "KaizyleUm.png",
+            "KaizyleFightMe.png",
 
             "BeezerlyShadow.png",
             "BeezerlyNeutral.png",
