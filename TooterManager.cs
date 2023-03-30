@@ -5273,50 +5273,92 @@ namespace TootTally.Tooter
             {340306,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: But Glissandogs are my favourite hotdogs!",
+                    dialogueText = $"{_kaizyleColoredName}: You're an enemy of art and I pity your ignorance.",
                     option2DialogueID = 340307,
                 }
             },
             {340307,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: But Glissandogs are my favourite hotdogs!",
+                    dialogueText = $"{_sodaColoredName}: Don't you dare flame-broil me like that. Hear me out, at least!",
                     option2DialogueID = 340308,
                 }
             },
             {340308,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: But Glissandogs are my favourite hotdogs!",
+                    dialogueText = $"{_kaizyleColoredName}: If I mustard.",
                     option2DialogueID = 340309,
                 }
             },
             {340309,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: But Glissandogs are my favourite hotdogs!",
+                    dialogueText = $"{_sodaColoredName}: OK, well, I believe a true tromboner should relish the dogs they have, whenever they can.",
                     option2DialogueID = 340310,
                 }
             },
             {340310,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: But Glissandogs are my favourite hotdogs!",
+                    dialogueText = $"{_kaizyleColoredName}: *pfff* Please. You'll be playing ketchup the rest of your career with a philosophy like that.",
                     option2DialogueID = 340311,
                 }
             },
             {340311,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: But Glissandogs are my favourite hotdogs!",
+                    dialogueText = $"{_sodaColoredName}: Fine then. I'll be frank.",
                     option2DialogueID = 340312,
                 }
             },
             {340312,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: But Glissandogs are my favourite hotdogs!",
-                    option2DialogueID = 340313, // more???
+                    dialogueText = $"{_kaizyleColoredName}: What's stopping you? You're already up in my grill.",
+                    option2DialogueID = 340313, 
+                }
+            },
+            {340313,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: I've always thought that you're the wurst.",
+                    option2DialogueID = 340314,
+                }
+            },
+            {340314,
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: ...You're such a weiner.",
+                    option2DialogueID = 340315, // more???
+                }
+            },
+            {340315,
+                new DialogueData()
+                {
+                    dialogueText = $"{_sodaColoredName}: Oh yeah?",
+                    option2DialogueID = 340316,
+                }
+            },
+            {340316, //kaizyleLeaves
+                new DialogueData()
+                {
+                    dialogueText = $"{_kaizyleColoredName}: Yeah!",
+                    option2DialogueID = 340317,
+                }
+            },
+            {340317,
+                new DialogueData()
+                {
+                    dialogueText = $"It's hard not to cry at times like these.",
+                    option2DialogueID = 340318,
+                }
+            },
+            {340318, //lets go end of chapter 3 LMFAOOOO
+                new DialogueData()
+                {
+                    dialogueText = $"Mustarding my final ounce of pride, I square my shoulders and walk home.",
+                    option2DialogueID = 350000,
                 }
             },
             {340205,
