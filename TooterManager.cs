@@ -99,6 +99,21 @@ namespace TootTally.Tooter
             return false;
         }
 
+        [HarmonyPatch(typeof(Plugin), nameof(Plugin.Update))]
+        [HarmonyPostfix]
+        public static void KeyPressDetectionOnUpdate()
+        {
+            if (_isSceneActive)
+            {
+                if (Input.GetKey(KeyCode.Space) && _dialogueStates[_currentDialogueState].option1Text == "")
+                    OverwriteClickBtn2(_currentDemonDialogueInstance);
+                else if (Input.GetKey(KeyCode.Keypad1) && _dialogueStates[_currentDialogueState].option1Text != "")
+                    OverwriteClickBtn1(_currentDemonDialogueInstance);
+                else if (Input.GetKey(KeyCode.Keypad2) && _dialogueStates[_currentDialogueState].option2Text != "")
+                    OverwriteClickBtn2(_currentDemonDialogueInstance);
+            }
+        }
+
         [HarmonyPatch(typeof(BabbleController), nameof(BabbleController.doBabbles))]
         [HarmonyPrefix]
         public static void OnDemonDialogueAddWordPostFix(BabbleController __instance)
