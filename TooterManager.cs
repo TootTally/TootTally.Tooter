@@ -1915,6 +1915,14 @@ namespace TootTally.Tooter
                 #endregion
 
                 #region Chapter 4
+                case 410001:
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    break;
+                case 410002:
+
+                    break;
+
                 //perform with Trixie
                 case 410100:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410101, 2.65f));
@@ -4801,14 +4809,14 @@ namespace TootTally.Tooter
             {330000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hi {_appaloosaColoredName}, thanks for agreeing to give me some trombone lessons. I'm really excited to learn from you.",
+                    dialogueText = $"{_sodaColoredName}: Hi Appaloosa, thanks for agreeing to give me some trombone lessons. I'm really excited to learn from you.",
                     option2DialogueID = 330001,
                 }
             },
             {330001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. I love helping passionate people develop their skills.",
+                    dialogueText = $"{_appaloosaColoredName}: It's my pleasure, Soda. I love helping passionate people develop their skills.",
                     option2DialogueID = 3300011,
                 }
             },
@@ -5921,6 +5929,65 @@ namespace TootTally.Tooter
             #endregion
         };
 
+        public static int GetChapter4FirstCharacterEnter()
+        {
+            if (!DialogueFlags.awkwardMomentWithTrixie && !DialogueFlags.toldTrixieAboutTheSmell)
+                return 410002;
+            else if (!DialogueFlags.talkedShitAboutRock)
+                return 410003;
+            else if (!DialogueFlags.awkwardAppaloosa && !DialogueFlags.unimpressedAppaloosa)
+                return 410004;
+            else if (!DialogueFlags.arguedAboutGlissandogs)
+                return 410005;
+            else
+                return 4100111;
+        }
+
+        public static int GetChapter4SecondCharacterEnter()
+        {
+            if (!DialogueFlags.talkedShitAboutRock)
+                return 410003;
+            else if (!DialogueFlags.awkwardAppaloosa && !DialogueFlags.unimpressedAppaloosa)
+                return 410004;
+            else if (!DialogueFlags.arguedAboutGlissandogs)
+                return 410005;
+            else
+                return 410006;
+        }
+        public static int GetChapter4ThirdCharacterEnter()
+        {
+            if (!DialogueFlags.awkwardAppaloosa && !DialogueFlags.unimpressedAppaloosa)
+                return 410004;
+            else if (!DialogueFlags.arguedAboutGlissandogs)
+                return 410005;
+            else
+                return 410006;
+        }
+        public static int GetChapter4FourthCharacterEnter()
+        {
+            if (!DialogueFlags.arguedAboutGlissandogs)
+                return 410005;
+            else
+                return 410006;
+        }
+
+        public static bool CanPerformWithTrixie()
+        {
+            return _scoreData.trixieScore >= 10 && ((DialogueFlags.kissedSomeone && DialogueFlags.kissedTrixie) || !DialogueFlags.kissedSomeone) && DialogueFlags.trixiePresent;
+        }
+        public static bool CanPerformWithBeezerly()
+        {
+            return _scoreData.beezerlyScore >= 10 && ((DialogueFlags.kissedSomeone && DialogueFlags.kissedBeezerly) || !DialogueFlags.kissedSomeone) && DialogueFlags.beezerlyPresent;
+        }
+        public static bool CanPerformWithAppaloosa()
+        {
+            return _scoreData.appaloosaScore >= 10 && ((DialogueFlags.kissedSomeone && DialogueFlags.appaloosaPresent) || !DialogueFlags.kissedSomeone) && DialogueFlags.appaloosaPresent;
+        }
+        public static bool CanPerformWithKaizyle()
+        {
+            return _scoreData.kaizyleScore >= 10 && ((DialogueFlags.kissedSomeone && DialogueFlags.kissedKaizyle) || !DialogueFlags.kissedSomeone) && DialogueFlags.kaizylePresent;
+        }
+
         public static Dictionary<int, DialogueData> GetDialogueChapter4() => new Dictionary<int, DialogueData>()
         {
             #region Chapter 4
@@ -5935,28 +6002,29 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Wow, I can't believe the competition is finally here",
-                    option2DialogueID = 410002,
+                    option2DialogueID =  GetChapter4FirstCharacterEnter()
+                    
                 }
             },
             {410002,
                 new DialogueData()
                 {
                     dialogueText = $"{_trixieColoredName}: I know, I'm so scared. What if I mess up?",
-                    option2DialogueID = 410003,
+                    option2DialogueID = GetChapter4SecondCharacterEnter()
                 }
             },
             {410003,
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName} : Don't worry about it, guys. Just play from the heart and have fun.",
-                    option2DialogueID = 410004,
+                    option2DialogueID = GetChapter4ThirdCharacterEnter(),
                 }
             },
             {410004,
                 new DialogueData()
                 {
                     dialogueText = $"{_appaloosaColoredName}: That's right. It's not about winning or losing, it's about expressing yourself through music.",
-                    option2DialogueID = 410005,
+                    option2DialogueID = GetChapter4FourthCharacterEnter(),
                 }
             },
             {410005,
@@ -5970,10 +6038,10 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: I have to choose which girl to perform with...but who should it be?",
-                    option2DialogueID = _scoreData.trixieScore >= 10 ? 410007 :
-                                        _scoreData.beezerlyScore >= 10 ? 410008 :
-                                        _scoreData.appaloosaScore >= 10 ? 410009 :
-                                        _scoreData.kaizyleScore >= 10 ? 410010 : 4100111,
+                    option2DialogueID = CanPerformWithTrixie() ? 410007 :
+                                        CanPerformWithBeezerly() ? 410008 :
+                                        CanPerformWithAppaloosa() ? 410009 :
+                                        CanPerformWithKaizyle() ? 410010 : 4100111,
                 }
             },
             {410007,
@@ -5983,7 +6051,9 @@ namespace TootTally.Tooter
                     option1Text = "Perform With Trixie",
                     option1DialogueID = 410100,
                     option2Text = "Deny Offer",
-                    option2DialogueID = 410008,
+                    option2DialogueID = CanPerformWithBeezerly() ? 410008 :
+                                        CanPerformWithAppaloosa() ? 410009 :
+                                        CanPerformWithKaizyle() ? 410010 : 410011,
                 }
             },
             {410100, //transition to loading the song for trixiebell
@@ -6001,7 +6071,8 @@ namespace TootTally.Tooter
                     option1Text = "Perform With Beezerly",
                     option1DialogueID = 410200,
                     option2Text = "Deny Offer",
-                    option2DialogueID = 410009,
+                    option2DialogueID = CanPerformWithAppaloosa() ? 410009 :
+                                        CanPerformWithKaizyle() ? 410010 : 410011,
                 }
             },
             {410200, //transition to loading the song for Beezerly
@@ -6019,7 +6090,7 @@ namespace TootTally.Tooter
                     option1Text = "Perform With Appaloosa",
                     option1DialogueID = 410300,
                     option2Text = "Deny Offer",
-                    option2DialogueID = 410010,
+                    option2DialogueID = CanPerformWithKaizyle() ? 410010 : 410011,
                 }
             },
             {410300, //transition to loading the song for Appaloosa
@@ -6208,6 +6279,11 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 4
+            public static bool trixiePresent;
+            public static bool beezerlyPresent;
+            public static bool appaloosaPresent;
+            public static bool kaizylePresent;
+
             public static bool performedWithTrixie;
             public static bool performedWithBeezerly;
             public static bool performedWithAppaloosa;
