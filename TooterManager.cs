@@ -2021,13 +2021,13 @@ namespace TootTally.Tooter
                     break;
                 #endregion
                 case 3400090: //Beez already in the scene facing right
-                    FlipSpriteRightAnimation(_kaizyle, false, 10f);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     break;
                 case 3400091:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction(), delegate
                     {
+                        FlipSpriteLeftAnimation(_kaizyle, false);
                         ChangeCharSprite(_sodaSprite, CharExpressions.SodaDeepSmug, Color.white);
                     });
                     break;
@@ -2080,8 +2080,8 @@ namespace TootTally.Tooter
                 case 340310:
                 case 340312:
                 case 340314:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white); //SodaFightMeAngry?
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFightMe, Color.white); //KaizyleFightMeAngry?
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaBleh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFightMe, Color.white);
                     if (_currentDialogueState == 340314)
                         AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction(1.2f));
                     break;
@@ -2089,7 +2089,7 @@ namespace TootTally.Tooter
                 case 340309:
                 case 340311:
                 case 340313:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaBleh, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaFightMe, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
                     if (_currentDialogueState == 340313)
                         AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition - new Vector3(-1, 0), 1.1f, GetSecondDegreeAnimationFunction(0.3f));
@@ -2180,6 +2180,9 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340017, 2.65f)); //To Ice Cream yeehaw yum yum
+                    break;
+                case 340017: //Ice cream
+
                     break;
                 case 350000:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
@@ -2526,6 +2529,15 @@ namespace TootTally.Tooter
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
                         LogChapter3Part3States();
                         LogScores();
+                        break;
+                        //DownTown
+                    case 3400090:
+                        ResetCharacterPositions();
+                        _txtBox.UpdateText("");
+                        _kaizyle.transform.position = _rightCenterCharPosition;
+                        FlipSpriteRightAnimation(_kaizyle, false, 10f);
+                        __instance.csc.fadeMus(1, true);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("Downtown.png");
                         break;
 
                     #region Chapter 4 transitions
