@@ -4767,7 +4767,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: So did I.",
-                    option2DialogueID = 320033,
+                    option2DialogueID = 3204065,
                 }
             },
             #endregion
