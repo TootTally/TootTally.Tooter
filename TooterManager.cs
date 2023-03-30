@@ -5253,7 +5253,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 0,
                 }
             },
-            {34010810, 
+            {34000810, 
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: ... I'll get out of your hair.{_kaizyleColoredName}: ...",
