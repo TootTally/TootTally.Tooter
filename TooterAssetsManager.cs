@@ -142,7 +142,7 @@ namespace TootTally.Tooter
             "TrixieHouseNight.png",
             "SpecialMomentTrixie.png",
             "SpecialMomentBeezerly.png",
-            "SpecialMomentAppoloosa.png",
+            "SpecialMomentAppaloosa.png",
             "SpecialMomentKaizyle.png",
             "ParkBench.png",
 
