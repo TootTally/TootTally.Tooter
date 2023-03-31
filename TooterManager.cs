@@ -6146,7 +6146,7 @@ namespace TootTally.Tooter
             {33100021,
                 new DialogueData()
                 {
-                    dialogueText = "I hear a knock on the door.",
+                    dialogueText = "I hear a knock on the door and brace myself as I nudge it open.",
                     option2DialogueID = 33100023,
                 }
             },
@@ -6160,7 +6160,7 @@ namespace TootTally.Tooter
             {33100023,
                 new DialogueData() 
                 {
-                    dialogueText = $"So I head downstairs and outside, greeting Appaloosa as we walk down to the road.",
+                    dialogueText = $"I meet her outside, the hellish cacophony of metal on metal still ringing in my ears, and together we walk down the road.",
                     option2DialogueID = 3310002
                 } 
             },
