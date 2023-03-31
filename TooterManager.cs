@@ -43,7 +43,7 @@ namespace TootTally.Tooter
         private static readonly Vector3 _farRightCharPosition = new Vector3(6.8f, -6.5f, 10);
         private static readonly Vector3 _outLeftCharPosition = new Vector3(-15, -6.5f, 10);
         private static readonly Vector3 _outRightCharPosition = new Vector3(15, -6.5f, 10);
-        private static readonly string _brokenWindow = "<color='#DAE6E4'>CRASH</color>";
+        private static readonly string _brokenWindow = "<color='#007ACC'>CRASH</color>";
         private static readonly string _sodaColoredName = "<color='#FFFF21'>Soda</color>";
         private static readonly string _trixieColoredName = "<color='#FFAAAA'>Trixiebell</color>";
         private static readonly string _appaloosaColoredName = "<color='#FF0000'>Appaloosa</color>";
@@ -1926,6 +1926,14 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 331001, 2.65f)); //To the jazz bar!
+                    break;
+                case 33100021:
+                    DialogueFlags.obsessAppaloosa = true;
+                    break;
+                case 33101021: 
+                    DialogueFlags.obsessAppaloosa = false;
+                    break;          
+                case 3300011:
                     break;
                 case 331001: //Jazz bar
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
@@ -4710,7 +4718,7 @@ namespace TootTally.Tooter
             {155, //Transition to night street image
                 new DialogueData()
                 {
-                    dialogueText = $"{_trixieColoredName}: God, you're weird.",
+                    dialogueText = $"{_trixieColoredName}: Babi, you're weird.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -4951,7 +4959,7 @@ namespace TootTally.Tooter
             {320004, //TODO: Slap
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: God, you're such a turd.",
+                    dialogueText = $"{_beezerlyColoredName}: Babi almighty, you're such a turd.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -5146,7 +5154,8 @@ namespace TootTally.Tooter
             {3202052,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Oh my god! This is my favorite song!!",
+
+                    dialogueText = $"{_beezerlyColoredName}: No way. This is my favorite song!!", //BeezerlyOverlminglyHappy
                     option2DialogueID = 3202053,
 
                 }
@@ -5643,7 +5652,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_beezerlyColoredName}: You're a funny guy, {_sodaColoredName}.",
-                    option2DialogueID = 3200255
+                    option2DialogueID = 320025
                 }
 
             },
@@ -5724,7 +5733,7 @@ namespace TootTally.Tooter
             {330001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: All good, Soda! I love teaching passionate musicians!",
+                    dialogueText = $"{_appaloosaColoredName}: Sure, Soda! There's nothing I love more than a passionate musician!",
                     option2DialogueID = 3300011,
                 }
             },
@@ -5766,7 +5775,7 @@ namespace TootTally.Tooter
             {330006,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: It's your lucky day, I work at one not too far from here!",
+                    dialogueText = $"{_appaloosaColoredName}: Well, it's your lucky day; I work at one not too far from here!",
                     option2DialogueID = 330007
                 }
             },
@@ -5776,11 +5785,7 @@ namespace TootTally.Tooter
                     dialogueText = $"{_appaloosaColoredName}: Wanna go tonight? We can grab a drink and listen to some live music.",
                     option1Text = $"Why not",
                     option1DialogueID = 3310001,
-                    option1Score = new ScoreData()
-                    {
-                        beezerlyScore =  -1,
-                    },
-                    option2Text = $"Yes",
+                    option2Text = $"Absolutely",
                     option2DialogueID = 331000,
                     option2Score = new ScoreData
                     {
@@ -5798,37 +5803,109 @@ namespace TootTally.Tooter
             {331000, // Choice 1; yes
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: That sounds trombtastic, I'd love to!", // SodaAgree
-                    option2DialogueID = 3310002,
+                    dialogueText = $"{_sodaColoredName}: That sounds amazing! I'd love to.", // SodaAgree
+                    option2DialogueID = 33100020,
                 }
+            },
+            {33100020,
+                new DialogueData() 
+                {
+                    dialogueText = $"{_appaloosaColoredName}: Great! I'll pick you up at 7.",
+                    option2DialogueID = 331000201
+                } 
+            },
+            {331000201,
+                new DialogueData() 
+                {
+                    dialogueText = $"As I get ready that night, I wonder what it is she's looking for from me.",
+                    option2DialogueID = 331000202
+                } 
+            },
+            {331000202,
+                new DialogueData() 
+                {
+                    dialogueText = $"She's my tutor, and I'm her student.",
+                    option1Text = "I should drop it.",
+                    option1DialogueID = 33101021,
+                    option2Text = "That's the best part.",
+                    option2DialogueID = 33100021
+                } 
+            },
+            {33100021,
+                new DialogueData()
+                {
+                    dialogueText = "... time passes.",
+                    option2DialogueID = 33100023,
+                }
+            },
+            {33101021,
+                new DialogueData()
+                {
+                    dialogueText = "... time passes.",
+                    option2DialogueID = 33100023,
+                }
+            },
+            {33100023,//TODO: automatic screen wipe transition
+                new DialogueData()
+                {
+                    option2DialogueID = 0
+                }
+            },
+            {33100021,
+                new DialogueData() 
+                {
+                    dialogueText = $"I hear a knock at the door. so I head downstairs and outside, greeting {_appaloosaColoredName} as we walk down to the road.",
+                    option2DialogueID = 3310002
+                } 
             },
             {3310002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Let's get going{(DialogueFlags.disinterestedAppaloosa ? " I guess." : "!")}",
+                    dialogueText = $"She starts up her autotrombile and I hop in.",
                     option2Text = "",
                     option2DialogueID = 0
                 }
             },
-            {331001,
+            {3310091,
                 new DialogueData()
                 {
-                    dialogueText = $"This place is so.. jazzy! I wonder how long these tromboners have played for?",
-                    option2DialogueID = 331002
+                    dialogueText = $"Pulling up to the curb, I'm surprised to find that the venue looks small and quiet from the outside.",
+                    option2DialogueID = 3310092
                 }
+            },
+            {3310092,
+                new DialogueData() 
+                {
+                    dialogueText = $"Only the occasional person passes through the doorway, but stepping inside, the room is well-packed.",
+                    option2DialogueID = 3310093
+                } 
+            },
+            {3310093,
+                new DialogueData() 
+                {
+                    dialogueText = $"At that point however, I hear the music, and understand.",
+                    option2DialogueID = 3310094
+                } 
+            },
+            {3310094,
+                new DialogueData() 
+                {
+                    dialogueText = $"What tromboner in their right mind would leave a sound like this?",
+                    option2DialogueID = 331002
+                } 
             },
             {331002,
                 new DialogueData()
                 {
                     dialogueText = $"{_appaloosaColoredName}: Whadd'ya think, {_sodaColoredName}? This is the real deal, yeah?", // Yelling over music
                     option1DialogueID = 331200,
-                    option1Text = $"Not really",
+                    option1Text = $"Not terrible...",
                     option1Score = new ScoreData
                     {
                         appaloosaScore = -2f
                     },
                     option2DialogueID = 331100,
-                    option2Text = $"Absolutely",
+                    option2Text = $"Absotootely!",
                     option2Score = new ScoreData
                     {
                         appaloosaScore = 3f
@@ -5838,14 +5915,14 @@ namespace TootTally.Tooter
             {331200, // Choice 2; unimpressed
                 new DialogueData // FLAG unimpressedAppaloosa
                 {
-                    dialogueText = $"{_sodaColoredName}: It's alright I guess.",
+                    dialogueText = $"{_sodaColoredName}: Y'know, it could be worse.",
                     option2DialogueID = 331104
                 }
             },
             {331100, //Choice 1; yes
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: For sure, this place {(DialogueFlags.talkedShitAboutRock ? "is awesome!":"rocks!")}",
+                    dialogueText = $"{_sodaColoredName}: Definitely. I can feel the energy in this place!",
                     option2DialogueID = 331101
                 }
             },
@@ -5867,8 +5944,8 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
 
-                    dialogueText = $"{_appaloosaColoredName}: That's why I'm here, to celebrate jazz with others!",
-                    option1Text = "Flirt",
+                    dialogueText = $"{_appaloosaColoredName}: That's what I'm here for. To share my love of jazz with others.",
+                    option1Text = DialogueFlags.obsessAppaloosa ? "Flirt" : "Advice",
                     option1DialogueID = 3311031,
                     option1Score = new ScoreData
                     {
@@ -5881,14 +5958,14 @@ namespace TootTally.Tooter
             {3311031,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Aren't you here for me though?",
+                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: I thought you were here for your passionate student?" : $"{_sodaColoredName} Speaking of, how do tromboners create complex chords in a group like that?",
                     option2DialogueID = 3311032
                 }
             },
             {3311032,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Oh, {_sodaColoredName}..",
+                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: Oh, stop it!" : $"{_appaloosaColoredName} Now, that's interesting, because you have to understand that harmony is more than just major and minor.",
 
                     option2DialogueID = 3311033
                 }
@@ -5903,31 +5980,31 @@ namespace TootTally.Tooter
             {331104,
                 new DialogueData()
                 {
-                    dialogueText = $"This table is quite close to the stage. My drink could probably reach if it were thrown..",
-                    option2DialogueID = DialogueFlags.unimpressedAppaloosa ? 331220 : 331105
+                    dialogueText = $"We order our drinks and take a seat, letting the music wash over us.",
+                    option2DialogueID = 331220
                 }
             },
-            {331220, // Unimpressed Path
+            {331220, 
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: So, do you come here often..?",
-                    option2DialogueID = 331113
+                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often..?" : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary.") : $"{_appaloosaColoredName}: So, where do you want to go with tromboning?",
+                    option2DialogueID = 331105
                 }
             },
             {331105,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: This is so awesome, {_appaloosaColoredName}! I can't believe you didn't bring me sooner!", // SodaEat
+                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: This place is impressive, {_appaloosaColoredName}. I can't thank you enough for bringing me here." : $"{_sodaColoredName}: So words are just... notes?") : (DialogueFlags.isCompetitive ? $"{_sodaColoredName}: I'm definitely going pro once I graduate." : $"{_sodaColoredName}: I think I just started tromboning because I come from a long line of tromboners, but doesn't everyone?"), // SodaEat
                     option2DialogueID = 331106
                 }
             },
             {331106,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: It's cool, {_sodaColoredName}. You're like me when I was your age, fired up and full of potential.",
+                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. You remind me of myself when I was your age. So full of passion and potential." : $"{_appaloosaColoredName}: Exactly! And where you choose to, say, place the root of the chord down the octave determines what you communicate to the listener!") : (DialogueFlags.isCompetitive ? $"{_appaloosaColoredName}: That's great! You remind me of the tromboning drive I had when I first started." : "You're definitely not alone there. It's a big trombiverse out there, and all we can do is our best! So don't lose hope."),
                     option1Text = $"Thank",
                     option1DialogueID = 331120,
-                    option2Text = $"Flirt",
+                    option2Text = DialogueFlags.obsessAppaloosa ? "Flirt" : "",
                     option2DialogueID = 33110,
                     option2Score = new ScoreData
                     {
@@ -5938,7 +6015,7 @@ namespace TootTally.Tooter
             {331120, // Choice 2; thank
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Oh, thanks I guess..",
+                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: Oh, um... thanks." : $"{_sodaColoredName}: That's so cool! Tell me more.",
                     option2DialogueID = 331113
                 }
             },
@@ -5967,16 +6044,23 @@ namespace TootTally.Tooter
             {331113,
                 new DialogueData()
                 {
-                    dialogueText = $"{(DialogueFlags.unimpressedAppaloosa ? "I wanna go hoommeee noowww.." : "I'm loving the vibe of this place, It's so chill!")}",
+                    dialogueText = $"As the night wears on, {(DialogueFlags.obsessAppaloosa ? $"{appaloosaColoredName} loses herself" : "we lose ourselves")} in the music, the moment.",
+                    option2DialogueID = DialogueFlags.unimpressedAppaloosa ? 3311131 : 331114
+                }
+            },
+            {3311131,
+                new DialogueData() 
+                {
+                    dialogueText = $"It's interesting in places, sure, but {(DialogueFlags.isCompetitive ? "seeing all this tooting just makes me want to get home and practice." : "I know why I really came here.")}",
                     option2DialogueID = 331114
                 }
             },
             {331114,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "interesting" : (DialogueFlags.flirtAppaloosa ? "great" : "good"))}, {_appaloosaColoredName}.",
-                    option1Text  = DialogueFlags.kissedSomeone ? "":"Kiss",
-                    option1DialogueID =  3311141,
+                    dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "an interesting" : (DialogueFlags.flirtAppaloosa ? "such an incredible" : "a good"))} night, {_appaloosaColoredName}. {(!(DialogueFlags.unimpressedAppaloosa) ? "Thank you again for everything." : "")}",
+                    option1Text  = DialogueFlags.kissedSomeone || !DialogueFlags.obsessAppaloosa ? "":"Kiss",
+                    option1DialogueID = DialogueFlags.flirtAppaloosa ? 3311141 : 3311142,
                     option1Score = new ScoreData
                     {
                         appaloosaScore = DialogueFlags.flirtAppaloosa ? 50f : -10f,
@@ -5984,7 +6068,7 @@ namespace TootTally.Tooter
                         trixieScore = DialogueFlags.flirtAppaloosa ? -25f : 0f,
                         kaizyleScore = DialogueFlags.flirtAppaloosa ? -25f : 0f,
                     },
-                    option2Text = "Part Ways",
+                    option2Text = "Head home",
                     option2DialogueID = 331115
                 }
             },
@@ -5999,14 +6083,28 @@ namespace TootTally.Tooter
             {3311142,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: ...", // FLAG kissedAppaloosa or no
+                    dialogueText = $"I lean in.", //moment of truth
+                    option2DialogueID = DialogueFlags.unimpressedAppaloosa ? 331142 : 3311150,
+                }
+            },
+            {331142,
+                new DialogueData()
+                {
+                    dialogueText = $"She leans away.", // SET FLAG awkwardAppaloosa TODO
                     option2DialogueID = 331115
+                }
+            },
+            {3311150,
+                new DialogueData() {
+                    dialogueText = "", // SET FLAG kissedAppaloosa TODO
+                    option2DialogueID = 0
                 }
             },
             {331115,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: {(!DialogueFlags.kissedAppaloosa ? "Ahem.." : "Uhmm..")} Anytime, {_sodaColoredName}..", // If kissed Appaloosa: SodaEmbarrasedLight ; If awkwardAppaloosa: SodaPlead
+                    dialogueText = $"{_appaloosaColoredName}: {(!DialogueFlags.awkwardAppaloosa ? "" : "Uhmm...")} Anytime, {_sodaColoredName}", // If kissed Appaloosa: SodaEmbarrasedLight ; If awkwardAppaloosa: SodaPlead
+                    option2Text = "",
                     option2DialogueID = 0
 
                 }
@@ -6311,7 +6409,7 @@ namespace TootTally.Tooter
             {340305,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: But Glissandogs are my favourite hotdogs!",
+                    dialogueText = $"{_sodaColoredName}: But Glissandogs are my favorite hotdogs!",
                     option2DialogueID = 340306,
                 }
             },
@@ -6325,7 +6423,7 @@ namespace TootTally.Tooter
             {340307,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Don't you flame-broil me like that. Hear me out, at least!",
+                    dialogueText = $"{_sodaColoredName}: Don't flame-broil me like that. Hear me out!",
                     option2DialogueID = 340308,
                 }
             },
@@ -6339,43 +6437,43 @@ namespace TootTally.Tooter
             {340309,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: OK, well, I believe a true tromboner should relish the dogs they have, whenever they can.",
+                    dialogueText = $"{_sodaColoredName}: Be that way. I believe a true tromboner should relish every dog they can get.",
                     option2DialogueID = 340310,
                 }
             },
             {340310,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: *pfff* Please. You'll be playing ketchup the rest of your career with a philosophy like that.",
+                    dialogueText = $"{_kaizyleColoredName}: And you'll be playing ketchup the rest of your career.",
                     option2DialogueID = 340311,
                 }
             },
             {340311,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Fine then. I'll be frank.",
+                    dialogueText = $"{_sodaColoredName}: Fine then. I'll be frank. Screw you, Kaizyle.",
                     option2DialogueID = 340312,
                 }
             },
             {340312,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: What's been stopping you? You're already up in my grill.",
-                    option2DialogueID = 340313,
+                    dialogueText = $"{_kaizyleColoredName}: There it is! What's been stopping you? You've been up in my grill this whole time anyway.",
+                    option2DialogueID = 340313, 
                 }
             },
             {340313,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I've always thought that you're the wurst.",
+                    dialogueText = $"{_sodaColoredName}: Only because you're the wurst person I know.",
                     option2DialogueID = 340314,
                 }
             },
             {340314,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName}: ...You're such a weiner.",
-                    option2DialogueID = 340315,
+                    dialogueText = $"{_kaizyleColoredName}: Great Babi above, you are SUCH a weiner.",
+                    option2DialogueID = 340315, // more???
                 }
             },
             {340315,
@@ -7180,6 +7278,7 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 3 part 3
+            public static bool obsessAppaloosa;
             public static bool unimpressedAppaloosa;
             public static bool disinterestedAppaloosa;
             public static bool kissedAppaloosa;
