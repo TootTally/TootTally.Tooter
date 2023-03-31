@@ -5363,9 +5363,9 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"[Their food arrives and they dig in, enjoying the delicious burgers and fries]",
-                    option1Text = "Discuss Burger",
+                    option1Text = DialogueFlags.orderedBurger ? "Discuss Burger" : "Discuss Pizza",
                     option1DialogueID = 321000,
-                    option2Text = "Compliment Burger",
+                    option2Text = DialogueFlags.orderedBurger ? "Compliment Burger" : "Compliment Pizza",
                     option2DialogueID = 320023
                 }
             },
