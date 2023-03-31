@@ -2096,6 +2096,7 @@ namespace TootTally.Tooter
                     break;
                 case 340001:
                     FlipSpriteLeftAnimation(_kaizyle, true);
+                    FlipSpriteLeftAnimation(_soda, true);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
                     break;
                 case 340002:
