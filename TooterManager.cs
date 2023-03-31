@@ -1879,7 +1879,7 @@ namespace TootTally.Tooter
                 case 3310002:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
-                    
+
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 331001, 2.65f)); //To the jazz bar!
@@ -1965,7 +1965,7 @@ namespace TootTally.Tooter
                     break;
                 case 3311141:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaEmbarrassedLight, Color.white);
-                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutral, Color.white); 
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 3311142:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaInLove, Color.white);
@@ -2376,7 +2376,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     break;
                 case 340031:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white); 
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
                     break;
                 case 340131:
@@ -2396,7 +2396,7 @@ namespace TootTally.Tooter
                     break;
                 case 340133:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleCat, Color.white); 
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleCat, Color.white);
                     break;
                 case 340134:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
@@ -2428,7 +2428,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     break;
                 case 340239:
-                    ChangeCharSprite(_sodaSprite, DialogueFlags.kissedKaizyle ?  CharExpressions.SodaInLove : CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.kissedKaizyle ? CharExpressions.SodaInLove : CharExpressions.SodaEh, Color.white);
                     ChangeCharSprite(_kaizyleSprite, DialogueFlags.kissedKaizyle ? CharExpressions.KaizyleWTF : CharExpressions.KaizyleNeutralTalk, Color.white); //KayExtraBlush or KayFine if not kiss
                     break;
                 case 340240:
@@ -2871,7 +2871,8 @@ namespace TootTally.Tooter
                     //perform with Trixie
                     case 410101:
                         SingleTrackData loveHasNoEndTrack = TrackLookup.toTrackData(TrackLookup.lookup(_loveHasNoEndTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(loveHasNoEndTrack);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(loveHasNoEndTrack))
+                            GlobalVariables.alltrackslist_custom.Add(loveHasNoEndTrack);
                         GlobalVariables.chosen_track = _loveHasNoEndTrackref;
                         GlobalVariables.chosen_track_data = loveHasNoEndTrack;
                         SceneManager.LoadScene("loader");
@@ -2880,7 +2881,8 @@ namespace TootTally.Tooter
                     //perform with Beezerly
                     case 410201:
                         SingleTrackData letBeYourselfTrack = TrackLookup.toTrackData(TrackLookup.lookup(_letBeYourselfTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(letBeYourselfTrack);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(letBeYourselfTrack))
+                            GlobalVariables.alltrackslist_custom.Add(letBeYourselfTrack);
                         GlobalVariables.chosen_track = _letBeYourselfTrackref;
                         GlobalVariables.chosen_track_data = letBeYourselfTrack;
                         SceneManager.LoadScene("loader");
@@ -2889,7 +2891,8 @@ namespace TootTally.Tooter
                     //perform with Appaloosa
                     case 410301:
                         SingleTrackData lateNightJazTrack = TrackLookup.toTrackData(TrackLookup.lookup(_lateNightJazTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(lateNightJazTrack);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(lateNightJazTrack))
+                            GlobalVariables.alltrackslist_custom.Add(lateNightJazTrack);
                         GlobalVariables.chosen_track = _lateNightJazTrackref;
                         GlobalVariables.chosen_track_data = lateNightJazTrack;
                         SceneManager.LoadScene("loader");
@@ -2898,7 +2901,8 @@ namespace TootTally.Tooter
                     //perform with Kaizyle
                     case 410401:
                         SingleTrackData pathOfDiscoveries = TrackLookup.toTrackData(TrackLookup.lookup(_pathOfDiscoveriesTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(pathOfDiscoveries);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(pathOfDiscoveries))
+                            GlobalVariables.alltrackslist_custom.Add(pathOfDiscoveries);
                         GlobalVariables.chosen_track = _pathOfDiscoveriesTrackref;
                         GlobalVariables.chosen_track_data = pathOfDiscoveries;
                         SceneManager.LoadScene("loader");
@@ -2906,7 +2910,8 @@ namespace TootTally.Tooter
                     //Solo performance KEKW
                     case 410013:
                         SingleTrackData memoriesOfYou = TrackLookup.toTrackData(TrackLookup.lookup(_memoriesOfYouTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(memoriesOfYou);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(memoriesOfYou))
+                            GlobalVariables.alltrackslist_custom.Add(memoriesOfYou);
                         GlobalVariables.chosen_track = _memoriesOfYouTrackref;
                         GlobalVariables.chosen_track_data = memoriesOfYou;
                         SceneManager.LoadScene("loader");
@@ -2914,7 +2919,8 @@ namespace TootTally.Tooter
                     //HAREM FOR JOE WOOOO
                     case 410506:
                         SingleTrackData loveFlipTrack = TrackLookup.toTrackData(TrackLookup.lookup(_loveFlipTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(loveFlipTrack);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(loveFlipTrack))
+                            GlobalVariables.alltrackslist_custom.Add(loveFlipTrack);
                         GlobalVariables.chosen_track = _loveFlipTrackref;
                         GlobalVariables.chosen_track_data = loveFlipTrack;
                         SceneManager.LoadScene("loader");
@@ -6454,7 +6460,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 340031,
                 }
             },
-            {340031, 
+            {340031,
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: Sure.",
