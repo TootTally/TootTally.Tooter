@@ -2050,6 +2050,9 @@ namespace TootTally.Tooter
                 case 331115:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.kissedAppaloosa ? CharExpressions.SodaStressLight : CharExpressions.SodaInLove, Color.white);
                     ChangeCharSprite(_appaloosaSprite, DialogueFlags.kissedAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
+                    break;
+                case 331116:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340000, 2.65f)); //To Chap 3 part 4 transition
                     break;
                 #endregion
@@ -6201,6 +6204,14 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_appaloosaColoredName}: {(!DialogueFlags.awkwardAppaloosa ? "" : "Uhmm...")} Anytime, {_sodaColoredName}.", // If kissed Appaloosa: SodaEmbarrasedLight ; If awkwardAppaloosa: SodaPlead
+                    option2DialogueID = 331116
+
+                }
+            },
+            {331116,
+                new DialogueData()
+                {
+                    dialogueText = $"That was a very fun date.",
                     option2Text = "",
                     option2DialogueID = 0
 
@@ -7639,6 +7650,7 @@ namespace TootTally.Tooter
             SodaJam1,
             SodaJam2,
             SodaJam3,
+            SodaBone,
 
             TrixieNeutral,
             TrixieNeutralTalk,

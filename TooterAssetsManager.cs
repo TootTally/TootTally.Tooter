@@ -44,6 +44,7 @@ namespace TootTally.Tooter
             "SodaJam1.png",
             "SodaJam2.png",
             "SodaJam3.png",
+            "SodaBone.png",
 
             "TrixieBag.png",
             "TrixieShadow.png",
