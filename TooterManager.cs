@@ -2174,7 +2174,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3400090, 2.65f)); //To Downtown
                     break;
-                #endregion
+
                 case 3400091:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction(), delegate
@@ -2548,6 +2548,8 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f));
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
                     break;
+                #endregion
+
                 #endregion
 
                 #region Chapter 4
@@ -5561,7 +5563,7 @@ namespace TootTally.Tooter
             {320022,
                 new DialogueData()
                 {
-                    dialogueText = $"[Their food arrives and they dig in, enjoying the delicious burgers and fries]",
+                    dialogueText = $"Holy Wow the food arrived super fast! I was super hungry.",
                     option1Text = DialogueFlags.orderedBurger ? "Discuss Burger" : "Discuss Pizza",
                     option1DialogueID = 321000,
                     option1Score = new ScoreData()
