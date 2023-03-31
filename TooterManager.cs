@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using TootTally.Graphics;
 using TootTally.Graphics.Animation;
 using TootTally.Utils;
@@ -1874,8 +1873,8 @@ namespace TootTally.Tooter
                     break;
                 #endregion
 
-                #region Appaloosa Date
-                case 330000:
+                #region Old Appaloosa Date
+                /*case 330000:
                     FlipSpriteLeftAnimation(_appaloosa, false, 10f);
                     FlipSpriteLeftAnimation(_soda, false, 10f);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
@@ -2054,6 +2053,201 @@ namespace TootTally.Tooter
                 case 331116:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340000, 2.65f)); //To Chap 3 part 4 transition
+                    break;*/
+                #endregion
+
+                #region New Appaloosa Date
+                case 330000:
+                    FlipSpriteLeftAnimation(_appaloosa, false, 10f);
+                    FlipSpriteLeftAnimation(_soda, false, 10f);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 330001:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white); // AppaloosaAgree
+                    break;
+                case 3300011:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaAgree
+                    break;
+                case 330002:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    break;
+                case 330003:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaTrombone (?)
+                    break;
+                case 330004:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaWow
+                    break;
+                case 330005:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    break;
+                case 330006:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    break;
+                case 330007:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    break;
+                case 3310001:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaDisappointed
+                    DialogueFlags.disinterestedAppaloosa = true;
+                    break;
+                case 331000:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
+                    break;
+                case 33100020:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); //AppaloosaAgree
+                    break;
+                case 331000201: // STRANGE SCENE TRANSITION
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    FlipSpriteRightAnimation(_appaloosa, false, 1f);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 331000202:
+                    break;
+                case 33100021:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    DialogueFlags.obsessAppaloosa = true;
+                    break;
+                case 33101021:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    break;
+                case 33100023:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaShock, Color.white); // STRANGE SCENE TRANSITION
+                    break;
+                case 3310002:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    break;
+                case 331001:
+                    FlipSpriteLeftAnimation(_appaloosa, false, 10f);
+                    FlipSpriteRightAnimation(_soda, false, 10f);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 3310092:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 3310093:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    break;
+                case 3310094:
+                    break;
+                case 331002:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    FlipSpriteLeftAnimation(_soda, false, 10f);
+                    break;
+                case 331200:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white); 
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLeanAway, Color.white); // AppaloosaDiappointed
+                    break;
+                case 331100:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
+                    break;
+                case 331101:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    break;
+                case 331102:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    break;
+                case 331103:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaPointToSelf
+                    break;
+                case 3311031:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    break;
+                case 3311032:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.obsessAppaloosa ?  CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaBlush : 
+                    break;
+                case 3311033:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    break;
+                case 331104:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    break;
+                case 331220:
+                    ChangeCharSprite(_sodaSprite, (DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaNeutral) : CharExpressions.SodaNeutral), Color.white);
+                    ChangeCharSprite(_appaloosaSprite, (DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutralTalk) : CharExpressions.AppaloosaNeutralTalk), Color.white);
+                    break;
+                case 331105:
+                    ChangeCharSprite(_sodaSprite, (DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? CharExpressions.SodaWow : CharExpressions.SodaThinking) : CharExpressions.SodaNeutralTalk), Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    break;
+                case 331106:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    break;
+                case 331120:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    break;
+                case 33110:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaBlush
+                    break;
+                case 331111:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaBlush
+                    break;
+                case 331112:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white); // AppaloosaBlush
+                    break;
+                case 331113:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.SodaNeutral : CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); //AppaloosaBlush
+                    break;
+                case 3311131:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.isCompetitive ? CharExpressions.SodaHype : CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.isCompetitive ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); //AppaloosaBlush
+                    break;
+                case 331114:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaHype, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); //AppaloosaBlush
+                    break;
+                case 3311141:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaBlush
+                    break;
+                case 3311142:
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 331142:
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLeanAway, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.awkwardAppaloosa = true;
+                    break;
+                case 3311150:
+                    break;
+                case 331115:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.awkwardAppaloosa ? CharExpressions.SodaWheezeRW : (DialogueFlags.kissedAppaloosa ? CharExpressions.SodaInLove : CharExpressions.SodaHype), Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.awkwardAppaloosa ? CharExpressions.AppaloosaLeanAway : (DialogueFlags.kissedAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaLOL), Color.white);
                     break;
                 #endregion
 
@@ -5243,7 +5437,8 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_beezerlyColoredName}: We HAVE to jam to this one.",
                     option1Text = "Follow her",
-                    option1DialogueID = 3202055,option1Score = new ScoreData()
+                    option1DialogueID = 3202055,
+                    option1Score = new ScoreData()
                     {
                         beezerlyScore = 3,
                     },
