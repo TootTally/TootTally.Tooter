@@ -1949,6 +1949,7 @@ namespace TootTally.Tooter
                 case 33101021:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
                     DialogueFlags.obsessAppaloosa = _currentDialogueState == 33100021;
+                    UpdateDialogueStates(3);
                     break;
                 case 331001: //Jazz bar
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
@@ -2040,6 +2041,7 @@ namespace TootTally.Tooter
                     break;
                 case 3311150:
                     DialogueFlags.kissedAppaloosa = true;
+                    UpdateDialogueStates(3);
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3311151, 0f, 0.4f)); //KISS
                     break;
                 case 3311151:
@@ -2522,6 +2524,9 @@ namespace TootTally.Tooter
                     DialogueFlags.kissedKaizyle = true;
                     UpdateDialogueStates(3);
                     break;
+                case 340139:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340239, 6.5f));
+                    break;
                 case 340238:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
@@ -2753,7 +2758,7 @@ namespace TootTally.Tooter
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentBeezerly.png");
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
                         break;
-                    case 3311151: //TODO
+                    case 3311151:
                         _soda.transform.position = _outLeftCharPosition;
                         _appaloosa.transform.position = _outLeftCharPosition;
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentAppaloosa.png");
@@ -6986,6 +6991,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"The ice cream on her lips tasted like ice cream. I dunno, what do want from me?",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
