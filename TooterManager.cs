@@ -406,7 +406,7 @@ namespace TootTally.Tooter
                 __instance.playSfx(2); // btn sound effect KEKW
                 tooterButton.GetComponent<RectTransform>().anchoredPosition += new Vector2(-2, 0);
                 __instance.setDescText(0);
-                __instance.desctext.text = "Don't hate on rock and take your time!";
+                __instance.desctext.text = "Choose your kiss carefully and take your time!";
                 __instance.desctxtlimit = -1250;
             });
             tooterBtnEvents.triggers.Add(pointerEnterEvent);
@@ -5527,13 +5527,13 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"[Their food arrives and they dig in, enjoying the delicious burgers and fries]",
-                    option1Text = "Discuss Burger",
+                    option1Text = "Had better food before",
                     option1DialogueID = 321000,
                     option1Score = new ScoreData()
                     {
                         beezerlyScore =  -2,
                     },
-                    option2Text = "Compliment Burger",
+                    option2Text = "Compliment food",
                     option2DialogueID = 320023,
                     option2Score = new ScoreData()
                     {
@@ -5544,14 +5544,14 @@ namespace TootTally.Tooter
             {321000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: These burgers are alright, but I’ve had better.",
+                    dialogueText = $"{_sodaColoredName}: The food is alright, but I’ve had better.",
                     option2DialogueID = 321001
                 }
             },
-            {321001, // No like burger
+            {321001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Oh? And where would these better burgers be found?",
+                    dialogueText = $"{_beezerlyColoredName}: Oh? And where would better food be found?",
                     option2DialogueID = 321002
                 }
             },
