@@ -743,7 +743,7 @@ namespace TootTally.Tooter
                     break;
                 case 210104:
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePanic, Color.white);
-                    FlipSpriteRightAnimation(_trixiebell, false);
+                    FlipSpriteRightAnimation(_trixiebell, false, 2f);
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outRightCharPosition, 0.8f, GetSecondDegreeAnimationFunction(), delegate
                     {
                         FlipSpriteRightAnimation(_beezerly, true);
