@@ -105,6 +105,12 @@ namespace TootTally.Tooter
         {
             if (_isSceneActive)
             {
+                if (Input.GetKeyDown(KeyCode.K) && Input.GetKeyDown(KeyCode.I) && Input.GetKeyDown(KeyCode.S))
+                {
+                    PopUpNotifManager.DisplayNotif("A Secret KISS Was Found", Color.cyan);
+                    DialogueFlags.kissedSomeone = false;
+                }
+
                 if (Input.GetKeyDown(KeyCode.Space) && _currentDemonDialogueInstance.readytoclick)
                 {
                     if (_dialogueStates[_currentDialogueState].option1Text != "")
@@ -509,7 +515,6 @@ namespace TootTally.Tooter
                 _currentDialogueState = 0;
             else
                 _currentDialogueState = (int)__args[0];
-
             __instance.dstate = 0;
             __instance.hideBtns();
             _txtBox.UpdateText("");
@@ -7629,6 +7634,11 @@ namespace TootTally.Tooter
             AppaloosaCall,
             AppaloosaLeanAway,
             AppaloosaLOL,
+            AppaloosaInLove,
+            AppaloosaBlush,
+            AppaloosaWow,
+            AppaloosaAgree,
+            AppaloosaDisappointed,
 
             BeezerlyNeutral,
             BeezerlyNeutralTalk,
