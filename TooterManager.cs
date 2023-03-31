@@ -2106,6 +2106,11 @@ namespace TootTally.Tooter
                 case 3400034:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
+                    _appaloosa.transform.position = _outRightCharPosition;
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outRightCharPosition, 6.66f, GetSecondDegreeAnimationFunction(.0001f), delegate
+                    {
+                        OnDemonDialogueDoDialoguePostFix(new object[] { 3400035 }, __instance);
+                    });
                     break;
                 case 3400035:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
@@ -2285,42 +2290,42 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
                     DialogueFlags.overReactedAboutKaizyleHotdogs = true;
                     UpdateDialogueStates(3);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(.0001f), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 340408 }, __instance);
                     });
                     break;
                 case 340408:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(.0001f), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 340409 }, __instance);
                     });
                     break;
                 case 340409:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(.0001f), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 340410 }, __instance);
                     });
                     break;
                 case 340410:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(.0001f), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 3404101 }, __instance);
                     });
                     break;
                 case 3404101:
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizylePissed, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(.0001f), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 340411 }, __instance);
                     });
                     break;
                 case 340411:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(.0001f), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 340412 }, __instance);
                     });
@@ -2328,7 +2333,7 @@ namespace TootTally.Tooter
                 case 340412:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(1, 0, 0), 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(1, 0, 0), 0.5f, GetSecondDegreeAnimationFunction(.0001f), delegate
                       {
                           OnDemonDialogueDoDialoguePostFix(new object[] { 340413 }, __instance);
                       });
@@ -5815,6 +5820,10 @@ namespace TootTally.Tooter
                     dialogueText = $"{_appaloosaColoredName}: Wanna go tonight? We can grab a drink and listen to some live music.",
                     option1Text = $"Why not",
                     option1DialogueID = 3310001,
+                    option1Score = new ScoreData
+                    {
+                        appaloosaScore = -1f
+                    },
                     option2Text = $"Absolutely",
                     option2DialogueID = 331000,
                     option2Score = new ScoreData
@@ -5858,7 +5867,11 @@ namespace TootTally.Tooter
                     option1Text = "I should drop it.",
                     option1DialogueID = 33101021,
                     option2Text = "That's the best part.",
-                    option2DialogueID = 33100021
+                    option2DialogueID = 33100021,
+                    option2Score = new ScoreData
+                    {
+                        appaloosaScore = 1f
+                    },
                 } 
             },
             {33100021,
@@ -6189,7 +6202,8 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Well uh I mean well you see and it's ok if you don't want to I don't know why I would either um wait that came out wrong because I mean I would obviously that's why I asked but if you don't want to that's okay too because it was just a stupid idea after all and I don't know why I just brazenly assumed you were okay with it even though that's not really what I meant by asking but I want to make it clear that wait this isn't very clear I'm sorry I don't know why I asked at all this was dumb of me I'm sorry for wasting your time I should just go to my class now and leave you alone",
-                    option2DialogueID = 3400035,
+                    option2Text = "",
+                    option2DialogueID = 0,
                 }
             },
             {3400035,
