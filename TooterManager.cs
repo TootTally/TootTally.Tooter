@@ -3563,7 +3563,7 @@ namespace TootTally.Tooter
             {110904,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName} Yes, I suppose you're right. Let's get started, shall we?",
+                    dialogueText = $"{_kaizyleColoredName}: Yes, I suppose you're right. Let's get started, shall we?",
                     option2DialogueID = 110905
                 }
             },
@@ -3706,14 +3706,14 @@ namespace TootTally.Tooter
             {210200,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} Everything will be fine; no need to freak out!",
+                    dialogueText = $"{_sodaColoredName}: Everything will be fine; no need to freak out!",
                     option2DialogueID = 210201
                 }
             },
             {210201,
                 new DialogueData()
                 {
-                    dialogueText = $"{_trixieColoredName} Um, thanks?",
+                    dialogueText = $"{_trixieColoredName}: Um, thanks?",
                     option2DialogueID = 210202
                 }
             },
@@ -4081,7 +4081,7 @@ namespace TootTally.Tooter
             {77,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} Fine, I'll leave you to it. I'll see you later, though!",
+                    dialogueText = $"{_sodaColoredName}: Fine, I'll leave you to it. I'll see you later, though!",
                     option2DialogueID = 79,
                 }
             },
@@ -4102,7 +4102,7 @@ namespace TootTally.Tooter
             {80,
                 new DialogueData()
                 {
-                    dialogueText = $"{_kaizyleColoredName} ...you little brat.",
+                    dialogueText = $"{_kaizyleColoredName}: ...you little brat.",
                     option2DialogueID = 81,
                 }
             },
@@ -5168,7 +5168,7 @@ namespace TootTally.Tooter
             {3202042,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} No way! It's mine too!",
+                    dialogueText = $"{_sodaColoredName}: No way! It's mine too!",
                     option2DialogueID = 3202043,
 
                 }
@@ -5830,14 +5830,14 @@ namespace TootTally.Tooter
             {330003,
                 new DialogueData()
                 {
-                    dialogueText = $"Holy wow, {_appaloosaColoredName} is teaching me so much I've never seen before!",
+                    dialogueText = $"Holy wow, Appaloosa is teaching me so much I've never seen before!",
                     option2DialogueID = 330004
                 }
             },
             {330004,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: You're a quick learner, {_sodaColoredName}. You ever played at a jazz bar before?",
+                    dialogueText = $"{_appaloosaColoredName}: You're a quick learner, Soda. You ever played at a jazz bar before?",
                     option2DialogueID = 330005
                 }
             },
@@ -7225,7 +7225,7 @@ namespace TootTally.Tooter
             {410001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} Sorry I'm late. *Someone* had to oil those accursed hinges in the music classroom.",
+                    dialogueText = $"{_sodaColoredName}: Sorry I'm late. *Someone* had to oil those accursed hinges in the music classroom.",
                     option2DialogueID =  GetChapter4FirstCharacterEnter()
 
                 }
@@ -7240,7 +7240,7 @@ namespace TootTally.Tooter
             {410003,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName} : Don't worry about it, guys. Just play from the heart and have fun.",
+                    dialogueText = $"{_beezerlyColoredName}: Don't worry about it, guys. Just play from the heart and have fun.",
                     option2DialogueID = GetChapter4ThirdCharacterEnter(),
                 }
             },
@@ -7291,7 +7291,7 @@ namespace TootTally.Tooter
             {410008,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName} : How about me??",
+                    dialogueText = $"{_beezerlyColoredName}: How about me??",
                     option1Text = "Perform With Beezerly",
                     option1DialogueID = 410200,
                     option2Text = "Deny Offer",
@@ -7385,7 +7385,7 @@ namespace TootTally.Tooter
             {410503,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName} : That's the spirit {_sodaColoredName}, I've always like the way you think.",
+                    dialogueText = $"{_beezerlyColoredName}: That's the spirit {_sodaColoredName}, I've always like the way you think.",
                     option2DialogueID = 410504,
                 }
             },
