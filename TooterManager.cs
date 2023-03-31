@@ -105,7 +105,7 @@ namespace TootTally.Tooter
         {
             if (_isSceneActive)
             {
-                if (Input.GetKeyDown(KeyCode.Space) && _dialogueStates[_currentDialogueState].option1Text == "" && _currentDemonDialogueInstance.readytoclick)
+                if (Input.GetKeyDown(KeyCode.Space) && _currentDemonDialogueInstance.readytoclick)
                 {
                     if (_dialogueStates[_currentDialogueState].option1Text != "")
                         OverwriteClickBtn1(_currentDemonDialogueInstance);
@@ -692,7 +692,6 @@ namespace TootTally.Tooter
                 case 210001:
                     FlipSpriteRightAnimation(_soda, false, 10f);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
                 case 210002:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
@@ -743,7 +742,7 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _farRightCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
                 case 210104:
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieSurprise, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePanic, Color.white);
                     FlipSpriteRightAnimation(_trixiebell, false);
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outRightCharPosition, 0.8f, GetSecondDegreeAnimationFunction(), delegate
                     {
@@ -2723,6 +2722,8 @@ namespace TootTally.Tooter
                     case 210000:
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ClassroomEvening.png");
                         _txtBox.UpdateText("");
+                        _soda.transform.position = _leftCenterCharPosition;
+                        ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral);
                         _trixiebell.transform.position = _outRightCharPosition;
                         __instance.csc.fadeMus(1, true);
                         UpdateDialogueStates(2);
