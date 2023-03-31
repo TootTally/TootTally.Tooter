@@ -2040,7 +2040,7 @@ namespace TootTally.Tooter
                     // KISS KISS KISS KISS
                     break;
                 case 3311150:
-                    DialogueFlags.kissedAppaloosa = true;
+                    DialogueFlags.kissedAppaloosa = DialogueFlags.kissedSomeone = true;
                     UpdateDialogueStates(3);
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3311151, 0f, 0.4f)); //KISS
                     break;
@@ -2191,8 +2191,8 @@ namespace TootTally.Tooter
                     UpdateDialogueStates(3);
                     break;
                 case 3401081:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleDispleased, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3400090, 2.65f)); //To Downtown
                     break;
                 case 34000810:
@@ -2456,7 +2456,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f));
-                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
                     {
                         FlipSpriteLeftAnimation(_kaizyle, true);
                     });
@@ -2483,7 +2483,7 @@ namespace TootTally.Tooter
                     break;
                 case 340131:
                     FlipSpriteRightAnimation(_kaizyle, false);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCenterCharPosition - new Vector3(1,0,0), 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
                     {
                         ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);//SodaReleaf after sitting
                     });
@@ -2522,7 +2522,7 @@ namespace TootTally.Tooter
                     break;
                 case 340138:
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 340139, 0f, 0.4f)); //KISSING SCENE BOI
-                    DialogueFlags.kissedKaizyle = true;
+                    DialogueFlags.kissedKaizyle = DialogueFlags.kissedSomeone = true;
                     UpdateDialogueStates(3);
                     break;
                 case 340139:
@@ -2982,6 +2982,7 @@ namespace TootTally.Tooter
                         _txtBox.UpdateText("");
                         _kaizyle.transform.position = _rightCenterCharPosition + new Vector3(1, 0, 0);
                         FlipSpriteRightAnimation(_kaizyle, false, 10f);
+                        FlipSpriteLeftAnimation(_soda, false, 10f);
                         ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                         __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("Downtown.png");
