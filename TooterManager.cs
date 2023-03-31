@@ -5507,27 +5507,27 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Hey Appaloosa! I really enjoy your tunes, thanks for letting me learn from you!",
-                    option2DialogueID = 330001,//
+                    option2DialogueID = 330001,
                 }
             },
             {330001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: All good, Soda! I love teaching passionate musicians!",//
+                    dialogueText = $"{_appaloosaColoredName}: All good, Soda! I love teaching passionate musicians!",
                     option2DialogueID = 3300011,
                 }
             },
             {3300011,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Hows about a few warm-up exercises?",//
+                    dialogueText = $"{_appaloosaColoredName}: Hows about a few warm-up exercises?",
                     option2DialogueID = 330002,
                 }
             },
             {330002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Sure thing!",//
+                    dialogueText = $"{_sodaColoredName}: Sure thing!",
                     option2DialogueID = 330003
                 }
             },
@@ -5548,7 +5548,7 @@ namespace TootTally.Tooter
             {330005,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Nope.", //
+                    dialogueText = $"{_sodaColoredName}: Nope.",
                     option2DialogueID = 330006
                 }
             },
@@ -5761,7 +5761,7 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "interesting" : (DialogueFlags.flirtAppaloosa ? "great" : "good"))}, {_appaloosaColoredName}.",
                     option1Text  = DialogueFlags.kissedSomeone ? "":"Kiss",
-                    option1DialogueID = DialogueFlags.flirtAppaloosa ? 3311141 : 331142,
+                    option1DialogueID =  3311141,
                     option1Score = new ScoreData
                     {
                         appaloosaScore = DialogueFlags.flirtAppaloosa ? 5f : -5f
