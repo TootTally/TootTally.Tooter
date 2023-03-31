@@ -1440,7 +1440,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePleased, Color.white);
                     break;
                 case 177:
-                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 178, 0f, 0.3f));
+                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 178, 0f, 0.4f));
                     DialogueFlags.kissedTrixie = DialogueFlags.kissedSomeone = true;
                     UpdateDialogueStates(3);
                     break;
@@ -1659,7 +1659,7 @@ namespace TootTally.Tooter
                 case 3204059:
                     DialogueFlags.kissedBeezerly = DialogueFlags.kissedSomeone = true;
                     UpdateDialogueStates(3);
-                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3204159, 0f, 0.3f)); // transition to kissing scene
+                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3204159, 0f, 0.4f)); // transition to kissing scene
                     break;
                 case 3204159:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3204060, 6f));
@@ -2415,7 +2415,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //KaizyleBlushEyesUp?
                     break;
                 case 340138:
-                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 340139, 0f, 0.3f)); //KISSING SCENE BOI
+                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 340139, 0f, 0.4f)); //KISSING SCENE BOI
                     DialogueFlags.kissedKaizyle = true;
                     UpdateDialogueStates(3);
                     break;
@@ -2620,11 +2620,11 @@ namespace TootTally.Tooter
         {
             yield return new WaitForSeconds(delay);
 
-            __instance.csc.fadeoutpanel.GetComponent<Image>().color = new Color(.6f, .6f, .6f);
+            __instance.csc.fadeoutpanel.GetComponent<Image>().color = new Color(.75f, .75f, .75f);
             __instance.csc.fadeoutpanel.transform.localScale = new Vector3(2f, 0.001f, 1f);
             __instance.csc.fadeoutpanel.SetActive(true);
 
-            AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 2f, 1f), 1.5f / speedMultiplier, GetSecondDegreeAnimationFunction(speedMultiplier), delegate
+            AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 2f, 1f), 1.3f / speedMultiplier, GetSecondDegreeAnimationFunction(speedMultiplier), delegate
             {
                 switch (nextDialogueID)
                 {
@@ -2638,6 +2638,12 @@ namespace TootTally.Tooter
                         _soda.transform.position = _outLeftCharPosition;
                         _beezerly.transform.position = _outLeftCharPosition;
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentBeezerly.png");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
+                        break;
+                    case 99999: //TODO
+                        _soda.transform.position = _outLeftCharPosition;
+                        _appaloosa.transform.position = _outLeftCharPosition;
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentAppaloosa.png");
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
                         break;
                     case 340139:
