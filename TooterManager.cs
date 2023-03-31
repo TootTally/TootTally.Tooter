@@ -180,7 +180,7 @@ namespace TootTally.Tooter
             Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter1-2Music.mp3", clip =>
             {
                 __instance.csc.bgmus2.clip = clip;
-                __instance.csc.bgmus2.volume = .25f;
+                __instance.csc.bgmus2.volume = .3f;
                 __instance.csc.bgmus2.Play();
             }));
             Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter3Music.mp3", clip =>
@@ -1552,7 +1552,7 @@ namespace TootTally.Tooter
                 case 320202:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    FlipSpriteLeftAnimation(_soda, false);
+                    FlipSpriteRightAnimation(_soda, false);
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction(.7f));
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction(.7f));
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320203, 2f));
