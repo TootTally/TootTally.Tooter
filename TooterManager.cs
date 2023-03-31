@@ -106,7 +106,12 @@ namespace TootTally.Tooter
             if (_isSceneActive)
             {
                 if (Input.GetKeyDown(KeyCode.Space) && _dialogueStates[_currentDialogueState].option1Text == "" && _currentDemonDialogueInstance.readytoclick)
-                    OverwriteClickBtn2(_currentDemonDialogueInstance);
+                {
+                    if (_dialogueStates[_currentDialogueState].option1Text != "")
+                        OverwriteClickBtn1(_currentDemonDialogueInstance);
+                    else if (_dialogueStates[_currentDialogueState].option2Text != "")
+                        OverwriteClickBtn2(_currentDemonDialogueInstance);
+                }
                 else if (Input.GetKeyDown(KeyCode.Keypad1) && _dialogueStates[_currentDialogueState].option1Text != "" && _currentDemonDialogueInstance.readytoclick)
                     OverwriteClickBtn1(_currentDemonDialogueInstance);
                 else if (Input.GetKeyDown(KeyCode.Keypad2) && _dialogueStates[_currentDialogueState].option2Text != "" && _currentDemonDialogueInstance.readytoclick)
@@ -510,7 +515,7 @@ namespace TootTally.Tooter
             __instance.dtxt(_dialogueStates[_currentDialogueState].dialogueText);
             __instance.btns(_dialogueStates[_currentDialogueState].option1Text, _dialogueStates[_currentDialogueState].option2Text, _dialogueStates[_currentDialogueState].option1DialogueID, _dialogueStates[_currentDialogueState].option2DialogueID);
 
-            __instance.btn2obj.GetComponent<RectTransform>().anchoredPosition = _dialogueStates[_currentDialogueState].option1Text != "" ? _btn2PositionCenter : _btn2PositionRight;
+            __instance.btn2obj.GetComponent<RectTransform>().anchoredPosition = _dialogueStates[_currentDialogueState].option2Text != "..." ? _btn2PositionCenter : _btn2PositionRight;
 
             Plugin.Instance.LogInfo("Event #" + _currentDialogueState);
             //Add dialogue specific events here
