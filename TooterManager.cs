@@ -5586,7 +5586,7 @@ namespace TootTally.Tooter
             {321900,
                 new DialogueData()
                 {
-                    dialogueText = $"{beezerlyColoredName}:... yep.",
+                    dialogueText = $"{_beezerlyColoredName}:... yep.",
                     option2DialogueID = 320025,
                 }
             },
