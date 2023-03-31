@@ -75,6 +75,7 @@ namespace TootTally.Tooter
             "AppaloosaWow.png",
             "AppaloosaAgree.png",
             "AppaloosaDisappointed.png",
+            "AppaloosaBone.png",
 
             "KaizyleShadow.png",
             "KaizyleNeutral.png",
