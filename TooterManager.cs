@@ -7045,7 +7045,7 @@ namespace TootTally.Tooter
             {410001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} Sorry I'm late. *Someone* had to oil those fucking hinges in the music classroom.",
+                    dialogueText = $"{_sodaColoredName} Sorry I'm late. *Someone* had to oil those accursed hinges in the music classroom.",
                     option2DialogueID =  GetChapter4FirstCharacterEnter()
 
                 }
