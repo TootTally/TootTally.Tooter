@@ -1933,8 +1933,6 @@ namespace TootTally.Tooter
                 case 33101021: 
                     DialogueFlags.obsessAppaloosa = false;
                     break;          
-                case 3300011:
-                    break;
                 case 331001: //Jazz bar
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
@@ -6044,7 +6042,7 @@ namespace TootTally.Tooter
             {331113,
                 new DialogueData()
                 {
-                    dialogueText = $"As the night wears on, {(DialogueFlags.obsessAppaloosa ? $"{appaloosaColoredName} loses herself" : "we lose ourselves")} in the music, the moment.",
+                    dialogueText = $"As the night wears on, {(DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName} loses herself" : "we lose ourselves")} in the music, the moment.",
                     option2DialogueID = DialogueFlags.unimpressedAppaloosa ? 3311131 : 331114
                 }
             },
