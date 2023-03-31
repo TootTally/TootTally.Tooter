@@ -39,6 +39,11 @@ namespace TootTally.Tooter
             "SodaInLove.png",
             "SodaCall.png",
             "SodaHype.png",
+            "SodaFightMe.png",
+            "SodaBreaking.png",
+            "SodaJam1.png",
+            "SodaJam2.png",
+            "SodaJam3.png",
 
             "TrixieBag.png",
             "TrixieShadow.png",
@@ -74,6 +79,18 @@ namespace TootTally.Tooter
             "KaizyleBrag.png",
             "KaizylePissed.png",
             "KaizyleUm.png",
+            "KaizyleFightMe.png",
+            "KaizyleCat.png",
+            "KaizyleNom.png",
+            "KaizyleFine.png",
+            "KaizyleShy.png",
+            "KaizyleEnamored.png",
+            "KaizyleFlatteredLookUp.png",
+            "KaizyleProud.png",
+            "KaizyleShrug.png",
+            "KaizyleFlattered.png",
+            "KaizyleLove.png",
+            "KaizyleSmirk.png",
 
             "BeezerlyShadow.png",
             "BeezerlyNeutral.png",
@@ -120,6 +137,9 @@ namespace TootTally.Tooter
             "TrixieHouseNight.png",
             "SpecialMomentTrixie.png",
             "SpecialMomentBeezerly.png",
+            "SpecialMomentAppoloosa.png",
+            "SpecialMomentKaizyle.png",
+            "ParkBench.png",
 
         };
 

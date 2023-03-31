@@ -36,7 +36,7 @@ namespace TootTally.Tooter
         private static readonly Vector2 _btn2PositionCenter = new Vector2(65, -190);
 
         private static readonly Vector3 _leftCharPosition = new Vector3(-8f, -6.5f, 10);
-        private static readonly Vector3 _leftCenterCharPosition = new Vector3(-5f, -6.5f, 10);
+        private static readonly Vector3 _leftCenterCharPosition = new Vector3(-4.75f, -6.5f, 10);
         private static readonly Vector3 _centerCharPosition = new Vector3(-1.5f, -6.5f, 10);
         private static readonly Vector3 _rightCenterCharPosition = new Vector3(1f, -6.5f, 10);
         private static readonly Vector3 _rightCharPosition = new Vector3(4f, -6.5f, 10);
@@ -105,11 +105,16 @@ namespace TootTally.Tooter
         {
             if (_isSceneActive)
             {
-                if (Input.GetKeyDown(KeyCode.Space) && _dialogueStates[_currentDialogueState].option1Text == "")
-                    OverwriteClickBtn2(_currentDemonDialogueInstance);
-                else if (Input.GetKeyDown(KeyCode.Keypad1) && _dialogueStates[_currentDialogueState].option1Text != "")
+                if (Input.GetKeyDown(KeyCode.Space) && _currentDemonDialogueInstance.readytoclick)
+                {
+                    if (_dialogueStates[_currentDialogueState].option1Text != "")
+                        OverwriteClickBtn1(_currentDemonDialogueInstance);
+                    else if (_dialogueStates[_currentDialogueState].option2Text != "")
+                        OverwriteClickBtn2(_currentDemonDialogueInstance);
+                }
+                else if (Input.GetKeyDown(KeyCode.Keypad1) && _dialogueStates[_currentDialogueState].option1Text != "" && _currentDemonDialogueInstance.readytoclick)
                     OverwriteClickBtn1(_currentDemonDialogueInstance);
-                else if (Input.GetKeyDown(KeyCode.Keypad2) && _dialogueStates[_currentDialogueState].option2Text != "")
+                else if (Input.GetKeyDown(KeyCode.Keypad2) && _dialogueStates[_currentDialogueState].option2Text != "" && _currentDemonDialogueInstance.readytoclick)
                     OverwriteClickBtn2(_currentDemonDialogueInstance);
             }
         }
@@ -175,7 +180,7 @@ namespace TootTally.Tooter
             Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter1-2Music.mp3", clip =>
             {
                 __instance.csc.bgmus2.clip = clip;
-                __instance.csc.bgmus2.volume = .25f;
+                __instance.csc.bgmus2.volume = .3f;
                 __instance.csc.bgmus2.Play();
             }));
             Plugin.Instance.StartCoroutine(TryLoadingAudioClipLocal("Chapter3Music.mp3", clip =>
@@ -242,7 +247,7 @@ namespace TootTally.Tooter
         {
             var scaleX = character.transform.localScale.x;
             var scaleY = character.transform.localScale.y;
-            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(-Math.Abs(scaleX), scaleY, 10f), 1.8f, new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(-Math.Abs(scaleX)) * 1.6f, 1.6f); });
+            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(-Math.Abs(scaleX), scaleY, 10f), 1.8f / (speedMult / 2f), new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(-Math.Abs(scaleX)) * 1.6f, 1.6f); });
             if (fixPosition)
                 AnimationManager.AddNewTransformPositionAnimation(character, character.transform.position + new Vector3(Mathf.Sign(Math.Abs(scaleX)) * 1.1f, 0, 0), 1.8f, GetSecondDegreeAnimationFunction(speedMult));
 
@@ -252,7 +257,7 @@ namespace TootTally.Tooter
         {
             var scaleX = character.transform.localScale.x;
             var scaleY = character.transform.localScale.y;
-            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(Math.Abs(scaleX), scaleY, 10f), 1.8f, new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(Math.Abs(scaleX)) * 1.6f, 1.6f); });
+            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(Math.Abs(scaleX), scaleY, 10f), 1.8f / (speedMult / 2f), new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(Math.Abs(scaleX)) * 1.6f, 1.6f); });
             if (fixPosition)
                 AnimationManager.AddNewTransformPositionAnimation(character, character.transform.position + new Vector3(Mathf.Sign(Math.Abs(scaleX)) * -1.1f, 0, 0), 1.8f, GetSecondDegreeAnimationFunction(speedMult));
 
@@ -371,7 +376,7 @@ namespace TootTally.Tooter
                     PopUpNotifManager.DisplayNotif("Please restart game to play again, sorry!", GameTheme.themeColors.notification.defaultText);
                     return;
                 }
-                    
+
                 __instance.addWaitForClick();
                 __instance.playSfx(3);
                 //Yoinked from DNSpy KEKW
@@ -401,7 +406,7 @@ namespace TootTally.Tooter
                 __instance.playSfx(2); // btn sound effect KEKW
                 tooterButton.GetComponent<RectTransform>().anchoredPosition += new Vector2(-2, 0);
                 __instance.setDescText(0);
-                __instance.desctext.text = "Don't hate on rock and take your time!";
+                __instance.desctext.text = "Choose your kiss carefully and take your time!";
                 __instance.desctxtlimit = -1250;
             });
             tooterBtnEvents.triggers.Add(pointerEnterEvent);
@@ -510,7 +515,7 @@ namespace TootTally.Tooter
             __instance.dtxt(_dialogueStates[_currentDialogueState].dialogueText);
             __instance.btns(_dialogueStates[_currentDialogueState].option1Text, _dialogueStates[_currentDialogueState].option2Text, _dialogueStates[_currentDialogueState].option1DialogueID, _dialogueStates[_currentDialogueState].option2DialogueID);
 
-            __instance.btn2obj.GetComponent<RectTransform>().anchoredPosition = _dialogueStates[_currentDialogueState].option1Text != "" ? _btn2PositionCenter : _btn2PositionRight;
+            __instance.btn2obj.GetComponent<RectTransform>().anchoredPosition = _dialogueStates[_currentDialogueState].option2Text != "..." ? _btn2PositionCenter : _btn2PositionRight;
 
             Plugin.Instance.LogInfo("Event #" + _currentDialogueState);
             //Add dialogue specific events here
@@ -687,7 +692,6 @@ namespace TootTally.Tooter
                 case 210001:
                     FlipSpriteRightAnimation(_soda, false, 10f);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
                 case 210002:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
@@ -738,8 +742,8 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _farRightCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     break;
                 case 210104:
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieSurprise, Color.white);
-                    FlipSpriteRightAnimation(_trixiebell, false);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePanic, Color.white);
+                    FlipSpriteRightAnimation(_trixiebell, false, 2f);
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outRightCharPosition, 0.8f, GetSecondDegreeAnimationFunction(), delegate
                     {
                         FlipSpriteRightAnimation(_beezerly, true);
@@ -999,7 +1003,7 @@ namespace TootTally.Tooter
                 case 84:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, DialogueFlags.cheeredTrixie ? CharExpressions.TrixiePleased : CharExpressions.TrixieSadge, Color.white);
-                   break;
+                    break;
                 case 85:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaShock, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment1, Color.white);
@@ -1099,10 +1103,6 @@ namespace TootTally.Tooter
                     break;
                 case 108:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 109, 2.65f));
-                    break;
-                case 109:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
                     break;
                 case 110:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
@@ -1329,11 +1329,11 @@ namespace TootTally.Tooter
                 case 156:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 4f, GetSecondDegreeAnimationFunction(0.1f), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 3.2f, GetSecondDegreeAnimationFunction(0.15f), delegate
                     {
                         FlipSpriteAnimation(_soda, true, 0.8f);
                     });
-                    AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _centerCharPosition, 4f, GetSecondDegreeAnimationFunction(0.1f));
+                    AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _centerCharPosition, 3.2f, GetSecondDegreeAnimationFunction(0.15f));
                     DialogueFlags.walkedTrixieBackHome = true;
                     UpdateDialogueStates(3);
                     break;
@@ -1375,11 +1375,11 @@ namespace TootTally.Tooter
                 case 164:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment1, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 4f, GetSecondDegreeAnimationFunction(0.1f), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 3.2f, GetSecondDegreeAnimationFunction(0.15f), delegate
                     {
                         FlipSpriteAnimation(_soda, true, 0.8f);
                     });
-                    AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _centerCharPosition, 4f, GetSecondDegreeAnimationFunction(0.1f));
+                    AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _centerCharPosition, 3.2f, GetSecondDegreeAnimationFunction(0.15f));
                     break;
                 case 165:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -1416,8 +1416,8 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 172, 2.65f));
                     break;
                 case 172:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment1, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePleased, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 4f, GetSecondDegreeAnimationFunction(0.1f), delegate
                     {
                         FlipSpriteAnimation(_soda, true, 0.8f);
@@ -1425,33 +1425,38 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _centerCharPosition, 4f, GetSecondDegreeAnimationFunction(0.1f));
                     break;
                 case 173:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePleased, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
                     break;
                 case 174:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment1, Color.white);
                     break;
                 case 175:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieAgree, Color.white);
                     break;
                 case 176:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePleased, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment2, Color.white);
                     break;
                 case 177:
-                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 178, 0f, 0.3f));
+                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 178, 0f, 0.4f));
                     DialogueFlags.kissedTrixie = DialogueFlags.kissedSomeone = true;
                     UpdateDialogueStates(3);
                     break;
                 case 178:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 179, 6f));
                     break;
+                case 179:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieInLove, Color.white);
+                    break;
                 case 180:
                     FlipSpriteAnimation(_soda, false, .8f);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outRightCharPosition, 2.75f, GetSecondDegreeAnimationFunction(0.2f));
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment2, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, DialogueFlags.kissedTrixie ? CharExpressions.TrixieCompliment3 : CharExpressions.TrixieCompliment2, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320001, 2.65f));
                     break;
                 #endregion
@@ -1547,9 +1552,9 @@ namespace TootTally.Tooter
                 case 320202:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    FlipSpriteLeftAnimation(_soda, false);
-                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    FlipSpriteRightAnimation(_soda, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction(.7f));
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction(.7f));
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320203, 2f));
                     break;
                 case 320203:
@@ -1557,7 +1562,7 @@ namespace TootTally.Tooter
                     FlipSpriteRightAnimation(_soda, false, 10f);
                     FlipSpriteRightAnimation(_appaloosa, false, 10f);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.HornLordTalk, Color.white); //BAND DUDE LOL
-                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction()); //Don't forget to change appaloosa's sprite to the band dude
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
@@ -1623,7 +1628,11 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outLeftCharPosition, 1.2f, GetSecondDegreeAnimationFunction(0.3f));
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCharPosition, 1f, GetSecondDegreeAnimationFunction(), delegate { FlipSpriteRightAnimation(_beezerly, true); });
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition + new Vector3(1, 0, 0), 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition + new Vector3(1, 0, 0), 1.1f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        danceSpriteIndex = danceIncrement = 1;
+                        RecursiveSodaBeezerlyDanceAnimation();
+                    });
                     DialogueFlags.dancedWithBeezerly = true;
                     UpdateDialogueStates(3);
                     break;
@@ -1634,6 +1643,11 @@ namespace TootTally.Tooter
                 case 3204057:
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
+                case 3204058:
+                    danceIncrement = 0;
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyInLove, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    break;
                 case 3203055:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
@@ -1643,11 +1657,15 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
                     break;
                 case 3203057:
-                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    FlipSpriteLeftAnimation(_beezerly, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3203058, 3f)); // transition to same scene
                     break;
                 case 3203058:
+                    danceIncrement = 0;
+                    FlipSpriteRightAnimation(_beezerly, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyMock, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
@@ -1659,12 +1677,13 @@ namespace TootTally.Tooter
                 case 3204059:
                     DialogueFlags.kissedBeezerly = DialogueFlags.kissedSomeone = true;
                     UpdateDialogueStates(3);
-                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3204159, 0f, 0.3f)); // transition to kissing scene
+                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3204159, 0f, 0.4f)); // transition to kissing scene
                     break;
                 case 3204159:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3204060, 6f));
                     break;
                 case 3205059:
+                    danceIncrement = 0;
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3204060, 2.65f)); // transition to outside
@@ -1735,8 +1754,8 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
                     break;
                 case 320701:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyImpressed, Color.white); //TODO
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyUh, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
                     break;
                 case 320800:
                 case 320801:
@@ -1748,10 +1767,6 @@ namespace TootTally.Tooter
                 case 320802:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyMock, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
-                    break;
-                case 320803:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white); //TODO
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
                     break;
                 case 320017:
                 case 320600:
@@ -1789,8 +1804,36 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 321002:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white); //TODO
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    break;
+                case 321003:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    break;
+                case 321004:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyWhat, Color.white); 
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaPlead, Color.white);
+                    break;
+                case 321005:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyChallenge, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaFightMe, Color.white);
+                    break;
+                case 321006:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyChallenge, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
+                    break;
+                case 321007:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyChallenge, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
+                    break;
+                case 3210011:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyUh, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaCall, Color.white);
+                    break;
+                case 3210012:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyPassion, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
                     break;
                 case 320023:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
@@ -1830,14 +1873,58 @@ namespace TootTally.Tooter
                 case 330000:
                     FlipSpriteLeftAnimation(_appaloosa, false, 10f);
                     FlipSpriteLeftAnimation(_soda, false, 10f);
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
                 case 330001:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaAgree
+                    break;
+                case 3300011:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    break;
+                case 330002:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    break;
+                case 330003:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white); // SodaTrombone (?)
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaTrombone (?)
+                    break;
+                case 330004:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaWow
+                    break;
+                case 330005:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    break;
+                case 330006:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    break;
+                case 330007:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaPointToSelf
+                    break;
+                case 3310001:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaDisappointed
+                    DialogueFlags.disinterestedAppaloosa = true;
+                    break;
+                case 331000:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, (DialogueFlags.disinterestedAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaLOL), Color.white); // AppaloosaDisappointed
                     break;
                 case 3310002:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    FlipSpriteRightAnimation(_soda, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 331001, 2.65f)); //To the jazz bar!
                     break;
                 case 33100021:
@@ -1848,79 +1935,628 @@ namespace TootTally.Tooter
                     break;          
                 case 3300011:
                     break;
-                case 330002:
-                    break;
-                case 330003:
-                    break;
-                case 330004:
-                    break;
-                case 330005:
-                    break;
-                case 330006:
-                    break;
-                case 330007:
-                    break;
-                case 3310001:
-                    break;
-                case 331000:
-                    break;
                 case 331001: //Jazz bar
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
                 case 331002:
+                    FlipSpriteLeftAnimation(_soda, true);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaPointToSelf
                     break;
                 case 331200:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLeanAway, Color.white);
                     break;
                 case 331100:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
                     break;
                 case 331101:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
                     break;
                 case 331102:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 331103:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaPointToSelf
                     break;
                 case 3311031:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
                     break;
                 case 3311032:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
+                    break;
+                case 3311033:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 331104:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, (DialogueFlags.unimpressedAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutral), Color.white); // AppaloosaDisappointed (unimpressed)
                     break;
                 case 331105:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
                     break;
                 case 331106:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaPointToSelf
                     break;
                 case 331120:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaDisappointed
                     break;
                 case 33110:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
                     break;
                 case 331111:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
                     break;
                 case 331112:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 331113:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.SodaWheezeRW : CharExpressions.SodaHype, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 331114:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaHype, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaDisappointed
                     break;
                 case 3311141:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutral, Color.white);
                     break;
-                case 33111411:
-                    break;
-                case 331142:
+                case 3311142:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
+                    // KISS KISS KISS KISS
                     break;
                 case 331115:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.kissedAppaloosa ? CharExpressions.SodaStressLight : CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.kissedAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340000, 2.65f)); //To Chap 3 part 4 transition
                     break;
                 #endregion
 
                 #region Kaizyle Date
+                case 340000:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outRightCharPosition, 3f, GetSecondDegreeAnimationFunction(0.3f), delegate
+                    {
+                        FlipSpriteRightAnimation(_appaloosa, false);
+                        AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outRightCharPosition, 2.25f, GetSecondDegreeAnimationFunction(0.3f));
+                    });
+                    //Whole fkn animation scene to make trixie look silly
+                    AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outRightCharPosition, 20f, GetSecondDegreeAnimationFunction(1f), delegate
+                    {
+                        ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePanic, Color.white);
+                        FlipSpriteLeftAnimation(_trixiebell, false, 10f);
+                        AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _centerCharPosition, 2.5f, GetSecondDegreeAnimationFunction(1f), delegate
+                        {
+                            if (DialogueFlags.kissedTrixie)
+                            {
+                                ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieInLove);
+                                AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outRightCharPosition, 2f, GetSecondDegreeAnimationFunction(0.0001f), delegate
+                                {
+                                    FlipSpriteRightAnimation(_trixiebell, false, 1.5f);
+                                    ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieCompliment3);
+                                    AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outRightCharPosition, 2f, GetSecondDegreeAnimationFunction(1f));
+                                });
+                            }
+                            else
+                            {
+                                ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieSadge);
+                                FlipSpriteRightAnimation(_trixiebell, false, 1.5f);
+                                AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _outRightCharPosition, 2f, GetSecondDegreeAnimationFunction(1f));
+                            }
+                        });
+                    });
 
+                    break;
+                case 340001:
+                    FlipSpriteLeftAnimation(_kaizyle, true);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    break;
+                case 340002:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340003:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400031:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                    break;
+                case 3400032:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400033:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizylePissed, Color.white);
+                    break;
+                case 3400034:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
+                    break;
+                case 3400035:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                    break;
+                case 340004:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleDispleased, Color.white);
+                    break;
+                case 340100:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaPlead, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                    break;
+                case 340101:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaPlead, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
+                    break;
+                case 340102: //GTFO ENDING
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    FlipSpriteRightAnimation(_kaizyle, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    break;
+                case 340005:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                    DialogueFlags.wannaKnowAboutKaizyle = true;
+                    UpdateDialogueStates(3);
+                    break;
+                case 340006:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    break;
+                case 340007:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaPlead, Color.white);
+                    break;
+                case 340008:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    break;
+                case 340009:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaShock, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFine, Color.white);
+                    break;
+                case 340010:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outRightCharPosition, 0.3f, GetSecondDegreeAnimationFunction(0.001f), delegate { ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white); });
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340011:
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340012:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340013:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleDispleased, Color.white);
+                    break;
+                case 34010810:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaCall, Color.white); //YIPPIES
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizylePissed, Color.white);
+                    DialogueFlags.saidYippies = true;
+                    UpdateDialogueStates(3);
+                    break;
+                case 3401081:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleDispleased, Color.white);
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3400090, 2.65f)); //To Downtown
+                    break;
+                case 34000810:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 34000811:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    break;
+                case 3400081:
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3400090, 2.65f)); //To Downtown
+                    break;
                 #endregion
-
+                case 3400091:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        FlipSpriteLeftAnimation(_kaizyle, false);
+                        ChangeCharSprite(_sodaSprite, CharExpressions.SodaDeepSmug, Color.white);
+                    });
+                    break;
+                case 34000101:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 34000111:
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400011:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
+                    break;
+                case 3400012:
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleDispleased, Color.white);
+                    break;
+                case 3400013:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400014:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleShrug, Color.white);
+                    break;
+                case 340200:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
+                    DialogueFlags.choosedGlissandogs = true;
+                    UpdateDialogueStates(3);
+                    break;
+                case 340201:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaDeepSmug, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    break;
+                case 340202:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    break;
+                case 340203:
+                    FlipSpriteRightAnimation(_kaizyle, true);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    break;
+                case 340204:
+                    FlipSpriteLeftAnimation(_kaizyle, true);
+                    break;
+                case 340305:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaBleh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
+                    DialogueFlags.arguedAboutGlissandogs = true;
+                    UpdateDialogueStates(3);
+                    break;
+                case 340306:
+                case 340308:
+                case 340310:
+                case 340312:
+                case 340314:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaBleh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFightMe, Color.white);
+                    if (_currentDialogueState == 340314)
+                        AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction(1.2f));
+                    break;
+                case 340307:
+                case 340309:
+                case 340311:
+                case 340313:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaFightMe, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                    if (_currentDialogueState == 340313)
+                        AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition - new Vector3(-1, 0), 1.1f, GetSecondDegreeAnimationFunction(0.3f));
+                    break;
+                case 340315:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
+                    break;
+                case 340316:
+                    FlipSpriteRightAnimation(_kaizyle, false, 1.2f);
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction(1.2f));
+                    break;
+                case 340317:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaBreaking, Color.white);
+                    break;
+                case 340318:
+                    FlipSpriteLeftAnimation(_soda, false, 0.3f);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 2.5f, GetSecondDegreeAnimationFunction(0.2f));
+                    break;
+                case 340206:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    break;
+                case 340407:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
+                    DialogueFlags.overReactedAboutKaizyleHotdogs = true;
+                    UpdateDialogueStates(3);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        OnDemonDialogueDoDialoguePostFix(new object[] { 340408 }, __instance);
+                    });
+                    break;
+                case 340408:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        OnDemonDialogueDoDialoguePostFix(new object[] { 340409 }, __instance);
+                    });
+                    break;
+                case 340409:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        OnDemonDialogueDoDialoguePostFix(new object[] { 340410 }, __instance);
+                    });
+                    break;
+                case 340410:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        OnDemonDialogueDoDialoguePostFix(new object[] { 3404101 }, __instance);
+                    });
+                    break;
+                case 3404101:
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizylePissed, Color.white);
+                    break;
+                case 340411:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        OnDemonDialogueDoDialoguePostFix(new object[] { 340412 }, __instance);
+                    });
+                    break;
+                case 340412:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(1, 0, 0), 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                      {
+                          OnDemonDialogueDoDialoguePostFix(new object[] { 340413 }, __instance);
+                      });
+                    break;
+                case 340413:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaPlead, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
+                    break;
+                case 340207:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340208:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340015:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340016:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340017, 2.65f)); //To Ice Cream yeehaw yum yum
+                    break;
+                case 340300:
+                case 340400:
+                    FlipSpriteLeftAnimation(_soda, false);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    DialogueFlags.gotIceCream = _currentDialogueState == 340300;
+                    DialogueFlags.gotSundae = _currentDialogueState == 340400;
+                    UpdateDialogueStates(3);
+                    break;
+                case 3400171:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340018:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340020:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaMunch, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    break;
+                case 3400201:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    break;
+                case 340021:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340022:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 3400221:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340023:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleEnamored, Color.white);
+                    DialogueFlags.complimentedKaizyle = true;
+                    UpdateDialogueStates(3);
+                    break;
+                case 340024:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFlatteredLookUp, Color.white);
+                    break;
+                case 340025:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaMunch, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400261:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
+                    FlipSpriteRightAnimation(_soda, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1.5f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    {
+                        FlipSpriteLeftAnimation(_soda, false, 10f);
+                        ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                        AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
+                    });
+                    DialogueFlags.threwIceCreamAway = true;
+                    UpdateDialogueStates(3);
+                    break;
+                case 3400262:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400263:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400264:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.gotIceCream ? CharExpressions.SodaNeutral : CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleShrug, Color.white);
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340026, 2.65f)); //To Chap 4 transition
+                    break;
+                case 340026:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f));
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    {
+                        FlipSpriteLeftAnimation(_kaizyle, true);
+                    });
+                    break;
+                case 340027:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340028:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340029:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
+                    break;
+                case 340030:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340031:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340131:
+                    FlipSpriteRightAnimation(_kaizyle, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    {
+                        ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);//SodaReleaf after sitting
+                    });
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1.2f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    {
+                        FlipSpriteLeftAnimation(_kaizyle, true);
+                    });
+                    break;
+                case 340132:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaMunch, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340133:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleCat, Color.white);
+                    break;
+                case 340134:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleCat, Color.white);
+                    break;
+                case 340135:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNom, Color.white);
+                    break;
+                case 340136:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3401361:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFlattered, Color.white);
+                    break;
+                case 340137:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFlatteredLookUp, Color.white);
+                    break;
+                case 340138:
+                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 340139, 0f, 0.4f)); //KISSING SCENE BOI
+                    DialogueFlags.kissedKaizyle = true;
+                    UpdateDialogueStates(3);
+                    break;
+                case 340238:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340239:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.kissedKaizyle ? CharExpressions.SodaInLove : CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, DialogueFlags.kissedKaizyle ? CharExpressions.KaizyleLove : CharExpressions.KaizyleFine, Color.white);
+                    break;
+                case 340240:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleLove, Color.white);
+                    break;
+                case 340241:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFlattered, Color.white);
+                    break;
+                case 340032:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340033:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, DialogueFlags.kissedKaizyle ? CharExpressions.KaizyleFlattered : CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340034:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340035:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFine, Color.white);
+                    break;
+                case 340036:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleShrug, Color.white);
+                    break;
+                case 340037:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340038:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340039:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
                 case 350000:
+                    FlipSpriteRightAnimation(_soda, false);
+                    FlipSpriteRightAnimation(_kaizyle, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f));
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f));
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
                     break;
                 #endregion
 
                 #region Chapter 4
+                case 410000:
+                    //Flip the fack out of everyone
+                    FlipSpriteLeftAnimation(_soda, false, 10f);
+                    FlipSpriteLeftAnimation(_trixiebell, false, 10f);
+                    FlipSpriteLeftAnimation(_beezerly, false, 10f);
+                    FlipSpriteLeftAnimation(_appaloosa, false, 10f);
+                    FlipSpriteLeftAnimation(_kaizyle, false, 10f);
+                    break;
                 case 410001:
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
@@ -1929,12 +2565,16 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixiePanic, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_trixiebell, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.trixiePresent = true;
+                    UpdateDialogueStates(4);
                     break;
                 case 410003:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyBump, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.beezerlyPresent = true;
+                    UpdateDialogueStates(4);
                     break;
                 case 410004:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -1942,6 +2582,8 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.appaloosaPresent = true;
+                    UpdateDialogueStates(4);
                     break;
                 case 410005:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -1950,6 +2592,8 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    DialogueFlags.kaizylePresent = true;
+                    UpdateDialogueStates(4);
                     break;
                 case 410006:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
@@ -2056,11 +2700,11 @@ namespace TootTally.Tooter
         {
             yield return new WaitForSeconds(delay);
 
-            __instance.csc.fadeoutpanel.GetComponent<Image>().color = new Color(.6f, .6f, .6f);
+            __instance.csc.fadeoutpanel.GetComponent<Image>().color = new Color(.75f, .75f, .75f);
             __instance.csc.fadeoutpanel.transform.localScale = new Vector3(2f, 0.001f, 1f);
             __instance.csc.fadeoutpanel.SetActive(true);
 
-            AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 2f, 1f), 1.5f / speedMultiplier, GetSecondDegreeAnimationFunction(speedMultiplier), delegate
+            AnimationManager.AddNewTransformScaleAnimation(__instance.csc.fadeoutpanel, new Vector3(2f, 2f, 1f), 1.3f / speedMultiplier, GetSecondDegreeAnimationFunction(speedMultiplier), delegate
             {
                 switch (nextDialogueID)
                 {
@@ -2074,6 +2718,18 @@ namespace TootTally.Tooter
                         _soda.transform.position = _outLeftCharPosition;
                         _beezerly.transform.position = _outLeftCharPosition;
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentBeezerly.png");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
+                        break;
+                    case 99999: //TODO
+                        _soda.transform.position = _outLeftCharPosition;
+                        _appaloosa.transform.position = _outLeftCharPosition;
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentAppaloosa.png");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
+                        break;
+                    case 340139:
+                        _soda.transform.position = _outLeftCharPosition;
+                        _kaizyle.transform.position = _outLeftCharPosition;
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentKaizyle.png");
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
                         break;
                 }
@@ -2099,6 +2755,8 @@ namespace TootTally.Tooter
                     case 210000:
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ClassroomEvening.png");
                         _txtBox.UpdateText("");
+                        _soda.transform.position = _leftCenterCharPosition;
+                        ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral);
                         _trixiebell.transform.position = _outRightCharPosition;
                         __instance.csc.fadeMus(1, true);
                         UpdateDialogueStates(2);
@@ -2136,6 +2794,8 @@ namespace TootTally.Tooter
                     case 109:
                     //TimeSkip
                     case 150:
+                        ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                        ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieNeutral, Color.white);
                         __instance.csc.fadeMus(0, true);
                         _txtBox.UpdateText("");
                         break;
@@ -2201,7 +2861,7 @@ namespace TootTally.Tooter
                         _soda.transform.position = _outRightCharPosition + new Vector3(1, 0, 0);
                         _beezerly.transform.position = _outRightCharPosition;
                         __instance.csc.fadeMus(0, true);
-                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("HardRockCafeTableAndStage.png"); // change this to stage rock cafe image
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("HardRockCafeTableAndStage.png");
                         break;
 
                     //Timetravel forward
@@ -2238,6 +2898,8 @@ namespace TootTally.Tooter
                         break;
                     case 331001:
                         ResetCharacterPositions();
+                        FlipSpriteRightAnimation(_soda, false, 10f);
+                        _soda.transform.position = _outRightCharPosition;
                         _txtBox.UpdateText("");
                         __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("JazzClub.png");
@@ -2247,12 +2909,53 @@ namespace TootTally.Tooter
                     case 340000:
                         ResetCharacterPositions();
                         _txtBox.UpdateText("");
+                        FlipSpriteRightAnimation(_soda, false);
+                        _soda.transform.position = _leftCharPosition;
+                        FlipSpriteRightAnimation(_trixiebell, false, 10f);
+                        _trixiebell.transform.position = _leftCenterCharPosition;
+                        FlipSpriteRightAnimation(_beezerly, false, 10f);
+                        _beezerly.transform.position = _centerCharPosition;
+                        FlipSpriteLeftAnimation(_appaloosa, false, 10f);
+                        _appaloosa.transform.position = _rightCenterCharPosition;
+                        FlipSpriteRightAnimation(_kaizyle, false, 10f);
+                        _kaizyle.transform.position = _rightCharPosition;
                         __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
                         LogChapter3Part3States();
                         LogScores();
                         break;
-
+                    //Ice Cream
+                    case 340017:
+                        _soda.transform.position = _leftCenterCharPosition;
+                        _kaizyle.transform.position = _rightCenterCharPosition;
+                        FlipSpriteRightAnimation(_soda, false, 10f);
+                        FlipSpriteLeftAnimation(_kaizyle, false, 10f);
+                        ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                        ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                        _txtBox.UpdateText("");
+                        __instance.csc.fadeMus(1, true);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("IceCreamCafe.png");
+                        break;
+                    //DownTown
+                    case 3400090:
+                        ResetCharacterPositions();
+                        _txtBox.UpdateText("");
+                        _kaizyle.transform.position = _rightCenterCharPosition + new Vector3(1, 0, 0);
+                        FlipSpriteRightAnimation(_kaizyle, false, 10f);
+                        ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                        __instance.csc.fadeMus(1, true);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("Downtown.png");
+                        break;
+                    //Park
+                    case 340026:
+                        ResetCharacterPositions();
+                        _txtBox.UpdateText("");
+                        _kaizyle.transform.position = _outLeftCharPosition;
+                        _soda.transform.position = _outLeftCharPosition - new Vector3(1.2f, 0, 0);
+                        FlipSpriteRightAnimation(_kaizyle, false, 10f);
+                        __instance.csc.fadeMus(1, true);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ParkBench.png");
+                        break;
                     #region Chapter 4 transitions
                     //end Chapter 3 part 4
                     case 410000:
@@ -2268,52 +2971,70 @@ namespace TootTally.Tooter
                     //perform with Trixie
                     case 410101:
                         SingleTrackData loveHasNoEndTrack = TrackLookup.toTrackData(TrackLookup.lookup(_loveHasNoEndTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(loveHasNoEndTrack);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(loveHasNoEndTrack))
+                            GlobalVariables.alltrackslist_custom.Add(loveHasNoEndTrack);
                         GlobalVariables.chosen_track = _loveHasNoEndTrackref;
                         GlobalVariables.chosen_track_data = loveHasNoEndTrack;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
 
                     //perform with Beezerly
                     case 410201:
                         SingleTrackData letBeYourselfTrack = TrackLookup.toTrackData(TrackLookup.lookup(_letBeYourselfTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(letBeYourselfTrack);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(letBeYourselfTrack))
+                            GlobalVariables.alltrackslist_custom.Add(letBeYourselfTrack);
                         GlobalVariables.chosen_track = _letBeYourselfTrackref;
                         GlobalVariables.chosen_track_data = letBeYourselfTrack;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
 
                     //perform with Appaloosa
                     case 410301:
                         SingleTrackData lateNightJazTrack = TrackLookup.toTrackData(TrackLookup.lookup(_lateNightJazTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(lateNightJazTrack);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(lateNightJazTrack))
+                            GlobalVariables.alltrackslist_custom.Add(lateNightJazTrack);
                         GlobalVariables.chosen_track = _lateNightJazTrackref;
                         GlobalVariables.chosen_track_data = lateNightJazTrack;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
 
                     //perform with Kaizyle
                     case 410401:
                         SingleTrackData pathOfDiscoveries = TrackLookup.toTrackData(TrackLookup.lookup(_pathOfDiscoveriesTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(pathOfDiscoveries);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(pathOfDiscoveries))
+                            GlobalVariables.alltrackslist_custom.Add(pathOfDiscoveries);
                         GlobalVariables.chosen_track = _pathOfDiscoveriesTrackref;
                         GlobalVariables.chosen_track_data = pathOfDiscoveries;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
                     //Solo performance KEKW
                     case 410013:
                         SingleTrackData memoriesOfYou = TrackLookup.toTrackData(TrackLookup.lookup(_memoriesOfYouTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(memoriesOfYou);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(memoriesOfYou))
+                            GlobalVariables.alltrackslist_custom.Add(memoriesOfYou);
                         GlobalVariables.chosen_track = _memoriesOfYouTrackref;
                         GlobalVariables.chosen_track_data = memoriesOfYou;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
                     //HAREM FOR JOE WOOOO
                     case 410506:
                         SingleTrackData loveFlipTrack = TrackLookup.toTrackData(TrackLookup.lookup(_loveFlipTrackref));
-                        GlobalVariables.alltrackslist_custom.Add(loveFlipTrack);
+                        if (!GlobalVariables.alltrackslist_custom.Contains(loveFlipTrack))
+                            GlobalVariables.alltrackslist_custom.Add(loveFlipTrack);
                         GlobalVariables.chosen_track = _loveFlipTrackref;
                         GlobalVariables.chosen_track_data = loveFlipTrack;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
                         #endregion
@@ -2349,7 +3070,7 @@ namespace TootTally.Tooter
 
         public static void LogChapter3Part1States()
         {
-            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 1 STATES:");
             Plugin.Instance.LogInfo("   mentionedTrixiePenguinPin: " + DialogueFlags.mentionedTrixiePenguinPin);
             Plugin.Instance.LogInfo("   invitedTrixieOut: " + DialogueFlags.invitedTrixieOut);
             Plugin.Instance.LogInfo("   sharedCookieWithTrixie: " + DialogueFlags.sharedCookieWithTrixie);
@@ -2369,7 +3090,7 @@ namespace TootTally.Tooter
         }
         public static void LogChapter3Part2States()
         {
-            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 2 STATES:");
             Plugin.Instance.LogInfo("   wentToRockCafe: " + DialogueFlags.wentToRockCafe);
             Plugin.Instance.LogInfo("   orderedBurger: " + DialogueFlags.askedIfFirstTime);
             Plugin.Instance.LogInfo("   agreedWithBeezerly: " + DialogueFlags.orderedBurger);
@@ -2386,7 +3107,7 @@ namespace TootTally.Tooter
 
         public static void LogChapter3Part3States()
         {
-            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 3 STATES:");
             Plugin.Instance.LogInfo("   unimpressedAppaloosa: " + DialogueFlags.unimpressedAppaloosa);
             Plugin.Instance.LogInfo("   kissedAppaloosa: " + DialogueFlags.kissedAppaloosa);
             Plugin.Instance.LogInfo("   awkwardAppaloosa: " + DialogueFlags.awkwardAppaloosa);
@@ -2396,8 +3117,32 @@ namespace TootTally.Tooter
 
         public static void LogChapter3Part4States()
         {
-            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
-            Plugin.Instance.LogInfo("   wentToRockCafe: " + DialogueFlags.wentToRockCafe);
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 4 STATES:");
+            Plugin.Instance.LogInfo("   wannaKnowAboutKaizyle: " + DialogueFlags.wannaKnowAboutKaizyle);
+            Plugin.Instance.LogInfo("   saidYippies: " + DialogueFlags.saidYippies);
+            Plugin.Instance.LogInfo("   choosedGlissandogs: " + DialogueFlags.choosedGlissandogs);
+            Plugin.Instance.LogInfo("   arguedAboutGlissandogs: " + DialogueFlags.arguedAboutGlissandogs);
+            Plugin.Instance.LogInfo("   overReactedAboutKaizyleHotdogs: " + DialogueFlags.overReactedAboutKaizyleHotdogs);
+            Plugin.Instance.LogInfo("   complimentedKaizyle: " + DialogueFlags.complimentedKaizyle);
+            Plugin.Instance.LogInfo("   threwIceCreamAway: " + DialogueFlags.threwIceCreamAway);
+            Plugin.Instance.LogInfo("   gotIceCream: " + DialogueFlags.gotIceCream);
+            Plugin.Instance.LogInfo("   gotSundae: " + DialogueFlags.gotSundae);
+            Plugin.Instance.LogInfo("   kissedKaizyle: " + DialogueFlags.kissedKaizyle);
+            Plugin.Instance.LogInfo("-----------------------------");
+        }
+        public static void LogChapter4States()
+        {
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 4 STATES:");
+            Plugin.Instance.LogInfo("   trixiePresent: " + DialogueFlags.trixiePresent);
+            Plugin.Instance.LogInfo("   beezerlyPresent: " + DialogueFlags.beezerlyPresent);
+            Plugin.Instance.LogInfo("   appaloosaPresent: " + DialogueFlags.appaloosaPresent);
+            Plugin.Instance.LogInfo("   kaizylePresent: " + DialogueFlags.kaizylePresent);
+            Plugin.Instance.LogInfo("   performedWithTrixie: " + DialogueFlags.performedWithTrixie);
+            Plugin.Instance.LogInfo("   performedWithBeezerly: " + DialogueFlags.performedWithBeezerly);
+            Plugin.Instance.LogInfo("   performedWithAppaloosa: " + DialogueFlags.performedWithAppaloosa);
+            Plugin.Instance.LogInfo("   performedWithKaizyle: " + DialogueFlags.performedWithKaizyle);
+            Plugin.Instance.LogInfo("   performedSolo: " + DialogueFlags.performedSolo);
+            Plugin.Instance.LogInfo("   performedGroup: " + DialogueFlags.performedGroup);
             Plugin.Instance.LogInfo("-----------------------------");
         }
 
@@ -2976,7 +3721,7 @@ namespace TootTally.Tooter
                     option1Text = "Ew, rock?",
                     option1Score = new ScoreData()
                     {
-                        beezerlyScore = -5,
+                        beezerlyScore = -11,
                     },
                     option1DialogueID = 220100,
                     option2Text = "Haven't decided???",
@@ -4254,9 +4999,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_sodaColoredName}: Wow, it's definitely a unique experience.",
                     option1Text = "Order food",
                     option1DialogueID = 320100,
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore = 2,
+                    },
                     option2Text = "First time here",
                     option2DialogueID = 320010,
-
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore = 1,
+                    },
                 }
             },
             {320010,
@@ -4279,8 +5031,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_beezerlyColoredName}: Since its your first time, then we have to make the most of it!",
                     option1Text = "Order food",
                     option1DialogueID = 320100,
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore = 2,
+                    },
                     option2Text = "Listen To The Band",
                     option2DialogueID = 320200,
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore = 1,
+                    },
                 }
             },
             {320200,
@@ -4314,8 +5074,16 @@ namespace TootTally.Tooter
                     dialogueText = $"Band: And for our final song, we will take requests from our audience!",
                     option1Text = "Wait",
                     option1DialogueID = 3202040,
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore = -3,
+                    },
                     option2Text = "Request",
                     option2DialogueID = 3202050,
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore = 2,
+                    },
 
                 }
             },
@@ -4338,7 +5106,7 @@ namespace TootTally.Tooter
             {3202042,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} No way! It's mine too!", //widepeepoBeezerly
+                    dialogueText = $"{_sodaColoredName} No way! It's mine too!",
                     option2DialogueID = 3202043,
 
                 }
@@ -4346,7 +5114,7 @@ namespace TootTally.Tooter
             {3202043,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: You're kidding!", //widepeepoBeezerly
+                    dialogueText = $"{_beezerlyColoredName}: You're kidding!",
                     option2DialogueID = 3202044,
 
                 }
@@ -4354,7 +5122,7 @@ namespace TootTally.Tooter
             {3202044,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Isn't it everyone's?", //widepeepoBeezerly
+                    dialogueText = $"{_sodaColoredName}: Isn't it everyone's?",
                     option2DialogueID = 3202045,
 
                 }
@@ -4363,14 +5131,14 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"The rest of the song is spent happily discussing the music and our various tastes. We barely notice as the song ends.", //BeezerlyJam and SodaJam
-                    option2DialogueID = 320100, //TODO: keep stage background?
+                    option2DialogueID = 320100,
 
                 }
             },
             {3202050,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} Screams: ROCK 'N' BONE!!!!!", //SodaScreamOutLoud
+                    dialogueText = $"{_sodaColoredName} Screams: ROCK 'N' BONE!!!!!",
                     option2DialogueID = 3202051,
 
                 }
@@ -4386,6 +5154,7 @@ namespace TootTally.Tooter
             {3202052,
                 new DialogueData()
                 {
+
                     dialogueText = $"{_beezerlyColoredName}: No way. This is my favorite song!!", //BeezerlyOverlminglyHappy
                     option2DialogueID = 3202053,
 
@@ -4402,7 +5171,7 @@ namespace TootTally.Tooter
             {32020541,
                 new DialogueData()
                 {
-                    dialogueText = $"Without warning, Beezerly pushes back her chair and shoots up.", //widepeepoBeezerly
+                    dialogueText = $"Without warning, Beezerly pushes back her chair and shoots up.",
                     option2DialogueID = 3202054,
 
                 }
@@ -4412,9 +5181,16 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_beezerlyColoredName}: We HAVE to jam to this one.",
                     option1Text = "Follow her",
-                    option1DialogueID = 3202055,
+                    option1DialogueID = 3202055,option1Score = new ScoreData()
+                    {
+                        beezerlyScore = 3,
+                    },
                     option2Text = "Don't know how to dance",
                     option2DialogueID = 3203055,
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore = -5,
+                    },
 
                 }
             },
@@ -4432,8 +5208,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_beezerlyColoredName}: I didn't know you could dance, {_sodaColoredName}! That was groovy!",
                     option1Text = "Compliment her",
                     option1DialogueID = 3202057,
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore = 2,
+                    },
                     option2Text = "Approach her",
                     option2DialogueID = 3204057,
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore = 1,
+                    },
 
                 }
             },
@@ -4465,6 +5249,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"Everyone somehow makes space for her wild choreography as she rocks out on the dance floor.",
+                    option2Text = "",
                     option2DialogueID = 0,
 
                 }
@@ -4481,6 +5266,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Sure! Some fresh air would be nice.",
+                    option2Text = "",
                     option2DialogueID = 0,
 
                 }
@@ -4522,13 +5308,16 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"If not now, then when?",
+                    option2Text = "",
                     option2DialogueID = 0,
+
                 }
             },
             {3205059, // Transition to 3204060
                 new DialogueData()
                 {
                     dialogueText = $"Exhausted, I head for the door, gesturing for her to follow.",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
@@ -4571,7 +5360,9 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"I head home, Rock 'n' Bone still echoing in my head.",
+                    option2Text = "",
                     option2DialogueID = 0,
+
                 }
             },
             {320100,
@@ -4588,8 +5379,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_beezerlyColoredName}: Hell yeah! What are you thinking?",
                     option1Text = "Burger",
                     option1DialogueID = 320102,
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore = 2,
+                    },
                     option2Text = "Hot dog pizza",
                     option2DialogueID = 320300,
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore = -4,
+                    },
 
                 }
             },
@@ -4612,17 +5411,25 @@ namespace TootTally.Tooter
             {320013,
                 new DialogueData()
                 {
-                    dialogueText = $"We order {(DialogueFlags.orderedBurger ? "burgers" : "pizza")} and drinks and settle down to eat]",
+                    dialogueText = $"We order {(DialogueFlags.orderedBurger ? "burgers" : "hot dog pizza")} and drinks and settle down to eat",
                     option1Text = "Ask more about her",
                     option1DialogueID = 320014,
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore = 2,
+                    },
                     option2Text = "Ask about the food",
                     option2DialogueID = 320400,
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore = DialogueFlags.orderedBurger ? 2 : -3,
+                    },
                 }
             },
             {320400,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: How do you like the {(DialogueFlags.orderedBurger ? "burgers" : "pizza")}?",
+                    dialogueText = $"{_sodaColoredName}: How do you like the {(DialogueFlags.orderedBurger ? "burgers" : "hot dog pizza")}?",
                     option2DialogueID = DialogueFlags.orderedBurger ? 320401 : 320500,
                 }
             },
@@ -4660,8 +5467,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_beezerlyColoredName}: Music is supposed to bring people together, not tear them apart.",
                     option1Text = "Disagree",
                     option1DialogueID = DialogueFlags.isCompetitive ? 320700 : 320800,
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore = DialogueFlags.isCompetitive ? -7 : 3,
+                    },
                     option2Text = "Agree",
                     option2DialogueID = DialogueFlags.isCompetitive ? 320017 : 320600,
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore =  2,
+                    },
                 }
             },
             {320700,
@@ -4695,7 +5510,7 @@ namespace TootTally.Tooter
             {320802,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: I... huh. y'know,Y{_sodaColoredName}, I never thought about it that way.",
+                    dialogueText = $"{_beezerlyColoredName}: I... huh. y'know, Soda, I never thought about it that way.",
                     option2DialogueID = 320019
                 }
             },
@@ -4745,23 +5560,31 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"[Their food arrives and they dig in, enjoying the delicious burgers and fries]",
-                    option1Text = "Discuss Burger",
+                    option1Text = DialogueFlags.orderedBurger ? "Discuss Burger" : "Discuss Pizza",
                     option1DialogueID = 321000,
-                    option2Text = "Compliment Burger",
-                    option2DialogueID = 320023
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore =  -2,
+                    },
+                    option2Text = DialogueFlags.orderedBurger ? "Compliment food" : "Compliment Pizza",
+                    option2DialogueID = 320023,
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore = 1,
+                    },
                 }
             },
             {321000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: These burgers are alright, but I’ve had better.",
+                    dialogueText = $"{_sodaColoredName}: The food is alright, but I’ve had better.",
                     option2DialogueID = 321001
                 }
             },
-            {321001, // No like burger
+            {321001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Oh? And where would these better burgers be found?",
+                    dialogueText = $"{_beezerlyColoredName}: Oh? And where would better food be found?",
                     option2DialogueID = 321002
                 }
             },
@@ -4785,8 +5608,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_beezerlyColoredName}: Seriously? That place?",
                     option1Text = "Kidding!",
                     option1DialogueID = 3210011,
+                    option1Score = new ScoreData()
+                    {
+                        beezerlyScore =  1,
+                    },
                     option2Text = "Seriously.",
-                    option2DialogueID = 321005
+                    option2DialogueID = 321005,
+                    option2Score = new ScoreData()
+                    {
+                        beezerlyScore =  -4,
+                    },
                 }
             },
             {321005,
@@ -4864,13 +5695,14 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: And you're pretty cool for a rebellious tromboner.",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
             {320030, // transition to outside scene 320031
                 new DialogueData()
                 {
-                    dialogueText = $"We step outside, enjoying the cool air.", 
+                    dialogueText = $"We step outside, enjoying the cool air.",
                     option2DialogueID = 320031,
                 }
             },
@@ -4894,7 +5726,7 @@ namespace TootTally.Tooter
             {330000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hi Appaloosa, thanks for agreeing to give me some trombone lessons. I'm really excited to learn from you.",
+                    dialogueText = $"{_sodaColoredName}: Hey Appaloosa! I really enjoy your tunes, thanks for letting me learn from you!",
                     option2DialogueID = 330001,
                 }
             },
@@ -4908,35 +5740,35 @@ namespace TootTally.Tooter
             {3300011,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: How about we start with a few warm-up exercises?",
+                    dialogueText = $"{_appaloosaColoredName}: Hows about a few warm-up exercises?",
                     option2DialogueID = 330002,
                 }
             },
             {330002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Sounds good to me.",
+                    dialogueText = $"{_sodaColoredName}: Sure thing!",
                     option2DialogueID = 330003
                 }
             },
             {330003,
                 new DialogueData()
                 {
-                    dialogueText = $"[They begin practicing, and {_appaloosaColoredName} gives {_sodaColoredName} pointers on his technique]",
+                    dialogueText = $"Holy wow, {_appaloosaColoredName} is teaching me so much I've never seen before!",
                     option2DialogueID = 330004
                 }
             },
             {330004,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: You're a quick learner, {_sodaColoredName}. You've got a lot of potential. Have you ever played at a jazz bar before?",
+                    dialogueText = $"{_appaloosaColoredName}: You're a quick learner, {_sodaColoredName}. You ever played at a jazz bar before?",
                     option2DialogueID = 330005
                 }
             },
             {330005,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I haven't!",
+                    dialogueText = $"{_sodaColoredName}: Nope.",
                     option2DialogueID = 330006
                 }
             },
@@ -4950,7 +5782,7 @@ namespace TootTally.Tooter
             {330007,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Would you like to come with me tonight? We can grab a drink and listen to some live music.",
+                    dialogueText = $"{_appaloosaColoredName}: Wanna go tonight? We can grab a drink and listen to some live music.",
                     option1Text = $"Why not",
                     option1DialogueID = 3310001,
                     option2Text = $"Absolutely",
@@ -5065,7 +5897,7 @@ namespace TootTally.Tooter
             {331002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: What do you think, {_sodaColoredName}? This is the real deal, right?", // Yelling over music
+                    dialogueText = $"{_appaloosaColoredName}: Whadd'ya think, {_sodaColoredName}? This is the real deal, yeah?", // Yelling over music
                     option1DialogueID = 331200,
                     option1Text = $"Not terrible...",
                     option1Score = new ScoreData
@@ -5097,14 +5929,14 @@ namespace TootTally.Tooter
             {331101,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: That's the power of jazz. It brings people together and creates a sense of community.",
+                    dialogueText = $"{_appaloosaColoredName}: That's jazz for ya! It brings everyone together in one family!",
                     option2DialogueID = 331102
                 }
             },
             {331102,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I never really thought about it that way before!",
+                    dialogueText = $"{_sodaColoredName}: That's pretty neat!",
                     option2DialogueID = 331103
                 }
             },
@@ -5135,6 +5967,13 @@ namespace TootTally.Tooter
                 {
                     dialogueText = DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: Oh, stop it!" : $"{_appaloosaColoredName} Now, that's interesting, because you have to understand that harmony is more than just major and minor.",
 
+                    option2DialogueID = 3311033
+                }
+            },
+            {3311033,
+                new DialogueData()
+                {
+                    dialogueText = $"{_appaloosaColoredName}: Let's order and have a seat. They put on great shows here!",
                     option2DialogueID = 331104
                 }
             },
@@ -5183,7 +6022,7 @@ namespace TootTally.Tooter
             {33110, // Choice 1; flirt
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Thanks, {_appaloosaColoredName}. That means a lot coming from someone as talented as you.", // SodaEmbarrassedLight
+                    dialogueText = $"{_sodaColoredName}: Thanks, {_appaloosaColoredName}. Means a lot coming from someone with your talent.", // SodaEmbarrassedLight
                     option2DialogueID = 331111
 
                 }
@@ -5191,14 +6030,14 @@ namespace TootTally.Tooter
             {331111,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Oh, stop it. But seriously, if you ever want to perform here, just let me know. I'd be happy to help you get started.", // Laugh
+                    dialogueText = $"{_appaloosaColoredName}: Oh shush, {_sodaColoredName}. If you ever wanna perform here, though, I can help you start.", // Laugh
                     option2DialogueID = 331112
                 }
             },
             {331112,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: That would be amazing. I'll definitely take you up on that offer.", // SodaWOW
+                    dialogueText = $"{_sodaColoredName}: I'll consider that offer, thanks!", // SodaWOW
                     option2DialogueID = 331113
                 }
             },
@@ -5224,7 +6063,10 @@ namespace TootTally.Tooter
                     option1DialogueID = DialogueFlags.flirtAppaloosa ? 3311141 : 3311142,
                     option1Score = new ScoreData
                     {
-                        appaloosaScore = DialogueFlags.flirtAppaloosa ? 5f : -5f
+                        appaloosaScore = DialogueFlags.flirtAppaloosa ? 50f : -10f,
+                        beezerlyScore = DialogueFlags.flirtAppaloosa ? -25f : 0f,
+                        trixieScore = DialogueFlags.flirtAppaloosa ? -25f : 0f,
+                        kaizyleScore = DialogueFlags.flirtAppaloosa ? -25f : 0f,
                     },
                     option2Text = "Head home",
                     option2DialogueID = 331115
@@ -5301,14 +6143,14 @@ namespace TootTally.Tooter
             {3400031,
                 new DialogueData()
                 {
-                    dialogueText = $"Yes. What are you getting at?",
+                    dialogueText = $"{_kaizyleColoredName}: Yes. What are you getting at?",
                     option2DialogueID = 3400032,
                 }
             },
             {3400032,
                 new DialogueData()
                 {
-                    dialogueText = $" I was hoping we could go to the park together.",
+                    dialogueText = $"{_sodaColoredName}: I was hoping we could go to the park together.",
                     option2DialogueID = 3400033,
                 }
             },
@@ -5322,7 +6164,7 @@ namespace TootTally.Tooter
             {3400034,
                 new DialogueData()
                 {
-                    dialogueText = $" Well uh I mean well you see and it's ok if you don't want to I don't know why I would either um wait that came out wrong because I mean I would obviously that's why I asked but if you don't want to that's okay too because it was just a stupid idea after all and I don't know why I just brazenly assumed you were okay with it even though that's not really what I meant by asking but I want to make it clear that wait this isn't very clear I'm sorry I don't know why I asked at all this was dumb of me I'm sorry for wasting your time I should just go to my class now and leave you alone",
+                    dialogueText = $"{_sodaColoredName}: Well uh I mean well you see and it's ok if you don't want to I don't know why I would either um wait that came out wrong because I mean I would obviously that's why I asked but if you don't want to that's okay too because it was just a stupid idea after all and I don't know why I just brazenly assumed you were okay with it even though that's not really what I meant by asking but I want to make it clear that wait this isn't very clear I'm sorry I don't know why I asked at all this was dumb of me I'm sorry for wasting your time I should just go to my class now and leave you alone",
                     option2DialogueID = 3400035,
                 }
             },
@@ -5431,7 +6273,7 @@ namespace TootTally.Tooter
                 }
             },
             {34010810,
-                new DialogueData() 
+                new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: YIPPIE! I'll see you tomorrow kay kay!",
                     option2DialogueID = 3401081
@@ -5445,11 +6287,10 @@ namespace TootTally.Tooter
                     option2DialogueID = 0,
                 }
             },
-            {34000810, 
+            {34000810,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: ... I'll get out of your hair.{_kaizyleColoredName}: ...",
-                    option2Text = "",
+                    dialogueText = $"{_sodaColoredName}: ... I'll get out of your hair.",
                     option2DialogueID = 34010811,
                 }
             },
@@ -5457,7 +6298,6 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: ...",
-                    option2Text = "",
                     option2DialogueID = 3401081,
                 }
             },
@@ -5465,7 +6305,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: ... thanks.",
-                    option2Text = "...",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
@@ -5523,9 +6363,9 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_kaizyleColoredName}: It's up to you.",
                     option1Text = "Glissandogs",
-                    option1DialogueID = 340200, //TODO
+                    option1DialogueID = 340200,
                     option2Text = "Tromb-Cone",
-                    option2DialogueID = 3400015,
+                    option2DialogueID = 340015,
                 }
             },
             {340200,
@@ -5887,10 +6727,11 @@ namespace TootTally.Tooter
                     option2DialogueID = 3400264,
                 }
             },
-            {3400264, // TRANSITION TO 340027 OTHER DOWNTOWN
+            {3400264, // TRANSITION TO 340026 OTHER DOWNTOWN
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: {(DialogueFlags.gotIceCream ? "Sure.":"Whatever you want Soda.")}",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
@@ -5925,21 +6766,28 @@ namespace TootTally.Tooter
             {340030,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Let's head to the park and find a place to sit.",
+                    dialogueText = $"{_sodaColoredName}: Let's head to that bench over here and sit.",
                     option2DialogueID = 340031,
                 }
             },
-            {340031, //TRANSITION TO 340132 IF ICE CREAM ELSE 340032... PARK WITH BENCH
+            {340031,
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: Sure.",
-                    option2DialogueID = 0,
+                    option2DialogueID = 340131,
+                }
+            },
+            {340131,
+                new DialogueData()
+                {
+                    dialogueText = $"Ahhhhhhhh thanks god my legs were burning.",
+                    option2DialogueID = DialogueFlags.gotIceCream || DialogueFlags.gotSundae ? 340132 : 340032,
                 }
             },
             {340132,
                 new DialogueData()
                 {
-                    dialogueText = $"HolyWow there is no way I can finish that ice cream... maybe Kaizyle is gonna want it?",
+                    dialogueText = $"HolyWow there is no way I can finish that {(DialogueFlags.gotIceCream?"ice cream...":"sunday...")} maybe Kaizyle is gonna want it?",
                     option2DialogueID = 340133,
                 }
             },
@@ -5995,14 +6843,14 @@ namespace TootTally.Tooter
                     option2DialogueID = 0,
                 }
             },
-            {340139, // transition to 340238
+            {340139, // transition to 340239
                 new DialogueData()
                 {
                     dialogueText = $"The ice cream on her lips tasted like ice cream. I dunno, what do want from me?",
                     option2DialogueID = 0,
                 }
             },
-            {340238, // depending if you kissed, KayBlush or KayOh
+            {340238, //KayOh
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Here...",
@@ -6173,7 +7021,7 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_sodaColoredName}: Wow, I can't believe the competition is finally here",
                     option2DialogueID =  GetChapter4FirstCharacterEnter()
-                    
+
                 }
             },
             {410002,
@@ -6432,6 +7280,7 @@ namespace TootTally.Tooter
             #region Chapter 3 part 3
             public static bool obsessAppaloosa;
             public static bool unimpressedAppaloosa;
+            public static bool disinterestedAppaloosa;
             public static bool kissedAppaloosa;
             public static bool awkwardAppaloosa;
             public static bool flirtAppaloosa;
@@ -6446,6 +7295,7 @@ namespace TootTally.Tooter
             public static bool complimentedKaizyle;
             public static bool threwIceCreamAway;
             public static bool gotIceCream;
+            public static bool gotSundae;
             public static bool kissedKaizyle;
             #endregion
 
@@ -6509,8 +7359,36 @@ namespace TootTally.Tooter
                    });
 
                });
-
         }
+
+        private static CharExpressions[] _sodaDanceSprites = { CharExpressions.SodaJam1, CharExpressions.SodaJam2, CharExpressions.SodaJam3 };
+        private static CharExpressions[] _beezerlyDanceSprites = { CharExpressions.BeezJam1, CharExpressions.BeezJam2, CharExpressions.BeezJam3 };
+        private static int danceSpriteIndex;
+        private static int danceIncrement;
+        public static void RecursiveSodaBeezerlyDanceAnimation()
+        {
+            if (danceIncrement != 0)
+            {
+                AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.2f, GetSecondDegreeAnimationFunction(0.0001f), delegate
+                {
+                    if (danceIncrement != 0)
+                        ChangeCharSprite(_sodaSprite, _sodaDanceSprites[danceSpriteIndex]);
+                });
+
+                AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCharPosition, 0.2f, GetSecondDegreeAnimationFunction(0.0001f), delegate
+                {
+                    if (danceIncrement != 0)
+                    {
+                        ChangeCharSprite(_beezerlySprite, _beezerlyDanceSprites[danceSpriteIndex]);
+                        RecursiveSodaBeezerlyDanceAnimation();
+                    }
+                });
+                danceSpriteIndex += danceIncrement;
+                if (danceSpriteIndex == 2 || danceSpriteIndex == 0)
+                    danceIncrement = -danceIncrement;
+            }
+        }
+
         public static void UpdateDialogueStates(int chapterID)
         {
             switch (chapterID)
@@ -6529,13 +7407,14 @@ namespace TootTally.Tooter
             Plugin.Instance.LogInfo("Dialogue States Update for Chapter " + chapterID);
         }
 
-        public static void ChangeCharSprite(SpriteRenderer renderer, CharExpressions expression, Color? color)
+        public static void ChangeCharSprite(SpriteRenderer renderer, CharExpressions expression, Color? color = null)
         {
             if (expression != CharExpressions.None)
                 renderer.sprite = TooterAssetsManager.GetSprite(ExpressionToSpritePath(expression));
             if (color != null)
                 renderer.color = (Color)color;
         }
+
         public static string ExpressionToSpritePath(CharExpressions expression) => expression.ToString() + ".png";
 
         public enum CharExpressions
@@ -6561,6 +7440,11 @@ namespace TootTally.Tooter
             SodaInLove,
             SodaCall,
             SodaHype,
+            SodaFightMe,
+            SodaBreaking,
+            SodaJam1,
+            SodaJam2,
+            SodaJam3,
 
             TrixieNeutral,
             TrixieNeutralTalk,
@@ -6611,6 +7495,18 @@ namespace TootTally.Tooter
             KaizyleBrag,
             KaizylePissed,
             KaizyleUm,
+            KaizyleFightMe,
+            KaizyleCat,
+            KaizyleNom,
+            KaizyleFine,
+            KaizyleShy,
+            KaizyleEnamored,
+            KaizyleFlatteredLookUp,
+            KaizyleProud,
+            KaizyleShrug,
+            KaizyleFlattered,
+            KaizyleLove,
+            KaizyleSmirk,
 
             HornLordNeutral,
             HornLordTalk,
