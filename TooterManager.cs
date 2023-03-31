@@ -4951,7 +4951,7 @@ namespace TootTally.Tooter
             {178,
                 new DialogueData()
                 {
-                    dialogueText = $"",
+                    dialogueText = $"W O W Z A .",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
@@ -5370,7 +5370,7 @@ namespace TootTally.Tooter
             {3204061,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Tonight was a blast, we should definitely go there again sometime.",
+                    dialogueText = $"{_beezerlyColoredName}: Tonight was a blast. We should definitely go there again sometime.",
                     option2DialogueID = 3204062,
                 }
             },
@@ -5867,14 +5867,14 @@ namespace TootTally.Tooter
             {33100020,
                 new DialogueData() 
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Great! I'll pick you up at 7.",
+                    dialogueText = $"{_appaloosaColoredName}: Great! I'll pick you up after school.",
                     option2DialogueID = 331000201
                 } 
             },
             {331000201,
                 new DialogueData() 
                 {
-                    dialogueText = $"As I get ready that night, I wonder what it is she's looking for from me.",
+                    dialogueText = $"As I pack up, I wonder what it is she's looking for from me.",
                     option2DialogueID = 331000202
                 } 
             },
@@ -5895,14 +5895,14 @@ namespace TootTally.Tooter
             {33100021,
                 new DialogueData()
                 {
-                    dialogueText = "... time passes.",
+                    dialogueText = "I hear a knock on the door.",
                     option2DialogueID = 33100023,
                 }
             },
             {33101021,
                 new DialogueData()
                 {
-                    dialogueText = "... time passes.",
+                    dialogueText = "...",
                     option2DialogueID = 33100023,
                 }
             },
@@ -6180,7 +6180,7 @@ namespace TootTally.Tooter
             {331115,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: {(!DialogueFlags.awkwardAppaloosa ? "" : "Uhmm...")} Anytime, {_sodaColoredName}", // If kissed Appaloosa: SodaEmbarrasedLight ; If awkwardAppaloosa: SodaPlead
+                    dialogueText = $"{_appaloosaColoredName}: {(!DialogueFlags.awkwardAppaloosa ? "" : "Uhmm...")} Anytime, {_sodaColoredName}.", // If kissed Appaloosa: SodaEmbarrasedLight ; If awkwardAppaloosa: SodaPlead
                     option2Text = "",
                     option2DialogueID = 0
 
@@ -6914,14 +6914,14 @@ namespace TootTally.Tooter
             {340131,
                 new DialogueData()
                 {
-                    dialogueText = $"Ahhhhhhhh thanks god my legs were burning.",
+                    dialogueText = $"Ahhhhhhhh thanks Babi my legs were burning.",
                     option2DialogueID = DialogueFlags.gotIceCream || DialogueFlags.gotSundae ? 340132 : 340032,
                 }
             },
             {340132,
                 new DialogueData()
                 {
-                    dialogueText = $"HolyWow there is no way I can finish that {(DialogueFlags.gotIceCream?"ice cream...":"sunday...")} maybe Kaizyle is gonna want it?",
+                    dialogueText = $"Holy wow, there is no way I can finish that {(DialogueFlags.gotIceCream?"ice cream...":"sunday...")} maybe Kaizyle is gonna want it?",
                     option2DialogueID = 340133,
                 }
             },
