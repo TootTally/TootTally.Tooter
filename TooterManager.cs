@@ -2842,11 +2842,11 @@ namespace TootTally.Tooter
                     //Street Night Scene
                     case 156:
                     case 164:
+                        FlipSpriteLeftAnimation(_soda, false, 10f);
+                        FlipSpriteRightAnimation(_trixiebell, false, 10f); 
                         _soda.transform.position = _outLeftCharPosition + new Vector3(1, 0, 0);
                         _trixiebell.transform.position = _outLeftCharPosition;
                         _appaloosa.transform.position = _outLeftCharPosition;
-                        FlipSpriteLeftAnimation(_soda, false, 10f);
-                        FlipSpriteRightAnimation(_trixiebell, false, 10f);
                         __instance.csc.fadeMus(0, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("StreetNight.png");
                         _txtBox.UpdateText("");
@@ -2875,7 +2875,7 @@ namespace TootTally.Tooter
                     case 320001:
                         ResetCharacterPositions();
                         _beezerly.transform.position = _outRightCharPosition;
-                        FlipSpriteRightAnimation(_soda, false, 10f);
+                        FlipSpriteRightAnimation(_soda, true, 10f);
                         _txtBox.UpdateText("");
                         __instance.csc.fadeMus(0, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
@@ -2945,6 +2945,14 @@ namespace TootTally.Tooter
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("JazzClub.png");
                         break;
 
+                    case 331115:
+                        FlipSpriteRightAnimation(_soda, false, 10f);
+                        _soda.transform.position = _leftCenterCharPosition;
+                        _appaloosa.transform.position = _rightCharPosition;
+                        _txtBox.UpdateText("");
+                        __instance.csc.fadeMus(1, true);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("JazzClub.png");
+                        break;
                     //Kaizyle Date
                     case 340000:
                         ResetCharacterPositions();
@@ -2991,9 +2999,19 @@ namespace TootTally.Tooter
                     case 340026:
                         ResetCharacterPositions();
                         _txtBox.UpdateText("");
+                        FlipSpriteRightAnimation(_kaizyle, false, 10f);
                         _kaizyle.transform.position = _outLeftCharPosition;
                         _soda.transform.position = _outLeftCharPosition - new Vector3(1.2f, 0, 0);
+                        __instance.csc.fadeMus(1, true);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ParkBench.png");
+                        break;
+
+                    case 340239:
+                        _txtBox.UpdateText("");
                         FlipSpriteRightAnimation(_kaizyle, false, 10f);
+                        FlipSpriteLeftAnimation(_soda, false, 10f);
+                        _kaizyle.transform.position = _rightCharPosition;
+                        _soda.transform.position = _rightCenterCharPosition - new Vector3(1, 0, 0);
                         __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ParkBench.png");
                         break;
@@ -6986,6 +7004,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
