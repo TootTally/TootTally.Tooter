@@ -5249,7 +5249,7 @@ namespace TootTally.Tooter
             {320013,
                 new DialogueData()
                 {
-                    dialogueText = $"We order {(DialogueFlags.orderedBurger ? "burgers" : "pizza")} and drinks and settle down to eat]",
+                    dialogueText = $"We order {(DialogueFlags.orderedBurger ? "burgers" : "pizza")} and drinks and settle down to eat",
                     option1Text = "Ask more about her",
                     option1DialogueID = 320014,
                     option2Text = "Ask about the food",
