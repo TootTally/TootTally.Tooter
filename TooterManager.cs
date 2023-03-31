@@ -2266,10 +2266,6 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340017, 2.65f)); //To Ice Cream yeehaw yum yum
                     break;
                 case 340017: //Ice cream
-                    _soda.transform.position = _leftCenterCharPosition;
-                    FlipSpriteRightAnimation(_soda, false, 10f);
-                    _kaizyle.transform.position = _rightCenterCharPosition;
-                    FlipSpriteLeftAnimation(_kaizyle, false, 10f);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     break;
@@ -2836,6 +2832,16 @@ namespace TootTally.Tooter
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
                         LogChapter3Part3States();
                         LogScores();
+                        break;
+                        //Ice Cream
+                    case 340017:
+                        _soda.transform.position = _leftCenterCharPosition;
+                        _kaizyle.transform.position = _rightCenterCharPosition;
+                        FlipSpriteRightAnimation(_soda, false, 10f);
+                        FlipSpriteLeftAnimation(_kaizyle, false, 10f);
+                        _txtBox.UpdateText("");
+                        __instance.csc.fadeMus(1, true);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("IceCreamCafe.png");
                         break;
                     //DownTown
                     case 3400090:
