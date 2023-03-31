@@ -5551,13 +5551,13 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"[Their food arrives and they dig in, enjoying the delicious burgers and fries]",
-                    option1Text = "Had better food before",
+                    option1Text = DialogueFlags.orderedBurger ? "Discuss Burger" : "Discuss Pizza",
                     option1DialogueID = 321000,
                     option1Score = new ScoreData()
                     {
                         beezerlyScore =  -2,
                     },
-                    option2Text = "Compliment food",
+                    option2Text = DialogueFlags.orderedBurger ? "Compliment food" : "Compliment Pizza",
                     option2DialogueID = 320023,
                     option2Score = new ScoreData()
                     {
