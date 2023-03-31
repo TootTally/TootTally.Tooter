@@ -3023,6 +3023,7 @@ namespace TootTally.Tooter
                         _trixiebell.transform.position = _outRightCharPosition;
                         _txtBox.UpdateText("");
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("Backstage.png");
+                        __instance.csc.fadeMus(1, true);
                         LogChapter3Part4States();
                         LogScores();
                         break;
