@@ -5413,7 +5413,7 @@ namespace TootTally.Tooter
             {320013,
                 new DialogueData()
                 {
-                    dialogueText = $"We order {(DialogueFlags.orderedBurger ? "burgers" : "hot dog pizza")} and drinks and settle down to eat",
+                    dialogueText = $"We order {(DialogueFlags.orderedBurger ? "burgers" : "hot dog pizza")} and drinks and settle down to eat.",
                     option1Text = "Ask more about her",
                     option1DialogueID = 320014,
                     option1Score = new ScoreData()
@@ -5568,7 +5568,7 @@ namespace TootTally.Tooter
                     {
                         beezerlyScore =  -2,
                     },
-                    option2Text = DialogueFlags.orderedBurger ? "Compliment food" : "Compliment Pizza",
+                    option2Text = DialogueFlags.orderedBurger ? "Compliment Burger" : "Compliment Pizza",
                     option2DialogueID = 320023,
                     option2Score = new ScoreData()
                     {
@@ -5579,8 +5579,15 @@ namespace TootTally.Tooter
             {321000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: The food is alright, but I’ve had better.",
-                    option2DialogueID = 321001
+                    dialogueText = DialogueFlags.orderedBurger ? $"{_sodaColoredName}: The burger is alright, but I’ve had better." : $"{_sodaColoredName}:... I'm so sorry. This pizza was a mistake.", 
+                    option2DialogueID = DialogueFlags.orderedBurger ? 321001 : 321900
+                }
+            },
+            {321900,
+                new DialogueData()
+                {
+                    dialogueText = $"{beezerlyColoredName}:... yep.",
+                    option2DialogueID = 320025,
                 }
             },
             {321001,
@@ -5661,8 +5668,15 @@ namespace TootTally.Tooter
             {320023,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: These burgers are amazing. Thanks for suggesting this place.",
+                    dialogueText = DialogueFlags.orderedBurger ? $"{_sodaColoredName}: These burgers are amazing. Thanks for suggesting this place." : "This pizza... well, it could definitely be worse.",
                     option2DialogueID = 320024,
+                }
+            },
+            {320923,
+                new DialogueData()
+                {
+                    dialogueText = $"{_beezerlyColoredName}: Funny, I was still trying to figure out how it could be any worse than it is.",
+                    option2DialogueID = 320026,
                 }
             },
             {320024,
@@ -5847,13 +5861,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 33100023,
                 }
             },
-            {33100023,//TODO: automatic screen wipe transition
-                new DialogueData()
-                {
-                    option2DialogueID = 331000210
-                }
-            },
-            {331000210,
+            {33100023,
                 new DialogueData() 
                 {
                     dialogueText = $"I hear a knock at the door. so I head downstairs and outside, greeting {_appaloosaColoredName} as we walk down to the road.",
