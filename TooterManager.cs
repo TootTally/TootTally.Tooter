@@ -1914,6 +1914,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaDisappointed
                     DialogueFlags.disinterestedAppaloosa = true;
+                    UpdateDialogueStates(3);
                     break;
                 case 331000:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
@@ -2032,6 +2033,13 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_appaloosaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
                     // KISS KISS KISS KISS
                     break;
+                case 3311150:
+                    DialogueFlags.kissedAppaloosa = true;
+                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3311151, 0f, 0.4f)); //KISS
+                    break;
+                case 3311151:
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 331115, 6.5f));
+                    break; 
                 case 331115:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.kissedAppaloosa ? CharExpressions.SodaStressLight : CharExpressions.SodaInLove, Color.white);
                     ChangeCharSprite(_appaloosaSprite, DialogueFlags.kissedAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
@@ -2370,7 +2378,7 @@ namespace TootTally.Tooter
                     break;
                 case 3400171:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleCat, Color.white);
                     break;
                 case 340018:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
@@ -2378,7 +2386,7 @@ namespace TootTally.Tooter
                     break;
                 case 340020:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaMunch, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFine, Color.white);
                     break;
                 case 3400201:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -2412,7 +2420,7 @@ namespace TootTally.Tooter
                     break;
                 case 3400261:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
                     FlipSpriteRightAnimation(_soda, false);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1.5f, GetSecondDegreeAnimationFunction(0.9f), delegate
                     {
@@ -2740,7 +2748,7 @@ namespace TootTally.Tooter
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentBeezerly.png");
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
                         break;
-                    case 99999: //TODO
+                    case 3311151: //TODO
                         _soda.transform.position = _outLeftCharPosition;
                         _appaloosa.transform.position = _outLeftCharPosition;
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentAppaloosa.png");
@@ -3112,7 +3120,6 @@ namespace TootTally.Tooter
         public static void LogChapter3Part2States()
         {
             Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 2 STATES:");
-            Plugin.Instance.LogInfo("   wentToRockCafe: " + DialogueFlags.wentToRockCafe);
             Plugin.Instance.LogInfo("   orderedBurger: " + DialogueFlags.askedIfFirstTime);
             Plugin.Instance.LogInfo("   agreedWithBeezerly: " + DialogueFlags.orderedBurger);
             Plugin.Instance.LogInfo("   agreedWithBeezerly: " + DialogueFlags.agreedWithBeezerly);
@@ -3133,7 +3140,7 @@ namespace TootTally.Tooter
             Plugin.Instance.LogInfo("   kissedAppaloosa: " + DialogueFlags.kissedAppaloosa);
             Plugin.Instance.LogInfo("   awkwardAppaloosa: " + DialogueFlags.awkwardAppaloosa);
             Plugin.Instance.LogInfo("   flirtAppaloosa: " + DialogueFlags.flirtAppaloosa);
-            Plugin.Instance.LogInfo("-----------------------------");
+            Plugin.Instance.LogInfo("   obsessAppaloosa: " + DialogueFlags.obsessAppaloosa);
         }
 
         public static void LogChapter3Part4States()
@@ -6153,6 +6160,12 @@ namespace TootTally.Tooter
                     option2DialogueID = 0
                 }
             },
+            {3311151, //transition back to 331115
+                new DialogueData() {
+                    dialogueText = "", 
+                    option2DialogueID = 0
+                }
+            },
             {331115,
                 new DialogueData()
                 {
@@ -6336,6 +6349,10 @@ namespace TootTally.Tooter
                     },
                     option2Text = "Cya later",
                     option2DialogueID = 34000810,
+                    option2Score = new ScoreData
+                    {
+                        kaizyleScore = 1f
+                    },
                 }
             },
             {34010810,
@@ -6430,8 +6447,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_kaizyleColoredName}: It's up to you.",
                     option1Text = "Glissandogs",
                     option1DialogueID = 340200,
+                    option1Score = new ScoreData
+                    {
+                        kaizyleScore = -3f
+                    },
                     option2Text = "Tromb-Cone",
                     option2DialogueID = 340015,
+                    option2Score = new ScoreData
+                    {
+                        kaizyleScore = 3f
+                    },
                 }
             },
             {340200,
@@ -6468,8 +6493,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_kaizyleColoredName}: Well, that's how my family has stayed on top of the music scene for decades.", //idk how to word this sheit pliz send help
                     option1Text = "Ask more about her hotdogs",
                     option1DialogueID = 340205,
+                    option1Score = new ScoreData
+                    {
+                        kaizyleScore = 2f
+                    },
                     option2Text = "Praise Glissandogs",
                     option2DialogueID = 340305,
+                    option2Score = new ScoreData
+                    {
+                        kaizyleScore = -3f
+                    },
                 }
             },
             {340305,
@@ -6583,8 +6616,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_kaizyleColoredName}: We make ours homemade. It's a family recipe.",
                     option1Text = "Interesting",
                     option1DialogueID = 340207,
+                    option1Score = new ScoreData
+                    {
+                        kaizyleScore = 2f
+                    },
                     option2Text = "OMG NO WAY!",
                     option2DialogueID = 340407,
+                    option2Score = new ScoreData
+                    {
+                        kaizyleScore = -5f
+                    },
                 }
             },
             {340407,
@@ -6678,6 +6719,10 @@ namespace TootTally.Tooter
                     dialogueText = $"Hmm I'm not sure what I should get...",
                     option1Text = "Ice Cream",
                     option1DialogueID = 340300,
+                    option1Score = new ScoreData
+                    {
+                        kaizyleScore = 1f
+                    },
                     option2Text = "Sundae",
                     option2DialogueID = 340400,
                 }
@@ -6737,8 +6782,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_kaizyleColoredName}: Maybe I can show you a video sometime.",
                     option1Text = "Sure",
                     option1DialogueID = 3400221,
+                    option1Score = new ScoreData
+                    {
+                        kaizyleScore = -1f
+                    },
                     option2Text = "Compliment",
                     option2DialogueID = 340023,
+                    option2Score = new ScoreData
+                    {
+                        kaizyleScore = 3f
+                    },
                 }
             },
             {3400221,
@@ -6768,6 +6821,10 @@ namespace TootTally.Tooter
                     dialogueText = $"Holy wow, Kaizyle already finished? I'm only half done!",
                     option1Text = "Throw away",
                     option1DialogueID = 3400261,
+                    option2Score = new ScoreData
+                    {
+                        kaizyleScore = -6f
+                    },
                     option2Text = "Keep it",
                     option2DialogueID = 3400262,
                 }
@@ -6898,8 +6955,19 @@ namespace TootTally.Tooter
                     dialogueText = $"{_kaizyleColoredName}: Oh, really? Could you... show me where?",
                     option1Text = DialogueFlags.kissedSomeone ? "":"Show using your lips",
                     option1DialogueID = 340138,
+                    option1Score = new ScoreData
+                    {
+                        kaizyleScore = 50f,
+                        appaloosaScore = -25f,
+                        beezerlyScore = -25f,
+                        trixieScore = -25f
+                    },
                     option2Text = "Show using your finger",
                     option2DialogueID = 340238,
+                    option2Score = new ScoreData
+                    {
+                        kaizyleScore = 2f
+                    },
                 }
             },
             {340138, // KISSING KAIZYLE SCENE LETS GOOOOOOOOOOOOO
@@ -7357,7 +7425,6 @@ namespace TootTally.Tooter
             #endregion
 
             #region Chapter 3 part 2
-            public static bool wentToRockCafe;
             public static bool askedIfFirstTime;
             public static bool orderedBurger;
             public static bool agreedWithBeezerly;
