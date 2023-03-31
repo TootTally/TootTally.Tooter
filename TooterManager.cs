@@ -1683,6 +1683,7 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3204060, 6f));
                     break;
                 case 3205059:
+                    danceIncrement = 0;
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3204060, 2.65f)); // transition to outside
