@@ -76,6 +76,7 @@ namespace TootTally.Tooter
             "KaizylePissed.png",
             "KaizyleUm.png",
             "KaizyleFightMe.png",
+            "KaizyleCat.png",
 
             "BeezerlyShadow.png",
             "BeezerlyNeutral.png",
@@ -122,6 +123,9 @@ namespace TootTally.Tooter
             "TrixieHouseNight.png",
             "SpecialMomentTrixie.png",
             "SpecialMomentBeezerly.png",
+            "SpecialMomentAppoloosa.png",
+            "SpecialMomentKaizyle.png",
+            "ParkBench.png",
 
         };
 

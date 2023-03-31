@@ -2155,10 +2155,10 @@ namespace TootTally.Tooter
                 case 340412:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(1,0,0), 0.25f, GetSecondDegreeAnimationFunction(), delegate
-                    {
-                        OnDemonDialogueDoDialoguePostFix(new object[] { 340413 }, __instance);
-                    });
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(1, 0, 0), 0.25f, GetSecondDegreeAnimationFunction(), delegate
+                      {
+                          OnDemonDialogueDoDialoguePostFix(new object[] { 340413 }, __instance);
+                      });
                     break;
                 case 340413:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaPlead, Color.white);
@@ -2190,10 +2190,206 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     break;
                 case 340300:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                case 340400:
+                    FlipSpriteLeftAnimation(_soda, false);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    DialogueFlags.gotIceCream = _currentDialogueState == 340300;
+                    DialogueFlags.gotSundae = _currentDialogueState == 340400;
+                    UpdateDialogueStates(3);
+                    break;
+                case 3400171:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340018:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340020:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaMunch, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    break;
+                case 3400201:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
+                    break;
+                case 340021:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340022:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 3400221:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340023:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //KaizyleForcedBlush
+                    break;
+                case 340024:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //KayzyleShy
+                    break;
+                case 340025:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaMunch, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400261:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
+                    FlipSpriteRightAnimation(_soda, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1.5f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    {
+                        FlipSpriteLeftAnimation(_soda, false, 10f);
+                        ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                        AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
+                    });
+                    DialogueFlags.threwIceCreamAway = true;
+                    UpdateDialogueStates(3);
+                    break;
+                case 3400262:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400263:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3400264:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.gotIceCream ? CharExpressions.SodaNeutral : CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340026, 2.65f)); //To Chap 4 transition
+                    break;
+                case 340026:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f));
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _centerCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    {
+                        FlipSpriteLeftAnimation(_kaizyle, true);
+                    });
+                    break;
+                case 340027:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340028:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340029:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
+                    break;
+                case 340030:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340031:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white); 
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340131:
+                    FlipSpriteRightAnimation(_kaizyle, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCenterCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    {
+                        ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);//SodaReleaf after sitting
+                    });
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1.2f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                    {
+                        FlipSpriteLeftAnimation(_kaizyle, true);
+                    });
+                    break;
+                case 340132:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340133:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleCat, Color.white); 
+                    break;
+                case 340134:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleCat, Color.white);
+                    break;
+                case 340135:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //KaizyleNom - eating
+                    break;
+                case 340136:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 3401361:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //KaizyleBlushhhh
+                    break;
+                case 340137:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //KaizyleBlushEyesUp?
+                    break;
+                case 340138:
+                    Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 340139, 0f, 0.3f)); //KISSING SCENE BOI
+                    DialogueFlags.kissedKaizyle = true;
+                    UpdateDialogueStates(3);
+                    break;
+                case 340238:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340239:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.kissedKaizyle ?  CharExpressions.SodaInLove : CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, DialogueFlags.kissedKaizyle ? CharExpressions.KaizyleWTF : CharExpressions.KaizyleNeutralTalk, Color.white); //KayExtraBlush or KayFine if not kiss
+                    break;
+                case 340240:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //blush
+                    break;
+                case 340241:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //moreblush
+                    break;
+                case 340032:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340033:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, DialogueFlags.kissedKaizyle ? CharExpressions.KaizyleNeutralTalk : CharExpressions.KaizyleNeutralTalk, Color.white); //blush if kiss
+                    break;
+                case 340034:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340035:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                    break;
+                case 340036:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340037:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
+                    break;
+                case 340038:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    break;
+                case 340039:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     break;
                 case 350000:
+                    FlipSpriteRightAnimation(_soda, false);
+                    FlipSpriteRightAnimation(_kaizyle, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f));
+                    AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction(0.9f));
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410000, 2.65f)); //To Chap 4 transition
                     break;
                 #endregion
@@ -2362,6 +2558,12 @@ namespace TootTally.Tooter
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentBeezerly.png");
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
                         break;
+                    case 340139:
+                        _soda.transform.position = _outLeftCharPosition;
+                        _kaizyle.transform.position = _outLeftCharPosition;
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("SpecialMomentKaizyle.png");
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(1, 1, 1);
+                        break;
                 }
                 SpecialFadeInScene(__instance, nextDialogueID, speedMultiplier);
             });
@@ -2487,7 +2689,7 @@ namespace TootTally.Tooter
                         _soda.transform.position = _outRightCharPosition + new Vector3(1, 0, 0);
                         _beezerly.transform.position = _outRightCharPosition;
                         __instance.csc.fadeMus(0, true);
-                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("HardRockCafeTableAndStage.png"); // change this to stage rock cafe image
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("HardRockCafeTableAndStage.png");
                         break;
 
                     //Timetravel forward
@@ -2547,7 +2749,7 @@ namespace TootTally.Tooter
                         LogChapter3Part3States();
                         LogScores();
                         break;
-                        //DownTown
+                    //DownTown
                     case 3400090:
                         ResetCharacterPositions();
                         _txtBox.UpdateText("");
@@ -2556,7 +2758,16 @@ namespace TootTally.Tooter
                         __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("Downtown.png");
                         break;
-
+                    //Park
+                    case 340026:
+                        ResetCharacterPositions();
+                        _txtBox.UpdateText("");
+                        _kaizyle.transform.position = _outLeftCharPosition;
+                        _soda.transform.position = _outLeftCharPosition - new Vector3(1.2f, 0, 0);
+                        FlipSpriteRightAnimation(_kaizyle, false, 10f);
+                        __instance.csc.fadeMus(1, true);
+                        __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("ParkBench.png");
+                        break;
                     #region Chapter 4 transitions
                     //end Chapter 3 part 4
                     case 410000:
@@ -6104,10 +6315,11 @@ namespace TootTally.Tooter
                     option2DialogueID = 3400264,
                 }
             },
-            {3400264, // TRANSITION TO 340027 OTHER DOWNTOWN
+            {3400264, // TRANSITION TO 340026 OTHER DOWNTOWN
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: {(DialogueFlags.gotIceCream ? "Sure.":"Whatever you want Soda.")}",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
@@ -6142,21 +6354,28 @@ namespace TootTally.Tooter
             {340030,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Let's head to the park and find a place to sit.",
+                    dialogueText = $"{_sodaColoredName}: Let's head to that bench over here and sit.",
                     option2DialogueID = 340031,
                 }
             },
-            {340031, //TRANSITION TO 340132 IF ICE CREAM ELSE 340032... PARK WITH BENCH
+            {340031, 
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: Sure.",
-                    option2DialogueID = 0,
+                    option2DialogueID = 340131,
+                }
+            },
+            {340131,
+                new DialogueData()
+                {
+                    dialogueText = $"Ahhhhhhhh thanks god my legs were burning.",
+                    option2DialogueID = DialogueFlags.gotIceCream || DialogueFlags.gotSundae ? 340132 : 340032,
                 }
             },
             {340132,
                 new DialogueData()
                 {
-                    dialogueText = $"HolyWow there is no way I can finish that ice cream... maybe Kaizyle is gonna want it?",
+                    dialogueText = $"HolyWow there is no way I can finish that {(DialogueFlags.gotIceCream?"ice cream...":"sunday...")} maybe Kaizyle is gonna want it?",
                     option2DialogueID = 340133,
                 }
             },
@@ -6212,14 +6431,14 @@ namespace TootTally.Tooter
                     option2DialogueID = 0,
                 }
             },
-            {340139, // transition to 340238
+            {340139, // transition to 340239
                 new DialogueData()
                 {
                     dialogueText = $"The ice cream on her lips tasted like ice cream. I dunno, what do want from me?",
                     option2DialogueID = 0,
                 }
             },
-            {340238, // depending if you kissed, KayBlush or KayOh
+            {340238, //KayOh
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Here...",
@@ -6662,6 +6881,7 @@ namespace TootTally.Tooter
             public static bool complimentedKaizyle;
             public static bool threwIceCreamAway;
             public static bool gotIceCream;
+            public static bool gotSundae;
             public static bool kissedKaizyle;
             #endregion
 
@@ -6830,6 +7050,7 @@ namespace TootTally.Tooter
             KaizylePissed,
             KaizyleUm,
             KaizyleFightMe,
+            KaizyleCat,
 
             HornLordNeutral,
             HornLordTalk,
