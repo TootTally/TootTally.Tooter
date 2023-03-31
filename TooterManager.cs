@@ -4966,7 +4966,7 @@ namespace TootTally.Tooter
             {320002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hey {_beezerlyColoredName}, I was thinking about checking out the new hard rock cafe that just opened up. Would you like to go with me?",
+                    dialogueText = $"{_beezerlyColoredName}: Hey {_sodaColoredName}, I was thinking about checking out the new hard rock cafe that just opened up. Would you like to go with me?",
                     option2DialogueID = DialogueFlags.talkedShitAboutRock ? 320003 : 320005,
                 }
             },
@@ -6046,7 +6046,7 @@ namespace TootTally.Tooter
             {331106,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. You remind me of myself when I was your age. So full of passion and potential." : $"{_appaloosaColoredName}: Exactly! And where you choose to, say, place the root of the chord down the octave determines what you communicate to the listener!") : (DialogueFlags.isCompetitive ? $"{_appaloosaColoredName}: That's great! You remind me of the tromboning drive I had when I first started." : "You're definitely not alone there. It's a big trombiverse out there, and all we can do is our best! So don't lose hope."),
+                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. You remind me of myself when I was your age. So full of passion and potential." : $"{_appaloosaColoredName}: Exactly! And where you choose to, say, place the root of the chord down the octave determines what you communicate to the listener!") : (DialogueFlags.isCompetitive ? $"{_appaloosaColoredName}: That's great! You remind me of the tromboning drive I had when I first started." : $"{_appaloosaColoredName}: You're definitely not alone there. It's a big trombiverse out there, and all we can do is our best! So don't lose hope."),
                     option1Text = $"Thank",
                     option1DialogueID = 331120,
                     option1Score = new ScoreData
@@ -6064,7 +6064,7 @@ namespace TootTally.Tooter
             {331120, // Choice 2; thank
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: Oh, um... thanks." : $"{_sodaColoredName}: That's so cool! Tell me more.",
+                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: Oh, um... thanks." : (DialogueFlags.unimpressedAppaloosa ? $"{_sodaColoredName}: That's so cool! Tell me more." : $"{_sodaColoredName}: Thanks, {_appaloosaColoredName}. That... that helps."),
                     option2DialogueID = 331113
                 }
             },
