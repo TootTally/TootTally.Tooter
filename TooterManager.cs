@@ -5089,6 +5089,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"Everyone somehow makes space for her wild choreography as she rocks out on the dance floor.",
+                    option2Text = "",
                     option2DialogueID = 0,
 
                 }
@@ -5105,6 +5106,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Sure! Some fresh air would be nice.",
+                    option2Text = "",
                     option2DialogueID = 0,
 
                 }
@@ -5146,13 +5148,16 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"If not now, then when?",
+                    option2Text = "",
                     option2DialogueID = 0,
+
                 }
             },
             {3205059, // Transition to 3204060
                 new DialogueData()
                 {
                     dialogueText = $"Exhausted, I head for the door, gesturing for her to follow.",
+                    option2Text = "",
                     option2DialogueID = 0,
                 }
             },
@@ -5195,7 +5200,9 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"I head home, Rock 'n' Bone still echoing in my head.",
+                    option2Text = "",
                     option2DialogueID = 0,
+
                 }
             },
             {320100,
@@ -5488,6 +5495,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: And you're pretty cool for a rebellious tromboner.",
+                    option2Text = "", 
                     option2DialogueID = 0,
                 }
             },
