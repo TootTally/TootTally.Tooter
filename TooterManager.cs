@@ -1831,7 +1831,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyUh, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaCall, Color.white);
                     break;
-                case 3210011:
+                case 3210012:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyPassion, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
                     break;
