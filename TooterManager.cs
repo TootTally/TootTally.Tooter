@@ -2943,6 +2943,8 @@ namespace TootTally.Tooter
                             GlobalVariables.alltrackslist_custom.Add(loveHasNoEndTrack);
                         GlobalVariables.chosen_track = _loveHasNoEndTrackref;
                         GlobalVariables.chosen_track_data = loveHasNoEndTrack;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
 
@@ -2953,6 +2955,8 @@ namespace TootTally.Tooter
                             GlobalVariables.alltrackslist_custom.Add(letBeYourselfTrack);
                         GlobalVariables.chosen_track = _letBeYourselfTrackref;
                         GlobalVariables.chosen_track_data = letBeYourselfTrack;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
 
@@ -2963,6 +2967,8 @@ namespace TootTally.Tooter
                             GlobalVariables.alltrackslist_custom.Add(lateNightJazTrack);
                         GlobalVariables.chosen_track = _lateNightJazTrackref;
                         GlobalVariables.chosen_track_data = lateNightJazTrack;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
 
@@ -2973,6 +2979,8 @@ namespace TootTally.Tooter
                             GlobalVariables.alltrackslist_custom.Add(pathOfDiscoveries);
                         GlobalVariables.chosen_track = _pathOfDiscoveriesTrackref;
                         GlobalVariables.chosen_track_data = pathOfDiscoveries;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
                     //Solo performance KEKW
@@ -2982,6 +2990,8 @@ namespace TootTally.Tooter
                             GlobalVariables.alltrackslist_custom.Add(memoriesOfYou);
                         GlobalVariables.chosen_track = _memoriesOfYouTrackref;
                         GlobalVariables.chosen_track_data = memoriesOfYou;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
                     //HAREM FOR JOE WOOOO
@@ -2991,6 +3001,8 @@ namespace TootTally.Tooter
                             GlobalVariables.alltrackslist_custom.Add(loveFlipTrack);
                         GlobalVariables.chosen_track = _loveFlipTrackref;
                         GlobalVariables.chosen_track_data = loveFlipTrack;
+                        LogChapter4States();
+                        LogScores();
                         SceneManager.LoadScene("loader");
                         return;
                         #endregion
@@ -3026,7 +3038,7 @@ namespace TootTally.Tooter
 
         public static void LogChapter3Part1States()
         {
-            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 1 STATES:");
             Plugin.Instance.LogInfo("   mentionedTrixiePenguinPin: " + DialogueFlags.mentionedTrixiePenguinPin);
             Plugin.Instance.LogInfo("   invitedTrixieOut: " + DialogueFlags.invitedTrixieOut);
             Plugin.Instance.LogInfo("   sharedCookieWithTrixie: " + DialogueFlags.sharedCookieWithTrixie);
@@ -3046,7 +3058,7 @@ namespace TootTally.Tooter
         }
         public static void LogChapter3Part2States()
         {
-            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 2 STATES:");
             Plugin.Instance.LogInfo("   wentToRockCafe: " + DialogueFlags.wentToRockCafe);
             Plugin.Instance.LogInfo("   orderedBurger: " + DialogueFlags.askedIfFirstTime);
             Plugin.Instance.LogInfo("   agreedWithBeezerly: " + DialogueFlags.orderedBurger);
@@ -3063,7 +3075,7 @@ namespace TootTally.Tooter
 
         public static void LogChapter3Part3States()
         {
-            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 3 STATES:");
             Plugin.Instance.LogInfo("   unimpressedAppaloosa: " + DialogueFlags.unimpressedAppaloosa);
             Plugin.Instance.LogInfo("   kissedAppaloosa: " + DialogueFlags.kissedAppaloosa);
             Plugin.Instance.LogInfo("   awkwardAppaloosa: " + DialogueFlags.awkwardAppaloosa);
@@ -3073,7 +3085,7 @@ namespace TootTally.Tooter
 
         public static void LogChapter3Part4States()
         {
-            Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 4 STATES:");
             Plugin.Instance.LogInfo("   wannaKnowAboutKaizyle: " + DialogueFlags.wannaKnowAboutKaizyle);
             Plugin.Instance.LogInfo("   saidYippies: " + DialogueFlags.saidYippies);
             Plugin.Instance.LogInfo("   choosedGlissandogs: " + DialogueFlags.choosedGlissandogs);
@@ -3084,6 +3096,21 @@ namespace TootTally.Tooter
             Plugin.Instance.LogInfo("   gotIceCream: " + DialogueFlags.gotIceCream);
             Plugin.Instance.LogInfo("   gotSundae: " + DialogueFlags.gotSundae);
             Plugin.Instance.LogInfo("   kissedKaizyle: " + DialogueFlags.kissedKaizyle);
+            Plugin.Instance.LogInfo("-----------------------------");
+        }
+        public static void LogChapter4States()
+        {
+            Plugin.Instance.LogInfo("CURRENT CHAPTER 4 STATES:");
+            Plugin.Instance.LogInfo("   trixiePresent: " + DialogueFlags.trixiePresent);
+            Plugin.Instance.LogInfo("   beezerlyPresent: " + DialogueFlags.beezerlyPresent);
+            Plugin.Instance.LogInfo("   appaloosaPresent: " + DialogueFlags.appaloosaPresent);
+            Plugin.Instance.LogInfo("   kaizylePresent: " + DialogueFlags.kaizylePresent);
+            Plugin.Instance.LogInfo("   performedWithTrixie: " + DialogueFlags.performedWithTrixie);
+            Plugin.Instance.LogInfo("   performedWithBeezerly: " + DialogueFlags.performedWithBeezerly);
+            Plugin.Instance.LogInfo("   performedWithAppaloosa: " + DialogueFlags.performedWithAppaloosa);
+            Plugin.Instance.LogInfo("   performedWithKaizyle: " + DialogueFlags.performedWithKaizyle);
+            Plugin.Instance.LogInfo("   performedSolo: " + DialogueFlags.performedSolo);
+            Plugin.Instance.LogInfo("   performedGroup: " + DialogueFlags.performedGroup);
             Plugin.Instance.LogInfo("-----------------------------");
         }
 
