@@ -2302,6 +2302,10 @@ namespace TootTally.Tooter
                     break;
                 case 3404101:
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizylePissed, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        OnDemonDialogueDoDialoguePostFix(new object[] { 340411 }, __instance);
+                    });
                     break;
                 case 340411:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
@@ -6551,7 +6555,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: Stop.",
-                    option2DialogueID = 340208,
+                    option2DialogueID = 0, //Auto Dialogue
                 }
             },
             {340411,
