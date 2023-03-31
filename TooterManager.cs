@@ -242,7 +242,7 @@ namespace TootTally.Tooter
         {
             var scaleX = character.transform.localScale.x;
             var scaleY = character.transform.localScale.y;
-            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(-Math.Abs(scaleX), scaleY, 10f), 1.8f / (speedMult/2f), new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(-Math.Abs(scaleX)) * 1.6f, 1.6f); });
+            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(-Math.Abs(scaleX), scaleY, 10f), 1.8f / (speedMult / 2f), new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(-Math.Abs(scaleX)) * 1.6f, 1.6f); });
             if (fixPosition)
                 AnimationManager.AddNewTransformPositionAnimation(character, character.transform.position + new Vector3(Mathf.Sign(Math.Abs(scaleX)) * 1.1f, 0, 0), 1.8f, GetSecondDegreeAnimationFunction(speedMult));
 
@@ -252,7 +252,7 @@ namespace TootTally.Tooter
         {
             var scaleX = character.transform.localScale.x;
             var scaleY = character.transform.localScale.y;
-            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(Math.Abs(scaleX), scaleY, 10f), 1.8f/(speedMult / 2f), new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(Math.Abs(scaleX)) * 1.6f, 1.6f); });
+            AnimationManager.AddNewTransformScaleAnimation(character, new Vector3(Math.Abs(scaleX), scaleY, 10f), 1.8f / (speedMult / 2f), new EasingHelper.SecondOrderDynamics(1.25f * speedMult, 1f, 0f), delegate { character.transform.localScale = new Vector2(Mathf.Sign(Math.Abs(scaleX)) * 1.6f, 1.6f); });
             if (fixPosition)
                 AnimationManager.AddNewTransformPositionAnimation(character, character.transform.position + new Vector3(Mathf.Sign(Math.Abs(scaleX)) * -1.1f, 0, 0), 1.8f, GetSecondDegreeAnimationFunction(speedMult));
 
@@ -1623,7 +1623,11 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outLeftCharPosition, 1.2f, GetSecondDegreeAnimationFunction(0.3f));
                     AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCharPosition, 1f, GetSecondDegreeAnimationFunction(), delegate { FlipSpriteRightAnimation(_beezerly, true); });
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition + new Vector3(1, 0, 0), 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition + new Vector3(1, 0, 0), 1.1f, GetSecondDegreeAnimationFunction(), delegate
+                    {
+                        danceSpriteIndex = danceIncrement = 1;
+                        RecursiveSodaBeezerlyDanceAnimation();
+                    });
                     DialogueFlags.dancedWithBeezerly = true;
                     UpdateDialogueStates(3);
                     break;
@@ -1634,6 +1638,11 @@ namespace TootTally.Tooter
                 case 3204057:
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
+                case 3204058:
+                    danceIncrement = 0;
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyInLove, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
+                    break;
                 case 3203055:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
@@ -1643,11 +1652,15 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
                     break;
                 case 3203057:
-                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    FlipSpriteLeftAnimation(_beezerly, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 3203058, 3f)); // transition to same scene
                     break;
                 case 3203058:
+                    danceIncrement = 0;
+                    FlipSpriteRightAnimation(_beezerly, false);
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyMock, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
@@ -2017,7 +2030,7 @@ namespace TootTally.Tooter
                             }
                         });
                     });
-                    
+
                     break;
                 case 340001:
                     FlipSpriteLeftAnimation(_kaizyle, true);
@@ -7190,8 +7203,36 @@ namespace TootTally.Tooter
                    });
 
                });
-
         }
+
+        private static CharExpressions[] _sodaDanceSprites = { CharExpressions.SodaJam1, CharExpressions.SodaJam2, CharExpressions.SodaJam3 };
+        private static CharExpressions[] _beezerlyDanceSprites = { CharExpressions.BeezJam1, CharExpressions.BeezJam2, CharExpressions.BeezJam3 };
+        private static int danceSpriteIndex;
+        private static int danceIncrement;
+        public static void RecursiveSodaBeezerlyDanceAnimation()
+        {
+            if (danceIncrement != 0)
+            {
+                AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.2f, GetSecondDegreeAnimationFunction(0.0001f), delegate
+                {
+                    if (danceIncrement != 0)
+                        ChangeCharSprite(_sodaSprite, _sodaDanceSprites[danceSpriteIndex]);
+                });
+
+                AnimationManager.AddNewTransformPositionAnimation(_beezerly, _leftCharPosition, 0.2f, GetSecondDegreeAnimationFunction(0.0001f), delegate
+                {
+                    if (danceIncrement != 0)
+                    {
+                        ChangeCharSprite(_beezerlySprite, _beezerlyDanceSprites[danceSpriteIndex]);
+                        RecursiveSodaBeezerlyDanceAnimation();
+                    }
+                });
+                danceSpriteIndex += danceIncrement;
+                if (danceSpriteIndex == 2 || danceSpriteIndex == 0)
+                    danceIncrement = -danceIncrement;
+            }
+        }
+
         public static void UpdateDialogueStates(int chapterID)
         {
             switch (chapterID)
@@ -7245,6 +7286,9 @@ namespace TootTally.Tooter
             SodaHype,
             SodaFightMe,
             SodaBreaking,
+            SodaJam1,
+            SodaJam2,
+            SodaJam3,
 
             TrixieNeutral,
             TrixieNeutralTalk,
