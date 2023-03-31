@@ -6915,13 +6915,41 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"CHAPTER 4: Concerto Conundrum",
+                    option2DialogueID = 4100001,
+                }
+            },
+            {4100001,
+                new DialogueData()
+                {
+                    dialogueText = $"It's the day of the competition.",
+                    option2DialogueID = 4100002,
+                }
+            },
+            {4100002,
+                new DialogueData()
+                {
+                    dialogueText = $"I've been practicing day and night, but that doesn't bother me.",
+                    option2DialogueID = 4100003,
+                }
+            },
+            {4100003,
+                new DialogueData()
+                {
+                    dialogueText = $"Tooting is the only thing I ever loved.",
+                    option2DialogueID = 4100004,
+                }
+            },
+            {4100004,
+                new DialogueData()
+                {
+                    dialogueText = $"But today...",
                     option2DialogueID = 410001,
                 }
             },
             {410001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Wow, I can't believe the competition is finally here",
+                    dialogueText = $"{_sodaColoredName} Sorry I'm late. *Someone* had to oil those fucking hinges in the music classroom.",
                     option2DialogueID =  GetChapter4FirstCharacterEnter()
 
                 }
@@ -6929,7 +6957,7 @@ namespace TootTally.Tooter
             {410002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_trixieColoredName}: I know, I'm so scared. What if I mess up?",
+                    dialogueText = DialogueFlags.gtfoOfTheDateEarly ? $"{_trixieColoredName}: Oh Babi, I'm so scared. What if I mess up?" : (DialogueFlags.saidTheTruth ? "Trixiebell looks at me and giggles... at least she's not nervous anymore" : "Trixie sits in the corner, breathing slowly like we practiced."),
                     option2DialogueID = GetChapter4SecondCharacterEnter()
                 }
             },
