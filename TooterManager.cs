@@ -690,7 +690,6 @@ namespace TootTally.Tooter
 
                 #region Trixie
                 case 210001:
-                    FlipSpriteRightAnimation(_soda, false, 10f);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 210002:
@@ -2774,6 +2773,7 @@ namespace TootTally.Tooter
                         _soda.transform.position = _leftCenterCharPosition;
                         ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral);
                         _trixiebell.transform.position = _outRightCharPosition;
+                        _soda.transform.position = _leftCenterCharPosition;
                         __instance.csc.fadeMus(1, true);
                         UpdateDialogueStates(2);
                         LogChapter1States();
@@ -4156,7 +4156,7 @@ namespace TootTally.Tooter
             {91,
                 new DialogueData()
                 {
-                    dialogueText = $"{_trixieColoredName}: I begged my parents to let me buy it from the gift shop! I don't think they had any intention of leaving without it, though. At least not once I started crying.",
+                    dialogueText = $"{_trixieColoredName}: I begged my parents to let me buy it from the gift shop! They had no intention of leaving without it, though. At least not once I started crying.",
                     option1Text = "Invite her out",
                     option1DialogueID = 92,
                     option1Score = new ScoreData()
