@@ -5784,7 +5784,10 @@ namespace TootTally.Tooter
                     option1DialogueID =  3311141,
                     option1Score = new ScoreData
                     {
-                        appaloosaScore = DialogueFlags.flirtAppaloosa ? 5f : -5f
+                        appaloosaScore = DialogueFlags.flirtAppaloosa ? 50f : -10f,
+                        beezerlyScore = DialogueFlags.flirtAppaloosa ? -25f : 0f,
+                        trixieScore = DialogueFlags.flirtAppaloosa ? -25f : 0f,
+                        kaizyleScore = DialogueFlags.flirtAppaloosa ? -25f : 0f,
                     },
                     option2Text = "Part Ways",
                     option2DialogueID = 331115
