@@ -170,6 +170,7 @@ namespace TootTally.Tooter
             _txtBox.Initialize(float.MaxValue, new Vector2(0, -150), new Vector2(1000, 250), new Vector2(300, 0));
             _txtBox.SetTextSize(32); //SetTextSize has to be called after init
             _txtBox.SetTextAlign(TextAnchor.MiddleLeft);
+            _txtBox.transform.Find("NotifText").GetComponent<Text>().verticalOverflow = VerticalWrapMode.Overflow;
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(.6f, .6f, .6f);
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().preserveAspect = true;
@@ -1939,11 +1940,10 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 331001, 2.65f)); //To the jazz bar!
                     break;
                 case 33100021:
-                    DialogueFlags.obsessAppaloosa = true;
+                case 33101021:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    DialogueFlags.obsessAppaloosa = _currentDialogueState == 33100021;
                     break;
-                case 33101021: 
-                    DialogueFlags.obsessAppaloosa = false;
-                    break;          
                 case 331001: //Jazz bar
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
@@ -5878,7 +5878,7 @@ namespace TootTally.Tooter
             {33100023,
                 new DialogueData() 
                 {
-                    dialogueText = $"I hear a knock at the door. so I head downstairs and outside, greeting {_appaloosaColoredName} as we walk down to the road.",
+                    dialogueText = $"I hear a knock at the door. so I head downstairs and outside, greeting Appaloosa as we walk down to the road.",
                     option2DialogueID = 3310002
                 } 
             },
