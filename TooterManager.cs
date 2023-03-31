@@ -2371,7 +2371,7 @@ namespace TootTally.Tooter
                     break;
                 case 3400264:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.gotIceCream ? CharExpressions.SodaNeutral : CharExpressions.SodaEh, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleShrug, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340026, 2.65f)); //To Chap 4 transition
                     break;
                 case 340026:
@@ -2428,7 +2428,7 @@ namespace TootTally.Tooter
                     break;
                 case 340135:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNom, Color.white); //KaizyleNom - eating
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNom, Color.white);
                     break;
                 case 340136:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
@@ -2436,11 +2436,11 @@ namespace TootTally.Tooter
                     break;
                 case 3401361:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFlattered, Color.white); //KaizyleBlushhhh
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFlattered, Color.white);
                     break;
                 case 340137:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFlatteredLookUp, Color.white); //KaizyleBlushEyesUp?
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFlatteredLookUp, Color.white);
                     break;
                 case 340138:
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 340139, 0f, 0.4f)); //KISSING SCENE BOI
@@ -2453,15 +2453,15 @@ namespace TootTally.Tooter
                     break;
                 case 340239:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.kissedKaizyle ? CharExpressions.SodaInLove : CharExpressions.SodaEh, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, DialogueFlags.kissedKaizyle ? CharExpressions.KaizyleWTF : CharExpressions.KaizyleNeutralTalk, Color.white); //KayExtraBlush or KayFine if not kiss
+                    ChangeCharSprite(_kaizyleSprite, DialogueFlags.kissedKaizyle ? CharExpressions.KaizyleLove : CharExpressions.KaizyleFine, Color.white);
                     break;
                 case 340240:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //blush
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleLove, Color.white);
                     break;
                 case 340241:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //moreblush
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFlattered, Color.white);
                     break;
                 case 340032:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
@@ -2469,7 +2469,7 @@ namespace TootTally.Tooter
                     break;
                 case 340033:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, DialogueFlags.kissedKaizyle ? CharExpressions.KaizyleNeutralTalk : CharExpressions.KaizyleNeutralTalk, Color.white); //blush if kiss
+                    ChangeCharSprite(_kaizyleSprite, DialogueFlags.kissedKaizyle ? CharExpressions.KaizyleFlattered : CharExpressions.KaizyleNeutralTalk, Color.white);
                     break;
                 case 340034:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
@@ -2477,11 +2477,11 @@ namespace TootTally.Tooter
                     break;
                 case 340035:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleFine, Color.white);
                     break;
                 case 340036:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleShrug, Color.white);
                     break;
                 case 340037:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
