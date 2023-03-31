@@ -1830,77 +1830,151 @@ namespace TootTally.Tooter
                 case 330000:
                     FlipSpriteLeftAnimation(_appaloosa, false, 10f);
                     FlipSpriteLeftAnimation(_soda, false, 10f);
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
                 case 330001:
-                    break;
-                case 3310002:
-                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 331001, 2.65f)); //To the jazz bar!
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaAgree
                     break;
                 case 3300011:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
                     break;
                 case 330002:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 330003:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white); // SodaTrombone (?)
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaTrombone (?)
                     break;
                 case 330004:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaWow
                     break;
                 case 330005:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 330006:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
                     break;
                 case 330007:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaPointToSelf
                     break;
                 case 3310001:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaDisappointed
+                    DialogueFlags.disinterestedAppaloosa = true;
                     break;
                 case 331000:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, (DialogueFlags.disinterestedAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaLOL), Color.white); // AppaloosaDisappointed
+                    break;
+                case 3310002:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 331001, 2.65f)); //To the jazz bar!
                     break;
                 case 331001: //Jazz bar
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    AnimationManager.AddNewTransformPositionAnimation(_appaloosa, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     break;
                 case 331002:
+                    FlipSpriteLeftAnimation(_soda, false);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white); // AppaloosaPointToSelf
                     break;
                 case 331200:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLeanAway, Color.white);
                     break;
                 case 331100:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
                     break;
                 case 331101:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
                     break;
                 case 331102:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 331103:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaPointToSelf
                     break;
                 case 3311031:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
                     break;
                 case 3311032:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
+                    break;
+                case 3311033:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 331104:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, (DialogueFlags.unimpressedAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutral), Color.white); // AppaloosaDisappointed (unimpressed)
                     break;
                 case 331105:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
                     break;
                 case 331106:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaPointToSelf
                     break;
                 case 331120:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaStressLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaDisappointed
                     break;
                 case 33110:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
                     break;
                 case 331111:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
                     break;
                 case 331112:
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 331113:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.SodaWheezeRW : CharExpressions.SodaHype, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 331114:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaHype, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.unimpressedAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaDisappointed
                     break;
                 case 3311141:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaEmbarrassedLight, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.AppaloosaNeutral : CharExpressions.AppaloosaNeutral, Color.white); 
                     break;
-                case 33111411:
-                    break;
-                case 331142:
+                case 3311142:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.flirtAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
+                    // KISS KISS KISS KISS
                     break;
                 case 331115:
+                    ChangeCharSprite(_sodaSprite, DialogueFlags.kissedAppaloosa ? CharExpressions.SodaStressLight : CharExpressions.SodaInLove, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.kissedAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaNeutral, Color.white); // AppaloosaBlush
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 340000, 2.65f)); //To Chap 3 part 4 transition
                     break;
                 #endregion
@@ -2524,6 +2598,8 @@ namespace TootTally.Tooter
                         break;
                     case 331001:
                         ResetCharacterPositions();
+                        FlipSpriteRightAnimation(_soda, false, 10f);
+                        _soda.transform.position = _outRightCharPosition;
                         _txtBox.UpdateText("");
                         __instance.csc.fadeMus(1, true);
                         __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("JazzClub.png");
@@ -5198,63 +5274,63 @@ namespace TootTally.Tooter
             {330000,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Hi Appaloosa, thanks for agreeing to give me some trombone lessons. I'm really excited to learn from you.",
-                    option2DialogueID = 330001,
+                    dialogueText = $"{_sodaColoredName}: Hey Appaloosa! I really enjoy your tunes, thanks for letting me learn from you!",
+                    option2DialogueID = 330001,//
                 }
             },
             {330001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: It's my pleasure, Soda. I love helping passionate people develop their skills.",
+                    dialogueText = $"{_appaloosaColoredName}: All good, Soda! I love teaching passionate musicians!",//
                     option2DialogueID = 3300011,
                 }
             },
             {3300011,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: How about we start with a few warm-up exercises?",
+                    dialogueText = $"{_appaloosaColoredName}: Hows about a few warm-up exercises?",//
                     option2DialogueID = 330002,
                 }
             },
             {330002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Sounds good to me.",
+                    dialogueText = $"{_sodaColoredName}: Sure thing!",//
                     option2DialogueID = 330003
                 }
             },
             {330003,
                 new DialogueData()
                 {
-                    dialogueText = $"[They begin practicing, and {_appaloosaColoredName} gives {_sodaColoredName} pointers on his technique]",
+                    dialogueText = $"Holy wow, {_appaloosaColoredName} is teaching me so much I've never seen before!",
                     option2DialogueID = 330004
                 }
             },
             {330004,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: You're a quick learner, {_sodaColoredName}. You've got a lot of potential. Have you ever played at a jazz bar before?",
+                    dialogueText = $"{_appaloosaColoredName}: You're a quick learner, {_sodaColoredName}. You ever played at a jazz bar before?",
                     option2DialogueID = 330005
                 }
             },
             {330005,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I haven't!",
+                    dialogueText = $"{_sodaColoredName}: Nope.", //
                     option2DialogueID = 330006
                 }
             },
             {330006,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Well, you're in luck. I actually work at a jazz bar not too far from here.",
+                    dialogueText = $"{_appaloosaColoredName}: It's your lucky day, I work at one not too far from here!",
                     option2DialogueID = 330007
                 }
             },
             {330007,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Would you like to come with me tonight? We can grab a drink and listen to some live music.",
+                    dialogueText = $"{_appaloosaColoredName}: Wanna go tonight? We can grab a drink and listen to some live music.",
                     option1Text = $"Why not",
                     option1DialogueID = 3310001,
                     option2Text = $"Yes",
@@ -5275,14 +5351,14 @@ namespace TootTally.Tooter
             {331000, // Choice 1; yes
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: That sounds amazing! I'd love to.", // SodaAgree
+                    dialogueText = $"{_sodaColoredName}: That sounds trombtastic, I'd love to!", // SodaAgree
                     option2DialogueID = 3310002,
                 }
             },
             {3310002,
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} and {_appaloosaColoredName} starts heading to the jazz bar]",
+                    dialogueText = $"{_appaloosaColoredName}: Let's get going{(DialogueFlags.disinterestedAppaloosa ? " I guess." : "!")}",
                     option2Text = "",
                     option2DialogueID = 0
                 }
@@ -5290,14 +5366,14 @@ namespace TootTally.Tooter
             {331001,
                 new DialogueData()
                 {
-                    dialogueText = $"[That night, they arrive at the jazz bar, where the music is already in full swing]",
+                    dialogueText = $"This place is so.. jazzy! I wonder how long these tromboners have played for?",
                     option2DialogueID = 331002
                 }
             },
             {331002,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: What do you think, {_sodaColoredName}? This is the real deal, right?", // Yelling over music
+                    dialogueText = $"{_appaloosaColoredName}: Whadd'ya think, {_sodaColoredName}? This is the real deal, yeah?", // Yelling over music
                     option1DialogueID = 331200,
                     option1Text = $"Not really",
                     option1Score = new ScoreData
@@ -5322,21 +5398,21 @@ namespace TootTally.Tooter
             {331100, //Choice 1; yes
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Definitely. I can feel the energy in this place.",
+                    dialogueText = $"{_sodaColoredName}: For sure, this place {(DialogueFlags.talkedShitAboutRock ? "is awesome!":"rocks!")}",
                     option2DialogueID = 331101
                 }
             },
             {331101,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: That's the power of jazz. It brings people together and creates a sense of community.",
+                    dialogueText = $"{_appaloosaColoredName}: That's jazz for ya! It brings everyone together in one family!",
                     option2DialogueID = 331102
                 }
             },
             {331102,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I never really thought about it that way before!",
+                    dialogueText = $"{_sodaColoredName}: That's pretty neat!",
                     option2DialogueID = 331103
                 }
             },
@@ -5344,7 +5420,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
 
-                    dialogueText = $"{_appaloosaColoredName}: That's what I'm here for. To share my love of jazz with others.",
+                    dialogueText = $"{_appaloosaColoredName}: That's why I'm here, to celebrate jazz with others!",
                     option1Text = "Flirt",
                     option1DialogueID = 3311031,
                     option1Score = new ScoreData
@@ -5358,22 +5434,29 @@ namespace TootTally.Tooter
             {3311031,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I thought you were here for me?",
+                    dialogueText = $"{_sodaColoredName}: Aren't you here for me though?",
                     option2DialogueID = 3311032
                 }
             },
             {3311032,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Oh, stop it!",
+                    dialogueText = $"{_appaloosaColoredName}: Oh, {_sodaColoredName}..",
 
+                    option2DialogueID = 3311033
+                }
+            },
+            {3311033,
+                new DialogueData()
+                {
+                    dialogueText = $"{_appaloosaColoredName}: Let's order and have a seat. They put on great shows here!",
                     option2DialogueID = 331104
                 }
             },
             {331104,
                 new DialogueData()
                 {
-                    dialogueText = $"[They order their drinks and settle in at a table near the stage]",
+                    dialogueText = $"This table is quite close to the stage. My drink could probably reach if it were thrown..",
                     option2DialogueID = DialogueFlags.unimpressedAppaloosa ? 331220 : 331105
                 }
             },
@@ -5387,14 +5470,14 @@ namespace TootTally.Tooter
             {331105,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: This is really great, {_appaloosaColoredName}. I can't thank you enough for bringing me here.", // SodaEat
+                    dialogueText = $"{_sodaColoredName}: This is so awesome, {_appaloosaColoredName}! I can't believe you didn't bring me sooner!", // SodaEat
                     option2DialogueID = 331106
                 }
             },
             {331106,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. You remind me of myself when I was your age. So full of potential and passion.",
+                    dialogueText = $"{_appaloosaColoredName}: It's cool, {_sodaColoredName}. You're like me when I was your age, fired up and full of potential.",
                     option1Text = $"Thank",
                     option1DialogueID = 331120,
                     option2Text = $"Flirt",
@@ -5415,7 +5498,7 @@ namespace TootTally.Tooter
             {33110, // Choice 1; flirt
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Thanks, {_appaloosaColoredName}. That means a lot coming from someone as talented as you.", // SodaEmbarrassedLight
+                    dialogueText = $"{_sodaColoredName}: Thanks, {_appaloosaColoredName}. Means a lot coming from someone with your talent.", // SodaEmbarrassedLight
                     option2DialogueID = 331111
 
                 }
@@ -5423,28 +5506,28 @@ namespace TootTally.Tooter
             {331111,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Oh, stop it. But seriously, if you ever want to perform here, just let me know. I'd be happy to help you get started.", // Laugh
+                    dialogueText = $"{_appaloosaColoredName}: Oh shush, {_sodaColoredName}. If you ever wanna perform here, though, I can help you start.", // Laugh
                     option2DialogueID = 331112
                 }
             },
             {331112,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: That would be amazing. I'll definitely take you up on that offer.", // SodaWOW
+                    dialogueText = $"{_sodaColoredName}: I'll consider that offer, thanks!", // SodaWOW
                     option2DialogueID = 331113
                 }
             },
             {331113,
                 new DialogueData()
                 {
-                    dialogueText = $"[As the night wears on, they {(DialogueFlags.unimpressedAppaloosa ? "listen to" : "enjoy")} the music and conversation, and {_sodaColoredName} {(DialogueFlags.unimpressedAppaloosa ? "just wants to go home." : "feels grateful for the opportunity to learn from such a talented musician.")}]",
+                    dialogueText = $"{(DialogueFlags.unimpressedAppaloosa ? "I wanna go hoommeee noowww.." : "I'm loving the vibe of this place, It's so chill!")}",
                     option2DialogueID = 331114
                 }
             },
             {331114,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "an interesting" : (DialogueFlags.flirtAppaloosa ? "such an incredible" : "a good"))} night, {_appaloosaColoredName}. {(!(DialogueFlags.unimpressedAppaloosa) ? "Thank you again for everything." : "")}",
+                    dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "interesting" : (DialogueFlags.flirtAppaloosa ? "great" : "good"))}, {_appaloosaColoredName}.",
                     option1Text  = DialogueFlags.kissedSomeone ? "":"Kiss",
                     option1DialogueID = DialogueFlags.flirtAppaloosa ? 3311141 : 331142,
                     option1Score = new ScoreData
@@ -5466,22 +5549,14 @@ namespace TootTally.Tooter
             {3311142,
                 new DialogueData()
                 {
-                    dialogueText = $"[{_sodaColoredName} leans in and kisses {_appaloosaColoredName} gently]", // FLAG kissedAppaloosa
-                    option2DialogueID = 331115
-                }
-            },
-            {331142,
-                new DialogueData()
-                {
-                    dialogueText = $"[{_appaloosaColoredName} leans away as {_sodaColoredName} leans in]", // FLAG awkwardAppaloosa
+                    dialogueText = $"{_sodaColoredName}: ...", // FLAG kissedAppaloosa or no
                     option2DialogueID = 331115
                 }
             },
             {331115,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: {(!DialogueFlags.awkwardAppaloosa ? "" : "Uhmm..")} Anytime, {_sodaColoredName}", // If kissed Appaloosa: SodaEmbarrasedLight ; If awkwardAppaloosa: SodaPlead
-                    option2Text = "",
+                    dialogueText = $"{_appaloosaColoredName}: {(!DialogueFlags.kissedAppaloosa ? "Ahem.." : "Uhmm..")} Anytime, {_sodaColoredName}..", // If kissed Appaloosa: SodaEmbarrasedLight ; If awkwardAppaloosa: SodaPlead
                     option2DialogueID = 0
 
                 }
@@ -6648,6 +6723,7 @@ namespace TootTally.Tooter
 
             #region Chapter 3 part 3
             public static bool unimpressedAppaloosa;
+            public static bool disinterestedAppaloosa;
             public static bool kissedAppaloosa;
             public static bool awkwardAppaloosa;
             public static bool flirtAppaloosa;
