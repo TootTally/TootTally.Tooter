@@ -1553,8 +1553,8 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     FlipSpriteLeftAnimation(_soda, false);
-                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction());
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction(.7f));
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1f, GetSecondDegreeAnimationFunction(.7f));
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320203, 2f));
                     break;
                 case 320203:
