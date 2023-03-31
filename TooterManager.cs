@@ -6049,7 +6049,7 @@ namespace TootTally.Tooter
                     option1Text = "Glissandogs",
                     option1DialogueID = 340200,
                     option2Text = "Tromb-Cone",
-                    option2DialogueID = 3400015,
+                    option2DialogueID = 340015,
                 }
             },
             {340200,
