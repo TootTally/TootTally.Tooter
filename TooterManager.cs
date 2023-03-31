@@ -1969,6 +1969,8 @@ namespace TootTally.Tooter
                 case 340005:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
+                    DialogueFlags.wannaKnowAboutKaizyle = true;
+                    UpdateDialogueStates(3);
                     break;
                 case 340006:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
@@ -2000,8 +2002,10 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleDispleased, Color.white);
                     break;
                 case 34010810:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaCall, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaCall, Color.white); //YIPPIES
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizylePissed, Color.white);
+                    DialogueFlags.saidYippies = true;
+                    UpdateDialogueStates(3);
                     break;
                 case 3401081:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
@@ -2056,6 +2060,8 @@ namespace TootTally.Tooter
                 case 340200:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
+                    DialogueFlags.choosedGlissandogs = true;
+                    UpdateDialogueStates(3);
                     break;
                 case 340201:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaDeepSmug, Color.white);
@@ -2074,6 +2080,8 @@ namespace TootTally.Tooter
                 case 340305:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaBleh, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
+                    DialogueFlags.arguedAboutGlissandogs = true;
+                    UpdateDialogueStates(3);
                     break;
                 case 340306:
                 case 340308:
@@ -2116,28 +2124,30 @@ namespace TootTally.Tooter
                 case 340407:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleConcern, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.25f, GetSecondDegreeAnimationFunction(), delegate
+                    DialogueFlags.overReactedAboutKaizyleHotdogs = true;
+                    UpdateDialogueStates(3);
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 340408 }, __instance);
                     });
                     break;
                 case 340408:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.25f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 340409 }, __instance);
                     });
                     break;
                 case 340409:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.25f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 340410 }, __instance);
                     });
                     break;
                 case 340410:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.25f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _leftCenterCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 3404101 }, __instance);
                     });
@@ -2147,7 +2157,7 @@ namespace TootTally.Tooter
                     break;
                 case 340411:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.25f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition, 0.5f, GetSecondDegreeAnimationFunction(), delegate
                     {
                         OnDemonDialogueDoDialoguePostFix(new object[] { 340412 }, __instance);
                     });
@@ -2155,7 +2165,7 @@ namespace TootTally.Tooter
                 case 340412:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(1, 0, 0), 0.25f, GetSecondDegreeAnimationFunction(), delegate
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(1, 0, 0), 0.5f, GetSecondDegreeAnimationFunction(), delegate
                       {
                           OnDemonDialogueDoDialoguePostFix(new object[] { 340413 }, __instance);
                       });
@@ -2229,6 +2239,8 @@ namespace TootTally.Tooter
                 case 340023:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaInLove, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white); //KaizyleForcedBlush
+                    DialogueFlags.complimentedKaizyle = true;
+                    UpdateDialogueStates(3);
                     break;
                 case 340024:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
