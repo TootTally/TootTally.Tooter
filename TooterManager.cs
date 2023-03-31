@@ -2924,7 +2924,16 @@ namespace TootTally.Tooter
         public static void LogChapter3Part4States()
         {
             Plugin.Instance.LogInfo("CURRENT CHAPTER2 STATES:");
-            Plugin.Instance.LogInfo("   wentToRockCafe: " + DialogueFlags.wentToRockCafe);
+            Plugin.Instance.LogInfo("   wannaKnowAboutKaizyle: " + DialogueFlags.wannaKnowAboutKaizyle);
+            Plugin.Instance.LogInfo("   saidYippies: " + DialogueFlags.saidYippies);
+            Plugin.Instance.LogInfo("   choosedGlissandogs: " + DialogueFlags.choosedGlissandogs);
+            Plugin.Instance.LogInfo("   arguedAboutGlissandogs: " + DialogueFlags.arguedAboutGlissandogs);
+            Plugin.Instance.LogInfo("   overReactedAboutKaizyleHotdogs: " + DialogueFlags.overReactedAboutKaizyleHotdogs);
+            Plugin.Instance.LogInfo("   complimentedKaizyle: " + DialogueFlags.complimentedKaizyle);
+            Plugin.Instance.LogInfo("   threwIceCreamAway: " + DialogueFlags.threwIceCreamAway);
+            Plugin.Instance.LogInfo("   gotIceCream: " + DialogueFlags.gotIceCream);
+            Plugin.Instance.LogInfo("   gotSundae: " + DialogueFlags.gotSundae);
+            Plugin.Instance.LogInfo("   kissedKaizyle: " + DialogueFlags.kissedKaizyle);
             Plugin.Instance.LogInfo("-----------------------------");
         }
 
