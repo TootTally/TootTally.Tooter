@@ -3628,21 +3628,21 @@ namespace TootTally.Tooter
             {210007,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} Haha, I feel the same way. Still, it's hard not to be excited. The competition is just a week away!",
+                    dialogueText = $"{_sodaColoredName}: Haha, I feel the same way. Still, it's hard not to be excited. The competition is just a week away!",
                     option2DialogueID = 210008
                 }
             },
             {210008,
                 new DialogueData()
                 {
-                    dialogueText = $"{_trixieColoredName} ...",
+                    dialogueText = $"{_trixieColoredName}: ...",
                     option2DialogueID = 210009
                 }
             },
             {210009,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName} ... how are you feeling about it?",
+                    dialogueText = $"{_sodaColoredName}: ... how are you feeling about it?",
                     option2DialogueID = 210010
                 }
             },
