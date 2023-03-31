@@ -56,6 +56,7 @@ namespace TootTally.Tooter
         private static readonly string _lateNightJazTrackref = "0.03104072181033679";
         private static readonly string _memoriesOfYouTrackref = "0.9615501183653947";
         private static readonly string _pathOfDiscoveriesTrackref = "0.9448386137778275";
+        private static bool _completedGame;
 
         public static void OnModuleLoad()
         {
@@ -97,6 +98,21 @@ namespace TootTally.Tooter
             }
             return false;
         }
+
+        [HarmonyPatch(typeof(PointSceneController), nameof(PointSceneController.Start))]
+        [HarmonyPrefix]
+        public static bool OnPointSceneControllerCompleteGame()
+        {
+            if (_isSceneActive)
+            {
+                _isSceneActive = false;
+                _completedGame = true;
+                SceneManager.LoadScene(1);
+                return false;
+            }
+            return true;
+        }
+        
 
         [HarmonyPatch(typeof(Plugin), nameof(Plugin.Update))]
         [HarmonyPostfix]
@@ -377,7 +393,7 @@ namespace TootTally.Tooter
             _tooterButtonClicked = false;
             tooterHitbox.GetComponent<Button>().onClick.AddListener(() =>
             {
-                if (_isSceneActive)
+                if (_completedGame)
                 {
                     PopUpNotifManager.DisplayNotif("Please restart game to play again, sorry!", GameTheme.themeColors.notification.defaultText);
                     return;
