@@ -2130,6 +2130,7 @@ namespace TootTally.Tooter
                     break;
                 case 3310002:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 331001, 2.65f)); //To the jazz bar!
                     break;
                 case 331001:
                     FlipSpriteLeftAnimation(_appaloosa, false, 10f);
