@@ -493,6 +493,11 @@ namespace TootTally.Tooter
                 _tooterButtonOutlineRectTransform.transform.parent.transform.Find("FG/texholder").GetComponent<CanvasGroup>().alpha = (_tooterButtonOutlineRectTransform.localScale.y - 0.4f) / 1.5f;
         }
 
+        public static void DisplayAchievement(string name, string description)
+        {
+            PopUpNotifManager.DisplayNotif($"Achievement: {name}\n{description}", GameTheme.themeColors.notification.defaultText);
+        }
+
         public enum HomeScreenButtonIndexes
         {
             Play = 0,
@@ -662,8 +667,8 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
                     break;
                 case 110902:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutralTalk, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
+                    ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleNeutral, Color.white);
                     break;
                 case 110903:
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleUm, Color.white);
@@ -1802,6 +1807,7 @@ namespace TootTally.Tooter
                 case 321000:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyUh, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaBleh, Color.white);
+                    DisplayAchievement("Discuss Burger", "Yes. This burger is made out of burger.");
                     break;
                 case 321001:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyChallenge, Color.white);
@@ -6138,7 +6144,7 @@ namespace TootTally.Tooter
             {33100023,
                 new DialogueData() 
                 {
-                    dialogueText = $"I hear a knock at the door. so I head downstairs and outside, greeting Appaloosa as we walk down to the road.",
+                    dialogueText = $"So I head downstairs and outside, greeting Appaloosa as we walk down to the road.",
                     option2DialogueID = 3310002
                 } 
             },
