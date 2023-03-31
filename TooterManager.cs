@@ -1754,8 +1754,8 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);
                     break;
                 case 320701:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyImpressed, Color.white); //TODO
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyUh, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
                     break;
                 case 320800:
                 case 320801:
@@ -1767,10 +1767,6 @@ namespace TootTally.Tooter
                 case 320802:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyMock, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
-                    break;
-                case 320803:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white); //TODO
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
                     break;
                 case 320017:
                 case 320600:
@@ -1808,8 +1804,28 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 321002:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white); //TODO
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
+                    break;
+                case 321003:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    break;
+                case 321004:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyWhat, Color.white); 
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaPlead, Color.white);
+                    break;
+                case 321005:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyChallenge, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaFightMe, Color.white);
+                    break;
+                case 321006:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyChallenge, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
+                    break;
+                case 321007:
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyChallenge, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
                     break;
                 case 320023:
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
