@@ -5829,7 +5829,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 33100021
                 } 
             },
-            {331000210,
+            {33100021,
                 new DialogueData()
                 {
                     dialogueText = "... time passes.",
@@ -5846,7 +5846,7 @@ namespace TootTally.Tooter
             {33100023,//TODO: automatic screen wipe transition
                 new DialogueData()
                 {
-                    option2DialogueID = 0
+                    option2DialogueID = 331000210
                 }
             },
             {331000210,
