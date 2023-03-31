@@ -5829,7 +5829,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 33100021
                 } 
             },
-            {33100021,
+            {331000210,
                 new DialogueData()
                 {
                     dialogueText = "... time passes.",
@@ -5849,7 +5849,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 0
                 }
             },
-            {33100021,
+            {331000210,
                 new DialogueData() 
                 {
                     dialogueText = $"I hear a knock at the door. so I head downstairs and outside, greeting {_appaloosaColoredName} as we walk down to the road.",
@@ -7081,7 +7081,7 @@ namespace TootTally.Tooter
             {410006,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: I have to choose which girl to perform with...but who should it be?",
+                    dialogueText = $"{_sodaColoredName}: I have to choose which girl to perform with... wait. When was this trope established?",
                     option2DialogueID = CanPerformWithTrixie() ? 410007 :
                                         CanPerformWithBeezerly() ? 410008 :
                                         CanPerformWithAppaloosa() ? 410009 :
