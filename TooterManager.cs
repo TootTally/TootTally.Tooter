@@ -4895,7 +4895,7 @@ namespace TootTally.Tooter
             {330001,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: It's my pleasure, Soda. I love helping passionate people develop their skills.",
+                    dialogueText = $"{_appaloosaColoredName}: Sure, Soda! There's nothing I love more than a passionate musician!",
                     option2DialogueID = 3300011,
                 }
             },
@@ -4937,7 +4937,7 @@ namespace TootTally.Tooter
             {330006,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: Well, you're in luck. I actually work at a jazz bar not too far from here.",
+                    dialogueText = $"{_appaloosaColoredName}: Well, it's your lucky day; I work at one not too far from here!",
                     option2DialogueID = 330007
                 }
             },
@@ -4947,7 +4947,7 @@ namespace TootTally.Tooter
                     dialogueText = $"{_appaloosaColoredName}: Would you like to come with me tonight? We can grab a drink and listen to some live music.",
                     option1Text = $"Why not",
                     option1DialogueID = 3310001,
-                    option2Text = $"Yes",
+                    option2Text = $"Absolutely",
                     option2DialogueID = 331000,
                     option2Score = new ScoreData
                     {
@@ -4989,13 +4989,13 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_appaloosaColoredName}: What do you think, {_sodaColoredName}? This is the real deal, right?", // Yelling over music
                     option1DialogueID = 331200,
-                    option1Text = $"Not really",
+                    option1Text = $"Pretty cool.",
                     option1Score = new ScoreData
                     {
-                        appaloosaScore = -2f
+                        appaloosaScore = 2f
                     },
                     option2DialogueID = 331100,
-                    option2Text = $"Absolutely",
+                    option2Text = $"Absotootely!",
                     option2Score = new ScoreData
                     {
                         appaloosaScore = 3f
@@ -5005,14 +5005,14 @@ namespace TootTally.Tooter
             {331200, // Choice 2; unimpressed
                 new DialogueData // FLAG unimpressedAppaloosa
                 {
-                    dialogueText = $"{_sodaColoredName}: It's alright I guess.",
+                    dialogueText = $"{_sodaColoredName}: Y'know, it's not bad!",
                     option2DialogueID = 331104
                 }
             },
             {331100, //Choice 1; yes
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Definitely. I can feel the energy in this place.",
+                    dialogueText = $"{_sodaColoredName}: Definitely. I can feel the energy in this place!",
                     option2DialogueID = 331101
                 }
             },
@@ -5063,7 +5063,7 @@ namespace TootTally.Tooter
             {331104,
                 new DialogueData()
                 {
-                    dialogueText = $"[They order their drinks and settle in at a table near the stage]",
+                    dialogueText = $"We order our drinks and take a seat, letting the .",
                     option2DialogueID = DialogueFlags.unimpressedAppaloosa ? 331220 : 331105
                 }
             },
