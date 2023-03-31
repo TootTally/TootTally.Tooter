@@ -5989,7 +5989,11 @@ namespace TootTally.Tooter
                         appaloosaScore = 2f
                     },
                     option2Text = "Drinks",
-                    option2DialogueID = 331104
+                    option2DialogueID = 331104,
+                    option2Score = new ScoreData
+                    {
+                        appaloosaScore = -1f
+                    },
                 }
             },
             {3311031,
@@ -6031,7 +6035,11 @@ namespace TootTally.Tooter
             {331105,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: This place is impressive, {_appaloosaColoredName}. I can't thank you enough for bringing me here." : $"{_sodaColoredName}: So words are just... notes?") : (DialogueFlags.isCompetitive ? $"{_sodaColoredName}: I'm definitely going pro once I graduate." : $"{_sodaColoredName}: I think I just started tromboning because I come from a long line of tromboners, but doesn't everyone?"), // SodaEat
+                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ?
+                    $"{_sodaColoredName}: This place is impressive, {_appaloosaColoredName}. I can't thank you enough for bringing me here." : // if appaloosa unimpressed
+                    $"{_sodaColoredName}: So words are just... notes?") : // if appaloosa is impressed and soda is obsess
+                    (DialogueFlags.isCompetitive ? $"{_sodaColoredName}: I'm definitely going pro once I graduate." : // if appaloosa is impressed, soda not impressed but soda is competitive
+                    $"{_sodaColoredName}: I think I just started tromboning because I come from a long line of tromboners, but doesn't everyone?"), // SodaEat
                     option2DialogueID = 331106
                 }
             },
@@ -6041,6 +6049,10 @@ namespace TootTally.Tooter
                     dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. You remind me of myself when I was your age. So full of passion and potential." : $"{_appaloosaColoredName}: Exactly! And where you choose to, say, place the root of the chord down the octave determines what you communicate to the listener!") : (DialogueFlags.isCompetitive ? $"{_appaloosaColoredName}: That's great! You remind me of the tromboning drive I had when I first started." : "You're definitely not alone there. It's a big trombiverse out there, and all we can do is our best! So don't lose hope."),
                     option1Text = $"Thank",
                     option1DialogueID = 331120,
+                    option1Score = new ScoreData
+                    {
+                        appaloosaScore = 1f
+                    },
                     option2Text = DialogueFlags.obsessAppaloosa ? "Flirt" : "",
                     option2DialogueID = 33110,
                     option2Score = new ScoreData
@@ -6106,7 +6118,11 @@ namespace TootTally.Tooter
                         kaizyleScore = DialogueFlags.flirtAppaloosa ? -25f : 0f,
                     },
                     option2Text = "Head home",
-                    option2DialogueID = 331115
+                    option2DialogueID = 331115,
+                    option2Score = new ScoreData
+                    {
+                        appaloosaScore = 2f
+                    }
                 }
             },
             {3311141,
@@ -6219,8 +6235,16 @@ namespace TootTally.Tooter
                     dialogueText = $"{_kaizyleColoredName}: Why?",
                     option1Text = "As a date",
                     option1DialogueID = 340100,
+                    option1Score = new ScoreData
+                    {
+                        kaizyleScore = -3f
+                    },
                     option2Text = "Literally anything else",
                     option2DialogueID = 340005,
+                    option2Score = new ScoreData
+                    {
+                        kaizyleScore = 2f
+                    },
                 }
             },
             {340100,
@@ -6306,6 +6330,10 @@ namespace TootTally.Tooter
                     dialogueText = $"{_kaizyleColoredName}: Still busy.",
                     option1Text = "Yippies!",
                     option1DialogueID = 34010810,
+                    option1Score = new ScoreData
+                    {
+                        kaizyleScore = -1f
+                    },
                     option2Text = "Cya later",
                     option2DialogueID = 34000810,
                 }
