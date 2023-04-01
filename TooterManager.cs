@@ -3946,7 +3946,7 @@ namespace TootTally.Tooter
             {210103,
                 new DialogueData()
                 {
-                    dialogueText = $"The door hollers in protest as {_beezerlyColoredName} strolls in",
+                    dialogueText = $"The door hollers in protest as {_beezerlyColoredName} strolls in.",
                     option2DialogueID = 210104
                 }
             },
@@ -4793,7 +4793,7 @@ namespace TootTally.Tooter
             {127,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: It smells like sweets, just like your personality",
+                    dialogueText = $"{_sodaColoredName}: It smells like sweets, just like your personality.",
                     option2DialogueID = 128,
                 }
             },
@@ -5177,7 +5177,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Absolutely, I had a fun time too.",
-                    option1Text = DialogueFlags.calledTrixieAFriend ? "":"Loiter",
+                    option1Text = DialogueFlags.calledTrixieAFriend || !DialogueFlags.invitedTrixieOut ? "":"Loiter",
                     option1DialogueID =  1772,
                     option1Score = new ScoreData()
                     {
