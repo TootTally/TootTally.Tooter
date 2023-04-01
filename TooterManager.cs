@@ -1517,12 +1517,12 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 330000, 2.65f)); //to Chap 3 part 3 transition
                     break;
                 case 320005:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyThinking, Color.white);
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
                     break;
                 case 320006:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutral, Color.white);
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaAgree, Color.white);
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyMock, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320007, 2.65f));
                     break;
                 case 320007:
@@ -5278,14 +5278,14 @@ namespace TootTally.Tooter
             {320005,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Hmm, a hard rock cafe? Sure, I'll go. Sounds like a good time!",
+                    dialogueText = $"{_sodaColoredName}: Hmm, a hard rock cafe? Sure, I'll go. Sounds like a good time!",
                     option2DialogueID = 320006,
                 }
             },
             {320006, //Transition to hard rock cafe
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Awesome! I'm really looking forward to it.",
+                    dialogueText = $"{_beezerlyColoredName}: Awesome! I'm really looking forward to it.",
                     option2Text = "",
                     option2DialogueID = 0,
                 }
