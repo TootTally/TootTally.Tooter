@@ -7208,7 +7208,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"Ahhhhhhhh thanks Babi my legs were burning.",
-                    option2DialogueID = DialogueFlags.gotIceCream || DialogueFlags.gotSundae ? 340132 : 340032,
+                    option2DialogueID = (DialogueFlags.gotIceCream || DialogueFlags.gotSundae) && !DialogueFlags.threwIceCreamAway ? 340132 : 340032,
                 }
             },
             {340132,
@@ -7328,7 +7328,7 @@ namespace TootTally.Tooter
             {340033,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.gotIceCream ?
+                    dialogueText = DialogueFlags.gotIceCream && !DialogueFlags.threwIceCreamAway ?
                     $"{_kaizyleColoredName}: Yeah, it's been {(DialogueFlags.kissedKaizyle?"very ": "")}enjoyable.":
                     $"{_kaizyleColoredName}: Yeah, it's been... interesting.",
                     option2DialogueID = 340034,
