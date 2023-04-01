@@ -6322,7 +6322,7 @@ namespace TootTally.Tooter
             {331220, 
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often..?" : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary.") : $"{_appaloosaColoredName}: So, where do you want to go with tromboning?",
+                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often..?" : $"{_appaloosaColoredName}: So, where do you want to go with tromboning?") : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary.",
                     option2DialogueID = 331105
                 }
             },
