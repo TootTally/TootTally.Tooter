@@ -1511,11 +1511,11 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
                     break;
                 case 320003:
-                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction(1.2f));
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutralTalk, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 320004:
+                    AnimationManager.AddNewTransformPositionAnimation(_beezerly, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction(1.2f));
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyNeutralTalk, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 330000, 2.65f)); //to Chap 3 part 3 transition
@@ -2216,6 +2216,7 @@ namespace TootTally.Tooter
                 case 3311031:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaThinking, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    DialogueFlags.talkBeforeDrink = true;
                     break;
                 case 3311032:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaNeutral, Color.white);
@@ -6181,7 +6182,7 @@ namespace TootTally.Tooter
             {33101021,
                 new DialogueData()
                 {
-                    dialogueText = "...",
+                    dialogueText = "I hear a knock on the door and brace myself as I nudge it open.",
                     option2DialogueID = 33100023,
                 }
             },
