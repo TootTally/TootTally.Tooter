@@ -2228,6 +2228,7 @@ namespace TootTally.Tooter
                 case 331104:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
+                    DialogueFlags.unimpressedAppaloosa = true;
                     break;
                 case 331220:
                     ChangeCharSprite(_sodaSprite, (DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaNeutral) : CharExpressions.SodaNeutral), Color.white);
