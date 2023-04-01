@@ -42,14 +42,35 @@ namespace TootTally.Tooter
                 {
                     if (Directory.Exists(Path.Combine(targetMapsPath, path)))
                     {
-                        Directory.Delete(Path.Combine(targetMapsPath, path), true);
-                        LogInfo($"Old Song version {path} deleted from custom songs folder");
+                        try {
+                            Directory.Delete(Path.Combine(targetMapsPath, path), true);
+                            LogInfo($"Old Song version {path} deleted from custom songs folder");
+                        }
+                        catch (Exception e) {
+                            LogInfo($"Old Song version {path} cannot be deleted! Please check permissions!");
+                            LogError(e.ToString());
+                            LogError(e.StackTrace);
+                        }
                     }
-
-                    Directory.Move(Path.Combine(sourceMapsPath, path), Path.Combine(targetMapsPath, path));
-                    LogInfo($"Song {path} moved to custom songs folder");
+                    try {
+                        Directory.Move(Path.Combine(sourceMapsPath, path), Path.Combine(targetMapsPath, path));
+                        LogInfo($"Song {path} moved to custom songs folder");
+                    }
+                    catch (Exception e) {
+                        LogInfo($"Song {path} cannot be moved! Please check permissions!");
+                        LogError(e.ToString());
+                        LogError(e.StackTrace);
+                    }
                 });
-                Directory.Delete(sourceMapsPath, true);
+                try {
+                    Directory.Delete(sourceMapsPath, true);
+                    LogInfo("Source Maps Path successfully deleted!");
+                }
+                catch (Exception e) {
+                    LogInfo("Source Maps Path cannot be deleted");
+                    LogError(e.ToString());
+                    LogError(e.StackTrace);
+                }
             }
 
             ModuleConfigEnabled = TootTally.Plugin.Instance.Config.Bind("Modules", "Tooter", true, "Enable TootTally's Dating Module");
