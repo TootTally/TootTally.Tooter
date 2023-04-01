@@ -2224,6 +2224,7 @@ namespace TootTally.Tooter
                 case 3311033:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    DialogueFlags.talkBeforeDrink = true;
                     break;
                 case 331104:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -6302,7 +6303,6 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: Oh, stop it!" : $"{_appaloosaColoredName}: Now, that's interesting, because you have to understand that harmony is more than just major and minor.",
-                    DialogueFlags.talkBeforeDrink = true,
                     option2DialogueID = 3311033
                 }
             },
