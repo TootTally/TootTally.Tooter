@@ -5174,7 +5174,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: Absolutely, I had a fun time too.",
-                    option1Text = DialogueFlags.kissedSomeone ? "":"Loiter",
+                    option1Text = DialogueFlags.calledTrixieAFriend ? "":"Loiter",
                     option1DialogueID =  1772,
                     option1Score = new ScoreData()
                     {
@@ -7116,12 +7116,16 @@ namespace TootTally.Tooter
                     dialogueText = $"Holy wow, Kaizyle already finished? I'm only half done!",
                     option1Text = "Throw away",
                     option1DialogueID = 3400261,
-                    option2Score = new ScoreData
+                    option1Score = new ScoreData
                     {
                         kaizyleScore = -6f
                     },
                     option2Text = "Keep it",
                     option2DialogueID = 3400262,
+                    option2Score = new ScoreData
+                    {
+                        kaizyleScore = 2f
+                    },
                 }
             },
             {3400261,
@@ -7422,7 +7426,7 @@ namespace TootTally.Tooter
 
         public static bool CanPerformWithTrixie()
         {
-            return _scoreData.trixieScore >= 10 && ((DialogueFlags.kissedSomeone && DialogueFlags.kissedTrixie) || !DialogueFlags.kissedSomeone) && DialogueFlags.trixiePresent;
+            return _scoreData.trixieScore >= 10 && ((DialogueFlags.kissedSomeone && DialogueFlags.kissedTrixie) || !DialogueFlags.kissedSomeone) && DialogueFlags.trixiePresent && !DialogueFlags.calledTrixieAFriend;
         }
         public static bool CanPerformWithBeezerly()
         {
