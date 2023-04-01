@@ -6280,7 +6280,7 @@ namespace TootTally.Tooter
                 {
 
                     dialogueText = $"{_appaloosaColoredName}: That's what I'm here for. To share my love of jazz with others.",
-                    option1Text = DialogueFlags.obsessAppaloosa ? "Flirt" : "Advice",
+                    option1Text = !DialogueFlags.obsessAppaloosa ? "Flirt" : "Advice",
                     option1DialogueID = 3311031,
                     option1Score = new ScoreData
                     {
@@ -6325,7 +6325,7 @@ namespace TootTally.Tooter
             {331220, 
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.talkBeforeDrink ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often...?" : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary.") : $"{_appaloosaColoredName}: So, where do you want to go with tromboning?",
+                    dialogueText = DialogueFlags.talkBeforeDrink ? DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often...?" : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary." : $"{_appaloosaColoredName}: So, where do you want to go with tromboning?",
                     //DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often..?" : (!DialogueFlags.delayDrinks ? $"{_appaloosaColoredName}: So, where do you want to go with tromboning?" : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary.",
                     option2DialogueID = 331105
                 }
@@ -7508,7 +7508,7 @@ namespace TootTally.Tooter
             {410004,
                 new DialogueData()
                 {
-                    dialogueText = $"{_appaloosaColoredName}: That's right. It's not about winning or losing, it's about expressing yourself through music.",
+                    dialogueText = !DialogueFlags.talkedShitAboutRock ? $"{_appaloosaColoredName}: That's right. It's not about winning or losing, it's about expressing yourself through music." : "This is gonna be fun. Remember to express yourself and enjoy it!",
                     option2DialogueID = GetChapter4FourthCharacterEnter(),
                 }
             },
