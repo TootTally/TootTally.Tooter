@@ -214,10 +214,13 @@ namespace TootTally.Tooter
 
             var testDialogues = GetDialogueChapter1And2();
             Plugin.Instance.LogInfo("Dialogues 1 and 2 tested");
+            Plugin.Instance.LogInfo("Dialogues Tested: " + testDialogues.Count);
             testDialogues = GetDialogueChapter3();
             Plugin.Instance.LogInfo("Dialogues 3 tested");
+            Plugin.Instance.LogInfo("Dialogues Tested: " + testDialogues.Count);
             testDialogues = GetDialogueChapter4();
             Plugin.Instance.LogInfo("Dialogues 4 tested");
+            Plugin.Instance.LogInfo("Dialogues Tested: " + testDialogues.Count);
         }
 
         [HarmonyPatch(typeof(DemonDialogue), nameof(DemonDialogue.clickbtn1))]
