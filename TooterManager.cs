@@ -107,7 +107,7 @@ namespace TootTally.Tooter
             {
                 _isSceneActive = false;
                 _completedGame = true;
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene("home");
                 return false;
             }
             return true;
