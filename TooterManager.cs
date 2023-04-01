@@ -6402,7 +6402,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "an interesting" : (DialogueFlags.flirtAppaloosa ? "such an incredible" : "a good"))} night, {_appaloosaColoredName}. {(!(DialogueFlags.unimpressedAppaloosa) ? "Thank you again for everything." : "")}",
-                    option1Text  = DialogueFlags.kissedSomeone || !DialogueFlags.obsessAppaloosa ? "":"Kiss",
+                    option1Text  = DialogueFlags.kissedSomeone || !DialogueFlags.obsessAppaloosa ? "Kiss":"",
                     option1DialogueID = DialogueFlags.flirtAppaloosa ? 3311141 : 3311142,
                     option1Score = new ScoreData
                     {
