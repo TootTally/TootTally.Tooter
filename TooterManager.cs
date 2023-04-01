@@ -2158,6 +2158,7 @@ namespace TootTally.Tooter
                 case 33100021:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     DialogueFlags.obsessAppaloosa = true;
+                    UpdateDialogueStates(3);
                     break;
                 case 33101021:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
