@@ -33,45 +33,45 @@ namespace TootTally.Tooter
             if (Instance != null) return;
             Instance = this;
 
-            string targetMapsPath = Path.Combine(Paths.BepInExRootPath, "CustomSongs");
-            string sourceMapsPath = Path.Combine(Path.GetDirectoryName(Plugin.Instance.Info.Location), "CustomSongs");
-            if (Directory.Exists(sourceMapsPath))
-            {
-                LogInfo("CustomSongs folder found. Attempting to move songs from\n     " + sourceMapsPath + " to\n     " + targetMapsPath);
-                songFolderNames.ForEach(path =>
-                {
-                    if (Directory.Exists(Path.Combine(targetMapsPath, path)))
-                    {
-                        try {
-                            Directory.Delete(Path.Combine(targetMapsPath, path), true);
-                            LogInfo($"Old Song version {path} deleted from custom songs folder");
-                        }
-                        catch (Exception e) {
-                            LogInfo($"Old Song version {path} cannot be deleted! Please check permissions!");
-                            LogError(e.ToString());
-                            LogError(e.StackTrace);
-                        }
-                    }
-                    try {
-                        Directory.Move(Path.Combine(sourceMapsPath, path), Path.Combine(targetMapsPath, path));
-                        LogInfo($"Song {path} moved to custom songs folder");
-                    }
-                    catch (Exception e) {
-                        LogInfo($"Song {path} cannot be moved! Please check permissions!");
-                        LogError(e.ToString());
-                        LogError(e.StackTrace);
-                    }
-                });
-                try {
-                    Directory.Delete(sourceMapsPath, true);
-                    LogInfo("Source Maps Path successfully deleted!");
-                }
-                catch (Exception e) {
-                    LogInfo("Source Maps Path cannot be deleted");
-                    LogError(e.ToString());
-                    LogError(e.StackTrace);
-                }
-            }
+            // string targetMapsPath = Path.Combine(Paths.BepInExRootPath, "CustomSongs");
+            // string sourceMapsPath = Path.Combine(Path.GetDirectoryName(Plugin.Instance.Info.Location), "CustomSongs");
+            // if (Directory.Exists(sourceMapsPath))
+            // {
+            //     LogInfo("CustomSongs folder found. Attempting to move songs from\n     " + sourceMapsPath + " to\n     " + targetMapsPath);
+            //     songFolderNames.ForEach(path =>
+            //     {
+            //         if (Directory.Exists(Path.Combine(targetMapsPath, path)))
+            //         {
+            //             try {
+            //                 Directory.Delete(Path.Combine(targetMapsPath, path), true);
+            //                 LogInfo($"Old Song version {path} deleted from custom songs folder");
+            //             }
+            //             catch (Exception e) {
+            //                 LogInfo($"Old Song version {path} cannot be deleted! Please check permissions!");
+            //                 LogError(e.ToString());
+            //                 LogError(e.StackTrace);
+            //             }
+            //         }
+            //         try {
+            //             Directory.Move(Path.Combine(sourceMapsPath, path), Path.Combine(targetMapsPath, path));
+            //             LogInfo($"Song {path} moved to custom songs folder");
+            //         }
+            //         catch (Exception e) {
+            //             LogInfo($"Song {path} cannot be moved! Please check permissions!");
+            //             LogError(e.ToString());
+            //             LogError(e.StackTrace);
+            //         }
+            //     });
+            //     try {
+            //         Directory.Delete(sourceMapsPath, true);
+            //         LogInfo("Source Maps Path successfully deleted!");
+            //     }
+            //     catch (Exception e) {
+            //         LogInfo("Source Maps Path cannot be deleted");
+            //         LogError(e.ToString());
+            //         LogError(e.StackTrace);
+            //     }
+            // }
 
             ModuleConfigEnabled = TootTally.Plugin.Instance.Config.Bind("Modules", "Tooter", true, "Enable TootTally's Dating Module");
             OptionalTrombSettings.Add(TootTally.Plugin.Instance.moduleSettings, ModuleConfigEnabled);
