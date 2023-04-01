@@ -512,6 +512,7 @@ namespace TootTally.Tooter
         public static void DisplayAchievement(string name, string description)
         {
             PopUpNotifManager.DisplayNotif($"Achievement: {name}\n{description}", GameTheme.themeColors.notification.defaultText);
+            Plugin.Instance.LogInfo($"Achievement: {name}\n     Description: {description}");
         }
 
         public enum HomeScreenButtonIndexes
@@ -3402,8 +3403,8 @@ namespace TootTally.Tooter
         public static void LogChapter3Part2States()
         {
             Plugin.Instance.LogInfo("CURRENT CHAPTER 3 PART 2 STATES:");
-            Plugin.Instance.LogInfo("   orderedBurger: " + DialogueFlags.askedIfFirstTime);
-            Plugin.Instance.LogInfo("   agreedWithBeezerly: " + DialogueFlags.orderedBurger);
+            Plugin.Instance.LogInfo("   askedIfFirstTime: " + DialogueFlags.askedIfFirstTime);
+            Plugin.Instance.LogInfo("   orderedBurger: " + DialogueFlags.orderedBurger);
             Plugin.Instance.LogInfo("   agreedWithBeezerly: " + DialogueFlags.agreedWithBeezerly);
             Plugin.Instance.LogInfo("   convincedBeezerly: " + DialogueFlags.convincedBeezerly);
             Plugin.Instance.LogInfo("   askedAboutTheFood: " + DialogueFlags.askedAboutTheFood);
@@ -7376,11 +7377,11 @@ namespace TootTally.Tooter
 
         public static int GetChapter4FirstCharacterEnter()
         {
-            if (!DialogueFlags.awkwardMomentWithTrixie && !DialogueFlags.toldTrixieAboutTheSmell)
+            if (!DialogueFlags.awkwardMomentWithTrixie || !DialogueFlags.toldTrixieAboutTheSmell)
                 return 410002;
             else if (!DialogueFlags.talkedShitAboutRock)
                 return 410003;
-            else if (!DialogueFlags.awkwardAppaloosa && !DialogueFlags.unimpressedAppaloosa)
+            else if (!DialogueFlags.awkwardAppaloosa || !DialogueFlags.unimpressedAppaloosa)
                 return 410004;
             else if (!DialogueFlags.arguedAboutGlissandogs)
                 return 410005;
@@ -7392,7 +7393,7 @@ namespace TootTally.Tooter
         {
             if (!DialogueFlags.talkedShitAboutRock)
                 return 410003;
-            else if (!DialogueFlags.awkwardAppaloosa && !DialogueFlags.unimpressedAppaloosa)
+            else if (!DialogueFlags.awkwardAppaloosa || !DialogueFlags.unimpressedAppaloosa)
                 return 410004;
             else if (!DialogueFlags.arguedAboutGlissandogs)
                 return 410005;
@@ -7401,7 +7402,7 @@ namespace TootTally.Tooter
         }
         public static int GetChapter4ThirdCharacterEnter()
         {
-            if (!DialogueFlags.awkwardAppaloosa && !DialogueFlags.unimpressedAppaloosa)
+            if (!DialogueFlags.awkwardAppaloosa || !DialogueFlags.unimpressedAppaloosa)
                 return 410004;
             else if (!DialogueFlags.arguedAboutGlissandogs)
                 return 410005;
