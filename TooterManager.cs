@@ -2116,7 +2116,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
                     break;
                 case 330007:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
                     break;
                 case 3310001:
@@ -2176,7 +2176,7 @@ namespace TootTally.Tooter
                 case 331002:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutralTalk, Color.white);
-                    FlipSpriteLeftAnimation(_soda, false, 10f);
+                    FlipSpriteLeftAnimation(_soda, false, 1f);
                     break;
                 case 331200:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white); 
@@ -2184,7 +2184,7 @@ namespace TootTally.Tooter
                     break;
                 case 331100:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaWow, Color.white);
-                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaLOL, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 331101:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -2243,8 +2243,8 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaBlush, Color.white);
                     break;
                 case 331113:
-                    ChangeCharSprite(_sodaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.SodaNeutral : CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.AppaloosaLeanAway : CharExpressions.AppaloosaBlush, Color.white);
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaNeutral, Color.white);
                     break;
                 case 3311131:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.isCompetitive ? CharExpressions.SodaHype : CharExpressions.SodaEmbarrassedLight, Color.white);
@@ -6269,14 +6269,14 @@ namespace TootTally.Tooter
             {3311031,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: I thought you were here for your passionate student?" : $"{_sodaColoredName} Speaking of, how do tromboners create complex chords in a group like that?",
+                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: I thought you were here for your passionate student?" : $"{_sodaColoredName}: Speaking of, how do tromboners create complex chords in a group like that?",
                     option2DialogueID = 3311032
                 }
             },
             {3311032,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: Oh, stop it!" : $"{_appaloosaColoredName} Now, that's interesting, because you have to understand that harmony is more than just major and minor.",
+                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: Oh, stop it!" : $"{_appaloosaColoredName}: Now, that's interesting, because you have to understand that harmony is more than just major and minor.",
 
                     option2DialogueID = 3311033
                 }
