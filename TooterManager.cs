@@ -112,7 +112,7 @@ namespace TootTally.Tooter
             }
             return true;
         }
-        
+
 
         [HarmonyPatch(typeof(Plugin), nameof(Plugin.Update))]
         [HarmonyPostfix]
@@ -1854,7 +1854,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
                     break;
                 case 321004:
-                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyWhat, Color.white); 
+                    ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyWhat, Color.white);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaPlead, Color.white);
                     break;
                 case 321005:
@@ -2105,7 +2105,7 @@ namespace TootTally.Tooter
                     break;
                 case 330001:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaAgree, Color.white); 
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaAgree, Color.white);
                     break;
                 case 3300011:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -2195,7 +2195,7 @@ namespace TootTally.Tooter
                     FlipSpriteLeftAnimation(_soda, false, 1f);
                     break;
                 case 331200:
-                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white); 
+                    ChangeCharSprite(_sodaSprite, CharExpressions.SodaEh, Color.white);
                     ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaDisappointed, Color.white);
                     break;
                 case 331100:
@@ -2221,7 +2221,7 @@ namespace TootTally.Tooter
                     break;
                 case 3311032:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.SodaEmbarrassedLight : CharExpressions.SodaNeutral, Color.white);
-                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.obsessAppaloosa ?  CharExpressions.AppaloosaBlush : CharExpressions.AppaloosaNeutralTalk, Color.white);
+                    ChangeCharSprite(_appaloosaSprite, DialogueFlags.obsessAppaloosa ? CharExpressions.AppaloosaBlush : CharExpressions.AppaloosaNeutralTalk, Color.white);
                     break;
                 case 3311033:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutral, Color.white);
@@ -2738,9 +2738,9 @@ namespace TootTally.Tooter
                     break;
                 case 340131:
                     FlipSpriteRightAnimation(_kaizyle, false);
-                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCenterCharPosition - new Vector3(1,0,0), 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
-                    {
-                        ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);//SodaReleaf after sitting
+                    AnimationManager.AddNewTransformPositionAnimation(_soda, _rightCenterCharPosition - new Vector3(1, 0, 0), 1f, GetSecondDegreeAnimationFunction(0.9f), delegate
+                      {
+                          ChangeCharSprite(_sodaSprite, CharExpressions.SodaWheezeRW, Color.white);//SodaReleaf after sitting
                     });
                     AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1.2f, GetSecondDegreeAnimationFunction(0.9f), delegate
                     {
@@ -3102,7 +3102,7 @@ namespace TootTally.Tooter
                     case 156:
                     case 164:
                         FlipSpriteLeftAnimation(_soda, false, 10f);
-                        FlipSpriteRightAnimation(_trixiebell, false, 10f); 
+                        FlipSpriteRightAnimation(_trixiebell, false, 10f);
                         _soda.transform.position = _outLeftCharPosition + new Vector3(1, 0, 0);
                         _trixiebell.transform.position = _outLeftCharPosition;
                         _appaloosa.transform.position = _outLeftCharPosition;
@@ -4466,7 +4466,7 @@ namespace TootTally.Tooter
                         trixieScore = 2,
                     },
                     option2Text = "Compliment her",
-                    
+
                     option2DialogueID = 125,
                     option2Score = new ScoreData()
                     {
@@ -5897,7 +5897,7 @@ namespace TootTally.Tooter
             {321000,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.orderedBurger ? $"{_sodaColoredName}: The burger is alright, but I’ve had better." : $"{_sodaColoredName}:... I'm so sorry. This pizza was a mistake.", 
+                    dialogueText = DialogueFlags.orderedBurger ? $"{_sodaColoredName}: The burger is alright, but I’ve had better." : $"{_sodaColoredName}:... I'm so sorry. This pizza was a mistake.",
                     option2DialogueID = DialogueFlags.orderedBurger ? 321001 : 321900
                 }
             },
@@ -6146,21 +6146,21 @@ namespace TootTally.Tooter
                 }
             },
             {33100020,
-                new DialogueData() 
+                new DialogueData()
                 {
                     dialogueText = $"{_appaloosaColoredName}: Great! I'll pick you up after school.",
                     option2DialogueID = 331000201
-                } 
+                }
             },
             {331000201,
-                new DialogueData() 
+                new DialogueData()
                 {
                     dialogueText = $"As I pack up, I wonder what it is she's looking for from me.",
                     option2DialogueID = 331000202
-                } 
+                }
             },
             {331000202,
-                new DialogueData() 
+                new DialogueData()
                 {
                     dialogueText = $"She's my tutor, and I'm her student.",
                     option1Text = "I should drop it.",
@@ -6171,35 +6171,35 @@ namespace TootTally.Tooter
                     {
                         appaloosaScore = 1f
                     },
-                } 
+                }
             },
             {33100021,
                 new DialogueData()
                 {
                     dialogueText = "I hear a knock on the door and brace myself as I nudge it open.",
-                    option2DialogueID = 3310002311,
+                    option2DialogueID = 331002311,
                 }
             },
             {33101021,
                 new DialogueData()
                 {
                     dialogueText = "I hear a knock on the door and brace myself as I nudge it open.",
-                    option2DialogueID = 3310002311,
+                    option2DialogueID = 331002311,
                 }
             },
-            {3310002311,
-                new DialogueData() 
+            {331002311,
+                new DialogueData()
                 {
                     dialogueText = $"...",
                     option2DialogueID = 33100023
-                } 
+                }
             },
             {33100023,
-                new DialogueData() 
+                new DialogueData()
                 {
                     dialogueText = $"We rendezvous outside, the hellish cacophony of metal on metal still ringing in our ears, and together we walk down the road.",
                     option2DialogueID = 3310002
-                } 
+                }
             },
             {3310002,
                 new DialogueData()
@@ -6217,25 +6217,25 @@ namespace TootTally.Tooter
                 }
             },
             {3310092,
-                new DialogueData() 
+                new DialogueData()
                 {
                     dialogueText = $"Only the occasional person passes through the doorway, but stepping inside, the room is well-packed.",
                     option2DialogueID = 3310093
-                } 
+                }
             },
             {3310093,
-                new DialogueData() 
+                new DialogueData()
                 {
                     dialogueText = $"As I cross the threshold, however, I finally hear the music. Now I understand.",
                     option2DialogueID = 3310094
-                } 
+                }
             },
             {3310094,
-                new DialogueData() 
+                new DialogueData()
                 {
                     dialogueText = $"What tromboner in their right mind would leave a sound like this?",
                     option2DialogueID = 331002
-                } 
+                }
             },
             {331002,
                 new DialogueData()
@@ -6330,7 +6330,7 @@ namespace TootTally.Tooter
                     option2DialogueID = 331220
                 }
             },
-            {331220, 
+            {331220,
                 new DialogueData()
                 {
                     dialogueText = DialogueFlags.talkBeforeDrink ? DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often...?" : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary." : $"{_appaloosaColoredName}: So, where do you want to go with tromboning?",
@@ -6343,7 +6343,7 @@ namespace TootTally.Tooter
                 {
                     dialogueText = DialogueFlags.talkBeforeDrink ? (DialogueFlags.obsessAppaloosa ?
                     $"{_sodaColoredName}: This place is impressive, {_appaloosaColoredName}. I can't thank you enough for bringing me here." :
-                    $"{_sodaColoredName}: So words are just... notes?") : 
+                    $"{_sodaColoredName}: So words are just... notes?") :
                     (DialogueFlags.isCompetitive ? $"{_sodaColoredName}: I'm definitely going pro once I graduate." :
                     $"{_sodaColoredName}: I think I just started tromboning because I come from a long line of tromboners, but doesn't everyone?"), // SodaEat
                     option2DialogueID = 331106
@@ -6404,7 +6404,7 @@ namespace TootTally.Tooter
                 }
             },
             {3311131,
-                new DialogueData() 
+                new DialogueData()
                 {
                     dialogueText = $"It's interesting in places, sure, but {(DialogueFlags.isCompetitive ? "seeing all this tooting just makes me want to get home and practice." : "I know why I really came here.")}",
                     option2DialogueID = 331114
@@ -6461,7 +6461,7 @@ namespace TootTally.Tooter
             },
             {3311151, //transition back to 331115
                 new DialogueData() {
-                    dialogueText = "", 
+                    dialogueText = "",
                     option2DialogueID = 0
                 }
             },
@@ -6865,7 +6865,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = $"{_kaizyleColoredName}: There it is! What's been stopping you? You've been up in my grill this whole time anyway.",
-                    option2DialogueID = 340313, 
+                    option2DialogueID = 340313,
                 }
             },
             {340313,
