@@ -2978,7 +2978,7 @@ namespace TootTally.Tooter
                     DisplayAchievement("No Tromboners", "Forever alone...");
                     break;
                 case 410506:
-                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410507, 2.65f));
+                    Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410508, 2.65f));
                     DialogueFlags.performedGroup = true;
                     UpdateDialogueStates(4);
                     DisplayAchievement("The good ending", "Playing together is a lot more fun.");
@@ -3342,7 +3342,7 @@ namespace TootTally.Tooter
                         SceneManager.LoadScene("loader");
                         return;
                     //HAREM FOR JOE WOOOO
-                    case 410506:
+                    case 410508:
                         SingleTrackData loveFlipTrack = TrackLookup.toTrackData(TrackLookup.lookup(_loveFlipTrackref));
                         if (!GlobalVariables.alltrackslist_custom.Contains(loveFlipTrack))
                             GlobalVariables.alltrackslist_custom.Add(loveFlipTrack);
@@ -7613,7 +7613,7 @@ namespace TootTally.Tooter
             {4100111,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: Looks like nobody wanted to perform with me... So I will be perfoming solo!",
+                    dialogueText = $"{_sodaColoredName}: Looks like nobody wanted to perform with me... guess it didn't matter.",
                     option2DialogueID = 410012,
                 }
             },
