@@ -1226,6 +1226,7 @@ namespace TootTally.Tooter
                 case 128:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaEmbarrassedLight, Color.white);
                     ChangeCharSprite(_trixiebellSprite, DialogueFlags.awkwardMomentWithTrixie ? CharExpressions.TrixiePanic : CharExpressions.TrixieCompliment3, Color.white);
+                    DialogueFlags.gtfoOfTheDateEarly = true;
                     break;
                 case 129:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaNeutralTalk, Color.white);
@@ -4461,6 +4462,7 @@ namespace TootTally.Tooter
                         trixieScore = 2,
                     },
                     option2Text = "Compliment her",
+                    
                     option2DialogueID = 125,
                     option2Score = new ScoreData()
                     {
@@ -4744,7 +4746,7 @@ namespace TootTally.Tooter
                 {
                     dialogueText = $"{_trixieColoredName}: ...",
                     option1Text = "Be Smooth",
-                    option1DialogueID = 125,
+                    option1DialogueID = 129,
                     option1Score = new ScoreData()
                     {
                         trixieScore = -5,
@@ -7497,7 +7499,7 @@ namespace TootTally.Tooter
             {410003,
                 new DialogueData()
                 {
-                    dialogueText = $"{_beezerlyColoredName}: Don't worry about it, guys. Just play from the heart and have fun.",
+                    dialogueText = $"{_beezerlyColoredName}: Don't sweat it, nerd. Just remember to play from the heart and have fun.",
                     option2DialogueID = GetChapter4ThirdCharacterEnter(),
                 }
             },
