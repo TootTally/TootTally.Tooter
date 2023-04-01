@@ -829,6 +829,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaBleh, Color.white);
                     ChangeCharSprite(_beezerlySprite, CharExpressions.BeezerlyAggro, Color.white);
                     DialogueFlags.talkedShitAboutRock = true;
+                    DisplayAchievement("Roll", "There is no Rock.");
                     UpdateDialogueStates(2);
                     break;
                 case 220101:
@@ -871,6 +872,8 @@ namespace TootTally.Tooter
                 case 55:
                     ChangeCharSprite(_sodaSprite, DialogueFlags.didntPeekAppaloosaRoom && DialogueFlags.didntPeekKaizyleRoom ? CharExpressions.SodaNeutral : CharExpressions.SodaThinking, Color.white);
                     DialogueFlags.pickedAppaloosa = DialogueFlags.pickedKaizyle = false;
+                    if (DialogueFlags.didntPeekAppaloosaRoom && DialogueFlags.didntPeekKaizyleRoom)
+                        DisplayAchievement("Introvert", "Do not disturb.");
                     UpdateDialogueStates(2);
                     break;
                 case 56:
@@ -971,6 +974,7 @@ namespace TootTally.Tooter
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _centerCharPosition + new Vector3(2.6f, 0, 0), 1f, GetSecondDegreeAnimationFunction());
                     AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition + new Vector3(.8f, 0, 0), 1f, GetSecondDegreeAnimationFunction());
                     DialogueFlags.annoyedTheFuckOutOfKaizyle = true;
+                    DisplayAchievement("PLEASE", "PLEASE PLEASE PLEASE PLEASE PLEASE");
                     UpdateDialogueStates(2);
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaBeg, Color.white);
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleWTF, Color.white);
@@ -1198,6 +1202,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_trixiebellSprite, CharExpressions.TrixieAnxious, Color.white);
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 320001, 5.5f));
                     DialogueFlags.gtfoOfTheDateEarly = true;
+                    DisplayAchievement("The Worst They Can Say Is No", "");
                     UpdateDialogueStates(3);
                     break;
                 case 125:
@@ -1468,6 +1473,7 @@ namespace TootTally.Tooter
                 case 177:
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 178, 0f, 0.4f));
                     DialogueFlags.kissedTrixie = DialogueFlags.kissedSomeone = true;
+                    DisplayAchievement("Shy guy", "Kiss Trixie");
                     UpdateDialogueStates(3);
                     break;
                 case 178:
@@ -1659,6 +1665,7 @@ namespace TootTally.Tooter
                         RecursiveSodaBeezerlyDanceAnimation();
                     });
                     DialogueFlags.dancedWithBeezerly = true;
+                    DisplayAchievement("Look At Those Moves!", "");
                     UpdateDialogueStates(3);
                     break;
                 case 3202057:
@@ -1701,6 +1708,7 @@ namespace TootTally.Tooter
                     break;
                 case 3204059:
                     DialogueFlags.kissedBeezerly = DialogueFlags.kissedSomeone = true;
+                    DisplayAchievement("You Rock", "Kiss Beezerly");
                     UpdateDialogueStates(3);
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3204159, 0f, 0.4f)); // transition to kissing scene
                     break;
@@ -1747,6 +1755,9 @@ namespace TootTally.Tooter
                     FlipSpriteRightAnimation(_beezerly, false, 0.8f);
                     AnimationManager.AddNewTransformPositionAnimation(_soda, _outRightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 330000, 2.65f)); // transition to part 3 :D
+                    break;
+                case 320300:
+                    DisplayAchievement("Hot Take", "And people argued about pineapple pizza...");
                     break;
                 case 320400:
                     ChangeCharSprite(_beezerlySprite, DialogueFlags.orderedBurger ? CharExpressions.BeezerlyNeutral : CharExpressions.BeezerlyAggro, Color.white);
@@ -2269,6 +2280,7 @@ namespace TootTally.Tooter
                     break;
                 case 3311150:
                     DialogueFlags.kissedAppaloosa = DialogueFlags.kissedSomeone = true;
+                    DisplayAchievement("Onii Chan", "Kiss Appaloosa");
                     UpdateDialogueStates(3);
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 3311151, 0f, 0.4f)); //KISS
                     break;
@@ -2523,6 +2535,7 @@ namespace TootTally.Tooter
                     break;
                 case 340317:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaBreaking, Color.white);
+                    DisplayAchievement("Dog Defender", "Stick to your buns.");
                     break;
                 case 340318:
                     FlipSpriteLeftAnimation(_soda, false, 0.3f);
@@ -2668,6 +2681,9 @@ namespace TootTally.Tooter
                         AnimationManager.AddNewTransformPositionAnimation(_soda, _outLeftCharPosition, 1.5f, GetSecondDegreeAnimationFunction());
                     });
                     DialogueFlags.threwIceCreamAway = true;
+                    if (DialogueFlags.threwCookieInGarbage && DialogueFlags.threwIceCreamAway)
+                        DisplayAchievement("What A Waste", "Small appetite.");
+
                     UpdateDialogueStates(3);
                     break;
                 case 3400262:
@@ -2754,6 +2770,7 @@ namespace TootTally.Tooter
                 case 340138:
                     Plugin.Instance.StartCoroutine(SpecialFadeOutScene(__instance, 340139, 0f, 0.4f)); //KISSING SCENE BOI
                     DialogueFlags.kissedKaizyle = DialogueFlags.kissedSomeone = true;
+                    DisplayAchievement("Secret Neko", "Kiss Kaizyle");
                     UpdateDialogueStates(3);
                     break;
                 case 340139:
@@ -2863,6 +2880,7 @@ namespace TootTally.Tooter
                     ChangeCharSprite(_kaizyleSprite, CharExpressions.KaizyleBrag, Color.white);
                     AnimationManager.AddNewTransformPositionAnimation(_kaizyle, _rightCharPosition, 1f, GetSecondDegreeAnimationFunction());
                     DialogueFlags.kaizylePresent = true;
+                    DisplayAchievement("Hello everyone!", "Everyone is here for the competition.");
                     UpdateDialogueStates(4);
                     break;
                 case 410006:
@@ -2953,11 +2971,13 @@ namespace TootTally.Tooter
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410013, 2.65f));
                     DialogueFlags.performedSolo = true;
                     UpdateDialogueStates(4);
+                    DisplayAchievement("No Tromboners", "Forever alone...");
                     break;
                 case 410506:
                     Plugin.Instance.StartCoroutine(FadeOutScene(__instance, 410507, 2.65f));
                     DialogueFlags.performedGroup = true;
                     UpdateDialogueStates(4);
+                    DisplayAchievement("The good ending", "Playing together is a lot more fun.");
                     break;
                     #endregion
             }
