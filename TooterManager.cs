@@ -2136,8 +2136,7 @@ namespace TootTally.Tooter
                     break;
                 case 3310001:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaThinking, Color.white);
-                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaDisappointed, Color.white); 
-                    DialogueFlags.disinterestedAppaloosa = true;
+                    ChangeCharSprite(_appaloosaSprite, CharExpressions.AppaloosaDisappointed, Color.white);
                     break;
                 case 331000:
                     ChangeCharSprite(_sodaSprite, CharExpressions.SodaHype, Color.white);
@@ -6214,7 +6213,7 @@ namespace TootTally.Tooter
             {3310093,
                 new DialogueData() 
                 {
-                    dialogueText = $"At that point however, I hear the music, and understand.",
+                    dialogueText = $"As I cross the threshold, however, I finally hear the music. Now I understand.",
                     option2DialogueID = 3310094
                 } 
             },
@@ -6301,7 +6300,7 @@ namespace TootTally.Tooter
                 new DialogueData()
                 {
                     dialogueText = DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: Oh, stop it!" : $"{_appaloosaColoredName}: Now, that's interesting, because you have to understand that harmony is more than just major and minor.",
-
+                    DialogueFlags.talkBeforeDrink = true,
                     option2DialogueID = 3311033
                 }
             },
@@ -6322,17 +6321,18 @@ namespace TootTally.Tooter
             {331220, 
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often..?" : $"{_appaloosaColoredName}: So, where do you want to go with tromboning?") : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary.",
+                    dialogueText = DialogueFlags.talkBeforeDrink ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often...?" : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary.") : $"{_appaloosaColoredName}: So, where do you want to go with tromboning?",
+                    //DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: So, do you come here often..?" : (!DialogueFlags.delayDrinks ? $"{_appaloosaColoredName}: So, where do you want to go with tromboning?" : $"{_appaloosaColoredName}: Think of chords as sentences, where the complexity of an idea lies in structure and vocabulary.",
                     option2DialogueID = 331105
                 }
             },
             {331105,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ?
-                    $"{_sodaColoredName}: This place is impressive, {_appaloosaColoredName}. I can't thank you enough for bringing me here." : // if appaloosa unimpressed
-                    $"{_sodaColoredName}: So words are just... notes?") : // if appaloosa is impressed and soda is obsess
-                    (DialogueFlags.isCompetitive ? $"{_sodaColoredName}: I'm definitely going pro once I graduate." : // if appaloosa is impressed, soda not impressed but soda is competitive
+                    dialogueText = DialogueFlags.talkBeforeDrink ? (DialogueFlags.obsessAppaloosa ?
+                    $"{_sodaColoredName}: This place is impressive, {_appaloosaColoredName}. I can't thank you enough for bringing me here." :
+                    $"{_sodaColoredName}: So words are just... notes?") : 
+                    (DialogueFlags.isCompetitive ? $"{_sodaColoredName}: I'm definitely going pro once I graduate." :
                     $"{_sodaColoredName}: I think I just started tromboning because I come from a long line of tromboners, but doesn't everyone?"), // SodaEat
                     option2DialogueID = 331106
                 }
@@ -6340,7 +6340,7 @@ namespace TootTally.Tooter
             {331106,
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.unimpressedAppaloosa ? (DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. You remind me of myself when I was your age. So full of passion and potential." : $"{_appaloosaColoredName}: Exactly! And where you choose to, say, place the root of the chord down the octave determines what you communicate to the listener!") : (DialogueFlags.isCompetitive ? $"{_appaloosaColoredName}: That's great! You remind me of the tromboning drive I had when I first started." : $"{_appaloosaColoredName}: You're definitely not alone there. It's a big trombiverse out there, and all we can do is our best! So don't lose hope."),
+                    dialogueText = DialogueFlags.talkBeforeDrink ? (DialogueFlags.obsessAppaloosa ? $"{_appaloosaColoredName}: It's my pleasure, {_sodaColoredName}. You remind me of myself when I was your age. So full of passion and potential." : $"{_appaloosaColoredName}: Exactly! And where you choose to, say, place the root of the chord down the octave determines what you communicate to the listener!") : (DialogueFlags.isCompetitive ? $"{_appaloosaColoredName}: That's great! You remind me of the tromboning drive I had when I first started." : $"{_appaloosaColoredName}: You're definitely not alone there. It's a big trombiverse out there, and all we can do is our best! So don't lose hope."),
                     option1Text = $"Thank",
                     option1DialogueID = 331120,
                     option1Score = new ScoreData
@@ -6358,7 +6358,7 @@ namespace TootTally.Tooter
             {331120, // Choice 2; thank
                 new DialogueData()
                 {
-                    dialogueText = DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: Oh, um... thanks." : (DialogueFlags.unimpressedAppaloosa ? $"{_sodaColoredName}: That's so cool! Tell me more." : $"{_sodaColoredName}: Thanks, {_appaloosaColoredName}. That... that helps."),
+                    dialogueText = DialogueFlags.talkBeforeDrink ? (DialogueFlags.obsessAppaloosa ? $"{_sodaColoredName}: Oh, um... thanks." : $"{_sodaColoredName}: That's so cool! Tell me more.") : (DialogueFlags.isCompetitive ? $"{_sodaColoredName}: I'm proud just hearing that, {_appaloosaColoredName}." : $"{_sodaColoredName}: Thanks, {_appaloosaColoredName}. That... that helps."),
                     option2DialogueID = 331113
                 }
             },
@@ -6401,8 +6401,8 @@ namespace TootTally.Tooter
             {331114,
                 new DialogueData()
                 {
-                    dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "an interesting" : (DialogueFlags.flirtAppaloosa ? "such an incredible" : "a good"))} night, {_appaloosaColoredName}. {(!(DialogueFlags.unimpressedAppaloosa) ? "Thank you again for everything." : "")}",
-                    option1Text  = DialogueFlags.kissedSomeone || !DialogueFlags.obsessAppaloosa ? "Kiss":"",
+                    dialogueText = $"{_sodaColoredName}: This has been {(DialogueFlags.unimpressedAppaloosa ? "an interesting" : (DialogueFlags.flirtAppaloosa ? "such an incredible" : "a good"))} night, {_appaloosaColoredName}. Thank you again for everything.",
+                    option1Text  = (DialogueFlags.kissedSomeone || !DialogueFlags.obsessAppaloosa) ? "":"Kiss",
                     option1DialogueID = DialogueFlags.flirtAppaloosa ? 3311141 : 3311142,
                     option1Score = new ScoreData
                     {
@@ -7742,7 +7742,7 @@ namespace TootTally.Tooter
             #region Chapter 3 part 3
             public static bool obsessAppaloosa;
             public static bool unimpressedAppaloosa;
-            public static bool disinterestedAppaloosa;
+            public static bool talkBeforeDrink;
             public static bool kissedAppaloosa;
             public static bool awkwardAppaloosa;
             public static bool flirtAppaloosa;
