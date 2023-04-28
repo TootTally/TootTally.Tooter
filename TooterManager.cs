@@ -160,9 +160,7 @@ namespace TootTally.Tooter
             GlobalVariables.chosen_character = 7;
             GlobalVariables.chosen_trombone = 0;
             GlobalVariables.chosen_soundset = 0;
-            GlobalVariables.show_toot_rainbow = false;
             GlobalVariables.gamescrollspeed = 1f;
-            GlobalVariables.levelselect_index = 0;
             __instance.btn1obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(-65, -190);
             __instance.btn2obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(65, -180);
             __instance.txtbox.gameObject.SetActive(false);
