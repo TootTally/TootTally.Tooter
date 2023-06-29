@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using TootTally.Graphics;
 using TootTally.Graphics.Animation;
 using TootTally.Utils;
@@ -42,13 +43,13 @@ namespace TootTally.Tooter
         private static readonly Vector3 _farRightCharPosition = new Vector3(6.8f, -6.5f, 10);
         private static readonly Vector3 _outLeftCharPosition = new Vector3(-15, -6.5f, 10);
         private static readonly Vector3 _outRightCharPosition = new Vector3(15, -6.5f, 10);
-        private static readonly string _brokenWindow = "<color='#007ACC'>CRASH</color>";
-        private static readonly string _sodaColoredName = "<color='#FFFF21'>Soda</color>";
-        private static readonly string _trixieColoredName = "<color='#FFAAAA'>Trixiebell</color>";
-        private static readonly string _appaloosaColoredName = "<color='#FF0000'>Appaloosa</color>";
-        private static readonly string _beezerlyColoredName = "<color='#f0f0c2'>Beezerly</color>";
-        private static readonly string _kaizyleColoredName = "<color='#A020F0'>Kaizyle</color>";
-        private static readonly string _tromBurgerChampName = "<color='#D62300'>TromBurger</color> " + "<color='#FF8732'>Champ</color>";
+        private static readonly string _brokenWindow = "<color=#007ACC>CRASH</color>";
+        private static readonly string _sodaColoredName = "<color=#FFFF21>Soda</color>";
+        private static readonly string _trixieColoredName = "<color=#FFAAAA>Trixiebell</color>";
+        private static readonly string _appaloosaColoredName = "<color=#FF0000>Appaloosa</color>";
+        private static readonly string _beezerlyColoredName = "<color=#f0f0c2>Beezerly</color>";
+        private static readonly string _kaizyleColoredName = "<color=#A020F0>Kaizyle</color>";
+        private static readonly string _tromBurgerChampName = "<color=#D62300>TromBurger</color> " + "<color='#FF8732'>Champ</color>";
         private static List<Coroutine> _textCoroutines = new List<Coroutine>();
         private static readonly string _loveHasNoEndTrackref = "0.8506432151619188";
         private static readonly string _loveFlipTrackref = "0.46110644885682883";
@@ -96,6 +97,7 @@ namespace TootTally.Tooter
                 _textCoroutines.Add(Plugin.Instance.StartCoroutine(addWord(__instance, word, delay)));
                 delay += 1.5f;
             }
+            //__instance.demonbabble.doBabbles(array.Length); // LM'FAOOOOO THIS IS HORRENDOUS
             return false;
         }
 
@@ -144,7 +146,7 @@ namespace TootTally.Tooter
         [HarmonyPrefix]
         public static void OnDemonDialogueAddWordPostFix(BabbleController __instance)
         {
-            __instance.babbleplayer.mute = true; //there's some coding logic inside of the doBabble function which I can't overwrite... so just mute the babble and let it do its things
+            //__instance.babbleplayer.mute = true; //there's some coding logic inside of the doBabble function which I can't overwrite... so just mute the babble and let it do its things
         }
 
         [HarmonyPatch(typeof(DemonDialogue), nameof(DemonDialogue.Start))]
@@ -185,11 +187,12 @@ namespace TootTally.Tooter
             _txtBox.transform.SetSiblingIndex(1);
             txtBoxRectTransform.anchoredPosition = new Vector2(0, -300);
             txtBoxRectTransform.sizeDelta = new Vector2(1500, 250);
-            txtBoxRectTransform.localScale = Vector2.one / 2f;
+            txtBoxRectTransform.localScale = Vector3.one / 2f;
             _txtBox.Initialize(float.MaxValue, new Vector2(0, -150), new Vector2(1000, 250), new Vector2(300, 0));
             _txtBox.SetTextSize(32); //SetTextSize has to be called after init
-            _txtBox.SetTextAlign(TextAnchor.MiddleLeft);
-            _txtBox.transform.Find("NotifText").GetComponent<Text>().verticalOverflow = VerticalWrapMode.Overflow;
+            _txtBox.SetTextAlign(TextAlignmentOptions.Center);
+            _txtBox.transform.Find("NotifText").GetComponent<TMP_Text>().overflowMode = TextOverflowModes.Overflow;
+            _txtBox.transform.Find("NotifText").GetComponent<TMP_Text>().enableWordWrapping = true;
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().sprite = TooterAssetsManager.GetSprite("MusicRoom.png");
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().color = new Color(.6f, .6f, .6f);
             __instance.csc.demonbg.transform.Find("Image").GetComponent<Image>().preserveAspect = true;
@@ -383,9 +386,11 @@ namespace TootTally.Tooter
             tooterButton.name = "TOOTERContainer";
             tooterHitbox.name = "TOOTERButton";
             tooterText.name = "TOOTERText";
+
             OverwriteGameObjectSpriteAndColor(tooterButton.transform.Find("FG").gameObject, "TooterButton.png", Color.white);
             OverwriteGameObjectSpriteAndColor(tooterText, "TooterText.png", Color.white);
             tooterButton.transform.SetSiblingIndex(0);
+
             RectTransform tooterTextRectTransform = tooterText.GetComponent<RectTransform>();
             tooterTextRectTransform.anchoredPosition = new Vector2(-800, -400);
             tooterTextRectTransform.sizeDelta = new Vector2(456, 89);
